@@ -19,6 +19,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
+### Wilfred Wong
+
+<img src="images/wilfred.png" width="200px">
+
+[[github](https://github.com/wilfredwongkc)]
+[[portfolio](team/wilfredwongkc.md)]
+
+* Role: Developer
+* Responsibilities: Data
+
 ### Jane Doe
 
 <img src="images/johndoe.png" width="200px">
@@ -26,7 +36,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
+* Role: Developer
 * Responsibilities: UI
 
 ### Johnny Doe
