@@ -23,8 +23,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/yulong.png" width="200px">
 
-[[github](http://github.com/yulong)]
-[[portfolio](team/yulong.md)]
+[[github](http://github.com/yulonglim)]
+[[portfolio](team/yulonglim.md)]
 
 * Role: Developer
 * Responsibilities: UI
