@@ -278,6 +278,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* *`    | teacher with students whom require special attention| add important information about my students such as diet, allergy and existing health condition | I can quickly react to any medical emergency|
+| `* *`    | teacher who likes to keep work and personal life separate | have separate personal contacts with school contacts | my contact list won't be overpopulated. |
+| `* * *`  | teacher                                    | be able to do a search         | i can find students contact easily                                               |
+| `* *`    | teacher                                    | easily contact students' parents | the parents can address to any matters as soon as possible                                               |
 
 *{More to be added}*
 
@@ -295,6 +299,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  AddressBook deletes the person
 
     Use case ends.
+
+**Use case: Listing all the contacts**
+
+**MSS**
+
+1. User requests to list persons
+2. AddressBook shows a list of persons
+
+   Use case ends.
 
 **Extensions**
 
