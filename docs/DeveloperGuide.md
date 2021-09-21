@@ -284,6 +284,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | teacher              | filter all students by tag               | easily locate all students with the same tag (probably having something in common) |
 | `*`      | teacher who wants to remember students I have taught | remove all students I no longer teach from the app but keep a record of the list in another file | start over with a clean slate and can retrieve records I need in the future |
 | `* *`    | teacher              | undo the most recent command             | easily revert everything to the previous state                            |
+
 *{More to be added}*
 
 ### Use cases
