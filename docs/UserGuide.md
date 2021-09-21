@@ -100,7 +100,7 @@ Edits the specified student's contact information from TeachBook. It can also be
 Format: `edit ID [n/NAME] [c/CLASS] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BLOOD_TYPE] [pc/PARENTS_CONTACT]​`
 
 * Edits the person at the specified `ID`.
-* TheID is made up of student’s class and student’s number in class e.g., if a student is from Class A and have student number 2, then the student’s ID would be A2.
+* The ID is made up of student’s class and student’s number in class e.g., if a student is from Class A and have student number 2, then the student’s ID would be A2.
 * The student number must be a `positive integer` 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
