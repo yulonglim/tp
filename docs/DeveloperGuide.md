@@ -270,19 +270,20 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-| `* *`    | teacher with students whom require special attention| add important information about my students such as diet, allergy and existing health condition | I can quickly react to any medical emergency|
-| `* *`    | teacher who likes to keep work and personal life separate | have separate personal contacts with school contacts | my contact list won't be overpopulated. |
-| `* * *`  | teacher                                    | be able to do a search         | i can find students contact easily                                               |
-| `* *`    | teacher                                    | easily contact students' parents | the parents can address to any matters as soon as possible                                               |
-
+| Priority | As a …​           | I want to …​                          | So that I can…​                                                        |
+| -------- | -------------------- | ---------------------------------------- | ------------------------------------------------------------------------- |
+| `* * *`  | new user             | see usage instructions                   | refer to instructions when I forget how to use the App                    |
+| `* * *`  | teacher              | add students                             |                                                                           |
+| `* *`    | teacher with students whom require special attention | add important information about my students such as diet, allergy and existing health condition | I can quickly react to any medical emergency |
+| `* *`    | teacher who likes to keep work and personal life separate       | have separate personal contacts with school contacts | my contact list won't be overpopulated |
+| `* *`    | teacher              | easily contact students' parents         | the parents can address to any matters as soon as possible                |
+| `* * *`  | teacher              | delete students with specific ID         | remove specific students who are no longer in my class                    |
+| `* * *`  | teacher              | find a student by name                   | locate details of students without having to go through the entire list   |
+| `* *`    | teacher              | sort students by name                    | locate a student easily                                                   |
+| `* *`    | teacher              | delete all students from a class at once | quickly clean up the TeachBook when I no longer teach s class             |
+| `* *`    | teacher              | filter all students by tag               | easily locate all students with the same tag (probably having something in common) |
+| `*`      | teacher who wants to remember students I have taught | remove all students I no longer teach from the app but keep a record of the list in another file | start over with a clean slate and can retrieve records I need in the future |
+| `* *`    | teacher              | undo the most recent command             | easily revert everything to the previous state                            |
 *{More to be added}*
 
 ### Use cases
