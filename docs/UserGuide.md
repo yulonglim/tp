@@ -95,20 +95,19 @@ Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits the specified student's contact information from TeachBook. It can also be used to add previously unadded information.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit ID [n/NAME] [c/CLASS] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BLOOD_TYPE] [pc/PARENTS_CONTACT]​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `ID`.
+* TheID is made up of student’s class and student’s number in class e.g., if a student is from Class A and have student number 2, then the student’s ID would be A2.
+* The student number must be a `positive integer` 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit A1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the student with ID A1 to be `91234567` and `johndoe@example.com` respectively.
+*  `edit B2 n/Betsy Crower b/O+` Edits the name of the student with ID B2 to be `Betsy Crower` and adds additional information (e.g., blood type and parents contact) that is not previously added.
 
 ### Locating persons by name: `find`
 
