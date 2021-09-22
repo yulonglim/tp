@@ -288,6 +288,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | teacher              | undo the most recent command             | easily revert everything to the previous state                            |
 | `*`      | teacher              | remove all students from the contact     | clear my contact in one go
 | `* *`    | teacher              | separate personal contacts with school contacts | prevent my contact list from overpopulating.
+| `* *`    | teacher              | assign a class role to a student         | identify students through their class role
+| `* *`    | teacher              | assign multiple class roles to a student | need not to assign class roles to student one at a time
+| `*`      | teacher              | view the list of all students            | have an overview of all my students
+| `*`      | teacher              | view the information of a student        | take a closer look at a student's information
 *{More to be added}*
 
 ### Use cases
@@ -327,6 +331,22 @@ MSS:
 2. TeachBook shows a list of all the students.
 
    Use case ends.
+
+**Use case: UC?? - Tag a Student**
+
+MSS:
+
+1. Teacher assigns a class role to a student.
+2. TeachBook displays the student with the corresponding class role.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. Student does not exist.
+   * 1a1. TeachBook displays error.
+  
+     Use case ends.
 
 *{More to be added}*
 
