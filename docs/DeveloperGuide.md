@@ -291,37 +291,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `TeachBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a student**
+**Use case: UC?? - Delete a Student / Students**
 
-**MSS**
+MSS:
 
-1.  User requests to list students
-2.  TeachBook shows a list of students
-3.  User requests to delete a specific student in the list
-4.  TeachBook deletes the student
+1. User <u>list all the students (UC??)</u>.
+2. User requests to delete a specific student / specific students in the list by giving ID(s).
+3. TeachBook deletes the student(s).
 
     Use case ends.
 
-**Extensions**
+Extensions:
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a. The given ID is invalid.
+* 2a. The given ID(s) is/are invalid.
 
-    * 3a1. TeachBook shows an error message
+    * 2a1. For all valid ID(s), TeachBook deletes the student(s).
+    * 2a2. For all invalid ID(s), TeachBook shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 1.
 
 <br>
 
-**Use case: List all the students**
+**Use case: UC?? - List All the Students**
 
-**MSS**
+MSS:
 
-1. User requests to list students
-2. AddressBook shows a list of students
+1. User requests to list students.
+2. AddressBook shows a list of all the students.
 
    Use case ends.
 
