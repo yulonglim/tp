@@ -329,16 +329,22 @@ MSS:
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. The app should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. The TeachBook should be able to hold up to 1000 students without a noticeable sluggishness (being able to respond to any command within 3 seconds) in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The source code should be open source.
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Class number**: A letter A, B, C, ...
+* **Student number**: A positive integer 1, 2, 3, ...
+* **ID**: A serial number assigned to a student when he/she is added to the TeachBook. **ID** is made up of a student's _class number_ and his/her _student number_ in the class,
+e.g. if a student is from class A and has student number 2, then the student’s ID would be A2.
+
+*{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
 
