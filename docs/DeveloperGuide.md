@@ -295,7 +295,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 MSS:
 
-1. User <u>list all the students (UC??)</u>.
+1. User <ins>list all the students (UC??)</ins>.
 2. User requests to delete a specific student / specific students in the list by giving ID(s).
 3. TeachBook deletes the student(s).
 
@@ -321,7 +321,7 @@ Extensions:
 MSS:
 
 1. User requests to list students.
-2. AddressBook shows a list of all the students.
+2. TeachBook shows a list of all the students.
 
    Use case ends.
 
