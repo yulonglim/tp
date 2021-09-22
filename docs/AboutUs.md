@@ -39,11 +39,11 @@ You can reach us at the email `wilfredw[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: UI
 
-### Johnny Doe
+### Chung Yunseong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/JasonC01.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/JasonC01)] [[portfolio](team/JasonC01.md)]
 
 * Role: Developer
 * Responsibilities: Data
