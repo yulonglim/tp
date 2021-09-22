@@ -48,15 +48,15 @@ You can reach us at the email `wilfredw[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Liew Xin Yi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/xyliew25.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/xyliew25)]
+[[portfolio](team/xyliew25.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Data
 
 ### Yu Shufan
 
