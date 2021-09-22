@@ -62,6 +62,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* `ID` is made up of student’s class and student’s number in class e.g., if a student is from Class A and have student
+  number 2, then the student’s ID would be A2
+
 </div>
 
 ### Viewing help : `help`
@@ -108,6 +111,20 @@ Format: `edit ID [n/NAME] [c/CLASS] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BL
 Examples:
 *  `edit A1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the student with ID A1 to be `91234567` and `johndoe@example.com` respectively.
 *  `edit B2 n/Betsy Crower b/O+` Edits the name of the student with ID B2 to be `Betsy Crower` and adds additional information (e.g., blood type and parents contact) that is not previously added.
+
+### Tagging a student : `tag`
+
+Assigns one or more tags to the specified student.
+
+Format: `tag ID t/TAG1 [t/TAG2]…`
+
+* Tag represents class role, which includes class monitor, assistant class monitor, etc.
+
+Examples:
+
+* `tag A2 t/class monitor` Assigns the student with ID A2 the class role tag class monitor
+* `tag B1 t/assistant class monitor t/secretary` Assigns the student with ID B1 the class role tag assistant class 
+monitor and secretary
 
 ### Locating persons by name: `find`
 
@@ -183,6 +200,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete ID`<br> e.g., `delete A2`
 **Edit** | `edit ID [n/NAME] [c/CLASS] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BLOOD_TYPE] [pc/PARENTS_CONTACT]​`<br> e.g.,`edit B3 n/Alice Yeoh b/O+ pc/98533322`
+**Tag** | `tag ID t/TAG1 [t/TAG2]…` <br> e.g., `tag A2 t/class monitor`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
