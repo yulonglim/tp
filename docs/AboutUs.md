@@ -31,7 +31,7 @@ You can reach us at the email `wilfredw[at]comp.nus.edu.sg`
 
 ### Lim Yu Long
 
-<img src="images/yulong.png" width="200px">
+<img src="images/yulonglim.png" width="200px">
 
 [[github](http://github.com/yulonglim)]
 [[portfolio](team/yulonglim.md)]
