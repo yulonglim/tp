@@ -270,71 +270,104 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-| `* *`    | teacher with students whom require special attention| add important information about my students such as diet, allergy and existing health condition | I can quickly react to any medical emergency|
-| `* *`    | teacher who likes to keep work and personal life separate | have separate personal contacts with school contacts | my contact list won't be overpopulated. |
-| `* * *`  | teacher                                    | be able to do a search         | i can find students contact easily                                               |
-| `* *`    | teacher                                    | easily contact students' parents | the parents can address to any matters as soon as possible                                               |
-
+| Priority | As a …​           | I want to …​                          | So that I can…​                                                        |
+| -------- | -------------------- | ---------------------------------------- | ------------------------------------------------------------------------- |
+| `* * *`  | new user             | see usage instructions                   | refer to instructions when I forget how to use the App                    |
+| `* * *`  | teacher              | add students                             |                                                                           |
+| `* *`    | teacher              | modify contacts                            | change information easily rather than creating a new contact to replace the previous one.
+| `* *`    | teacher with students whom require special attention | add important information about my students such as diet, allergy and existing health condition | I can quickly react to any medical emergency |
+| `* *`    | teacher who likes to keep work and personal life separate       | have separate personal contacts with school contacts | my contact list won't be overpopulated |
+| `* *`    | teacher              | easily contact students' parents         | the parents can address to any matters as soon as possible                |
+| `* * *`  | teacher              | delete students with specific ID         | remove specific students who are no longer in my class                    |
+| `* * *`  | teacher              | find a student by name                   | locate details of students without having to go through the entire list   |
+| `* *`    | teacher              | sort students by name                    | locate a student easily                                                   |
+| `* *`    | teacher              | Add all students from a class at once    | quickly add the information of the students in each class.
+| `* *`    | teacher              | delete all students from a class at once | quickly clean up the TeachBook when I no longer teach s class             |
+| `* *`    | teacher              | filter all students by tag               | easily locate all students with the same tag (probably having something in common) |
+| `*`      | teacher who wants to remember students I have taught | remove all students I no longer teach from the app but keep a record of the list in another file | start over with a clean slate and can retrieve records I need in the future |
+| `* *`    | teacher              | undo the most recent command             | easily revert everything to the previous state                            |
+| `*`      | teacher              | remove all students from the contact     | clear my contact in one go
+| `* *`    | teacher              | separate personal contacts with school contacts | prevent my contact list from overpopulating.
+| `* *`    | teacher              | assign a class role to a student         | identify students through their class role
+| `* *`    | teacher              | assign multiple class roles to a student | need not to assign class roles to student one at a time
+| `*`      | teacher              | view the list of all students            | have an overview of all my students
+| `*`      | teacher              | view the information of a student        | take a closer look at a student's information
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TeachBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC?? - Delete a Student / Students**
 
-**MSS**
+MSS:
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User <ins>list all the students (UC??)</ins>.
+2. User requests to delete a specific student / specific students in the list by giving ID(s).
+3. TeachBook deletes the student(s).
 
     Use case ends.
 
-**Use case: Listing all the contacts**
+Extensions:
 
-**MSS**
-
-1. User requests to list persons
-2. AddressBook shows a list of persons
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 2a. The given ID(s) is/are invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 2a1. For all valid ID(s), TeachBook deletes the student(s).
+    * 2a2. For all invalid ID(s), TeachBook shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 1.
+
+<br>
+
+**Use case: UC?? - List All the Students**
+
+MSS:
+
+1. User requests to list students.
+2. TeachBook shows a list of all the students.
+
+   Use case ends.
+
+**Use case: UC?? - Tag a Student**
+
+MSS:
+
+1. Teacher assigns a class role to a student.
+2. TeachBook displays the student with the corresponding class role.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. Student does not exist.
+   * 1a1. TeachBook displays error.
+  
+     Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. The app should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. The TeachBook should be able to hold up to 1000 students without a noticeable sluggishness (being able to respond to any command within 3 seconds) in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The source code should be open source.
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Class number**: A letter A, B, C, ...
+* **Student number**: A positive integer 1, 2, 3, ...
+* **ID**: A serial number assigned to a student when he/she is added to the TeachBook. **ID** is made up of a student's _class number_ and his/her _student number_ in the class,
+e.g. if a student is from class A and has student number 2, then the student’s ID would be A2.
+
+*{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
 
