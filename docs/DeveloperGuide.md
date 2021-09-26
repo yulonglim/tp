@@ -257,13 +257,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* a primary school teacher teaching mathematics
+* has a need to manage 4 class worth of student's contacts which she is teaching
 * prefer desktop apps over other types
-* can type fast
+* not proficient in IT but can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* wants to keep her work life and personal life separate
+* often face problem of mixing up students with the same name when she adds it into her phone contact list
+* have to also add emergency contact into her phone contact list which makes it flooded, which is hard to find or link it with the correct student
+* would prefer to have an app that can also store other emergency information (e.g. blood type and allergies) all in one place
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Manage contacts faster than a typical mouse/GUI driven app. Allows teachers to have a dedicated address book to keep their work life separated from their personal life. Allows teacher to find students and their emergency information accurately and easily.
 
 
 ### User stories
