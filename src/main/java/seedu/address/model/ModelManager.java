@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.Class.Class;
+import seedu.address.model.classobject.Class;
 import seedu.address.model.person.Person;
 
 /**
@@ -107,13 +107,6 @@ public class ModelManager implements Model {
     public void addClass(Class toAdd) {
         addressBook.addClass(toAdd);
         //updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-
-    public void setPerson(Class target, Class editedClass) {
-        requireAllNonNull(target, editedClass);
-
-        addressBook.setClass(target, editedClass);
     }
 
     @Override

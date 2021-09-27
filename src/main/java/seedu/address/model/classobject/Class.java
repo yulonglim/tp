@@ -1,38 +1,36 @@
-package seedu.address.model.Class;
+package seedu.address.model.classobject;
+
+import java.util.List;
 
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
-
-import java.util.List;
-import java.util.Set;
 
 public class Class {
 
-    private Name className;
+    private final Name className;
     private List<Person> classList;
 
-    public Class(Name className){
+    public Class(Name className) {
         this.className = className;
-    }
-
-    public void setClassList(List<Person> classList) {
-        this.classList = classList;
     }
 
     public List<Person> getClassList() {
         return classList;
     }
 
+    public void setClassList(List<Person> classList) {
+        this.classList = classList;
+    }
+
     public Name getClassName() {
         return className;
     }
 
-    public void addStudent(Person student){
+    public void addStudent(Person student) {
         this.classList.add(student);
     }
 
-    public void removeStudent(Person student){
+    public void removeStudent(Person student) {
         this.classList.remove(student);
     }
 

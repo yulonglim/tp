@@ -1,7 +1,8 @@
-package seedu.address.model.Class.exceptions;
+package seedu.address.model.classobject.exceptions;
 
 /**
- * Signals that the operation will result in duplicate Class (Persons are considered duplicates if they have the same
+ * Signals that the operation will result in duplicate classobject
+ * (Persons are considered duplicates if they have the same
  * Name).
  */
 public class DuplicateClassException extends RuntimeException {

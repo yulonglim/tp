@@ -5,7 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.Class.Class;
+import seedu.address.model.classobject.Class;
+
 
 /**
  * Adds a person to the address book.
@@ -19,7 +20,7 @@ public class AddClassCommand extends Command {
             + PREFIX_NAME + "NAME "
             + "\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "Class A ";
+            + PREFIX_NAME + "classobject A ";
 
     public static final String MESSAGE_SUCCESS = "New class added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This class already exists in the address book";
@@ -52,4 +53,5 @@ public class AddClassCommand extends Command {
                 || (other instanceof AddClassCommand // instanceof handles nulls
                 && toAdd.equals(((AddClassCommand) other).toAdd));
     }
+
 }

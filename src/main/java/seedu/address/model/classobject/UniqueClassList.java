@@ -1,24 +1,24 @@
-package seedu.address.model.Class;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.Class.exceptions.DuplicateClassException;
-import seedu.address.model.Class.exceptions.ClassNotFoundException;
-
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+package seedu.address.model.classobject;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Iterator;
+import java.util.List;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.classobject.exceptions.ClassNotFoundException;
+import seedu.address.model.classobject.exceptions.DuplicateClassException;
+
 /**
  * A list of Classes that enforces uniqueness between its elements and does not allow nulls.
- * A Class is considered unique by comparing using {@code Class#isSameClass(Class)}. As such, adding and updating of
- * Classes uses Class#isSameClass(Class) for equality so as to ensure that the Class being added or updated is
- * unique in terms of identity in the UniqueClassList. However, the removal of a Class uses Class#equals(Object) so
- * as to ensure that the Class with exactly the same fields will be removed.
- *
+ * A classobject is considered unique by comparing using {@code classobject#isSameClass(classobject)}.
+ * As such, adding and updating of Classes uses classobject#isSameClass(classobject) for equality so
+ * as to ensure that the classobject being added or updated is unique in terms of identity in the UniqueClassList.
+ * However, the removal of a classobject uses classobject#equals(Object) so
+ * as to ensure that the classobject with exactly the same fields will be removed.
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Class#isSameClass(Class)
@@ -30,7 +30,7 @@ public class UniqueClassList implements Iterable<Class> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent Class as the given argument.
+     * Returns true if the list contains an equivalent classobject as the given argument.
      */
     public boolean contains(Class toCheck) {
         requireNonNull(toCheck);
@@ -38,8 +38,8 @@ public class UniqueClassList implements Iterable<Class> {
     }
 
     /**
-     * Adds a Class to the list.
-     * The Class must not already exist in the list.
+     * Adds a classobject to the list.
+     * The classobject must not already exist in the list.
      */
     public void add(Class toAdd) {
         requireNonNull(toAdd);
@@ -50,9 +50,9 @@ public class UniqueClassList implements Iterable<Class> {
     }
 
     /**
-     * Replaces the Class {@code target} in the list with {@code editedClass}.
+     * Replaces the classobject {@code target} in the list with {@code editedClass}.
      * {@code target} must exist in the list.
-     * The Class identity of {@code editedClass} must not be the same as another existing Class in the list.
+     * The classobject identity of {@code editedClass} must not be the same as another existing classobject in the list.
      */
     public void setClass(Class target, Class editedClass) {
         requireAllNonNull(target, editedClass);
@@ -67,8 +67,8 @@ public class UniqueClassList implements Iterable<Class> {
     }
 
     /**
-     * Removes the equivalent Class from the list.
-     * The Class must exist in the list.
+     * Removes the equivalent classobject from the list.
+     * The classobject must exist in the list.
      */
     public void remove(Class toRemove) {
         requireNonNull(toRemove);
@@ -83,15 +83,15 @@ public class UniqueClassList implements Iterable<Class> {
     }
 
     /**
-     * Replaces the contents of this list with {@code Classs}.
-     * {@code Classs} must not contain duplicate Classs.
+     * Replaces the contents of this list with {@code Classes}.
+     * {@code Classes} must not contain duplicate Classes.
      */
-    public void setClasses(List<Class> Classes) {
-        requireAllNonNull(Classes);
-        if (!ClassesAreUnique(Classes)) {
+    public void setClasses(List<Class> classes) {
+        requireAllNonNull(classes);
+        if (!classesAreUnique(classes)) {
             throw new DuplicateClassException();
         }
-        internalList.setAll(Classes);
+        internalList.setAll(classes);
     }
 
     /**
@@ -110,7 +110,7 @@ public class UniqueClassList implements Iterable<Class> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueClassList // instanceof handles nulls
-                        && internalList.equals(((UniqueClassList) other).internalList));
+                && internalList.equals(((UniqueClassList) other).internalList));
     }
 
     @Override
@@ -121,10 +121,10 @@ public class UniqueClassList implements Iterable<Class> {
     /**
      * Returns true if {@code Classes} contains only unique Classes.
      */
-    private boolean ClassesAreUnique(List<Class> Classes) {
-        for (int i = 0; i < Classes.size() - 1; i++) {
-            for (int j = i + 1; j < Classes.size(); j++) {
-                if (Classes.get(i).isSameClass(Classes.get(j))) {
+    private boolean classesAreUnique(List<Class> classes) {
+        for (int i = 0; i < classes.size() - 1; i++) {
+            for (int j = i + 1; j < classes.size(); j++) {
+                if (classes.get(i).isSameClass(classes.get(j))) {
                     return false;
                 }
             }
