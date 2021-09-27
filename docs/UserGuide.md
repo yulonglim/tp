@@ -62,6 +62,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* `ID` is made up of student’s class and student’s number in class e.g., if a student is from Class A and have student
+  number 2, then the student’s ID would be A2
+
 </div>
 
 ### Viewing help : `help`
@@ -95,20 +98,33 @@ Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits the specified student's contact information from TeachBook. It can also be used to add previously unadded information.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit ID [n/NAME] [c/CLASS] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BLOOD_TYPE] [pc/PARENTS_CONTACT]​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `ID`.
+* The ID is made up of student’s class and student’s number in class e.g., if a student is from Class A and have student number 2, then the student’s ID would be A2.
+* The student number must be a `positive integer` 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit A1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the student with ID A1 to be `91234567` and `johndoe@example.com` respectively.
+*  `edit B2 n/Betsy Crower b/O+` Edits the name of the student with ID B2 to be `Betsy Crower` and adds additional information (e.g., blood type and parents contact) that is not previously added.
+
+### Tagging a student : `tag`
+
+Assigns one or more tags to the specified student.
+
+Format: `tag ID t/TAG1 [t/TAG2]…`
+
+* Tag represents class role, which includes class monitor, assistant class monitor, etc.
+
+Examples:
+
+* `tag A2 t/class monitor` Assigns the student with ID A2 the class role tag class monitor
+* `tag B1 t/assistant class monitor t/secretary` Assigns the student with ID B1 the class role tag assistant class 
+monitor and secretary
 
 ### Locating persons by name: `find`
 
@@ -128,19 +144,16 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting students’ contact information : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified students’ contact information from TeachBook.
 
-Format: `delete INDEX`
+Format: `delete ID`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the contact information of the student with the specified `ID`.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `delete A2` deletes the contact information of the student with `ID` `A2` from TeachBook.
 
 ### Clearing all entries : `clear`
 
@@ -185,8 +198,9 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Delete** | `delete ID`<br> e.g., `delete A2`
+**Edit** | `edit ID [n/NAME] [c/CLASS] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BLOOD_TYPE] [pc/PARENTS_CONTACT]​`<br> e.g.,`edit B3 n/Alice Yeoh b/O+ pc/98533322`
+**Tag** | `tag ID t/TAG1 [t/TAG2]…` <br> e.g., `tag A2 t/class monitor`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
