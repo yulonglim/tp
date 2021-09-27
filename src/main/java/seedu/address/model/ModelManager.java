@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.Class.Class;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Class> filteredClasses;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +37,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredClasses = new FilteredList<>(this.addressBook.getClassList());
     }
 
     public ModelManager() {
@@ -95,6 +98,25 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasClass(Class classObj) {
+        requireNonNull(classObj);
+        return addressBook.hasClass(classObj);
+    }
+
+    @Override
+    public void addClass(Class toAdd) {
+        addressBook.addClass(toAdd);
+        //updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+
+    public void setPerson(Class target, Class editedClass) {
+        requireAllNonNull(target, editedClass);
+
+        addressBook.setClass(target, editedClass);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -124,9 +146,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Class> getFilteredClassList() {
+        return filteredClasses;
+    }
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredClassList(Predicate<Class> predicate) {
+        requireNonNull(predicate);
+        filteredClasses.setPredicate(predicate);
     }
 
     @Override

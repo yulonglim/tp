@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.Class.Class;
+import seedu.address.model.Class.UniqueClassList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -15,6 +17,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueClassList classes;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +28,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        classes = new UniqueClassList();
     }
 
     public AddressBook() {}
@@ -52,7 +56,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
+        setClasses(newData.getClassList());
         setPersons(newData.getPersonList());
     }
 
@@ -81,7 +85,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
         persons.setPerson(target, editedPerson);
     }
 
@@ -110,11 +113,34 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && persons.equals(((AddressBook) other).persons) && classes.equals(((AddressBook) other).classes));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return persons.hashCode() + classes.hashCode();
+    }
+
+    public boolean hasClass(Class classObj) {
+        requireNonNull(classObj);
+        return classes.contains(classObj);
+    }
+
+    public void setClass(Class target, Class editedClass) {
+        requireNonNull(editedClass);
+        classes.setClass(target, editedClass);
+    }
+
+    public void addClass(Class toAdd) {
+        classes.add(toAdd);
+    }
+
+    public void setClasses(List<Class> classes) {
+        this.classes.setClasses(classes);
+    }
+
+    @Override
+    public ObservableList<Class> getClassList() {
+        return classes.asUnmodifiableObservableList();
     }
 }
