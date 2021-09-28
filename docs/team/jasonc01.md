@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Yu Shufan's Project Portfolio Page
+title: Chung Yunseong's Project Portfolio Page
 ---
 
 ### Project: TeachBook
