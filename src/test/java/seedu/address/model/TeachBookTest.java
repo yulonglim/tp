@@ -29,7 +29,7 @@ public class TeachBookTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), teachBook.getPersonList());
+        assertEquals(Collections.emptyList(), teachBook.getStudentList());
     }
 
     @Test
@@ -57,31 +57,31 @@ public class TeachBookTest {
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> teachBook.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> teachBook.hasStudent(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(teachBook.hasPerson(ALICE));
+        assertFalse(teachBook.hasStudent(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        teachBook.addPerson(ALICE);
-        assertTrue(teachBook.hasPerson(ALICE));
+        teachBook.addStudent(ALICE);
+        assertTrue(teachBook.hasStudent(ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        teachBook.addPerson(ALICE);
+        teachBook.addStudent(ALICE);
         Student editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(teachBook.hasPerson(editedAlice));
+        assertTrue(teachBook.hasStudent(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> teachBook.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> teachBook.getStudentList().remove(0));
     }
 
     /**
@@ -95,7 +95,7 @@ public class TeachBookTest {
         }
 
         @Override
-        public ObservableList<Student> getPersonList() {
+        public ObservableList<Student> getStudentList() {
             return students;
         }
 

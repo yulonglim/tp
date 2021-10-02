@@ -65,7 +65,7 @@ public class TypicalPersons {
     public static TeachBook getTypicalAddressBook() {
         TeachBook ab = new TeachBook();
         for (Student student : getTypicalPersons()) {
-            ab.addPerson(student);
+            ab.addStudent(student);
         }
         return ab;
     }

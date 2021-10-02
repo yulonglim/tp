@@ -20,6 +20,17 @@ public class FindClassCommandParser implements Parser<FindClassCommand> {
      *
      * @throws ParseException if the user input does not conform the expected format
      */
+//    public FindClassCommand parse(String args) throws ParseException {
+//        String trimmedArgs = args.trim();
+//        if (trimmedArgs.isEmpty()) {
+//            throw new ParseException(
+//                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindClassCommand.MESSAGE_USAGE));
+//        }
+//
+//        String[] nameKeywords = trimmedArgs.split("\\s+");
+//
+//        return new FindClassCommand(new ClassNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+//    }
     public FindClassCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {

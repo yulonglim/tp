@@ -25,6 +25,14 @@ public class FindClassCommand extends Command {
         this.predicate = predicate;
     }
 
+//    @Override
+//    public CommandResult execute(Model model) {
+//        requireNonNull(model);
+//        model.updateFilteredClassList(predicate);
+//        return new CommandResult(
+//                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredClassList().size()));
+//    }
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

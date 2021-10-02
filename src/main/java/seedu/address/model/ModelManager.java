@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.classobject.Class;
 import seedu.address.model.person.Student;
 
@@ -22,8 +23,9 @@ public class ModelManager implements Model {
 
     private final TeachBook teachBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Student> filteredStudents;
-    private final FilteredList<Class> filteredClasses;
+    private FilteredList<Student> filteredStudents;
+    // private final FilteredList<Class> filteredClasses;
+    private Index currentlySelectedClassIndex; // Use one-based index here!
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -36,8 +38,12 @@ public class ModelManager implements Model {
 
         this.teachBook = new TeachBook(teachBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredStudents = new FilteredList<>(this.teachBook.getPersonList());
-        filteredClasses = new FilteredList<>(this.teachBook.getClassList());
+        this.currentlySelectedClassIndex = Index.fromOneBased(1);
+        // TODO: write the logic when there is no class, I'm assuming at least one class here
+
+        // constructs a filteredList with sourcing from the uniquePersonList of the currently selected class
+        filteredStudents = new FilteredList<>(this.teachBook.getStudentListOfClass(currentlySelectedClassIndex));
+        // filteredClasses = new FilteredList<>(this.teachBook.getClassList());
     }
 
     public ModelManager() {
@@ -69,12 +75,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getTeachBookFilePath() {
         return userPrefs.getAddressBookFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
+    public void setTeachBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
@@ -82,19 +88,19 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyTeachBook addressBook) {
+    public void setTeachBook(ReadOnlyTeachBook addressBook) {
         this.teachBook.resetData(addressBook);
     }
 
     @Override
-    public ReadOnlyTeachBook getAddressBook() {
+    public ReadOnlyTeachBook getTeachBook() {
         return teachBook;
     }
 
     @Override
-    public boolean hasPerson(Student student) {
+    public boolean hasStudent(Student student) {
         requireNonNull(student);
-        return teachBook.hasPerson(student);
+        return teachBook.hasStudent(student);
     }
 
     @Override
@@ -110,21 +116,21 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deletePerson(Student target) {
-        teachBook.removePerson(target);
+    public void deleteStudent(Student target) {
+        teachBook.removeStudent(target);
     }
 
     @Override
-    public void addPerson(Student student) {
-        teachBook.addPerson(student);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addStudent(Student student) {
+        teachBook.addStudent(student);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
-    public void setPerson(Student target, Student editedStudent) {
+    public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
 
-        teachBook.setPerson(target, editedStudent);
+        teachBook.setStudent(target, editedStudent);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -134,26 +140,43 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Student> getFilteredPersonList() {
+    public ObservableList<Student> getFilteredStudentList() {
         return filteredStudents;
     }
 
-    @Override
-    public ObservableList<Class> getFilteredClassList() {
-        return filteredClasses;
-    }
+//    @Override
+//    public ObservableList<Class> getFilteredClassList() {
+//        return filteredClasses;
+//    }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Student> predicate) {
+    public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
     }
 
+    // call this method by passing in an index (use -1 when list all!)
+    // when "select class"/"list all"/... (when there is a need to change the "source")
     @Override
-    public void updateFilteredClassList(Predicate<Class> predicate) {
-        requireNonNull(predicate);
-        filteredClasses.setPredicate(predicate);
+    public void updateCurrentlySelectedClass(Index newClassIndex) {
+        currentlySelectedClassIndex = newClassIndex;
+        updateSourceOfFilteredStudentList();
     }
+
+    private void updateSourceOfFilteredStudentList() {
+        if (currentlySelectedClassIndex.getOneBased() == -1) {
+            filteredStudents = new FilteredList<>(this.teachBook.getStudentList()); // this is to "list all"
+        } else {
+            filteredStudents = new FilteredList<>(this.teachBook.getStudentListOfClass(currentlySelectedClassIndex));
+        }
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+//    @Override
+//    public void updateFilteredClassList(Predicate<Class> predicate) {
+//        requireNonNull(predicate);
+//        filteredClasses.setPredicate(predicate);
+//    }
 
     @Override
     public boolean equals(Object obj) {

@@ -4,22 +4,23 @@ import java.util.List;
 
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
+import seedu.address.model.person.UniqueStudentList;
 
 public class Class {
 
     private final Name className;
-    private List<Student> classList;
+    private UniqueStudentList studentsOfThisClass;
 
     public Class(Name className) {
         this.className = className;
     }
 
-    public List<Student> getClassList() {
-        return classList;
+    public UniqueStudentList getStudentsOfThisClass() {
+        return studentsOfThisClass;
     }
 
-    public void setClassList(List<Student> classList) {
-        this.classList = classList;
+    public void setStudentsOfThisClass(List<Student> students) {
+        this.studentsOfThisClass.setStudents(students);
     }
 
     public Name getClassName() {
@@ -27,11 +28,11 @@ public class Class {
     }
 
     public void addStudent(Student student) {
-        this.classList.add(student);
+        this.studentsOfThisClass.add(student);
     }
 
     public void removeStudent(Student student) {
-        this.classList.remove(student);
+        this.studentsOfThisClass.remove(student);
     }
 
     public boolean isSameClass(Class otherClass) {

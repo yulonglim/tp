@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.classobject.exceptions.ClassNotFoundException;
 import seedu.address.model.classobject.exceptions.DuplicateClassException;
 
@@ -26,6 +27,8 @@ import seedu.address.model.classobject.exceptions.DuplicateClassException;
 public class UniqueClassList implements Iterable<Class> {
 
     private final ObservableList<Class> internalList = FXCollections.observableArrayList();
+    // TODO: personally I don't think there's a need to use ObservableList here,
+    //  instead, I'll let Class has an ObservableList of all its students
     private final ObservableList<Class> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
@@ -99,6 +102,10 @@ public class UniqueClassList implements Iterable<Class> {
      */
     public ObservableList<Class> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    public Class getClassAtIndex(Index index) {
+        return internalList.get(index.getZeroBased());
     }
 
     @Override

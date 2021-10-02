@@ -22,7 +22,7 @@ import seedu.address.model.person.exceptions.StudentNotFoundException;
  *
  * @see Student#isSamePerson(Student)
  */
-public class UniquePersonList implements Iterable<Student> {
+public class UniqueStudentList implements Iterable<Student> {
 
     private final ObservableList<Student> internalList = FXCollections.observableArrayList();
     private final ObservableList<Student> internalUnmodifiableList =
@@ -79,7 +79,7 @@ public class UniquePersonList implements Iterable<Student> {
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setStudents(UniqueStudentList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -88,9 +88,9 @@ public class UniquePersonList implements Iterable<Student> {
      * Replaces the contents of this list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Student> students) {
+    public void setStudents(List<Student> students) {
         requireAllNonNull(students);
-        if (!personsAreUnique(students)) {
+        if (!studentsAreUnique(students)) {
             throw new DuplicateStudentException();
         }
 
@@ -112,8 +112,8 @@ public class UniquePersonList implements Iterable<Student> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+                || (other instanceof UniqueStudentList // instanceof handles nulls
+                        && internalList.equals(((UniqueStudentList) other).internalList));
     }
 
     @Override
@@ -124,7 +124,7 @@ public class UniquePersonList implements Iterable<Student> {
     /**
      * Returns true if {@code persons} contains only unique persons.
      */
-    private boolean personsAreUnique(List<Student> students) {
+    private boolean studentsAreUnique(List<Student> students) {
         for (int i = 0; i < students.size() - 1; i++) {
             for (int j = i + 1; j < students.size(); j++) {
                 if (students.get(i).isSamePerson(students.get(j))) {
