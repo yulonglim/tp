@@ -31,6 +31,7 @@ public class TeachBook implements ReadOnlyTeachBook {
     {
         students = new UniqueStudentList();
         classes = new UniqueClassList();
+        classes.add(new Class(new ClassName("remove this line later and fix no class situation"))); // TODO: fix
     }
 
     public TeachBook() {}

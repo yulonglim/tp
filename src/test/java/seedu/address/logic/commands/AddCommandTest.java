@@ -15,12 +15,14 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTeachBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TeachBook;
 import seedu.address.model.classobject.Class;
+import seedu.address.model.classobject.ClassName;
 import seedu.address.model.person.Student;
 import seedu.address.testutil.PersonBuilder;
 
@@ -155,9 +157,14 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Class> getFilteredClassList() {
+        public ObservableList<Class> getUniqueClassList() {
             throw new AssertionError("This method should not be called.");
         }
+
+//        @Override
+//        public ObservableList<Class> getFilteredClassList() {
+//            throw new AssertionError("This method should not be called.");
+//        }
 
         @Override
         public void updateFilteredStudentList(Predicate<Student> predicate) {
@@ -165,9 +172,19 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateFilteredClassList(Predicate<Class> predicate) {
+        public void updateCurrentlySelectedClass(ClassName newClassName) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void updateCurrentlySelectedClass(Index newClassIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+//        @Override
+//        public void updateFilteredClassList(Predicate<Class> predicate) {
+//            throw new AssertionError("This method should not be called.");
+//        }
     }
 
     /**

@@ -89,9 +89,11 @@ public class TeachBookTest {
      */
     private static class TeachBookStub implements ReadOnlyTeachBook {
         private final ObservableList<Student> students = FXCollections.observableArrayList();
+        private final ObservableList<Class> classes = FXCollections.observableArrayList();
 
         TeachBookStub(Collection<Student> students) {
             this.students.setAll(students);
+            this.classes.setAll(classes); // TODO: fix this. what's this test doing?
         }
 
         @Override
@@ -101,7 +103,7 @@ public class TeachBookTest {
 
         @Override
         public ObservableList<Class> getClassList() {
-            return null; // TODO: update this method (1002)
+            return classes;
         }
     }
 
