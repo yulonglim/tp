@@ -3,22 +3,22 @@ package seedu.address.model.classobject;
 import java.util.List;
 
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Student;
 
 public class Class {
 
     private final Name className;
-    private List<Person> classList;
+    private List<Student> classList;
 
     public Class(Name className) {
         this.className = className;
     }
 
-    public List<Person> getClassList() {
+    public List<Student> getClassList() {
         return classList;
     }
 
-    public void setClassList(List<Person> classList) {
+    public void setClassList(List<Student> classList) {
         this.classList = classList;
     }
 
@@ -26,11 +26,11 @@ public class Class {
         return className;
     }
 
-    public void addStudent(Person student) {
+    public void addStudent(Student student) {
         this.classList.add(student);
     }
 
-    public void removeStudent(Person student) {
+    public void removeStudent(Student student) {
         this.classList.remove(student);
     }
 

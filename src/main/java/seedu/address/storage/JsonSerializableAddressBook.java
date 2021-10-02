@@ -9,10 +9,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.TeachBook;
+import seedu.address.model.ReadOnlyTeachBook;
 import seedu.address.model.classobject.Class;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Student;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -40,7 +40,7 @@ class JsonSerializableAddressBook {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableAddressBook(ReadOnlyTeachBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         classes.addAll(source.getClassList().stream().map(JsonAdaptedClass::new).collect(Collectors.toList()));
     }
@@ -50,25 +50,25 @@ class JsonSerializableAddressBook {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public TeachBook toModelType() throws IllegalValueException {
+        TeachBook teachBook = new TeachBook();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
+            Student student = jsonAdaptedPerson.toModelType();
+            if (teachBook.hasPerson(student)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPerson(person);
+            teachBook.addPerson(student);
         }
 
         for (JsonAdaptedClass jsonAdaptedClass : classes) {
 
             Class classObj = jsonAdaptedClass.toModelType();
-            if (addressBook.hasClass(classObj)) {
+            if (teachBook.hasClass(classObj)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addClass(classObj);
+            teachBook.addClass(classObj);
         }
-        return addressBook;
+        return teachBook;
     }
 
 }

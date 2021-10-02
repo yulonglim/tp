@@ -7,14 +7,14 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.classobject.Class;
 import seedu.address.model.classobject.UniqueClassList;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Student;
 import seedu.address.model.person.UniquePersonList;
 
 /**
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class TeachBook implements ReadOnlyTeachBook {
 
     private final UniquePersonList persons;
     private final UniqueClassList classes;
@@ -31,12 +31,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         classes = new UniqueClassList();
     }
 
-    public AddressBook() {}
+    public TeachBook() {}
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public TeachBook(ReadOnlyTeachBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -47,14 +47,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+    public void setPersons(List<Student> students) {
+        this.persons.setPersons(students);
     }
 
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyTeachBook newData) {
         requireNonNull(newData);
         setClasses(newData.getClassList());
         setPersons(newData.getPersonList());
@@ -65,16 +65,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean hasPerson(Student student) {
+        requireNonNull(student);
+        return persons.contains(student);
     }
 
     /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
-    public void addPerson(Person p) {
+    public void addPerson(Student p) {
         persons.add(p);
     }
 
@@ -83,16 +83,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
-        persons.setPerson(target, editedPerson);
+    public void setPerson(Student target, Student editedStudent) {
+        requireNonNull(editedStudent);
+        persons.setPerson(target, editedStudent);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Person key) {
+    public void removePerson(Student key) {
         persons.remove(key);
     }
 
@@ -104,15 +104,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
+    public ObservableList<Student> getPersonList() {
         return persons.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons) && classes.equals(((AddressBook) other).classes));
+                || (other instanceof TeachBook // instanceof handles nulls
+                && persons.equals(((TeachBook) other).persons) && classes.equals(((TeachBook) other).classes));
     }
 
     @Override

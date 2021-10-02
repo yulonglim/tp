@@ -89,7 +89,7 @@ Edits the specified student's contact information from TeachBook. It can also be
 
 Format: `edit ID [n/NAME] [c/CLASS] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BLOOD_TYPE] [pc/PARENTS_CONTACT]​`
 
-* Edits the person at the specified `ID`.
+* Edits the student at the specified `ID`.
 * The ID is made up of student’s class and student’s number in class e.g., if a student is from Class A and have student number 2, then the student’s ID would be A2.
 * The student number must be a `positive integer` 1, 2, 3, ...
 * At least one of the optional fields must be provided.
@@ -124,7 +124,7 @@ Format: `delete ID`
 Examples:
 * `delete A2` deletes the contact information of the student with `ID` `A2` from TeachBook.
 
-### Locating persons by name: `find`
+### Locating students by name: `find`
 
 {to be updated}
 
