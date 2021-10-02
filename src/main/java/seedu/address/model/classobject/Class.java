@@ -8,11 +8,12 @@ import seedu.address.model.person.UniqueStudentList;
 
 public class Class {
 
-    private final Name className;
+    private final ClassName className;
     private UniqueStudentList studentsOfThisClass;
 
-    public Class(Name className) {
+    public Class(ClassName className) {
         this.className = className;
+        this.studentsOfThisClass = new UniqueStudentList();
     }
 
     public UniqueStudentList getStudentsOfThisClass() {
@@ -23,7 +24,7 @@ public class Class {
         this.studentsOfThisClass.setStudents(students);
     }
 
-    public Name getClassName() {
+    public ClassName getClassName() {
         return className;
     }
 

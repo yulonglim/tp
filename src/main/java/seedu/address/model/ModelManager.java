@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.classobject.Class;
+import seedu.address.model.classobject.ClassName;
 import seedu.address.model.person.Student;
 
 /**
@@ -150,9 +151,20 @@ public class ModelManager implements Model {
 //    }
 
     @Override
+    public ObservableList<Class> getUniqueClassList() {
+        return teachBook.getClassList();
+    }
+
+    @Override
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateCurrentlySelectedClass(ClassName newClassName) {
+        Index newClassIndex = teachBook.getIndexOfClass(newClassName);
+        updateCurrentlySelectedClass(newClassIndex);
     }
 
     // call this method by passing in an index (use -1 when list all!)

@@ -56,7 +56,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyTeachBook getAddressBook() {
+    public ReadOnlyTeachBook getTeachBook() {
         return model.getTeachBook();
     }
 
@@ -65,9 +65,14 @@ public class LogicManager implements Logic {
         return model.getFilteredStudentList();
     }
 
+//    @Override
+//    public ObservableList<Class> getFilteredClassList() {
+//        return model.getFilteredClassList();
+//    }
+
     @Override
-    public ObservableList<Class> getFilteredClassList() {
-        return model.getFilteredClassList();
+    public ObservableList<Class> getUniqueClassList() {
+        return model.getUniqueClassList();
     }
 
     @Override

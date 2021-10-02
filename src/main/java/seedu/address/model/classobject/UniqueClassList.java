@@ -27,8 +27,6 @@ import seedu.address.model.classobject.exceptions.DuplicateClassException;
 public class UniqueClassList implements Iterable<Class> {
 
     private final ObservableList<Class> internalList = FXCollections.observableArrayList();
-    // TODO: personally I don't think there's a need to use ObservableList here,
-    //  instead, I'll let Class has an ObservableList of all its students
     private final ObservableList<Class> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
@@ -106,6 +104,15 @@ public class UniqueClassList implements Iterable<Class> {
 
     public Class getClassAtIndex(Index index) {
         return internalList.get(index.getZeroBased());
+    }
+
+    public Index locateClass(ClassName className) {
+        for (int i = 0; i < internalList.size(); i++) {
+            if (internalList.get(i).getClassName().equals((className))) {
+                return Index.fromZeroBased(i);
+            }
+        }
+        return Index.fromOneBased(1); // TODO: change this to throw an exception instead
     }
 
     @Override

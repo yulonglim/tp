@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.classobject.Class;
+import seedu.address.model.classobject.ClassName;
 import seedu.address.model.classobject.UniqueClassList;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.UniqueStudentList;
@@ -111,6 +112,10 @@ public class TeachBook implements ReadOnlyTeachBook {
 
     public ObservableList<Student> getStudentListOfClass(Index classIndex) {
         return classes.getClassAtIndex(classIndex).getStudentsOfThisClass().asUnmodifiableObservableList();
+    }
+
+    public Index getIndexOfClass(ClassName className) {
+        return classes.locateClass(className);
     }
 
     @Override

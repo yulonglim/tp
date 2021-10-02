@@ -30,14 +30,16 @@ public interface Logic {
      *
      * @see seedu.address.model.Model#getTeachBook()
      */
-    ReadOnlyTeachBook getAddressBook();
+    ReadOnlyTeachBook getTeachBook();
 
     /**
      * Returns an unmodifiable view of the filtered list of persons
      */
     ObservableList<Student> getFilteredPersonList();
 
-    ObservableList<Class> getFilteredClassList();
+//    ObservableList<Class> getFilteredClassList();
+
+    ObservableList<Class> getUniqueClassList();
 
     /**
      * Returns the user prefs' address book file path.

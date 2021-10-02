@@ -117,7 +117,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        classListPanel = new ClassListPanel(logic.getFilteredClassList());
+        classListPanel = new ClassListPanel(logic.getUniqueClassList()); // TODO: change this part, highlight selected class
         classListPanelPlaceholder.getChildren().add(classListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();

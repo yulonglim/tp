@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.classobject.Class;
+import seedu.address.model.classobject.ClassName;
 import seedu.address.model.person.Student;
 
 /**
@@ -90,11 +91,15 @@ public interface Model {
 
 //    ObservableList<Class> getFilteredClassList();
 
+    ObservableList<Class> getUniqueClassList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
+
+    void updateCurrentlySelectedClass(ClassName newClassName);
 
     void updateCurrentlySelectedClass(Index newClassIndex);
 
