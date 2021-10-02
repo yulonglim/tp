@@ -16,10 +16,11 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.TeachBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTeachBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.TeachBook;
+import seedu.address.model.classobject.Class;
 import seedu.address.model.person.Student;
 import seedu.address.testutil.PersonBuilder;
 
@@ -129,6 +130,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasClass(Class classObj) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addClass(Class toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deletePerson(Student target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -144,7 +155,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Class> getFilteredClassList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Student> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredClassList(Predicate<Class> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

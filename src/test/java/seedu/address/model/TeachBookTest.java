@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.classobject.Class;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.exceptions.DuplicateStudentException;
 import seedu.address.testutil.PersonBuilder;
@@ -96,6 +97,11 @@ public class TeachBookTest {
         @Override
         public ObservableList<Student> getPersonList() {
             return students;
+        }
+
+        @Override
+        public ObservableList<Class> getClassList() {
+            return null; // TODO: update this method (1002)
         }
     }
 
