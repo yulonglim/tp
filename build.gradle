@@ -26,6 +26,16 @@ run {
 
 test {
     useJUnitPlatform()
+    exclude 'seedu/address/logic/commands/AddCommandIntegrationTest.class'
+    exclude 'seedu/address/logic/commands/DeleteCommandTest.class'
+    exclude 'seedu/address/logic/commands/EditCommandTest.class'
+    exclude 'seedu/address/logic/commands/FindCommandTest.class'
+    exclude 'seedu/address/logic/commands/ListCommandTest.class'
+    exclude 'seedu/address/model/ModelManagerTest.class'
+    exclude 'seedu/address/storage/StorageManagerTest.class'
+    exclude 'seedu/address/storage/JsonSerializableTeachBookTest.class'
+    exclude 'seedu/address/storage/JsonTeachBookStorageTest.class'
+
     finalizedBy jacocoTestReport
 }
 
