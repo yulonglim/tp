@@ -33,7 +33,8 @@ You can reach us at the email `wilfredw[at]comp.nus.edu.sg`
 
 <img src="images/jasonc01.png" width="200px">
 
-[[github](http://github.com/jasonc01)] [[portfolio](team/jasonc01.md)]
+[[github](http://github.com/jasonc01)]
+[[portfolio](team/jasonc01.md)]
 
 * Role: Developer
 * Responsibilities: Data
