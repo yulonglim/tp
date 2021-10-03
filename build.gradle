@@ -35,6 +35,7 @@ test {
     exclude 'seedu/address/storage/StorageManagerTest.class'
     exclude 'seedu/address/storage/JsonSerializableTeachBookTest.class'
     exclude 'seedu/address/storage/JsonTeachBookStorageTest.class'
+    // TODO: rewrite corresponding tests belonging to your part and remove exclude statements
 
     finalizedBy jacocoTestReport
 }
