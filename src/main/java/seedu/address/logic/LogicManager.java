@@ -17,6 +17,7 @@ import seedu.address.model.ReadOnlyTeachBook;
 import seedu.address.model.classobject.Class;
 import seedu.address.model.person.Student;
 import seedu.address.storage.Storage;
+import seedu.address.ui.Ui;
 
 /**
  * The main LogicManager of the app.
@@ -29,6 +30,8 @@ public class LogicManager implements Logic {
     private final Storage storage;
     private final AddressBookParser addressBookParser;
 
+    private Ui ui;
+
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
@@ -39,12 +42,19 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public void setUi(Ui ui) {
+        this.ui = ui;
+    }
+
+    @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
+
+        ui.updateFilteredStudentList();
 
         try {
             storage.saveAddressBook(model.getTeachBook());

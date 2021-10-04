@@ -10,6 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyTeachBook;
 import seedu.address.model.classobject.Class;
 import seedu.address.model.person.Student;
+import seedu.address.ui.Ui;
 
 /**
  * API of the Logic component
@@ -55,4 +56,6 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    void setUi(Ui ui);
 }
