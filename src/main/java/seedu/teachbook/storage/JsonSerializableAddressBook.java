@@ -12,7 +12,7 @@ import seedu.teachbook.commons.exceptions.IllegalValueException;
 import seedu.teachbook.model.ReadOnlyTeachBook;
 import seedu.teachbook.model.TeachBook;
 import seedu.teachbook.model.classobject.Class;
-import seedu.teachbook.model.person.Student;
+import seedu.teachbook.model.student.Student;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -20,7 +20,7 @@ import seedu.teachbook.model.person.Student;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate student(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedClass> classes = new ArrayList<>();

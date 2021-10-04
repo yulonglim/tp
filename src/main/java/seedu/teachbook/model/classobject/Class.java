@@ -4,8 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import seedu.teachbook.model.person.Student;
-import seedu.teachbook.model.person.UniqueStudentList;
+import seedu.teachbook.model.student.Student;
+import seedu.teachbook.model.student.UniqueStudentList;
 
 public class Class {
 

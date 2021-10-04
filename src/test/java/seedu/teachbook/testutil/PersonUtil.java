@@ -10,7 +10,7 @@ import java.util.Set;
 
 import seedu.teachbook.logic.commands.AddCommand;
 import seedu.teachbook.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.teachbook.model.person.Student;
+import seedu.teachbook.model.student.Student;
 import seedu.teachbook.model.tag.Tag;
 
 /**
@@ -19,14 +19,14 @@ import seedu.teachbook.model.tag.Tag;
 public class PersonUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code student}.
      */
     public static String getAddCommand(Student student) {
         return AddCommand.COMMAND_WORD + " " + getPersonDetails(student);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code student}'s details.
      */
     public static String getPersonDetails(Student student) {
         StringBuilder sb = new StringBuilder();

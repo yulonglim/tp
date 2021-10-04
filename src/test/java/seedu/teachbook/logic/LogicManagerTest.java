@@ -26,7 +26,7 @@ import seedu.teachbook.model.Model;
 import seedu.teachbook.model.ModelManager;
 import seedu.teachbook.model.ReadOnlyTeachBook;
 import seedu.teachbook.model.UserPrefs;
-import seedu.teachbook.model.person.Student;
+import seedu.teachbook.model.student.Student;
 import seedu.teachbook.storage.JsonAddressBookStorage;
 import seedu.teachbook.storage.JsonUserPrefsStorage;
 import seedu.teachbook.storage.StorageManager;

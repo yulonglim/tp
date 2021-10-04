@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.teachbook.commons.core.LogsCenter;
-import seedu.teachbook.model.person.Student;
+import seedu.teachbook.model.student.Student;
 
 /**
  * Panel containing the list of persons.

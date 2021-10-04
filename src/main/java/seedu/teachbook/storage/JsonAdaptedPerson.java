@@ -10,11 +10,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.teachbook.commons.exceptions.IllegalValueException;
-import seedu.teachbook.model.person.Address;
-import seedu.teachbook.model.person.Email;
-import seedu.teachbook.model.person.Name;
-import seedu.teachbook.model.person.Phone;
-import seedu.teachbook.model.person.Student;
+import seedu.teachbook.model.student.Address;
+import seedu.teachbook.model.student.Email;
+import seedu.teachbook.model.student.Name;
+import seedu.teachbook.model.student.Phone;
+import seedu.teachbook.model.student.Student;
 import seedu.teachbook.model.tag.Tag;
 
 /**
@@ -31,7 +31,7 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedPerson} with the given student details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
@@ -60,9 +60,9 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted student object into the model's {@code Person} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted student.
      */
     public Student toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();

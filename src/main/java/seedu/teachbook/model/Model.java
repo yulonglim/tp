@@ -8,7 +8,7 @@ import seedu.teachbook.commons.core.GuiSettings;
 import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
-import seedu.teachbook.model.person.Student;
+import seedu.teachbook.model.student.Student;
 
 /**
  * The API of the Model component.
@@ -56,38 +56,38 @@ public interface Model {
     ReadOnlyTeachBook getTeachBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the teachbook book.
+     * Returns true if a student with the same identity as {@code student} exists in the teachbook book.
      */
     boolean hasStudent(Student student);
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the teachbook book.
+     * Returns true if a student with the same identity as {@code student} exists in the teachbook book.
      */
     boolean hasClass(Class classObj);
 
     void addClass(Class toAdd);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the teachbook book.
+     * Deletes the given student.
+     * The student must exist in the teachbook book.
      */
     void deleteStudent(Student target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the teachbook book.
+     * Adds the given student.
+     * {@code student} must not already exist in the teachbook book.
      */
     void addStudent(Student student);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given student {@code target} with {@code editedPerson}.
      * {@code target} must exist in the teachbook book.
-     * The person identity of {@code editedPerson} must not be the same as another
-     * existing person in the teachbook book.
+     * The student identity of {@code editedPerson} must not be the same as another
+     * existing student in the teachbook book.
      */
     void setStudent(Student target, Student editedStudent);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
 
 //    ObservableList<Class> getFilteredClassList();
@@ -95,7 +95,7 @@ public interface Model {
     ObservableList<Class> getUniqueClassList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered student list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);

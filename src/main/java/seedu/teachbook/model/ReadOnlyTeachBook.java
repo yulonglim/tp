@@ -2,7 +2,7 @@ package seedu.teachbook.model;
 
 import javafx.collections.ObservableList;
 import seedu.teachbook.model.classobject.Class;
-import seedu.teachbook.model.person.Student;
+import seedu.teachbook.model.student.Student;
 
 /**
  * Unmodifiable view of an teachbook book

@@ -1,7 +1,7 @@
 package seedu.teachbook.testutil;
 
 import seedu.teachbook.model.TeachBook;
-import seedu.teachbook.model.person.Student;
+import seedu.teachbook.model.student.Student;
 
 /**
  * A utility class to help with building Addressbook objects.

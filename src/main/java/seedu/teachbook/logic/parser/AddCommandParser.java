@@ -12,11 +12,11 @@ import java.util.stream.Stream;
 
 import seedu.teachbook.logic.commands.AddCommand;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
-import seedu.teachbook.model.person.Address;
-import seedu.teachbook.model.person.Email;
-import seedu.teachbook.model.person.Name;
-import seedu.teachbook.model.person.Phone;
-import seedu.teachbook.model.person.Student;
+import seedu.teachbook.model.student.Address;
+import seedu.teachbook.model.student.Email;
+import seedu.teachbook.model.student.Name;
+import seedu.teachbook.model.student.Phone;
+import seedu.teachbook.model.student.Student;
 import seedu.teachbook.model.tag.Tag;
 
 /**

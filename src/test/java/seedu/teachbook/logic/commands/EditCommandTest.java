@@ -23,7 +23,7 @@ import seedu.teachbook.model.Model;
 import seedu.teachbook.model.ModelManager;
 import seedu.teachbook.model.TeachBook;
 import seedu.teachbook.model.UserPrefs;
-import seedu.teachbook.model.person.Student;
+import seedu.teachbook.model.student.Student;
 import seedu.teachbook.testutil.EditPersonDescriptorBuilder;
 import seedu.teachbook.testutil.PersonBuilder;
 
@@ -111,7 +111,7 @@ public class EditCommandTest {
     public void execute_duplicatePersonFilteredList_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        // edit person in filtered list into a duplicate in teachbook book
+        // edit student in filtered list into a duplicate in teachbook book
         Student studentInList = model.getTeachBook().getStudentList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder(studentInList).build());

@@ -1,4 +1,4 @@
-package seedu.teachbook.model.person;
+package seedu.teachbook.model.student;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -15,8 +15,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.teachbook.model.person.exceptions.DuplicateStudentException;
-import seedu.teachbook.model.person.exceptions.StudentNotFoundException;
+import seedu.teachbook.model.student.exceptions.DuplicateStudentException;
+import seedu.teachbook.model.student.exceptions.StudentNotFoundException;
 import seedu.teachbook.testutil.PersonBuilder;
 
 public class UniqueStudentListTest {

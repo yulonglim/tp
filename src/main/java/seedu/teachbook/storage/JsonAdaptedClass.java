@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.teachbook.commons.exceptions.IllegalValueException;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
-import seedu.teachbook.model.person.Name;
-import seedu.teachbook.model.person.Student;
+import seedu.teachbook.model.student.Name;
+import seedu.teachbook.model.student.Student;
 
 /**
  * Jackson-friendly version of {@link Class}.

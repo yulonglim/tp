@@ -10,10 +10,10 @@ import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.commons.util.StringUtil;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
 import seedu.teachbook.model.classobject.ClassName;
-import seedu.teachbook.model.person.Address;
-import seedu.teachbook.model.person.Email;
-import seedu.teachbook.model.person.Name;
-import seedu.teachbook.model.person.Phone;
+import seedu.teachbook.model.student.Address;
+import seedu.teachbook.model.student.Email;
+import seedu.teachbook.model.student.Name;
+import seedu.teachbook.model.student.Phone;
 import seedu.teachbook.model.tag.Tag;
 
 /**

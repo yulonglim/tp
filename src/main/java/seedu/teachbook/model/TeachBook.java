@@ -10,12 +10,12 @@ import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
 import seedu.teachbook.model.classobject.UniqueClassList;
-import seedu.teachbook.model.person.Address;
-import seedu.teachbook.model.person.Email;
-import seedu.teachbook.model.person.Name;
-import seedu.teachbook.model.person.Phone;
-import seedu.teachbook.model.person.Student;
-import seedu.teachbook.model.person.UniqueStudentList;
+import seedu.teachbook.model.student.Address;
+import seedu.teachbook.model.student.Email;
+import seedu.teachbook.model.student.Name;
+import seedu.teachbook.model.student.Phone;
+import seedu.teachbook.model.student.Student;
+import seedu.teachbook.model.student.UniqueStudentList;
 import seedu.teachbook.model.tag.Tag;
 
 /**
@@ -86,7 +86,7 @@ public class TeachBook implements ReadOnlyTeachBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
+     * Replaces the contents of the student list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
     public void setStudents(List<Student> students) {
@@ -102,10 +102,10 @@ public class TeachBook implements ReadOnlyTeachBook {
         setStudents(newData.getStudentList());
     }
 
-    //// person-level operations
+    //// student-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the teachbook book.
+     * Returns true if a student with the same identity as {@code student} exists in the teachbook book.
      */
     public boolean hasStudent(Student student) {
         requireNonNull(student);
@@ -113,18 +113,18 @@ public class TeachBook implements ReadOnlyTeachBook {
     }
 
     /**
-     * Adds a person to the teachbook book.
-     * The person must not already exist in the teachbook book.
+     * Adds a student to the teachbook book.
+     * The student must not already exist in the teachbook book.
      */
     public void addStudent(Student p) {
         students.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given student {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the teachbook book.
-     * The person identity of {@code editedPerson} must not be the same as
-     * another existing person in the teachbook book.
+     * The student identity of {@code editedPerson} must not be the same as
+     * another existing student in the teachbook book.
      */
     public void setStudent(Student target, Student editedStudent) {
         requireNonNull(editedStudent);

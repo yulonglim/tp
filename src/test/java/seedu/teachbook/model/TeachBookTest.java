@@ -19,8 +19,8 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.teachbook.model.classobject.Class;
-import seedu.teachbook.model.person.Student;
-import seedu.teachbook.model.person.exceptions.DuplicateStudentException;
+import seedu.teachbook.model.student.Student;
+import seedu.teachbook.model.student.exceptions.DuplicateStudentException;
 import seedu.teachbook.testutil.PersonBuilder;
 
 public class TeachBookTest {

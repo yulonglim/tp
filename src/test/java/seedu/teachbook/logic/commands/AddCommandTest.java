@@ -23,7 +23,7 @@ import seedu.teachbook.model.ReadOnlyUserPrefs;
 import seedu.teachbook.model.TeachBook;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
-import seedu.teachbook.model.person.Student;
+import seedu.teachbook.model.student.Student;
 import seedu.teachbook.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -73,7 +73,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different student -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -188,7 +188,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single student.
      */
     private class ModelStubWithPerson extends ModelStub {
         private final Student student;
@@ -206,7 +206,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the student being added.
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Student> personsAdded = new ArrayList<>();

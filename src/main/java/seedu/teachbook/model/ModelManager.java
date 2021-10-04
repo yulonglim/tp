@@ -14,7 +14,7 @@ import seedu.teachbook.commons.core.LogsCenter;
 import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
-import seedu.teachbook.model.person.Student;
+import seedu.teachbook.model.student.Student;
 
 /**
  * Represents the in-memory model of the teachbook book data.

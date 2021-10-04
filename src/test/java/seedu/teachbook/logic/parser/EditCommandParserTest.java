@@ -36,10 +36,10 @@ import org.junit.jupiter.api.Test;
 import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.logic.commands.EditCommand;
 import seedu.teachbook.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.teachbook.model.person.Address;
-import seedu.teachbook.model.person.Email;
-import seedu.teachbook.model.person.Name;
-import seedu.teachbook.model.person.Phone;
+import seedu.teachbook.model.student.Address;
+import seedu.teachbook.model.student.Email;
+import seedu.teachbook.model.student.Name;
+import seedu.teachbook.model.student.Phone;
 import seedu.teachbook.model.tag.Tag;
 import seedu.teachbook.testutil.EditPersonDescriptorBuilder;
 

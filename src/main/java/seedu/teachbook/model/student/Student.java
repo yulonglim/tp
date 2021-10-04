@@ -1,4 +1,4 @@
-package seedu.teachbook.model.person;
+package seedu.teachbook.model.student;
 
 import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
 

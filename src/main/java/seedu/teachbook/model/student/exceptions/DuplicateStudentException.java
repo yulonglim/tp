@@ -1,4 +1,4 @@
-package seedu.teachbook.model.person.exceptions;
+package seedu.teachbook.model.student.exceptions;
 
 /**
  * Signals that the operation will result in duplicate Persons (Persons are considered duplicates if they have the same

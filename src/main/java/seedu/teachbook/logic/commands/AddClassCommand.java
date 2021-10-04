@@ -9,7 +9,7 @@ import seedu.teachbook.model.classobject.Class;
 
 
 /**
- * Adds a person to the teachbook book.
+ * Adds a student to the teachbook book.
  */
 public class AddClassCommand extends Command {
 

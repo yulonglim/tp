@@ -9,7 +9,7 @@ import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
 import seedu.teachbook.model.ReadOnlyTeachBook;
 import seedu.teachbook.model.classobject.Class;
-import seedu.teachbook.model.person.Student;
+import seedu.teachbook.model.student.Student;
 
 /**
  * API of the Logic component

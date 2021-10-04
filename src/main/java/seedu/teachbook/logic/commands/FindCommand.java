@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.teachbook.commons.core.Messages;
 import seedu.teachbook.model.Model;
-import seedu.teachbook.model.person.NameContainsKeywordsPredicate;
+import seedu.teachbook.model.student.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in teachbook book whose name contains any of the argument keywords.
