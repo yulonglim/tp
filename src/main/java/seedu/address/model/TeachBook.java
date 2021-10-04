@@ -43,12 +43,18 @@ public class TeachBook implements ReadOnlyTeachBook {
         // TODO: delete these later
         HashSet<Tag> tags = new HashSet<>();
         tags.add(new Tag("leader"));
-        Student student1 = new Student(new Name("Tom"), new Phone("12345678"), new Email("1@email.com"), new Address("address 1"), tags);
-        Student student2 = new Student(new Name("Kitty"), new Phone("87654321"), new Email("2@email.com"), new Address("address 2"), new HashSet<>());
-        Student student3 = new Student(new Name("Bob"), new Phone("15684523"), new Email("3@email.com"), new Address("address 3"), new HashSet<>());
-        Student student4 = new Student(new Name("Jane"), new Phone("56874123"), new Email("4@email.com"), new Address("address 4"), new HashSet<>());
-        Student student5 = new Student(new Name("Linda"), new Phone("85694714"), new Email("5@email.com"), new Address("address 5"), new HashSet<>());
-        Student student6 = new Student(new Name("Cute"), new Phone("58412987"), new Email("6@email.com"), new Address("address 6"), new HashSet<>());
+        Student student1 = new Student(new Name("Tom"), new Phone("12345678"),
+                new Email("1@email.com"), new Address("address 1"), tags);
+        Student student2 = new Student(new Name("Kitty"), new Phone("87654321"),
+                new Email("2@email.com"), new Address("address 2"), new HashSet<>());
+        Student student3 = new Student(new Name("Bob"), new Phone("15684523"),
+                new Email("3@email.com"), new Address("address 3"), new HashSet<>());
+        Student student4 = new Student(new Name("Jane"), new Phone("56874123"),
+                new Email("4@email.com"), new Address("address 4"), new HashSet<>());
+        Student student5 = new Student(new Name("Linda"), new Phone("85694714"),
+                new Email("5@email.com"), new Address("address 5"), new HashSet<>());
+        Student student6 = new Student(new Name("Cute"), new Phone("58412987"),
+                new Email("6@email.com"), new Address("address 6"), new HashSet<>());
         Class class1 = new Class(new ClassName("remove this line later and fix no class situation"));
         Class class2 = new Class(new ClassName("A"));
         Class class3 = new Class(new ClassName("B"));
