@@ -9,4 +9,6 @@
   <suppress checks="MissingJavadocMethodCheck" files=".*.java"/>
   <suppress checks="JavadocType" files=".*Test\.java"/>
   <suppress checks="MissingJavadocMethodCheck" files=".*Test\.java"/>
+  <suppress checks="CommentsIndentation" files=".*.java"/>
+  <suppress checks="UnusedImports" files=".*.java"/>
 </suppressions>

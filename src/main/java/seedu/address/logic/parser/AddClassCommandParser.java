@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddClassCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.classobject.Class;
+import seedu.address.model.classobject.ClassName;
 import seedu.address.model.person.Name;
 
 /**
@@ -29,7 +30,7 @@ public class AddClassCommandParser implements Parser<AddClassCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddClassCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        ClassName name = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_NAME).get());
 
 
         Class classObj = new Class(name);

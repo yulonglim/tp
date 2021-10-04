@@ -13,10 +13,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTeachBook;
 import seedu.address.model.classobject.Class;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Student;
 import seedu.address.storage.Storage;
+import seedu.address.ui.Ui;
 
 /**
  * The main LogicManager of the app.
@@ -47,7 +48,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveAddressBook(model.getTeachBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -56,23 +57,28 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyTeachBook getTeachBook() {
+        return model.getTeachBook();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Student> getFilteredPersonList() {
+        return model.getFilteredStudentList();
     }
 
+//    @Override
+//    public ObservableList<Class> getFilteredClassList() {
+//        return model.getFilteredClassList();
+//    }
+
     @Override
-    public ObservableList<Class> getFilteredClassList() {
-        return model.getFilteredClassList();
+    public ObservableList<Class> getUniqueClassList() {
+        return model.getUniqueClassList();
     }
 
     @Override
     public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+        return model.getTeachBookFilePath();
     }
 
     @Override

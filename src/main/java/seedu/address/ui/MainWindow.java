@@ -117,7 +117,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        classListPanel = new ClassListPanel(logic.getFilteredClassList());
+        classListPanel = new ClassListPanel(logic.getUniqueClassList()); // TODO: change UI, highlight selected class
         classListPanelPlaceholder.getChildren().add(classListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -128,6 +128,11 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    void updateFilteredStudentList() {
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
     }
 
     /**
@@ -156,6 +161,10 @@ public class MainWindow extends UiPart<Stage> {
 
     void show() {
         primaryStage.show();
+    }
+
+    public void handleSelectClass() {
+        updateFilteredStudentList();
     }
 
     /**
@@ -191,6 +200,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isSelectClass()) {
+                handleSelectClass();
             }
 
             return commandResult;

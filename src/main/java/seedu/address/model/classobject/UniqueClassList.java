@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.classobject.exceptions.ClassNotFoundException;
 import seedu.address.model.classobject.exceptions.DuplicateClassException;
 
@@ -99,6 +100,19 @@ public class UniqueClassList implements Iterable<Class> {
      */
     public ObservableList<Class> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    public Class getClassAtIndex(Index index) {
+        return internalList.get(index.getZeroBased());
+    }
+
+    public Index locateClass(ClassName className) {
+        for (int i = 0; i < internalList.size(); i++) {
+            if (internalList.get(i).getClassName().equals((className))) {
+                return Index.fromZeroBased(i);
+            }
+        }
+        return Index.fromOneBased(1); // TODO: change this to throw an exception instead
     }
 
     @Override
