@@ -1,39 +1,39 @@
-package seedu.address.model.Class;
-
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
+package seedu.address.model.classobject;
 
 import java.util.List;
-import java.util.Set;
+
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Student;
+import seedu.address.model.person.UniqueStudentList;
 
 public class Class {
 
-    private Name className;
-    private List<Person> classList;
+    private final ClassName className;
+    private UniqueStudentList studentsOfThisClass;
 
-    public Class(Name className){
+    public Class(ClassName className) {
         this.className = className;
+        this.studentsOfThisClass = new UniqueStudentList();
     }
 
-    public void setClassList(List<Person> classList) {
-        this.classList = classList;
+    public UniqueStudentList getStudentsOfThisClass() {
+        return studentsOfThisClass;
     }
 
-    public List<Person> getClassList() {
-        return classList;
+    public void setStudentsOfThisClass(List<Student> students) {
+        this.studentsOfThisClass.setStudents(students);
     }
 
-    public Name getClassName() {
+    public ClassName getClassName() {
         return className;
     }
 
-    public void addStudent(Person student){
-        this.classList.add(student);
+    public void addStudent(Student student) {
+        this.studentsOfThisClass.add(student);
     }
 
-    public void removeStudent(Person student){
-        this.classList.remove(student);
+    public void removeStudent(Student student) {
+        this.studentsOfThisClass.remove(student);
     }
 
     public boolean isSameClass(Class otherClass) {

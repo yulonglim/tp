@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Yu Shufan's Project Portfolio Page
+title: Wilfred Wong Kang Chee's Project Portfolio Page
 ---
 
 ### Project: TeachBook
@@ -11,7 +11,5 @@ and it has a GUI created with JavaFX. It is written in Java, and has about 10 kL
 Given below are my contributions to the project.
 
 (to be added)
-
-testing2
 
 * _{you can add/remove categories in the list above}_

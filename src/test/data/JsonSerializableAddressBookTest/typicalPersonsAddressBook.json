@@ -42,5 +42,16 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "tagged" : [ ]
+  } ],
+  "classes" : [ {
+    "className" : "A"
+  }, {
+    "className" : "B"
+  }, {
+    "className" : "C"
+  }, {
+    "className" : "D"
+  }, {
+    "className" : "E"
   } ]
 }

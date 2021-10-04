@@ -31,9 +31,10 @@ You can reach us at the email `wilfredw[at]comp.nus.edu.sg`
 
 ### Chung Yunseong
 
-<img src="images/JasonC01.png" width="200px">
+<img src="images/jasonc01.png" width="200px">
 
-[[github](http://github.com/JasonC01)] [[portfolio](team/JasonC01.md)]
+[[github](http://github.com/jasonc01)]
+[[portfolio](team/jasonc01.md)]
 
 * Role: Developer
 * Responsibilities: Data
