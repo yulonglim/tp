@@ -42,7 +42,7 @@ public class SelectClassCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateCurrentlySelectedClass(newSelectedClassName);
-        return new CommandResult("select command executed successfully!"); // TODO: Change this message
+        return new CommandResult("select command executed successfully!", false, false, true); // TODO: Change this message
     }
 
 //    @Override

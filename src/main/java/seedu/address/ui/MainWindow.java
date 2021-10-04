@@ -163,6 +163,10 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.show();
     }
 
+    public void handleSelectClass() {
+        updateFilteredStudentList();
+    }
+
     /**
      * Closes the application.
      */
@@ -196,6 +200,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isSelectClass()) {
+                handleSelectClass();
             }
 
             return commandResult;
