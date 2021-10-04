@@ -6,7 +6,7 @@ plugins {
     id 'jacoco'
 }
 
-mainClassName = 'seedu.address.Main'
+mainClassName = 'seedu.teachbook.Main'
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
@@ -26,15 +26,15 @@ run {
 
 test {
     useJUnitPlatform()
-    exclude 'seedu/address/logic/commands/AddCommandIntegrationTest.class'
-    exclude 'seedu/address/logic/commands/DeleteCommandTest.class'
-    exclude 'seedu/address/logic/commands/EditCommandTest.class'
-    exclude 'seedu/address/logic/commands/FindCommandTest.class'
-    exclude 'seedu/address/logic/commands/ListCommandTest.class'
-    exclude 'seedu/address/model/ModelManagerTest.class'
-    exclude 'seedu/address/storage/StorageManagerTest.class'
-    exclude 'seedu/address/storage/JsonSerializableTeachBookTest.class'
-    exclude 'seedu/address/storage/JsonTeachBookStorageTest.class'
+    exclude 'seedu/teachbook/logic/commands/AddCommandIntegrationTest.class'
+    exclude 'seedu/teachbook/logic/commands/DeleteCommandTest.class'
+    exclude 'seedu/teachbook/logic/commands/EditCommandTest.class'
+    exclude 'seedu/teachbook/logic/commands/FindCommandTest.class'
+    exclude 'seedu/teachbook/logic/commands/ListCommandTest.class'
+    exclude 'seedu/teachbook/model/ModelManagerTest.class'
+    exclude 'seedu/teachbook/storage/StorageManagerTest.class'
+    exclude 'seedu/teachbook/storage/JsonSerializableTeachBookTest.class'
+    exclude 'seedu/teachbook/storage/JsonTeachBookStorageTest.class'
     // TODO: rewrite corresponding tests belonging to your part and remove exclude statements
 
     finalizedBy jacocoTestReport
