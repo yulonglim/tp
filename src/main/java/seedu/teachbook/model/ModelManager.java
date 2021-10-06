@@ -27,6 +27,7 @@ public class ModelManager implements Model {
     private FilteredList<Student> filteredStudents;
     // private final FilteredList<Class> filteredClasses;
     private Index currentlySelectedClassIndex; // Use one-based index here!
+    private static Class currentlySelectedClass;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -40,6 +41,7 @@ public class ModelManager implements Model {
         this.teachBook = new TeachBook(teachBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.currentlySelectedClassIndex = Index.fromOneBased(1);
+        ModelManager.currentlySelectedClass = this.teachBook.getClassNameAtIndex(currentlySelectedClassIndex);
         // TODO: write the logic when there is no class, I'm assuming at least one class here
 
         // constructs a filteredList with sourcing from the uniquePersonList of the currently selected class
@@ -86,7 +88,11 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== TeachBook ================================================================================
+
+    public static Class getCurrentSelectedClass() {
+        return currentlySelectedClass;
+    }
 
     @Override
     public void setTeachBook(ReadOnlyTeachBook addressBook) {

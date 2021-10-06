@@ -159,6 +159,8 @@ public class TeachBook implements ReadOnlyTeachBook {
         return classes.locateClass(className);
     }
 
+    public Class getClassNameAtIndex(Index classIndex) { return classes.getClassAtIndex(classIndex); }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

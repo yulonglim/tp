@@ -2,6 +2,9 @@ package seedu.teachbook.model.student;
 
 import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
 
+import seedu.teachbook.model.ModelManager;
+import seedu.teachbook.model.classobject.Class;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -23,6 +26,7 @@ public class Student {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private Class myClass;
 
     /**
      * Every field must be present and not null.
@@ -34,6 +38,7 @@ public class Student {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.myClass = ModelManager.getCurrentSelectedClass();
     }
 
     public Name getName() {
