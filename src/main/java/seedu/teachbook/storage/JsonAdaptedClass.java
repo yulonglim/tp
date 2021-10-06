@@ -27,7 +27,8 @@ class JsonAdaptedClass {
      * Constructs a {@code JsonAdaptedClass} with the given class details.
      */
     @JsonCreator
-    public JsonAdaptedClass(@JsonProperty("className") String name, @JsonProperty("classList") List<JsonAdaptedStudent> classList) {
+    public JsonAdaptedClass(@JsonProperty("className") String name,
+                            @JsonProperty("classList") List<JsonAdaptedStudent> classList) {
         this.className = name;
         if (classList != null) {
             this.classList.addAll(classList);
