@@ -23,7 +23,7 @@ public class AddClassCommand extends Command {
             + PREFIX_NAME + "classobject A ";
 
     public static final String MESSAGE_SUCCESS = "New class added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This class already exists in the teachbook book";
+    public static final String MESSAGE_DUPLICATE_CLASS = "This class already exists in the teachbook book";
 
     private final Class toAdd;
 
@@ -40,7 +40,7 @@ public class AddClassCommand extends Command {
         requireNonNull(model);
 
         if (model.hasClass(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_CLASS);
         }
 
         model.addClass(toAdd);
