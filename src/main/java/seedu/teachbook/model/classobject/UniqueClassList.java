@@ -103,7 +103,11 @@ public class UniqueClassList implements Iterable<Class> {
     }
 
     public Class getClassAtIndex(Index index) {
-        return internalList.get(index.getZeroBased());
+        if (internalList.isEmpty()) {
+            return new Class(new ClassName("hello"));
+        } else {
+            return internalList.get(index.getZeroBased());
+        }
     }
 
     public Index locateClass(ClassName className) {

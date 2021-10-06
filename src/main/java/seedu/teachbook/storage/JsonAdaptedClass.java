@@ -21,13 +21,13 @@ class JsonAdaptedClass {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Class's %s field is missing!";
 
     private final String className;
-    private final List<JsonAdaptedPerson> classList = new ArrayList<>();
+    private final List<JsonAdaptedStudent> classList = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedClass} with the given class details.
      */
     @JsonCreator
-    public JsonAdaptedClass(@JsonProperty("class_name") String name) {
+    public JsonAdaptedClass(@JsonProperty("className") String name) {
         this.className = name;
         if (classList != null) {
             this.classList.addAll(classList);
@@ -40,7 +40,7 @@ class JsonAdaptedClass {
     public JsonAdaptedClass(Class source) {
         className = source.getClassName().fullName;
         classList.addAll(source.getClassListSet().stream()
-                .map(JsonAdaptedPerson::new)
+                .map(JsonAdaptedStudent::new)
                 .collect(Collectors.toList()));
     }
 
@@ -60,7 +60,7 @@ class JsonAdaptedClass {
         final ClassName modelName = new ClassName(className);
 
         final List<Student> studentList = new ArrayList<>();
-        for (JsonAdaptedPerson student : classList) {
+        for (JsonAdaptedStudent student : classList) {
             studentList.add(student.toModelType());
         }
         Class model = new Class(modelName);
