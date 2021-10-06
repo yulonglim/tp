@@ -38,38 +38,38 @@ public class TeachBook implements ReadOnlyTeachBook {
         students = new UniqueStudentList();
         classes = new UniqueClassList();
 
-        /* sample data */
-        // TODO: delete these later
-        HashSet<Tag> tags = new HashSet<>();
-        tags.add(new Tag("leader"));
-        Student student1 = new Student(new Name("Tom"), new Phone("12345678"),
-                new Email("1@email.com"), new Address("teachbook 1"), tags);
-        Student student2 = new Student(new Name("Kitty"), new Phone("87654321"),
-                new Email("2@email.com"), new Address("teachbook 2"), new HashSet<>());
-        Student student3 = new Student(new Name("Bob"), new Phone("15684523"),
-                new Email("3@email.com"), new Address("teachbook 3"), new HashSet<>());
-        Student student4 = new Student(new Name("Jane"), new Phone("56874123"),
-                new Email("4@email.com"), new Address("teachbook 4"), new HashSet<>());
-        Student student5 = new Student(new Name("Linda"), new Phone("85694714"),
-                new Email("5@email.com"), new Address("teachbook 5"), new HashSet<>());
-        Student student6 = new Student(new Name("Cute"), new Phone("58412987"),
-                new Email("6@email.com"), new Address("teachbook 6"), new HashSet<>());
-        Class class1 = new Class(new ClassName("remove this line later and fix no class situation"));
-        Class class2 = new Class(new ClassName("A"));
-        Class class3 = new Class(new ClassName("B"));
-        Class class4 = new Class(new ClassName("C"));
-        Class class5 = new Class(new ClassName("D"));
-        class1.addStudent(student1);
-        class2.addStudent(student2);
-        class2.addStudent(student3);
-        class3.addStudent(student4);
-        class3.addStudent(student5);
-        class3.addStudent(student6);
-        classes.add(class1);
-        classes.add(class2);
-        classes.add(class3);
-        classes.add(class4);
-        classes.add(class5);
+//        /* sample data */
+//        // TODO: delete these later
+//        HashSet<Tag> tags = new HashSet<>();
+//        tags.add(new Tag("leader"));
+//        Student student1 = new Student(new Name("Tom"), new Phone("12345678"),
+//                new Email("1@email.com"), new Address("teachbook 1"), tags);
+//        Student student2 = new Student(new Name("Kitty"), new Phone("87654321"),
+//                new Email("2@email.com"), new Address("teachbook 2"), new HashSet<>());
+//        Student student3 = new Student(new Name("Bob"), new Phone("15684523"),
+//                new Email("3@email.com"), new Address("teachbook 3"), new HashSet<>());
+//        Student student4 = new Student(new Name("Jane"), new Phone("56874123"),
+//                new Email("4@email.com"), new Address("teachbook 4"), new HashSet<>());
+//        Student student5 = new Student(new Name("Linda"), new Phone("85694714"),
+//                new Email("5@email.com"), new Address("teachbook 5"), new HashSet<>());
+//        Student student6 = new Student(new Name("Cute"), new Phone("58412987"),
+//                new Email("6@email.com"), new Address("teachbook 6"), new HashSet<>());
+//        Class class1 = new Class(new ClassName("remove this line later and fix no class situation"));
+//        Class class2 = new Class(new ClassName("A"));
+//        Class class3 = new Class(new ClassName("B"));
+//        Class class4 = new Class(new ClassName("C"));
+//        Class class5 = new Class(new ClassName("D"));
+//        class1.addStudent(student1);
+//        class2.addStudent(student2);
+//        class2.addStudent(student3);
+//        class3.addStudent(student4);
+//        class3.addStudent(student5);
+//        class3.addStudent(student6);
+//        classes.add(class1);
+//        classes.add(class2);
+//        classes.add(class3);
+//        classes.add(class4);
+//        classes.add(class5);
         /* sample data */
     }
 
