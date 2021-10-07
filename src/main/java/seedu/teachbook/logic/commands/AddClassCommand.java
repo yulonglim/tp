@@ -15,7 +15,7 @@ public class AddClassCommand extends Command {
 
     public static final String COMMAND_WORD = "addClass";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a class to the teachbook book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a class to the teach book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + "\n"
@@ -24,6 +24,7 @@ public class AddClassCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New class added: %1$s";
     public static final String MESSAGE_DUPLICATE_CLASS = "This class already exists in the teachbook book";
+
 
     private final Class toAdd;
 

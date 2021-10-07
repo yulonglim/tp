@@ -57,4 +57,4 @@ You can reach us at the email `wilfredw[at]comp.nus.edu.sg`
 [[portfolio](team/fans2619.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: In charge of Testing
