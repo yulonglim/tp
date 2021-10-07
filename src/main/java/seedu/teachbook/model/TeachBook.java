@@ -159,7 +159,7 @@ public class TeachBook implements ReadOnlyTeachBook {
         return classes.locateClass(className);
     }
 
-    public Class getClassNameAtIndex(Index classIndex) { return classes.getClassAtIndex(classIndex); }
+    public Class getClassAtIndex(Index classIndex) { return classes.getClassAtIndex(classIndex); }
 
     @Override
     public boolean equals(Object other) {

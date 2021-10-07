@@ -41,7 +41,7 @@ public class ModelManager implements Model {
         this.teachBook = new TeachBook(teachBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.currentlySelectedClassIndex = Index.fromOneBased(1);
-        ModelManager.currentlySelectedClass = this.teachBook.getClassNameAtIndex(currentlySelectedClassIndex);
+        ModelManager.currentlySelectedClass = this.teachBook.getClassAtIndex(currentlySelectedClassIndex);
         // TODO: write the logic when there is no class, I'm assuming at least one class here
 
         // constructs a filteredList with sourcing from the uniquePersonList of the currently selected class
@@ -178,6 +178,7 @@ public class ModelManager implements Model {
     @Override
     public void updateCurrentlySelectedClass(Index newClassIndex) {
         currentlySelectedClassIndex = newClassIndex;
+        ModelManager.currentlySelectedClass = this.teachBook.getClassAtIndex(currentlySelectedClassIndex);
         updateSourceOfFilteredStudentList();
     }
 

@@ -57,6 +57,8 @@ public class Student {
         return address;
     }
 
+    public Class getMyClass()  { return myClass; }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -97,7 +99,8 @@ public class Student {
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getAddress().equals(getAddress())
-                && otherStudent.getTags().equals(getTags());
+                && otherStudent.getTags().equals(getTags())
+                && otherStudent.getMyClass().equals(getMyClass());
     }
 
     @Override
@@ -115,7 +118,9 @@ public class Student {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Class: ")
+                .append(getMyClass());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
