@@ -5,9 +5,10 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.teachbook.commons.core.GuiSettings;
-import seedu.teachbook.commons.core.index.Index;
+import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
+import seedu.teachbook.model.classobject.exceptions.ClassNameWithNameException;
 import seedu.teachbook.model.student.Student;
 
 /**
@@ -90,8 +91,7 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
 
-//    ObservableList<Class> getFilteredClassList();
-
+    /** Returns an unmodifiable view of the unique class list */
     ObservableList<Class> getUniqueClassList();
 
     /**
@@ -100,9 +100,9 @@ public interface Model {
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
 
-    void updateCurrentlySelectedClass(ClassName newClassName);
+    GeneralIndex getIndexOfClass(ClassName className) throws ClassNameWithNameException;
 
-    void updateCurrentlySelectedClass(Index newClassIndex);
+    void updateCurrentlySelectedClass(GeneralIndex newClassIndex);
 
 //    void updateFilteredClassList(Predicate<Class> predicate);
 

@@ -70,8 +70,7 @@ public class Class {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getClassName())
-                .append(";");
+        builder.append(getClassName());
         return builder.toString();
     }
 

@@ -7,13 +7,15 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.teachbook.commons.core.GuiSettings;
 import seedu.teachbook.commons.core.LogsCenter;
-import seedu.teachbook.commons.core.index.Index;
+import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
+import seedu.teachbook.model.classobject.exceptions.ClassNameWithNameException;
 import seedu.teachbook.model.student.Student;
 
 /**
@@ -25,9 +27,7 @@ public class ModelManager implements Model {
     private final TeachBook teachBook;
     private final UserPrefs userPrefs;
     private FilteredList<Student> filteredStudents;
-    // private final FilteredList<Class> filteredClasses;
-    private Index currentlySelectedClassIndex; // Use one-based index here!
-    private static Class currentlySelectedClass;
+    private GeneralIndex currentlySelectedClassIndex;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -36,17 +36,19 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(teachBook, userPrefs);
 
-        logger.fine("Initializing with teachbook book: " + teachBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with teach book: " + teachBook + " and user prefs " + userPrefs);
 
         this.teachBook = new TeachBook(teachBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        this.currentlySelectedClassIndex = Index.fromOneBased(1);
-        ModelManager.currentlySelectedClass = this.teachBook.getClassAtIndex(currentlySelectedClassIndex);
-        // TODO: write the logic when there is no class, I'm assuming at least one class here
 
-        // constructs a filteredList with sourcing from the uniquePersonList of the currently selected class
-        filteredStudents = new FilteredList<>(this.teachBook.getStudentListOfClass(currentlySelectedClassIndex));
-        // filteredClasses = new FilteredList<>(this.teachBook.getClassList());
+        this.currentlySelectedClassIndex = GeneralIndex.fromOneBased(-2); // set the index to -2 when there is no class
+        this.filteredStudents = new FilteredList<>(FXCollections.observableArrayList());
+        if (this.getUniqueClassList().size() >= 1) {
+            this.currentlySelectedClassIndex = GeneralIndex.fromOneBased(1);
+            filteredStudents = new FilteredList<>(this.teachBook.getStudentListOfClass(currentlySelectedClassIndex));
+        }
+
+
     }
 
     public ModelManager() {
@@ -89,10 +91,6 @@ public class ModelManager implements Model {
     }
 
     //=========== TeachBook ================================================================================
-
-    public static Class getCurrentSelectedClass() {
-        return currentlySelectedClass;
-    }
 
     @Override
     public void setTeachBook(ReadOnlyTeachBook addressBook) {
@@ -151,11 +149,6 @@ public class ModelManager implements Model {
         return filteredStudents;
     }
 
-//    @Override
-//    public ObservableList<Class> getFilteredClassList() {
-//        return filteredClasses;
-//    }
-
     @Override
     public ObservableList<Class> getUniqueClassList() {
         return teachBook.getClassList();
@@ -168,17 +161,15 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateCurrentlySelectedClass(ClassName newClassName) {
-        Index newClassIndex = teachBook.getIndexOfClass(newClassName);
-        updateCurrentlySelectedClass(newClassIndex);
+    public GeneralIndex getIndexOfClass(ClassName className) throws ClassNameWithNameException {
+        return teachBook.getIndexOfClass(className);
     }
 
     // call this method by passing in an index (use -1 when list all!)
     // when "select class"/"list all"/... (when there is a need to change the "source")
     @Override
-    public void updateCurrentlySelectedClass(Index newClassIndex) {
+    public void updateCurrentlySelectedClass(GeneralIndex newClassIndex) {
         currentlySelectedClassIndex = newClassIndex;
-        ModelManager.currentlySelectedClass = this.teachBook.getClassAtIndex(currentlySelectedClassIndex);
         updateSourceOfFilteredStudentList();
     }
 
@@ -190,12 +181,6 @@ public class ModelManager implements Model {
         }
         updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
     }
-
-//    @Override
-//    public void updateFilteredClassList(Predicate<Class> predicate) {
-//        requireNonNull(predicate);
-//        filteredClasses.setPredicate(predicate);
-//    }
 
     @Override
     public boolean equals(Object obj) {
