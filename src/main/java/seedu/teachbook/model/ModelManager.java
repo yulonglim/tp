@@ -1,6 +1,9 @@
 package seedu.teachbook.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_DEFAULT_INITIAL_CLASS;
+import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_LIST_ALL;
+import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_NO_CLASS;
 import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
@@ -42,10 +45,10 @@ public class ModelManager implements Model {
         this.teachBook = new TeachBook(teachBook);
         this.userPrefs = new UserPrefs(userPrefs);
 
-        this.currentlySelectedClassIndex = GeneralIndex.fromOneBased(-2); // set the index to -2 when there is no class
+        this.currentlySelectedClassIndex = INDEX_NO_CLASS; // set the index to -2 when there is no class
         this.filteredStudents = new FilteredList<>(FXCollections.observableArrayList());
         if (this.getUniqueClassList().size() >= 1) {
-            this.currentlySelectedClassIndex = GeneralIndex.fromOneBased(1);
+            this.currentlySelectedClassIndex = INDEX_DEFAULT_INITIAL_CLASS;
             filteredStudents = new FilteredList<>(this.teachBook.getStudentListOfClass(currentlySelectedClassIndex));
         }
 
@@ -118,7 +121,9 @@ public class ModelManager implements Model {
     @Override
     public void addClass(Class toAdd) {
         teachBook.addClass(toAdd);
-        //updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        if (currentlySelectedClassIndex.equals(INDEX_NO_CLASS)) {
+            updateCurrentlySelectedClass(INDEX_DEFAULT_INITIAL_CLASS);
+        }
     }
 
     @Override
@@ -180,7 +185,7 @@ public class ModelManager implements Model {
     }
 
     private void updateSourceOfFilteredStudentList() {
-        if (currentlySelectedClassIndex.getOneBased() == -1) {
+        if (currentlySelectedClassIndex.equals(INDEX_LIST_ALL)) {
             filteredStudents = new FilteredList<>(this.teachBook.getStudentList()); // this is to "list all"
         } else {
             filteredStudents = new FilteredList<>(this.teachBook.getStudentListOfClass(currentlySelectedClassIndex));
