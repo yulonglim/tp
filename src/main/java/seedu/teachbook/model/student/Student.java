@@ -7,20 +7,23 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.teachbook.model.classobject.Class;
+import seedu.teachbook.model.classobject.ClassName;
 import seedu.teachbook.model.tag.Tag;
 
 /**
- * Represents a Person in the teachbook book.
+ * Represents a Student in TeachBook.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Student {
 
-    // Identity fields
+    // Compulsory fields
     private final Name name;
     private final Phone phone;
-    private final Email email;
+    private final Class studentClass;
 
-    // Data fields
+    // Optional fields
+    private final Email email;
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
@@ -28,9 +31,19 @@ public class Student {
      * Every field must be present and not null.
      */
     public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+        // TODO: add student to currently select class
+        // Current implementation: hardcoded
+        this(name, phone, new Class(new ClassName("A")), email, address, tags);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Student(Name name, Phone phone, Class studentClass, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, studentClass, email, address, tags);
         this.name = name;
         this.phone = phone;
+        this.studentClass = studentClass;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
@@ -42,6 +55,10 @@ public class Student {
 
     public Phone getPhone() {
         return phone;
+    }
+
+    public Class getStudentClass() {
+        return studentClass;
     }
 
     public Email getEmail() {
@@ -60,6 +77,9 @@ public class Student {
         return Collections.unmodifiableSet(tags);
     }
 
+    // TODO: should a student be uniquely identified by his/her class and name?
+    // Current implementation: a student is uniquely identified by his/her name only
+    // (although two students are from different classes, they cannot have the same name)
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
@@ -90,6 +110,7 @@ public class Student {
         Student otherStudent = (Student) other;
         return otherStudent.getName().equals(getName())
                 && otherStudent.getPhone().equals(getPhone())
+                && otherStudent.getStudentClass().equals(getStudentClass())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getAddress().equals(getAddress())
                 && otherStudent.getTags().equals(getTags());
@@ -98,7 +119,7 @@ public class Student {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, studentClass, email, address, tags);
     }
 
     @Override
@@ -107,6 +128,8 @@ public class Student {
         builder.append(getName())
                 .append("; Phone: ")
                 .append(getPhone())
+                .append("; Class: ")
+                .append(getStudentClass())
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
