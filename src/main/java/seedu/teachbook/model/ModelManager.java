@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.teachbook.commons.core.GuiSettings;
 import seedu.teachbook.commons.core.LogsCenter;
+import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
@@ -26,8 +27,7 @@ public class ModelManager implements Model {
     private final TeachBook teachBook;
     private final UserPrefs userPrefs;
     private FilteredList<Student> filteredStudents;
-    // private final FilteredList<Class> filteredClasses;
-    private Index currentlySelectedClassIndex; // Use one-based index here!
+    private GeneralIndex currentlySelectedClassIndex;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -36,16 +36,17 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(teachBook, userPrefs);
 
-        logger.fine("Initializing with teachbook book: " + teachBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with teach book: " + teachBook + " and user prefs " + userPrefs);
 
         this.teachBook = new TeachBook(teachBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        this.currentlySelectedClassIndex = Index.fromOneBased(1);
-        // TODO: write the logic when there is no class, I'm assuming at least one class here
 
-        // constructs a filteredList with sourcing from the uniquePersonList of the currently selected class
+        this.currentlySelectedClassIndex = GeneralIndex.fromOneBased(0);
+        if (this.getUniqueClassList().size() >= 1) {
+            this.currentlySelectedClassIndex = GeneralIndex.fromOneBased(1);
+        }
+
         filteredStudents = new FilteredList<>(this.teachBook.getStudentListOfClass(currentlySelectedClassIndex));
-        // filteredClasses = new FilteredList<>(this.teachBook.getClassList());
     }
 
     public ModelManager() {
@@ -87,7 +88,7 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== TeachBook ================================================================================
 
     @Override
     public void setTeachBook(ReadOnlyTeachBook addressBook) {
@@ -158,14 +159,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Index getIndexOfClass(ClassName className) throws ClassNameNotFoundException {
+    public GeneralIndex getIndexOfClass(ClassName className) throws ClassNameNotFoundException {
         return teachBook.getIndexOfClass(className);
     }
 
     // call this method by passing in an index (use -1 when list all!)
     // when "select class"/"list all"/... (when there is a need to change the "source")
     @Override
-    public void updateCurrentlySelectedClass(Index newClassIndex) {
+    public void updateCurrentlySelectedClass(GeneralIndex newClassIndex) {
         currentlySelectedClassIndex = newClassIndex;
         updateSourceOfFilteredStudentList();
     }

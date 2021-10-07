@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import seedu.teachbook.commons.core.Messages;
+import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
@@ -38,7 +39,7 @@ public class SelectClassCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Class> classes = model.getUniqueClassList();
-        Index newClassIndex;
+        GeneralIndex newClassIndex;
 
         try {
             newClassIndex = model.getIndexOfClass(newClassName);

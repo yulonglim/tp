@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
@@ -158,11 +159,11 @@ public class TeachBook implements ReadOnlyTeachBook {
         return students.asUnmodifiableObservableList();
     }
 
-    public ObservableList<Student> getStudentListOfClass(Index classIndex) {
+    public ObservableList<Student> getStudentListOfClass(GeneralIndex classIndex) {
         return classes.getClassAtIndex(classIndex).getStudentsOfThisClass().asUnmodifiableObservableList();
     }
 
-    public Index getIndexOfClass(ClassName className) throws ClassNameNotFoundException {
+    public GeneralIndex getIndexOfClass(ClassName className) throws ClassNameNotFoundException {
         return classes.locateClass(className);
     }
 

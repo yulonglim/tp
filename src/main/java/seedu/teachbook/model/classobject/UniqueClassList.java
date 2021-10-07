@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.model.classobject.exceptions.ClassNameNotFoundException;
 import seedu.teachbook.model.classobject.exceptions.DuplicateClassException;
@@ -102,7 +103,7 @@ public class UniqueClassList implements Iterable<Class> {
         return internalUnmodifiableList;
     }
 
-    public Class getClassAtIndex(Index index) {
+    public Class getClassAtIndex(GeneralIndex index) {
         if (internalList.isEmpty()) {
             return new Class(new ClassName("hello"));
         } else {
@@ -110,10 +111,10 @@ public class UniqueClassList implements Iterable<Class> {
         }
     }
 
-    public Index locateClass(ClassName className) throws ClassNameNotFoundException {
+    public GeneralIndex locateClass(ClassName className) throws ClassNameNotFoundException {
         for (int i = 0; i < internalList.size(); i++) {
             if (internalList.get(i).getClassName().equals((className))) {
-                return Index.fromZeroBased(i);
+                return GeneralIndex.fromZeroBased(i);
             }
         }
         throw new ClassNameNotFoundException();
