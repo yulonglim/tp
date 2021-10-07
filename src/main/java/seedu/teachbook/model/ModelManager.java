@@ -28,6 +28,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private FilteredList<Student> filteredStudents;
     private GeneralIndex currentlySelectedClassIndex;
+    private static Class currentlySelectedClass;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -138,6 +139,10 @@ public class ModelManager implements Model {
         teachBook.setStudent(target, editedStudent);
     }
 
+    public static Class getCurrentSelectedClass() {
+        return ModelManager.currentlySelectedClass;
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -170,6 +175,7 @@ public class ModelManager implements Model {
     @Override
     public void updateCurrentlySelectedClass(GeneralIndex newClassIndex) {
         currentlySelectedClassIndex = newClassIndex;
+        currentlySelectedClass = teachBook.getClassAtIndex(newClassIndex);
         updateSourceOfFilteredStudentList();
     }
 
