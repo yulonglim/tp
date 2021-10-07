@@ -8,9 +8,10 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.teachbook.commons.core.index.Index;
-import seedu.teachbook.model.classobject.exceptions.ClassNotFoundException;
+import seedu.teachbook.commons.core.index.GeneralIndex;
+import seedu.teachbook.model.classobject.exceptions.ClassNameWithNameException;
 import seedu.teachbook.model.classobject.exceptions.DuplicateClassException;
+import seedu.teachbook.model.classobject.exceptions.NoClassAtIndexException;
 
 /**
  * A list of Classes that enforces uniqueness between its elements and does not allow nulls.
@@ -59,7 +60,7 @@ public class UniqueClassList implements Iterable<Class> {
         requireAllNonNull(target, editedClass);
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new ClassNotFoundException();
+            throw new ClassNameWithNameException();
         }
         if (!target.isSameClass(editedClass) && contains(editedClass)) {
             throw new DuplicateClassException();
@@ -74,7 +75,7 @@ public class UniqueClassList implements Iterable<Class> {
     public void remove(Class toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new ClassNotFoundException();
+            throw new ClassNameWithNameException();
         }
     }
 
@@ -102,21 +103,21 @@ public class UniqueClassList implements Iterable<Class> {
         return internalUnmodifiableList;
     }
 
-    public Class getClassAtIndex(Index index) {
-        if (internalList.isEmpty()) {
-            return new Class(new ClassName("hello"));
-        } else {
+    public Class getClassAtIndex(GeneralIndex index) {
+        try {
             return internalList.get(index.getZeroBased());
+        } catch (IndexOutOfBoundsException exception) {
+            throw new NoClassAtIndexException();
         }
     }
 
-    public Index locateClass(ClassName className) {
+    public GeneralIndex locateClass(ClassName className) throws ClassNameWithNameException {
         for (int i = 0; i < internalList.size(); i++) {
             if (internalList.get(i).getClassName().equals((className))) {
-                return Index.fromZeroBased(i);
+                return GeneralIndex.fromZeroBased(i);
             }
         }
-        return Index.fromOneBased(1); // TODO: change this to throw an exception instead
+        throw new ClassNameWithNameException();
     }
 
     @Override

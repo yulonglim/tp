@@ -2,8 +2,15 @@ package seedu.teachbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
+import seedu.teachbook.commons.core.Messages;
+import seedu.teachbook.commons.core.index.GeneralIndex;
+import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
+import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
+import seedu.teachbook.model.classobject.exceptions.ClassNameWithNameException;
 
 /**
  * Finds and lists all persons in teachbook book whose name contains any of the argument keywords.
@@ -13,49 +20,41 @@ public class SelectClassCommand extends Command {
 
     public static final String COMMAND_WORD = "select";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Selects the class with "
-            + "the specified class name (case-insensitive).\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Switches to the class with "
+            + "the specified class name (case-sensitive).\n"
             + "Parameters: CLASSNAME\n"
             + "Example: " + COMMAND_WORD + " Ace";
 
-//    private final ClassNameContainsKeywordsPredicate predicate;
-    private final ClassName newSelectedClassName;
+    public static final String MESSAGE_SELECT_CLASS_SUCCESS =
+            "Currently displaying all the students from Class: %1$s";
 
-//    public SelectClassCommand(ClassNameContainsKeywordsPredicate predicate) {
-//        this.predicate = predicate;
-//    }
+    private final ClassName newClassName;
 
-    public SelectClassCommand(ClassName newSelectedClassName) {
-        this.newSelectedClassName = newSelectedClassName;
+    public SelectClassCommand(ClassName newClassName) {
+        this.newClassName = newClassName;
     }
-
-//    @Override
-//    public CommandResult execute(Model model) {
-//        requireNonNull(model);
-//        model.updateFilteredClassList(predicate);
-//        return new CommandResult(
-//                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredClassList().size()));
-//    }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateCurrentlySelectedClass(newSelectedClassName);
-        return new CommandResult("select command executed successfully!",
-                false, false, true); // TODO: Change the message text
-    }
+        List<Class> classes = model.getUniqueClassList();
+        GeneralIndex newClassIndex;
 
-//    @Override
-//    public boolean equals(Object other) {
-//        return other == this // short circuit if same object
-//                || (other instanceof SelectClassCommand // instanceof handles nulls
-//                && predicate.equals(((SelectClassCommand) other).predicate)); // state check
-//    }
+        try {
+            newClassIndex = model.getIndexOfClass(newClassName);
+        } catch (ClassNameWithNameException exception) {
+            throw new CommandException(Messages.MESSAGE_INVALID_CLASS_NAME);
+        }
+
+        model.updateCurrentlySelectedClass(newClassIndex);
+        return new CommandResult(String.format(MESSAGE_SELECT_CLASS_SUCCESS, newClassName),
+                false, false, true);
+    }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SelectClassCommand // instanceof handles nulls
-                && newSelectedClassName.equals(((SelectClassCommand) other).newSelectedClassName)); // state check
+                && newClassName.equals(((SelectClassCommand) other).newClassName)); // state check
     }
 }
