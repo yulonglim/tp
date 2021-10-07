@@ -7,15 +7,15 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.teachbook.commons.core.GuiSettings;
 import seedu.teachbook.commons.core.LogsCenter;
 import seedu.teachbook.commons.core.index.GeneralIndex;
-import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
-import seedu.teachbook.model.classobject.exceptions.ClassNameNotFoundException;
+import seedu.teachbook.model.classobject.exceptions.ClassNameWithNameException;
 import seedu.teachbook.model.student.Student;
 
 /**
@@ -41,12 +41,14 @@ public class ModelManager implements Model {
         this.teachBook = new TeachBook(teachBook);
         this.userPrefs = new UserPrefs(userPrefs);
 
-        this.currentlySelectedClassIndex = GeneralIndex.fromOneBased(0);
+        this.currentlySelectedClassIndex = GeneralIndex.fromOneBased(-2); // set the index to -2 when there is no class
+        this.filteredStudents = new FilteredList<>(FXCollections.observableArrayList());
         if (this.getUniqueClassList().size() >= 1) {
             this.currentlySelectedClassIndex = GeneralIndex.fromOneBased(1);
+            filteredStudents = new FilteredList<>(this.teachBook.getStudentListOfClass(currentlySelectedClassIndex));
         }
 
-        filteredStudents = new FilteredList<>(this.teachBook.getStudentListOfClass(currentlySelectedClassIndex));
+
     }
 
     public ModelManager() {
@@ -159,7 +161,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public GeneralIndex getIndexOfClass(ClassName className) throws ClassNameNotFoundException {
+    public GeneralIndex getIndexOfClass(ClassName className) throws ClassNameWithNameException {
         return teachBook.getIndexOfClass(className);
     }
 

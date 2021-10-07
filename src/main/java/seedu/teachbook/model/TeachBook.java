@@ -7,11 +7,10 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.teachbook.commons.core.index.GeneralIndex;
-import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
 import seedu.teachbook.model.classobject.UniqueClassList;
-import seedu.teachbook.model.classobject.exceptions.ClassNameNotFoundException;
+import seedu.teachbook.model.classobject.exceptions.ClassNameWithNameException;
 import seedu.teachbook.model.student.Address;
 import seedu.teachbook.model.student.Email;
 import seedu.teachbook.model.student.Name;
@@ -40,8 +39,8 @@ public class TeachBook implements ReadOnlyTeachBook {
         students = new UniqueStudentList();
         classes = new UniqueClassList();
 
-//        /* sample data */
-//        // TODO: delete these later
+        /* sample data for testing */
+        // TODO: delete these later
         HashSet<Tag> tags = new HashSet<>();
         tags.add(new Tag("leader"));
 
@@ -163,7 +162,7 @@ public class TeachBook implements ReadOnlyTeachBook {
         return classes.getClassAtIndex(classIndex).getStudentsOfThisClass().asUnmodifiableObservableList();
     }
 
-    public GeneralIndex getIndexOfClass(ClassName className) throws ClassNameNotFoundException {
+    public GeneralIndex getIndexOfClass(ClassName className) throws ClassNameWithNameException {
         return classes.locateClass(className);
     }
 

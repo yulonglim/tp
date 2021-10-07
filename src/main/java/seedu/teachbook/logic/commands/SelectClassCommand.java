@@ -6,12 +6,11 @@ import java.util.List;
 
 import seedu.teachbook.commons.core.Messages;
 import seedu.teachbook.commons.core.index.GeneralIndex;
-import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
-import seedu.teachbook.model.classobject.exceptions.ClassNameNotFoundException;
+import seedu.teachbook.model.classobject.exceptions.ClassNameWithNameException;
 
 /**
  * Finds and lists all persons in teachbook book whose name contains any of the argument keywords.
@@ -43,7 +42,7 @@ public class SelectClassCommand extends Command {
 
         try {
             newClassIndex = model.getIndexOfClass(newClassName);
-        } catch (ClassNameNotFoundException exception) {
+        } catch (ClassNameWithNameException exception) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLASS_NAME);
         }
 

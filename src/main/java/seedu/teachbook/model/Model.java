@@ -6,10 +6,9 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.teachbook.commons.core.GuiSettings;
 import seedu.teachbook.commons.core.index.GeneralIndex;
-import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
-import seedu.teachbook.model.classobject.exceptions.ClassNameNotFoundException;
+import seedu.teachbook.model.classobject.exceptions.ClassNameWithNameException;
 import seedu.teachbook.model.student.Student;
 
 /**
@@ -101,7 +100,7 @@ public interface Model {
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
 
-    GeneralIndex getIndexOfClass(ClassName className) throws ClassNameNotFoundException;
+    GeneralIndex getIndexOfClass(ClassName className) throws ClassNameWithNameException;
 
     void updateCurrentlySelectedClass(GeneralIndex newClassIndex);
 
