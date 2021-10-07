@@ -10,6 +10,7 @@ import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
 import seedu.teachbook.model.classobject.UniqueClassList;
+import seedu.teachbook.model.classobject.exceptions.ClassNameNotFoundException;
 import seedu.teachbook.model.student.Address;
 import seedu.teachbook.model.student.Email;
 import seedu.teachbook.model.student.Name;
@@ -161,7 +162,7 @@ public class TeachBook implements ReadOnlyTeachBook {
         return classes.getClassAtIndex(classIndex).getStudentsOfThisClass().asUnmodifiableObservableList();
     }
 
-    public Index getIndexOfClass(ClassName className) {
+    public Index getIndexOfClass(ClassName className) throws ClassNameNotFoundException {
         return classes.locateClass(className);
     }
 

@@ -9,7 +9,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.teachbook.commons.core.index.Index;
-import seedu.teachbook.model.classobject.exceptions.ClassNotFoundException;
+import seedu.teachbook.model.classobject.exceptions.ClassNameNotFoundException;
 import seedu.teachbook.model.classobject.exceptions.DuplicateClassException;
 
 /**
@@ -59,7 +59,7 @@ public class UniqueClassList implements Iterable<Class> {
         requireAllNonNull(target, editedClass);
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new ClassNotFoundException();
+            throw new ClassNameNotFoundException();
         }
         if (!target.isSameClass(editedClass) && contains(editedClass)) {
             throw new DuplicateClassException();
@@ -74,7 +74,7 @@ public class UniqueClassList implements Iterable<Class> {
     public void remove(Class toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new ClassNotFoundException();
+            throw new ClassNameNotFoundException();
         }
     }
 
@@ -110,13 +110,13 @@ public class UniqueClassList implements Iterable<Class> {
         }
     }
 
-    public Index locateClass(ClassName className) {
+    public Index locateClass(ClassName className) throws ClassNameNotFoundException {
         for (int i = 0; i < internalList.size(); i++) {
             if (internalList.get(i).getClassName().equals((className))) {
                 return Index.fromZeroBased(i);
             }
         }
-        return Index.fromOneBased(1); // TODO: change this to throw an exception instead
+        throw new ClassNameNotFoundException();
     }
 
     @Override

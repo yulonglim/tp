@@ -14,6 +14,7 @@ import seedu.teachbook.commons.core.LogsCenter;
 import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
+import seedu.teachbook.model.classobject.exceptions.ClassNameNotFoundException;
 import seedu.teachbook.model.student.Student;
 
 /**
@@ -145,11 +146,6 @@ public class ModelManager implements Model {
         return filteredStudents;
     }
 
-//    @Override
-//    public ObservableList<Class> getFilteredClassList() {
-//        return filteredClasses;
-//    }
-
     @Override
     public ObservableList<Class> getUniqueClassList() {
         return teachBook.getClassList();
@@ -162,9 +158,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateCurrentlySelectedClass(ClassName newClassName) {
-        Index newClassIndex = teachBook.getIndexOfClass(newClassName);
-        updateCurrentlySelectedClass(newClassIndex);
+    public Index getIndexOfClass(ClassName className) throws ClassNameNotFoundException {
+        return teachBook.getIndexOfClass(className);
     }
 
     // call this method by passing in an index (use -1 when list all!)
@@ -183,12 +178,6 @@ public class ModelManager implements Model {
         }
         updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
     }
-
-//    @Override
-//    public void updateFilteredClassList(Predicate<Class> predicate) {
-//        requireNonNull(predicate);
-//        filteredClasses.setPredicate(predicate);
-//    }
 
     @Override
     public boolean equals(Object obj) {

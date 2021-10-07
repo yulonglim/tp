@@ -8,6 +8,7 @@ import seedu.teachbook.commons.core.GuiSettings;
 import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
+import seedu.teachbook.model.classobject.exceptions.ClassNameNotFoundException;
 import seedu.teachbook.model.student.Student;
 
 /**
@@ -90,8 +91,7 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
 
-//    ObservableList<Class> getFilteredClassList();
-
+    /** Returns an unmodifiable view of the unique class list */
     ObservableList<Class> getUniqueClassList();
 
     /**
@@ -100,7 +100,7 @@ public interface Model {
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
 
-    void updateCurrentlySelectedClass(ClassName newClassName);
+    Index getIndexOfClass(ClassName className) throws ClassNameNotFoundException;
 
     void updateCurrentlySelectedClass(Index newClassIndex);
 
