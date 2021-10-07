@@ -161,18 +161,13 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-//        @Override
-//        public ObservableList<Class> getFilteredClassList() {
-//            throw new AssertionError("This method should not be called.");
-//        }
-
         @Override
         public void updateFilteredStudentList(Predicate<Student> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateCurrentlySelectedClass(ClassName newClassName) {
+        public Index getIndexOfClass(ClassName newClassName) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -181,10 +176,6 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-//        @Override
-//        public void updateFilteredClassList(Predicate<Class> predicate) {
-//            throw new AssertionError("This method should not be called.");
-//        }
     }
 
     /**

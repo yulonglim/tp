@@ -21,13 +21,12 @@ public class SelectClassCommand extends Command {
     public static final String COMMAND_WORD = "select";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Switches to the class with "
-            + "the specified class name (case-insensitive).\n"
+            + "the specified class name (case-sensitive).\n"
             + "Parameters: CLASSNAME\n"
             + "Example: " + COMMAND_WORD + " Ace";
 
     public static final String MESSAGE_SELECT_CLASS_SUCCESS =
             "Currently displaying all the students from Class: %1$s";
-    public static final String MESSAGE_INVALID_CLASS_Name = ";";
 
     private final ClassName newClassName;
 
