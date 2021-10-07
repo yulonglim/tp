@@ -35,6 +35,15 @@ test {
     exclude 'seedu/teachbook/storage/StorageManagerTest.class'
     exclude 'seedu/teachbook/storage/JsonSerializableTeachBookTest.class'
     exclude 'seedu/teachbook/storage/JsonTeachBookStorageTest.class'
+    exclude 'seedu/teachbook/logic/parser/AddCommandParserTest.class'
+    exclude 'seedu/teachbook/logic/parser/TeachBookParserTest.class'
+    exclude 'seedu/teachbook/logic/commands/HelpCommandTest.class'
+    exclude 'seedu/teachbook/logic/commands/ExitCommandTest.class'
+    exclude 'seedu/teachbook/logic/commands/ClearCommandTest.class'
+    exclude 'seedu/teachbook/logic/LogicManagerTest.class'
+    exclude 'seedu/teachbook/storage/JsonAdaptedStudentTest.class'
+    exclude 'seedu/teachbook/model/student/StudentTest.class'
+
     // TODO: rewrite corresponding tests belonging to your part and remove exclude statements
 
     finalizedBy jacocoTestReport
