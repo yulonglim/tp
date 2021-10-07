@@ -2,17 +2,16 @@ package seedu.teachbook.model.student;
 
 import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
 
-import seedu.teachbook.model.ModelManager;
-import seedu.teachbook.model.classobject.Class;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.teachbook.model.ModelManager;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
 import seedu.teachbook.model.tag.Tag;
+
 
 /**
  * Represents a Student in TeachBook.
@@ -74,7 +73,10 @@ public class Student {
         return address;
     }
 
-    public Class getMyClass()  { return myClass; }
+    public Class getMyClass() {
+        return myClass;
+    }
+
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}

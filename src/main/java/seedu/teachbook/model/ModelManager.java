@@ -27,11 +27,12 @@ import seedu.teachbook.model.student.Student;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+    private static Class currentlySelectedClass;
     private final TeachBook teachBook;
     private final UserPrefs userPrefs;
     private FilteredList<Student> filteredStudents;
     private GeneralIndex currentlySelectedClassIndex;
-    private static Class currentlySelectedClass;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
