@@ -38,7 +38,6 @@ public class TeachBook implements ReadOnlyTeachBook {
     {
         students = new UniqueStudentList();
         classes = new UniqueClassList();
-
         /* sample data for testing */
         // TODO: delete these later
         HashSet<Tag> tags = new HashSet<>();
@@ -194,6 +193,10 @@ public class TeachBook implements ReadOnlyTeachBook {
 
     public void addClass(Class toAdd) {
         classes.add(toAdd);
+    }
+
+    public void removeClass(Class target) {
+        classes.remove(target);
     }
 
     public void setClasses(List<Class> classes) {
