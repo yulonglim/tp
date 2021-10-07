@@ -27,10 +27,12 @@ import seedu.teachbook.model.student.Student;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+    private static Class currentlySelectedClass;
     private final TeachBook teachBook;
     private final UserPrefs userPrefs;
     private FilteredList<Student> filteredStudents;
     private GeneralIndex currentlySelectedClassIndex;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -143,6 +145,10 @@ public class ModelManager implements Model {
         teachBook.setStudent(target, editedStudent);
     }
 
+    public static Class getCurrentSelectedClass() {
+        return ModelManager.currentlySelectedClass;
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -175,6 +181,7 @@ public class ModelManager implements Model {
     @Override
     public void updateCurrentlySelectedClass(GeneralIndex newClassIndex) {
         currentlySelectedClassIndex = newClassIndex;
+        currentlySelectedClass = teachBook.getClassAtIndex(newClassIndex);
         updateSourceOfFilteredStudentList();
     }
 

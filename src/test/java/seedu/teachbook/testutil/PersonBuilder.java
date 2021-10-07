@@ -3,6 +3,8 @@ package seedu.teachbook.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.teachbook.model.classobject.Class;
+import seedu.teachbook.model.classobject.ClassName;
 import seedu.teachbook.model.student.Address;
 import seedu.teachbook.model.student.Email;
 import seedu.teachbook.model.student.Name;
@@ -20,11 +22,13 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_CLASS = "A";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private Class myClass;
     private Set<Tag> tags;
 
     /**
@@ -35,6 +39,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        myClass = new Class(new ClassName(DEFAULT_CLASS));
         tags = new HashSet<>();
     }
 
@@ -46,6 +51,7 @@ public class PersonBuilder {
         phone = studentToCopy.getPhone();
         email = studentToCopy.getEmail();
         address = studentToCopy.getAddress();
+        myClass = studentToCopy.getMyClass();
         tags = new HashSet<>(studentToCopy.getTags());
     }
 
