@@ -7,9 +7,11 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.teachbook.model.ModelManager;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
 import seedu.teachbook.model.tag.Tag;
+
 
 /**
  * Represents a Student in TeachBook.
@@ -26,6 +28,7 @@ public class Student {
     private final Email email;
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private Class myClass;
 
     /**
      * Every field must be present and not null.
@@ -47,6 +50,7 @@ public class Student {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.myClass = ModelManager.getCurrentSelectedClass();
     }
 
     public Name getName() {
@@ -68,6 +72,11 @@ public class Student {
     public Address getAddress() {
         return address;
     }
+
+    public Class getMyClass() {
+        return myClass;
+    }
+
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -113,7 +122,8 @@ public class Student {
                 && otherStudent.getStudentClass().equals(getStudentClass())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getAddress().equals(getAddress())
-                && otherStudent.getTags().equals(getTags());
+                && otherStudent.getTags().equals(getTags())
+                && otherStudent.getMyClass().equals(getMyClass());
     }
 
     @Override
@@ -133,7 +143,9 @@ public class Student {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Class: ")
+                .append(getMyClass());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
