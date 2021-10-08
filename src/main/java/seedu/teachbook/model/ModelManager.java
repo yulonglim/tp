@@ -28,10 +28,10 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private static Class currentlySelectedClass;
+    private static GeneralIndex currentlySelectedClassIndex;
     private final TeachBook teachBook;
     private final UserPrefs userPrefs;
     private FilteredList<Student> filteredStudents;
-    private static GeneralIndex currentlySelectedClassIndex;
 
 
     /**
