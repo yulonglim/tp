@@ -31,7 +31,7 @@ public class ModelManager implements Model {
     private final TeachBook teachBook;
     private final UserPrefs userPrefs;
     private FilteredList<Student> filteredStudents;
-    private GeneralIndex currentlySelectedClassIndex;
+    private static GeneralIndex currentlySelectedClassIndex;
 
 
     /**
@@ -211,6 +211,10 @@ public class ModelManager implements Model {
         return teachBook.equals(other.teachBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredStudents.equals(other.filteredStudents);
+    }
+
+    public static GeneralIndex getCurrentlySelectedClassIndex() {
+        return currentlySelectedClassIndex;
     }
 
 }

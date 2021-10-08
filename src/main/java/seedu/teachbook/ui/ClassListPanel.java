@@ -8,6 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.teachbook.commons.core.LogsCenter;
+import seedu.teachbook.model.ModelManager;
 import seedu.teachbook.model.classobject.Class;
 
 
@@ -28,6 +29,10 @@ public class ClassListPanel extends UiPart<Region> {
         super(FXML);
         classListView.setItems(classList);
         classListView.setCellFactory(listView -> new ClassListViewCell());
+
+        //TODO: Make it not selectable by mouse click
+        classListView.getSelectionModel().select(0);
+
     }
 
     /**
@@ -45,6 +50,13 @@ public class ClassListPanel extends UiPart<Region> {
                 setGraphic(new ClassCard(classObj, getIndex() + 1).getRoot());
             }
         }
+    }
+
+    public void reload() {
+        int N = ModelManager.getCurrentlySelectedClassIndex().getZeroBased();
+        classListView.getSelectionModel().select(N);
+        classListView.getFocusModel().focus(N);
+        classListView.scrollTo(N);
     }
 
 }
