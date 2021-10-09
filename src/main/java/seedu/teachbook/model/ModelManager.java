@@ -229,6 +229,7 @@ public class ModelManager implements Model {
                 && filteredStudents.equals(other.filteredStudents);
     }
 
+    @Override
     public int getCurrentlySelectedClassIndex() {
         return currentlySelectedClassIndex.getZeroBased();
     }

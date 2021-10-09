@@ -90,6 +90,7 @@ public class LogicManager implements Logic {
         model.setGuiSettings(guiSettings);
     }
 
+    @Override
     public int getCurrentlySelectedClassIndex() {
         return model.getCurrentlySelectedClassIndex();
     }
