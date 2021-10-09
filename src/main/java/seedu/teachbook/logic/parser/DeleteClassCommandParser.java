@@ -18,11 +18,15 @@ public class DeleteClassCommandParser implements Parser<DeleteClassCommand> {
      */
     public DeleteClassCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
+
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteClassCommand.MESSAGE_USAGE));
         }
-        return new DeleteClassCommand(new ClassName(trimmedArgs));
+
+        ClassName className = ParserUtil.parseClassName(trimmedArgs);
+
+        return new DeleteClassCommand(className);
     }
 
 }
