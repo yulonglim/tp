@@ -122,7 +122,7 @@ public class ModelManager implements Model {
     @Override
     public void addClass(Class toAdd) {
         teachBook.addClass(toAdd);
-        updateCurrentlySelectedClass(INDEX_DEFAULT_INITIAL_CLASS);
+        updateCurrentlySelectedClass(GeneralIndex.fromOneBased(teachBook.getClassList().size()));
     }
 
     @Override
