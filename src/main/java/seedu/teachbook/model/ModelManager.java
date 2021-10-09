@@ -128,6 +128,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteClass(Class target) {
+        teachBook.removeClass(target);
+        if (teachBook.getClassList().size() == 0) {
+            updateCurrentlySelectedClass(INDEX_NO_CLASS);
+        } else {
+            updateCurrentlySelectedClass(INDEX_DEFAULT_INITIAL_CLASS);
+        }
+    }
+
+    @Override
     public void deleteStudent(Student target) {
         teachBook.removeStudent(target);
     }
@@ -182,13 +192,17 @@ public class ModelManager implements Model {
     @Override
     public void updateCurrentlySelectedClass(GeneralIndex newClassIndex) {
         currentlySelectedClassIndex = newClassIndex;
-        currentlySelectedClass = teachBook.getClassAtIndex(newClassIndex);
+        if (!currentlySelectedClassIndex.equals(INDEX_NO_CLASS)) {
+            currentlySelectedClass = teachBook.getClassAtIndex(newClassIndex);
+        }
         updateSourceOfFilteredStudentList();
     }
 
     private void updateSourceOfFilteredStudentList() {
         if (currentlySelectedClassIndex.equals(INDEX_LIST_ALL)) {
             filteredStudents = new FilteredList<>(this.teachBook.getStudentList()); // this is to "list all"
+        } else if (currentlySelectedClassIndex.equals(INDEX_NO_CLASS)) {
+            filteredStudents = new FilteredList<>(FXCollections.observableArrayList());
         } else {
             filteredStudents = new FilteredList<>(this.teachBook.getStudentListOfClass(currentlySelectedClassIndex));
         }
