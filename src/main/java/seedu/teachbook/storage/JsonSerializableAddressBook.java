@@ -23,7 +23,6 @@ class JsonSerializableAddressBook {
     public static final String MESSAGE_DUPLICATE_PERSON = "students"
             + " list contains duplicate student(s).";
 
-    private final List<JsonAdaptedStudent> students = new ArrayList<>();
     private final List<JsonAdaptedClass> classes = new ArrayList<>();
 
     /**
@@ -31,9 +30,7 @@ class JsonSerializableAddressBook {
      * .
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("students") List<JsonAdaptedStudent> students,
-                                       @JsonProperty("classes") List<JsonAdaptedClass> classes) {
-        this.students.addAll(students);
+    public JsonSerializableAddressBook(@JsonProperty("classes") List<JsonAdaptedClass> classes) {
         this.classes.addAll(classes);
     }
 
@@ -43,8 +40,6 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyTeachBook source) {
-        students
-                .addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
         classes.addAll(source.getClassList().stream().map(JsonAdaptedClass::new).collect(Collectors.toList()));
     }
 
@@ -55,22 +50,12 @@ class JsonSerializableAddressBook {
      */
     public TeachBook toModelType() throws IllegalValueException {
         TeachBook teachBook = new TeachBook();
-        for (JsonAdaptedStudent jsonAdaptedStudent : students
-        ) {
-            Student student = jsonAdaptedStudent.toModelType();
-            if (teachBook.hasStudent(student)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
-            }
-            teachBook.addStudent(student);
-        }
 
         for (JsonAdaptedClass jsonAdaptedClass : classes) {
-
             Class classObj = jsonAdaptedClass.toModelType();
             if (teachBook.hasClass(classObj)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            System.out.println(classObj);
             teachBook.addClass(classObj);
         }
         return teachBook;
