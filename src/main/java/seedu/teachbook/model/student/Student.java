@@ -22,36 +22,36 @@ public class Student {
     // Compulsory fields
     private final Name name;
     private final Phone phone;
-    private final Class studentClass;
+    private Class studentClass;
 
     // Optional fields
     private final Email email;
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private Class myClass;
 
     /**
      * Every field must be present and not null.
      */
     public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        // TODO: add student to currently select class
-        // Current implementation: hardcoded
-        this(name, phone, new Class(new ClassName("A")), email, address, tags);
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.studentClass = ModelManager.getCurrentSelectedClass();
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Class studentClass, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, studentClass, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.studentClass = studentClass;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.myClass = ModelManager.getCurrentSelectedClass();
+    public Student studentFromStorage(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        // TODO: add student to currently select class
+        // Current implementation: hardcoded
+        return new Student(name, phone, email, address, tags);
     }
+
+
 
     public Name getName() {
         return name;
@@ -73,9 +73,10 @@ public class Student {
         return address;
     }
 
-    public Class getMyClass() {
-        return myClass;
+    public void setStudentClass(Class studentClass) {
+        this.studentClass = studentClass;
     }
+
 
 
     /**
@@ -122,8 +123,7 @@ public class Student {
                 && otherStudent.getStudentClass().equals(getStudentClass())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getAddress().equals(getAddress())
-                && otherStudent.getTags().equals(getTags())
-                && otherStudent.getMyClass().equals(getMyClass());
+                && otherStudent.getTags().equals(getTags());
     }
 
     @Override
@@ -143,9 +143,7 @@ public class Student {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress())
-                .append("; Class: ")
-                .append(getMyClass());
+                .append(getAddress());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

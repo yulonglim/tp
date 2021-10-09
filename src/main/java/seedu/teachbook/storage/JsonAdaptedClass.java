@@ -61,10 +61,12 @@ class JsonAdaptedClass {
         final ClassName modelName = new ClassName(className);
 
         final List<Student> studentList = new ArrayList<>();
-        for (JsonAdaptedStudent student : classList) {
-            studentList.add(student.toModelType());
-        }
         Class model = new Class(modelName);
+        for (JsonAdaptedStudent student : classList) {
+            Student toAdd = student.toModelType();
+            toAdd.setStudentClass(model);
+            studentList.add(toAdd);
+        }
         model.setStudentsOfThisClass(studentList);
         return model;
     }
