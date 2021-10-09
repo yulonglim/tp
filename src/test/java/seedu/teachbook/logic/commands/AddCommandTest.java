@@ -183,7 +183,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public int getCurrentlySelectedClassIndex() {
+        public GeneralIndex getCurrentlySelectedClassIndex() {
             throw new AssertionError("This method should not be called.");
         }
 

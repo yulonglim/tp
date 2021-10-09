@@ -4,6 +4,7 @@ import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
 import seedu.teachbook.commons.core.GuiSettings;
+import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.logic.commands.CommandResult;
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
@@ -60,5 +61,5 @@ public interface Logic {
     /**
      * Returns the index of currently selected class
      */
-    int getCurrentlySelectedClassIndex();
+    GeneralIndex getCurrentlySelectedClassIndex();
 }

@@ -54,7 +54,6 @@ public class ModelManager implements Model {
             filteredStudents = new FilteredList<>(this.teachBook.getStudentListOfClass(currentlySelectedClassIndex));
         }
 
-
     }
 
     public ModelManager() {
@@ -106,6 +105,11 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyTeachBook getTeachBook() {
         return teachBook;
+    }
+
+    @Override
+    public GeneralIndex getCurrentlySelectedClassIndex() {
+        return currentlySelectedClassIndex;
     }
 
     @Override
@@ -225,11 +229,6 @@ public class ModelManager implements Model {
         return teachBook.equals(other.teachBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredStudents.equals(other.filteredStudents);
-    }
-
-    @Override
-    public int getCurrentlySelectedClassIndex() {
-        return currentlySelectedClassIndex.getZeroBased();
     }
 
 }

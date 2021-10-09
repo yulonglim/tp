@@ -110,7 +110,7 @@ public interface Model {
 
     void updateCurrentlySelectedClass(GeneralIndex newClassIndex);
 
-    int getCurrentlySelectedClassIndex();
+    GeneralIndex getCurrentlySelectedClassIndex();
 
 //    void updateFilteredClassList(Predicate<Class> predicate);
 
