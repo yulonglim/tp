@@ -62,7 +62,7 @@ public class TypicalPersons {
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */
-    public static TeachBook getTypicalAddressBook() {
+    public static TeachBook getTypicalTeachBook() {
         TeachBook ab = new TeachBook();
         for (Student student : getTypicalPersons()) {
             ab.addStudent(student);

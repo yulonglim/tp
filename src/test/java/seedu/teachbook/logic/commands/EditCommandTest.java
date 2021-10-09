@@ -12,7 +12,7 @@ import static seedu.teachbook.logic.commands.CommandTestUtil.assertCommandSucces
 import static seedu.teachbook.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.teachbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.teachbook.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.teachbook.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.teachbook.testutil.TypicalPersons.getTypicalTeachBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +32,7 @@ import seedu.teachbook.testutil.PersonBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTeachBook(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {

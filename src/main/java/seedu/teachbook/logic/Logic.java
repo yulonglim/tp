@@ -44,7 +44,7 @@ public interface Logic {
     /**
      * Returns the user prefs' teachbook book file path.
      */
-    Path getAddressBookFilePath();
+    Path getTeachBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

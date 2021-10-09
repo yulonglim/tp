@@ -17,7 +17,7 @@ import seedu.teachbook.model.ReadOnlyTeachBook;
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
  */
-public class JsonTeachBookStorage implements AddressBookStorage {
+public class JsonTeachBookStorage implements TeachBookStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonTeachBookStorage.class);
 

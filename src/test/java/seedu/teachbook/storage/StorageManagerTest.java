@@ -2,7 +2,7 @@ package seedu.teachbook.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.teachbook.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.teachbook.testutil.TypicalPersons.getTypicalTeachBook;
 
 import java.nio.file.Path;
 
@@ -48,20 +48,20 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void teachBookReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
-        TeachBook original = getTypicalAddressBook();
+        TeachBook original = getTypicalTeachBook();
         storageManager.saveTeachBook(original);
         ReadOnlyTeachBook retrieved = storageManager.readTeachBook().get();
         assertEquals(original, new TeachBook(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
+    public void getTeachBookFilePath() {
         assertNotNull(storageManager.getTeachBookFilePath());
     }
 

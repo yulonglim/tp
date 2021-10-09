@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.teachbook.commons.core.GuiSettings;
 import seedu.teachbook.model.student.NameContainsKeywordsPredicate;
-import seedu.teachbook.testutil.AddressBookBuilder;
+import seedu.teachbook.testutil.TeachBookBuilder;
 
 public class ModelManagerTest {
 
@@ -37,14 +37,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("teachbook/book/file/path"));
+        userPrefs.setTeachBookFilePath(Paths.get("teachbook/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/teachbook/book/file/path"));
+        userPrefs.setTeachBookFilePath(Paths.get("new/teachbook/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -61,12 +61,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setTeachBookFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setTeachBookFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setTeachBookFilePath_validPath_setsTeachBookFilePath() {
         Path path = Paths.get("teachbook/book/file/path");
         modelManager.setTeachBookFilePath(path);
         assertEquals(path, modelManager.getTeachBookFilePath());
@@ -78,12 +78,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInTeachBook_returnsFalse() {
         assertFalse(modelManager.hasStudent(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInTeachBook_returnsTrue() {
         modelManager.addStudent(ALICE);
         assertTrue(modelManager.hasStudent(ALICE));
     }
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        TeachBook teachBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        TeachBook teachBook = new TeachBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         TeachBook differentTeachBook = new TeachBook();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -126,7 +126,7 @@ public class ModelManagerTest {
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
+        differentUserPrefs.setTeachBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(teachBook, differentUserPrefs)));
     }
 }

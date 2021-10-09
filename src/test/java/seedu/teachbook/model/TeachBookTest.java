@@ -7,7 +7,7 @@ import static seedu.teachbook.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.teachbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.teachbook.testutil.Assert.assertThrows;
 import static seedu.teachbook.testutil.TypicalPersons.ALICE;
-import static seedu.teachbook.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.teachbook.testutil.TypicalPersons.getTypicalTeachBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -38,8 +38,8 @@ public class TeachBookTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        TeachBook newData = getTypicalAddressBook();
+    public void resetData_withValidReadOnlyTeachBook_replacesData() {
+        TeachBook newData = getTypicalTeachBook();
         teachBook.resetData(newData);
         assertEquals(newData, teachBook);
     }
@@ -61,18 +61,18 @@ public class TeachBookTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInTeachBook_returnsFalse() {
         assertFalse(teachBook.hasStudent(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInTeachBook_returnsTrue() {
         teachBook.addStudent(ALICE);
         assertTrue(teachBook.hasStudent(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasPerson_personWithSameIdentityFieldsInTeachBook_returnsTrue() {
         teachBook.addStudent(ALICE);
         Student editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();

@@ -17,15 +17,15 @@ import seedu.teachbook.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private TeachBookStorage teachBookStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(TeachBookStorage teachBookStorage, UserPrefsStorage userPrefsStorage) {
         super();
-        this.addressBookStorage = addressBookStorage;
+        this.teachBookStorage = teachBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -51,29 +51,29 @@ public class StorageManager implements Storage {
 
     @Override
     public Path getTeachBookFilePath() {
-        return addressBookStorage.getTeachBookFilePath();
+        return teachBookStorage.getTeachBookFilePath();
     }
 
     @Override
     public Optional<ReadOnlyTeachBook> readTeachBook() throws DataConversionException, IOException {
-        return readTeachBook(addressBookStorage.getTeachBookFilePath());
+        return readTeachBook(teachBookStorage.getTeachBookFilePath());
     }
 
     @Override
     public Optional<ReadOnlyTeachBook> readTeachBook(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readTeachBook(filePath);
+        return teachBookStorage.readTeachBook(filePath);
     }
 
     @Override
     public void saveTeachBook(ReadOnlyTeachBook addressBook) throws IOException {
-        saveTeachBook(addressBook, addressBookStorage.getTeachBookFilePath());
+        saveTeachBook(addressBook, teachBookStorage.getTeachBookFilePath());
     }
 
     @Override
     public void saveTeachBook(ReadOnlyTeachBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveTeachBook(addressBook, filePath);
+        teachBookStorage.saveTeachBook(addressBook, filePath);
     }
 
 }

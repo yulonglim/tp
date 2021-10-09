@@ -22,11 +22,11 @@ import seedu.teachbook.model.ReadOnlyUserPrefs;
 import seedu.teachbook.model.TeachBook;
 import seedu.teachbook.model.UserPrefs;
 import seedu.teachbook.model.util.SampleDataUtil;
-import seedu.teachbook.storage.AddressBookStorage;
 import seedu.teachbook.storage.JsonTeachBookStorage;
 import seedu.teachbook.storage.JsonUserPrefsStorage;
 import seedu.teachbook.storage.Storage;
 import seedu.teachbook.storage.StorageManager;
+import seedu.teachbook.storage.TeachBookStorage;
 import seedu.teachbook.storage.UserPrefsStorage;
 import seedu.teachbook.ui.Ui;
 import seedu.teachbook.ui.UiManager;
@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonTeachBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        TeachBookStorage teachBookStorage = new JsonTeachBookStorage(userPrefs.getTeachBookFilePath());
+        storage = new StorageManager(teachBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -81,7 +81,7 @@ public class MainApp extends Application {
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleTeachBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new TeachBook();

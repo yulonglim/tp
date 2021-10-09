@@ -11,7 +11,7 @@ import seedu.teachbook.model.TeachBook;
 /**
  * Represents a storage for {@link TeachBook}.
  */
-public interface AddressBookStorage {
+public interface TeachBookStorage {
 
     /**
      * Returns the file path of the data file.
