@@ -56,4 +56,9 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+
+    /**
+     * Returns the index of currently selected class
+     */
+    int getCurrentlySelectedClassIndex();
 }

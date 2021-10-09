@@ -28,10 +28,11 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private static Class currentlySelectedClass;
-    private static GeneralIndex currentlySelectedClassIndex;
+//    private static GeneralIndex currentlySelectedClassIndex;
     private final TeachBook teachBook;
     private final UserPrefs userPrefs;
     private FilteredList<Student> filteredStudents;
+    private GeneralIndex currentlySelectedClassIndex;
 
 
     /**
@@ -228,8 +229,8 @@ public class ModelManager implements Model {
                 && filteredStudents.equals(other.filteredStudents);
     }
 
-    public static GeneralIndex getCurrentlySelectedClassIndex() {
-        return currentlySelectedClassIndex;
+    public int getCurrentlySelectedClassIndex() {
+        return currentlySelectedClassIndex.getZeroBased();
     }
 
 }
