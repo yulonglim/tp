@@ -122,9 +122,7 @@ public class ModelManager implements Model {
     @Override
     public void addClass(Class toAdd) {
         teachBook.addClass(toAdd);
-        if (currentlySelectedClassIndex.equals(INDEX_NO_CLASS)) {
-            updateCurrentlySelectedClass(INDEX_DEFAULT_INITIAL_CLASS);
-        }
+        updateCurrentlySelectedClass(INDEX_DEFAULT_INITIAL_CLASS);
     }
 
     @Override
@@ -144,7 +142,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addStudent(Student student) {
-        teachBook.addStudent(student);
+        // teachBook.addStudent(student);
         currentlySelectedClass.addStudent(student);
         updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
     }
