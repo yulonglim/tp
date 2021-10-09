@@ -90,7 +90,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveFileName.set("teachbook-v1.2.jar")
 }
 
 defaultTasks 'clean', 'test'
