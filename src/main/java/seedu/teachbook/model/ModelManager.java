@@ -115,7 +115,8 @@ public class ModelManager implements Model {
     @Override
     public boolean hasStudent(Student student) {
         requireNonNull(student);
-        return teachBook.hasStudent(student);
+        return getCurrentSelectedClass().getStudentsOfThisClass().contains(student);
+        // TODO: fix this later to use teachbook.hasStudent()
     }
 
     @Override

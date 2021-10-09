@@ -54,7 +54,7 @@ public class UniqueStudentList implements Iterable<Student> {
      * {@code target} must exist in the list.
      * The student identity of {@code editedPerson} must not be the same as another existing student in the list.
      */
-    public void setPerson(Student target, Student editedStudent) {
+    public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
 
         int index = internalList.indexOf(target);

@@ -89,7 +89,7 @@ public class TeachBook implements ReadOnlyTeachBook {
      */
     public void setStudent(Student target, Student editedStudent) {
         requireNonNull(editedStudent);
-        students.setPerson(target, editedStudent);
+        students.setStudent(target, editedStudent);
     }
 
     /**
