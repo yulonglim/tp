@@ -27,8 +27,6 @@ import seedu.teachbook.model.student.Student;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private static Class currentlySelectedClass;
-//    private static GeneralIndex currentlySelectedClassIndex;
     private final TeachBook teachBook;
     private final UserPrefs userPrefs;
     private FilteredList<Student> filteredStudents;
@@ -115,7 +113,7 @@ public class ModelManager implements Model {
     @Override
     public boolean hasStudent(Student student) {
         requireNonNull(student);
-        return getCurrentSelectedClass().getStudentsOfThisClass().contains(student);
+        return getCurrentlySelectedClass().getStudentsOfThisClass().contains(student);
         // TODO: fix this later to use teachbook.hasStudent()
     }
 
@@ -149,6 +147,8 @@ public class ModelManager implements Model {
     @Override
     public void addStudent(Student student) {
         // teachBook.addStudent(student);
+        Class currentlySelectedClass = this.getCurrentlySelectedClass();
+        student.setStudentClass(currentlySelectedClass);
         currentlySelectedClass.addStudent(student);
         updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
     }
@@ -160,8 +160,8 @@ public class ModelManager implements Model {
         teachBook.setStudent(target, editedStudent);
     }
 
-    public static Class getCurrentSelectedClass() {
-        return ModelManager.currentlySelectedClass;
+    public Class getCurrentlySelectedClass() {
+        return teachBook.getClassAtIndex(currentlySelectedClassIndex);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -196,9 +196,6 @@ public class ModelManager implements Model {
     @Override
     public void updateCurrentlySelectedClass(GeneralIndex newClassIndex) {
         currentlySelectedClassIndex = newClassIndex;
-        if (!currentlySelectedClassIndex.equals(INDEX_NO_CLASS)) {
-            currentlySelectedClass = teachBook.getClassAtIndex(newClassIndex);
-        }
         updateSourceOfFilteredStudentList();
     }
 

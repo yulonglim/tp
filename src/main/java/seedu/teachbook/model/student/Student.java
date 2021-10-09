@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.teachbook.model.ModelManager;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.tag.Tag;
 
@@ -35,7 +34,7 @@ public class Student {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
-        this.studentClass = ModelManager.getCurrentSelectedClass();
+        this.studentClass = null;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
@@ -49,8 +48,6 @@ public class Student {
         // Current implementation: hardcoded
         return new Student(name, phone, email, address, tags);
     }
-
-
 
     public Name getName() {
         return name;
