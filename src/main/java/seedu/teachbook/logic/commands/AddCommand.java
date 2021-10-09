@@ -1,6 +1,7 @@
 package seedu.teachbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_NO_CLASS;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_NAME;
@@ -35,6 +36,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the teach book";
+    public static final String MESSAGE_NO_CLASS = "Add the first class before adding any student!";
 
     private final Student toAdd;
 
@@ -49,6 +51,10 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.getCurrentlySelectedClassIndex().equals(INDEX_NO_CLASS)) {
+            throw new CommandException(MESSAGE_NO_CLASS);
+        }
 
         if (model.hasStudent(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
