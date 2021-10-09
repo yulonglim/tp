@@ -17,36 +17,36 @@ import seedu.teachbook.model.ReadOnlyTeachBook;
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
  */
-public class JsonAddressBookStorage implements AddressBookStorage {
+public class JsonTeachBookStorage implements AddressBookStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonTeachBookStorage.class);
 
     private Path filePath;
 
-    public JsonAddressBookStorage(Path filePath) {
+    public JsonTeachBookStorage(Path filePath) {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getTeachBookFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyTeachBook> readAddressBook() throws DataConversionException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyTeachBook> readTeachBook() throws DataConversionException {
+        return readTeachBook(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readTeachBook()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyTeachBook> readAddressBook(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyTeachBook> readTeachBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
+        Optional<JsonSerializableTeachBook> jsonAddressBook = JsonUtil.readJsonFile(
+                filePath, JsonSerializableTeachBook.class);
         if (!jsonAddressBook.isPresent()) {
             return Optional.empty();
         }
@@ -60,21 +60,21 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyTeachBook addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveTeachBook(ReadOnlyTeachBook addressBook) throws IOException {
+        saveTeachBook(addressBook, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyTeachBook)}.
+     * Similar to {@link #saveTeachBook(ReadOnlyTeachBook)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyTeachBook addressBook, Path filePath) throws IOException {
+    public void saveTeachBook(ReadOnlyTeachBook addressBook, Path filePath) throws IOException {
         requireNonNull(addressBook);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableTeachBook(addressBook), filePath);
     }
 
 }

@@ -37,7 +37,6 @@ public class SelectClassCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Class> classes = model.getUniqueClassList();
         GeneralIndex newClassIndex;
 
         try {

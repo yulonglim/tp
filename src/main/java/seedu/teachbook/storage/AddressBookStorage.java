@@ -16,7 +16,7 @@ public interface AddressBookStorage {
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getTeachBookFilePath();
 
     /**
      * Returns AddressBook data as a {@link ReadOnlyTeachBook}.
@@ -24,23 +24,23 @@ public interface AddressBookStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyTeachBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyTeachBook> readTeachBook() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getTeachBookFilePath()
      */
-    Optional<ReadOnlyTeachBook> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyTeachBook> readTeachBook(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyTeachBook} to the storage.
      * @param addressBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyTeachBook addressBook) throws IOException;
+    void saveTeachBook(ReadOnlyTeachBook addressBook) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyTeachBook)
+     * @see #saveTeachBook(ReadOnlyTeachBook)
      */
-    void saveAddressBook(ReadOnlyTeachBook addressBook, Path filePath) throws IOException;
+    void saveTeachBook(ReadOnlyTeachBook addressBook, Path filePath) throws IOException;
 
 }

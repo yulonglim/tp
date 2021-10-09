@@ -9,7 +9,6 @@ import java.util.Set;
 
 import seedu.teachbook.model.ModelManager;
 import seedu.teachbook.model.classobject.Class;
-import seedu.teachbook.model.classobject.ClassName;
 import seedu.teachbook.model.tag.Tag;
 
 

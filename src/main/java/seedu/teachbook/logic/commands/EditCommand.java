@@ -19,7 +19,6 @@ import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.commons.util.CollectionUtil;
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
-import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.student.Address;
 import seedu.teachbook.model.student.Email;
 import seedu.teachbook.model.student.Name;
