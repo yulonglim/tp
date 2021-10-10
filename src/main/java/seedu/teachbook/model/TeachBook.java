@@ -7,7 +7,6 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.classobject.Class;
-import seedu.teachbook.model.classobject.ClassName;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.classobject.UniqueClassList;
 import seedu.teachbook.model.classobject.exceptions.ClassNameWithNameException;
@@ -115,6 +114,10 @@ public class TeachBook implements ReadOnlyTeachBook {
     @Override
     public ObservableList<Student> getStudentList() {
         return students.asUnmodifiableObservableList();
+    }
+
+    public int getNumOfClasses() {
+        return classes.size();
     }
 
     public ObservableList<Student> getStudentListOfClass(GeneralIndex classIndex) {

@@ -33,7 +33,6 @@ public class ModelManager implements Model {
     private FilteredList<Student> filteredStudents;
     private GeneralIndex currentlySelectedClassIndex;
 
-
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -48,9 +47,8 @@ public class ModelManager implements Model {
 
         this.currentlySelectedClassIndex = INDEX_NO_CLASS; // set the index to -2 when there is no class
         this.filteredStudents = new FilteredList<>(FXCollections.observableArrayList());
-        if (this.getUniqueClassList().size() >= 1) {
-            this.currentlySelectedClassIndex = INDEX_DEFAULT_INITIAL_CLASS;
-            filteredStudents = new FilteredList<>(this.teachBook.getStudentListOfClass(currentlySelectedClassIndex));
+        if (this.teachBook.getNumOfClasses() >= 1) {
+            updateCurrentlySelectedClass(INDEX_DEFAULT_INITIAL_CLASS);
         }
 
     }
@@ -132,10 +130,14 @@ public class ModelManager implements Model {
     @Override
     public void deleteClass(Class target) {
         teachBook.removeClass(target);
-        if (teachBook.getClassList().size() == 0) {
+        if (teachBook.getNumOfClasses() == 0) {
             updateCurrentlySelectedClass(INDEX_NO_CLASS);
+        } else if (currentlySelectedClassIndex.getOneBased() > teachBook.getNumOfClasses()) {
+            // set currently selected class to the last class in the list
+            updateCurrentlySelectedClass(GeneralIndex.fromOneBased(teachBook.getNumOfClasses()));
         } else {
-            updateCurrentlySelectedClass(INDEX_DEFAULT_INITIAL_CLASS);
+            // same index but different class
+            updateCurrentlySelectedClass(currentlySelectedClassIndex);
         }
     }
 

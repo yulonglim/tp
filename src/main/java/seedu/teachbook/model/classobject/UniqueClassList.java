@@ -120,6 +120,10 @@ public class UniqueClassList implements Iterable<Class> {
         throw new ClassNameWithNameException();
     }
 
+    public int size() {
+        return internalList.size();
+    }
+
     @Override
     public Iterator<Class> iterator() {
         return internalList.iterator();
