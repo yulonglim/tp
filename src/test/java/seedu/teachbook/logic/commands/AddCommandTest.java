@@ -107,7 +107,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setTeachBookFilePath(Path addressBookFilePath) {
+        public void setTeachBookFilePath(Path teachBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -117,7 +117,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setTeachBook(ReadOnlyTeachBook newData) {
+        public void setTeachBook(ReadOnlyTeachBook teachBook) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -132,12 +132,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasClass(Class classObj) {
+        public boolean hasClass(Class aClass) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addClass(Class toAdd) {
+        public void addClass(Class aClass) {
             throw new AssertionError("This method should not be called.");
         }
 

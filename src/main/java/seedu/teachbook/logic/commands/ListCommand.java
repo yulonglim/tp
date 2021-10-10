@@ -6,7 +6,7 @@ import static seedu.teachbook.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import seedu.teachbook.model.Model;
 
 /**
- * Lists all persons in the teach book to the user.
+ * Lists all students in the currently selected class to the user.
  */
 public class ListCommand extends Command {
 

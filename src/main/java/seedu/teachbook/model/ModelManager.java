@@ -86,16 +86,16 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setTeachBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setTeachBookFilePath(addressBookFilePath);
+    public void setTeachBookFilePath(Path teachBookFilePath) {
+        requireNonNull(teachBookFilePath);
+        userPrefs.setTeachBookFilePath(teachBookFilePath);
     }
 
     //=========== TeachBook ================================================================================
 
     @Override
-    public void setTeachBook(ReadOnlyTeachBook addressBook) {
-        this.teachBook.resetData(addressBook);
+    public void setTeachBook(ReadOnlyTeachBook teachBook) {
+        this.teachBook.resetData(teachBook);
     }
 
     @Override
@@ -115,14 +115,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasClass(Class classObj) {
-        requireNonNull(classObj);
-        return teachBook.hasClass(classObj);
+    public boolean hasClass(Class aClass) {
+        requireNonNull(aClass);
+        return teachBook.hasClass(aClass);
     }
 
     @Override
-    public void addClass(Class toAdd) {
-        teachBook.addClass(toAdd);
+    public void addClass(Class aClass) {
+        teachBook.addClass(aClass);
         updateCurrentlySelectedClass(GeneralIndex.fromOneBased(teachBook.getClassList().size()));
     }
 

@@ -39,58 +39,62 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' teachbook book file path.
+     * Returns the user prefs' teachbook file path.
      */
     Path getTeachBookFilePath();
 
     /**
-     * Sets the user prefs' teachbook book file path.
+     * Sets the user prefs' teachbook file path.
      */
-    void setTeachBookFilePath(Path addressBookFilePath);
+    void setTeachBookFilePath(Path teachBookFilePath);
 
     /**
-     * Replaces teachbook book data with the data in {@code addressBook}.
+     * Replaces teachbook data with the data in {@code teachBook}.
      */
-    void setTeachBook(ReadOnlyTeachBook addressBook);
+    void setTeachBook(ReadOnlyTeachBook teachBook);
 
-    /** Returns the AddressBook */
+    /** Returns the teachbook */
     ReadOnlyTeachBook getTeachBook();
 
     /**
-     * Returns true if a student with the same identity as {@code student} exists in the teachbook book.
+     * Returns true if a student with the same identity as {@code student} exists in the teachbook.
      */
     boolean hasStudent(Student student);
 
     /**
-     * Returns true if a student with the same identity as {@code student} exists in the teachbook book.
+     * Returns true if a student with the same identity as {@code student} exists in the teachbook.
      */
-    boolean hasClass(Class classObj);
+    boolean hasClass(Class aClass);
 
     /**
      * Deletes the given class.
-     * The class must exist in the teachbook book.
+     * The class must exist in the teachbook.
      */
     void deleteClass(Class target);
 
-    void addClass(Class toAdd);
+    /**
+     * Adds the given class.
+     * {@code aClass} must not already exist in the teachbook.
+     */
+    void addClass(Class aClass);
 
     /**
      * Deletes the given student.
-     * The student must exist in the teachbook book.
+     * The student must exist in the teachbook.
      */
     void deleteStudent(Student target);
 
     /**
      * Adds the given student.
-     * {@code student} must not already exist in the teachbook book.
+     * {@code student} must not already exist in the teachbook.
      */
     void addStudent(Student student);
 
     /**
      * Replaces the given student {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the teachbook book.
+     * {@code target} must exist in the teachbook.
      * The student identity of {@code editedPerson} must not be the same as another
-     * existing student in the teachbook book.
+     * existing student in the teachbook.
      */
     void setStudent(Student target, Student editedStudent);
 
@@ -111,8 +115,5 @@ public interface Model {
     void updateCurrentlySelectedClass(GeneralIndex newClassIndex);
 
     GeneralIndex getCurrentlySelectedClassIndex();
-
-//    void updateFilteredClassList(Predicate<Class> predicate);
-
 
 }
