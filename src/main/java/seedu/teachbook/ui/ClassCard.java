@@ -39,7 +39,7 @@ public class ClassCard extends UiPart<Region> {
         super(FXML);
         this.classObj = classObj;
         id.setText(displayedIndex + ". ");
-        name.setText(classObj.getClassName().fullName);
+        name.setText(classObj.getClassName().nameOfClass);
     }
 
     @Override

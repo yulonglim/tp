@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
+import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.classobject.UniqueClassList;
 import seedu.teachbook.model.classobject.exceptions.ClassNameWithNameException;
 import seedu.teachbook.model.student.Student;
@@ -120,7 +121,7 @@ public class TeachBook implements ReadOnlyTeachBook {
         return classes.getClassAtIndex(classIndex).getStudentsOfThisClass().asUnmodifiableObservableList();
     }
 
-    public GeneralIndex getIndexOfClass(ClassName className) throws ClassNameWithNameException {
+    public GeneralIndex getIndexOfClass(ClassNameDescriptor className) throws ClassNameWithNameException {
         return classes.locateClass(className);
     }
 

@@ -24,6 +24,7 @@ import seedu.teachbook.model.ReadOnlyUserPrefs;
 import seedu.teachbook.model.TeachBook;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
+import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.student.Student;
 import seedu.teachbook.testutil.PersonBuilder;
 
@@ -173,7 +174,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public GeneralIndex getIndexOfClass(ClassName newClassName) {
+        public GeneralIndex getIndexOfClass(ClassNameDescriptor newClassName) {
             throw new AssertionError("This method should not be called.");
         }
 

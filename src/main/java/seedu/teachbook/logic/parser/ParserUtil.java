@@ -10,6 +10,7 @@ import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.commons.util.StringUtil;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
 import seedu.teachbook.model.classobject.ClassName;
+import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.student.Address;
 import seedu.teachbook.model.student.Email;
 import seedu.teachbook.model.student.Name;
@@ -55,9 +56,15 @@ public class ParserUtil {
         requireNonNull(className);
         String trimmedName = className.trim();
         if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(ClassName.MESSAGE_CONSTRAINTS);
         }
         return new ClassName(trimmedName);
+    }
+
+    public static ClassNameDescriptor parseClassNameForLocatingClass(String className) throws ParseException {
+        requireNonNull(className);
+        String trimmedName = className.trim();
+        return new ClassNameDescriptor(trimmedName);
     }
 
     /**

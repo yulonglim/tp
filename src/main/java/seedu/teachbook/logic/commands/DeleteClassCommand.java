@@ -10,6 +10,7 @@ import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
+import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.classobject.exceptions.ClassNameWithNameException;
 
 /**
@@ -26,9 +27,9 @@ public class DeleteClassCommand extends Command {
 
     public static final String MESSAGE_DELETE_CLASS_SUCCESS = "Deleted Class: %1$s";
 
-    private final ClassName className;
+    private final ClassNameDescriptor className;
 
-    public DeleteClassCommand(ClassName className) {
+    public DeleteClassCommand(ClassNameDescriptor className) {
         this.className = className;
     }
 
@@ -41,7 +42,7 @@ public class DeleteClassCommand extends Command {
         try {
             classIndex = model.getIndexOfClass(className);
         } catch (ClassNameWithNameException exception) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CLASS_NAME);
+            throw new CommandException(Messages.MESSAGE_CLASS_DOES_NOT_EXIST);
         }
 
         Class classToDelete = classes.get(classIndex.getZeroBased());

@@ -2,14 +2,12 @@ package seedu.teachbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
 import seedu.teachbook.commons.core.Messages;
 import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
-import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
+import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.classobject.exceptions.ClassNameWithNameException;
 
 /**
@@ -28,9 +26,9 @@ public class SelectClassCommand extends Command {
     public static final String MESSAGE_SELECT_CLASS_SUCCESS =
             "Currently displaying all the students from Class: %1$s";
 
-    private final ClassName newClassName;
+    private final ClassNameDescriptor newClassName;
 
-    public SelectClassCommand(ClassName newClassName) {
+    public SelectClassCommand(ClassNameDescriptor newClassName) {
         this.newClassName = newClassName;
     }
 
@@ -42,7 +40,7 @@ public class SelectClassCommand extends Command {
         try {
             newClassIndex = model.getIndexOfClass(newClassName);
         } catch (ClassNameWithNameException exception) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CLASS_NAME);
+            throw new CommandException(Messages.MESSAGE_CLASS_DOES_NOT_EXIST);
         }
 
         model.updateCurrentlySelectedClass(newClassIndex);

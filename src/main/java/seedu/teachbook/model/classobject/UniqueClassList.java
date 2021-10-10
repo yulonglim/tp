@@ -111,7 +111,7 @@ public class UniqueClassList implements Iterable<Class> {
         }
     }
 
-    public GeneralIndex locateClass(ClassName className) throws ClassNameWithNameException {
+    public GeneralIndex locateClass(ClassNameDescriptor className) throws ClassNameWithNameException {
         for (int i = 0; i < internalList.size(); i++) {
             if (internalList.get(i).getClassName().equals((className))) {
                 return GeneralIndex.fromZeroBased(i);

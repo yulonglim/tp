@@ -9,21 +9,21 @@ import seedu.teachbook.model.classobject.Class;
 
 
 /**
- * Adds a student to the teachbook book.
+ * Adds a student to the teachbook.
  */
 public class AddClassCommand extends Command {
 
     public static final String COMMAND_WORD = "addClass";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a class to the teach book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a class to the teachbook. "
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
+            + PREFIX_NAME + "NAME"
             + "\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "classobject A ";
+            + PREFIX_NAME + "Ace";
 
     public static final String MESSAGE_SUCCESS = "New class added: %1$s";
-    public static final String MESSAGE_DUPLICATE_CLASS = "This class already exists in the teachbook book";
+    public static final String MESSAGE_DUPLICATE_CLASS = "This class already exists in the teachbook";
 
 
     private final Class toAdd;

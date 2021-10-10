@@ -18,6 +18,7 @@ import seedu.teachbook.commons.core.LogsCenter;
 import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
+import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.classobject.exceptions.ClassNameWithNameException;
 import seedu.teachbook.model.student.Student;
 
@@ -113,8 +114,7 @@ public class ModelManager implements Model {
     @Override
     public boolean hasStudent(Student student) {
         requireNonNull(student);
-        return getCurrentlySelectedClass().getStudentsOfThisClass().contains(student);
-        // TODO: fix this later to use teachbook.hasStudent()
+        return getCurrentlySelectedClass().hasStudent(student);
     }
 
     @Override
@@ -187,7 +187,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public GeneralIndex getIndexOfClass(ClassName className) throws ClassNameWithNameException {
+    public GeneralIndex getIndexOfClass(ClassNameDescriptor className) throws ClassNameWithNameException {
         return teachBook.getIndexOfClass(className);
     }
 

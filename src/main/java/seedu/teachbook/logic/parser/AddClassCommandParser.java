@@ -31,7 +31,6 @@ public class AddClassCommandParser implements Parser<AddClassCommand> {
 
         ClassName name = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_NAME).get());
 
-
         Class classObj = new Class(name);
 
         return new AddClassCommand(classObj);

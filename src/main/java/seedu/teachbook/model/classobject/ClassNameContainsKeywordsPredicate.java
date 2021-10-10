@@ -18,7 +18,7 @@ public class ClassNameContainsKeywordsPredicate implements Predicate<Class> {
     @Override
     public boolean test(Class classObj) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(classObj.getClassName().fullName, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(classObj.getClassName().nameOfClass, keyword));
     }
 
     @Override
