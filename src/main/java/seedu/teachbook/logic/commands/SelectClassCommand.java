@@ -6,7 +6,6 @@ import seedu.teachbook.commons.core.Messages;
 import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
-import seedu.teachbook.model.classobject.ClassName;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.classobject.exceptions.ClassNameWithNameException;
 

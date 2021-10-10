@@ -4,7 +4,6 @@ import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORM
 
 import seedu.teachbook.logic.commands.DeleteClassCommand;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
-import seedu.teachbook.model.classobject.ClassName;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
 
 /**

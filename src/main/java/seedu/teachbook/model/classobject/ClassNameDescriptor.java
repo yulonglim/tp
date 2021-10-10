@@ -1,7 +1,6 @@
 package seedu.teachbook.model.classobject;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.teachbook.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Class's name descriptor in the teachbook book.

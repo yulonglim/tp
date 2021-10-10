@@ -10,7 +10,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import seedu.teachbook.commons.core.LogsCenter;
-import seedu.teachbook.model.ModelManager;
 import seedu.teachbook.model.classobject.Class;
 
 
