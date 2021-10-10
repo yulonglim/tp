@@ -17,17 +17,22 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    /** The UI studentListPanel or classListPanel should be refreshed. */
-    private final boolean updateListPanel;
+    /** The UI classListPanel should be refreshed. */
+    private final boolean updateClassListPanel;
+
+    /** The UI studentListPanel should be refreshed. */
+    private final boolean updateStudentListPanel;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean updateListPanel) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
+                         boolean updateClassListPanel, boolean updateStudentListPanel) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.updateListPanel = updateListPanel;
+        this.updateClassListPanel = updateClassListPanel;
+        this.updateStudentListPanel = updateStudentListPanel;
     }
 
     /**
@@ -35,7 +40,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+        this(feedbackToUser, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -50,8 +55,12 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isUpdateListPanel() {
-        return updateListPanel;
+    public boolean isUpdateClassListPanel() {
+        return updateClassListPanel;
+    }
+
+    public boolean isUpdateStudentListPanel() {
+        return updateStudentListPanel;
     }
 
     @Override
@@ -69,12 +78,13 @@ public class CommandResult {
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit
-                && updateListPanel == otherCommandResult.updateListPanel;
+                && updateClassListPanel == otherCommandResult.updateClassListPanel
+                && updateStudentListPanel == otherCommandResult.updateStudentListPanel;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, updateListPanel);
+        return Objects.hash(feedbackToUser, showHelp, exit, updateClassListPanel, updateStudentListPanel);
     }
 
 }

@@ -43,7 +43,7 @@ public class SelectClassCommand extends Command {
 
         model.updateCurrentlySelectedClass(newClassIndex);
         return new CommandResult(String.format(MESSAGE_SELECT_CLASS_SUCCESS, newClassName),
-                false, false, true);
+                false, false, true, true);
     }
 
     @Override

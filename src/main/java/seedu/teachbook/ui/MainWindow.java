@@ -175,9 +175,12 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.show();
     }
 
-    public void handleSelectClass() {
+    public void handleUpdateClassListPanel() {
+        updateClassListPanel();
+    }
+
+    public void handleUpdateStudentListPanel() {
         updateStudentListPanel();
-        updateClassListPanel(); // TODO: modify Command Result to separate update student and class list panel
     }
 
     /**
@@ -211,8 +214,12 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.isUpdateListPanel()) {
-                handleSelectClass();
+            if (commandResult.isUpdateClassListPanel()) {
+                handleUpdateClassListPanel();
+            }
+
+            if (commandResult.isUpdateStudentListPanel()) {
+                handleUpdateStudentListPanel();
             }
 
             return commandResult;
