@@ -39,7 +39,7 @@ class JsonAdaptedClass {
      * Converts a given {@code Class} into this class for Jackson use.
      */
     public JsonAdaptedClass(Class source) {
-        className = source.getClassName().fullName;
+        className = source.getClassName().nameOfClass;
         classList.addAll(source.getClassListSet().stream()
                 .map(JsonAdaptedStudent::new)
                 .collect(Collectors.toList()));

@@ -17,7 +17,7 @@ import seedu.teachbook.commons.core.GuiSettings;
 import seedu.teachbook.commons.core.LogsCenter;
 import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.classobject.Class;
-import seedu.teachbook.model.classobject.ClassName;
+import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.classobject.exceptions.ClassNameWithNameException;
 import seedu.teachbook.model.student.Student;
 
@@ -31,7 +31,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private FilteredList<Student> filteredStudents;
     private GeneralIndex currentlySelectedClassIndex;
-
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -47,9 +46,8 @@ public class ModelManager implements Model {
 
         this.currentlySelectedClassIndex = INDEX_NO_CLASS; // set the index to -2 when there is no class
         this.filteredStudents = new FilteredList<>(FXCollections.observableArrayList());
-        if (this.getUniqueClassList().size() >= 1) {
-            this.currentlySelectedClassIndex = INDEX_DEFAULT_INITIAL_CLASS;
-            filteredStudents = new FilteredList<>(this.teachBook.getStudentListOfClass(currentlySelectedClassIndex));
+        if (this.teachBook.getNumOfClasses() >= 1) {
+            updateCurrentlySelectedClass(INDEX_DEFAULT_INITIAL_CLASS);
         }
 
     }
@@ -88,16 +86,16 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setTeachBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setTeachBookFilePath(addressBookFilePath);
+    public void setTeachBookFilePath(Path teachBookFilePath) {
+        requireNonNull(teachBookFilePath);
+        userPrefs.setTeachBookFilePath(teachBookFilePath);
     }
 
     //=========== TeachBook ================================================================================
 
     @Override
-    public void setTeachBook(ReadOnlyTeachBook addressBook) {
-        this.teachBook.resetData(addressBook);
+    public void setTeachBook(ReadOnlyTeachBook teachBook) {
+        this.teachBook.resetData(teachBook);
     }
 
     @Override
@@ -113,29 +111,32 @@ public class ModelManager implements Model {
     @Override
     public boolean hasStudent(Student student) {
         requireNonNull(student);
-        return getCurrentlySelectedClass().getStudentsOfThisClass().contains(student);
-        // TODO: fix this later to use teachbook.hasStudent()
+        return getCurrentlySelectedClass().hasStudent(student);
     }
 
     @Override
-    public boolean hasClass(Class classObj) {
-        requireNonNull(classObj);
-        return teachBook.hasClass(classObj);
+    public boolean hasClass(Class aClass) {
+        requireNonNull(aClass);
+        return teachBook.hasClass(aClass);
     }
 
     @Override
-    public void addClass(Class toAdd) {
-        teachBook.addClass(toAdd);
+    public void addClass(Class aClass) {
+        teachBook.addClass(aClass);
         updateCurrentlySelectedClass(GeneralIndex.fromOneBased(teachBook.getClassList().size()));
     }
 
     @Override
     public void deleteClass(Class target) {
         teachBook.removeClass(target);
-        if (teachBook.getClassList().size() == 0) {
+        if (teachBook.getNumOfClasses() == 0) {
             updateCurrentlySelectedClass(INDEX_NO_CLASS);
+        } else if (currentlySelectedClassIndex.getOneBased() > teachBook.getNumOfClasses()) {
+            // set currently selected class to the last class in the list
+            updateCurrentlySelectedClass(GeneralIndex.fromOneBased(teachBook.getNumOfClasses()));
         } else {
-            updateCurrentlySelectedClass(INDEX_DEFAULT_INITIAL_CLASS);
+            // same index but different class
+            updateCurrentlySelectedClass(currentlySelectedClassIndex);
         }
     }
 
@@ -187,7 +188,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public GeneralIndex getIndexOfClass(ClassName className) throws ClassNameWithNameException {
+    public GeneralIndex getIndexOfClass(ClassNameDescriptor className) throws ClassNameWithNameException {
         return teachBook.getIndexOfClass(className);
     }
 

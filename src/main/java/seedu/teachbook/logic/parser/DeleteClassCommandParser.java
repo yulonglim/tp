@@ -4,7 +4,7 @@ import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORM
 
 import seedu.teachbook.logic.commands.DeleteClassCommand;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
-import seedu.teachbook.model.classobject.ClassName;
+import seedu.teachbook.model.classobject.ClassNameDescriptor;
 
 /**
  * Parses input arguments and creates a new DeleteClassCommand object
@@ -24,7 +24,7 @@ public class DeleteClassCommandParser implements Parser<DeleteClassCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteClassCommand.MESSAGE_USAGE));
         }
 
-        ClassName className = ParserUtil.parseClassName(trimmedArgs);
+        ClassNameDescriptor className = ParserUtil.parseClassNameForLocatingClass(trimmedArgs);
 
         return new DeleteClassCommand(className);
     }

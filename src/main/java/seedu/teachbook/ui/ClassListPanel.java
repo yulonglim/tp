@@ -10,7 +10,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import seedu.teachbook.commons.core.LogsCenter;
-import seedu.teachbook.model.ModelManager;
 import seedu.teachbook.model.classobject.Class;
 
 
@@ -52,11 +51,9 @@ public class ClassListPanel extends UiPart<Region> {
     }
 
     public void reload(int currentlySelectedClassIndex) {
-//        int N = ModelManager.getCurrentlySelectedClassIndex().getZeroBased();
-        int N = currentlySelectedClassIndex;
-        classListView.getSelectionModel().select(N);
-        classListView.getFocusModel().focus(N);
-        classListView.scrollTo(N);
+        classListView.getSelectionModel().clearAndSelect(currentlySelectedClassIndex);
+        classListView.getFocusModel().focus(currentlySelectedClassIndex);
+        classListView.scrollTo(currentlySelectedClassIndex);
     }
 
 }

@@ -44,6 +44,10 @@ public class Class {
         classListSet.remove(student);
     }
 
+    public boolean hasStudent(Student student) {
+        return studentsOfThisClass.contains(student);
+    }
+
     public boolean isSameClass(Class otherClass) {
         if (otherClass == this) {
             return true;

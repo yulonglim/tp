@@ -16,14 +16,13 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.teachbook.commons.core.GuiSettings;
 import seedu.teachbook.commons.core.index.GeneralIndex;
-import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
 import seedu.teachbook.model.ReadOnlyTeachBook;
 import seedu.teachbook.model.ReadOnlyUserPrefs;
 import seedu.teachbook.model.TeachBook;
 import seedu.teachbook.model.classobject.Class;
-import seedu.teachbook.model.classobject.ClassName;
+import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.student.Student;
 import seedu.teachbook.testutil.PersonBuilder;
 
@@ -108,7 +107,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setTeachBookFilePath(Path addressBookFilePath) {
+        public void setTeachBookFilePath(Path teachBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -118,7 +117,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setTeachBook(ReadOnlyTeachBook newData) {
+        public void setTeachBook(ReadOnlyTeachBook teachBook) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -133,12 +132,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasClass(Class classObj) {
+        public boolean hasClass(Class aClass) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addClass(Class toAdd) {
+        public void addClass(Class aClass) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -173,7 +172,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public GeneralIndex getIndexOfClass(ClassName newClassName) {
+        public GeneralIndex getIndexOfClass(ClassNameDescriptor newClassName) {
             throw new AssertionError("This method should not be called.");
         }
 

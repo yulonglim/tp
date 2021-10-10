@@ -27,7 +27,7 @@ import seedu.teachbook.model.student.Student;
 import seedu.teachbook.model.tag.Tag;
 
 /**
- * Edits the details of an existing student in the teachbook book.
+ * Edits the details of an existing student in the teachbook.
  */
 public class EditCommand extends Command {
 
@@ -48,7 +48,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the teachbook book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the teachbook.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;

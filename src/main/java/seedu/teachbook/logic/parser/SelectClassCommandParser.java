@@ -4,7 +4,7 @@ import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORM
 
 import seedu.teachbook.logic.commands.SelectClassCommand;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
-import seedu.teachbook.model.classobject.ClassName;
+import seedu.teachbook.model.classobject.ClassNameDescriptor;
 
 
 /**
@@ -26,7 +26,7 @@ public class SelectClassCommandParser implements Parser<SelectClassCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectClassCommand.MESSAGE_USAGE));
         }
 
-        ClassName className = ParserUtil.parseClassName(trimmedArgs);
+        ClassNameDescriptor className = ParserUtil.parseClassNameForLocatingClass(trimmedArgs);
 
         return new SelectClassCommand(className); // TODO: better write how to parse "select" command
     }
