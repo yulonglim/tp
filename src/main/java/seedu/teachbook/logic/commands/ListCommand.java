@@ -6,13 +6,13 @@ import static seedu.teachbook.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import seedu.teachbook.model.Model;
 
 /**
- * Lists all persons in the teachbook book to the user.
+ * Lists all persons in the teach book to the user.
  */
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
+    public static final String MESSAGE_SUCCESS = "Listed all students";
 
 
     @Override

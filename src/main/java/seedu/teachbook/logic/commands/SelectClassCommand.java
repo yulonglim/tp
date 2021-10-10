@@ -11,8 +11,7 @@ import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.classobject.exceptions.ClassNameWithNameException;
 
 /**
- * Finds and lists all persons in teachbook book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Switches to another class identified using its name.
  */
 public class SelectClassCommand extends Command {
 

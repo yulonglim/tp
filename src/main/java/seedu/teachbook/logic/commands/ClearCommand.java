@@ -6,12 +6,12 @@ import seedu.teachbook.model.Model;
 import seedu.teachbook.model.TeachBook;
 
 /**
- * Clears the teachbook book.
+ * Clears the teachbook.
  */
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Teach book has been cleared!";
+    public static final String MESSAGE_SUCCESS = "teachbook has been cleared!";
 
 
     @Override

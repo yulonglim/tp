@@ -211,7 +211,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.isSelectClass()) {
+            if (commandResult.isUpdateListPanel()) {
                 handleSelectClass();
             }
 
