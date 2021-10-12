@@ -12,6 +12,7 @@ public class Class {
     private final ClassName className;
     private UniqueStudentList studentsOfThisClass;
     private Set<Student> classListSet = new HashSet<>();
+    private int size;
 
     public Class(ClassName className) {
         this.className = className;
@@ -55,6 +56,10 @@ public class Class {
 
         return otherClass != null
                 && otherClass.getClassName().equals(getClassName());
+    }
+
+    public int getClassSize() {
+        return this.studentsOfThisClass.size();
     }
 
     @Override
