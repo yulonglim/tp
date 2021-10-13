@@ -12,7 +12,6 @@ public class Class {
     private final ClassName className;
     private UniqueStudentList studentsOfThisClass;
     private Set<Student> classListSet = new HashSet<>();
-    private int size;
 
     public Class(ClassName className) {
         this.className = className;

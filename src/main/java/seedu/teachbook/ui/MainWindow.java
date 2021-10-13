@@ -138,9 +138,6 @@ public class MainWindow extends UiPart<Stage> {
     void updateStudentListPanel() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-
-        GeneralIndex newSelectedClassIndex = logic.getCurrentlySelectedClassIndex();
-        classListPanel.reload(newSelectedClassIndex.getZeroBased());
     }
 
     void updateClassListPanel() {
