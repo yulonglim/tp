@@ -1,30 +1,25 @@
 package seedu.teachbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
 import seedu.teachbook.model.classobject.Class;
 
-
 /**
- * Adds a student to the teachbook.
+ * Adds a student to TeachBook.
  */
 public class AddClassCommand extends Command {
 
     public static final String COMMAND_WORD = "addClass";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a class to the teachbook. "
-            + "Parameters: "
-            + PREFIX_NAME + "NAME"
-            + "\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "Ace";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a class to TeachBook.\n"
+            + "Parameters: CLASSNAME\n"
+            + "Example: " + COMMAND_WORD + " " + "Class A";
 
     public static final String MESSAGE_SUCCESS = "New class added: %1$s";
-    public static final String MESSAGE_DUPLICATE_CLASS = "This class already exists in the teachbook";
 
+    public static final String MESSAGE_DUPLICATE_CLASS = "This class already exists in TeachBook";
 
     private final Class toAdd;
 
