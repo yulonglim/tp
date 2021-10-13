@@ -1,9 +1,6 @@
 package seedu.teachbook.logic.parser;
 
 import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_NAME;
-
-import java.util.stream.Stream;
 
 import seedu.teachbook.logic.commands.AddClassCommand;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
@@ -21,27 +18,17 @@ public class AddClassCommandParser implements Parser<AddClassCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddClassCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME);
+        String trimmedArgs = args.trim();
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
-                || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddClassCommand.MESSAGE_USAGE));
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddClassCommand.MESSAGE_USAGE));
         }
 
-        ClassName name = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_NAME).get());
+        ClassName className = ParserUtil.parseClassName(trimmedArgs);
 
-        Class classObj = new Class(name);
+        Class classObj = new Class(className);
 
         return new AddClassCommand(classObj);
     }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
 }
