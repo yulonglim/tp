@@ -7,19 +7,20 @@ import seedu.teachbook.model.Model;
 import seedu.teachbook.model.classobject.Class;
 
 /**
- * Adds a student to TeachBook.
+ * Adds a student to the teachbook.
  */
 public class AddClassCommand extends Command {
 
     public static final String COMMAND_WORD = "addClass";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a class to TeachBook.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Adds a class to the teachbook.\n"
             + "Parameters: CLASSNAME\n"
             + "Example: " + COMMAND_WORD + " " + "Class A";
 
     public static final String MESSAGE_SUCCESS = "New class added: %1$s";
 
-    public static final String MESSAGE_DUPLICATE_CLASS = "This class already exists in TeachBook";
+    public static final String MESSAGE_DUPLICATE_CLASS = "This class already exists in the teachbook";
 
     private final Class toAdd;
 

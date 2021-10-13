@@ -25,9 +25,9 @@ public class AddClassCommandParser implements Parser<AddClassCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddClassCommand.MESSAGE_USAGE));
         }
 
-        ClassName name = ParserUtil.parseClassName(trimmedArgs);
+        ClassName className = ParserUtil.parseClassName(trimmedArgs);
 
-        Class classObj = new Class(name);
+        Class classObj = new Class(className);
 
         return new AddClassCommand(classObj);
     }
