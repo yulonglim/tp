@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.teachbook.commons.exceptions.IllegalValueException;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
-import seedu.teachbook.model.student.Name;
 import seedu.teachbook.model.student.Student;
 
 /**
@@ -51,24 +50,24 @@ class JsonAdaptedClass {
      * @throws IllegalValueException if there were any data constraints violated in the adapted class.
      */
     public Class toModelType() throws IllegalValueException {
-
         if (className == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ClassName.class.getSimpleName()));
         }
-        if (!Name.isValidName(className)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!ClassName.isValidClassName(className)) {
+            throw new IllegalValueException(ClassName.MESSAGE_CONSTRAINTS);
         }
-        final ClassName modelName = new ClassName(className);
+        final ClassName modelClassName = new ClassName(className);
 
         final List<Student> studentList = new ArrayList<>();
-        Class model = new Class(modelName);
+        Class modelClass = new Class(modelClassName);
         for (JsonAdaptedStudent student : classList) {
             Student toAdd = student.toModelType();
-            toAdd.setStudentClass(model);
+            toAdd.setStudentClass(modelClass);
             studentList.add(toAdd);
         }
-        model.setStudentsOfThisClass(studentList);
-        return model;
+        modelClass.setStudentsOfThisClass(studentList);
+        return modelClass;
     }
 
 }
