@@ -60,7 +60,7 @@ public class TeachBook implements ReadOnlyTeachBook {
     public void resetData(ReadOnlyTeachBook newData) {
         requireNonNull(newData);
         setClasses(newData.getClassList());
-        setStudents(newData.getStudentList());
+//        setStudents(newData.getStudentList());
     }
 
     //// student-level operations
