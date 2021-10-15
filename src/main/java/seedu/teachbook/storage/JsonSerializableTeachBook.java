@@ -14,18 +14,17 @@ import seedu.teachbook.model.TeachBook;
 import seedu.teachbook.model.classobject.Class;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable TeachBook that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "teachbook")
 class JsonSerializableTeachBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "students"
-            + " list contains duplicate student(s).";
+    public static final String MESSAGE_DUPLICATE_CLASS = "TeachBook contains duplicate classes.";
 
     private final List<JsonAdaptedClass> classes = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given students
+     * Constructs a {@code JsonSerializableTeachBook} with the given students
      * .
      */
     @JsonCreator
@@ -34,16 +33,16 @@ class JsonSerializableTeachBook {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyTeachBook} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableTeachBook}.
      */
     public JsonSerializableTeachBook(ReadOnlyTeachBook source) {
         classes.addAll(source.getClassList().stream().map(JsonAdaptedClass::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this teachbook book into the model's {@code AddressBook} object.
+     * Converts this teachbook book into the model's {@code TeachBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
@@ -53,7 +52,7 @@ class JsonSerializableTeachBook {
         for (JsonAdaptedClass jsonAdaptedClass : classes) {
             Class classObj = jsonAdaptedClass.toModelType();
             if (teachBook.hasClass(classObj)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_CLASS);
             }
             teachBook.addClass(classObj);
         }

@@ -117,8 +117,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        updateStudentListPanel();
 
         classListPanel = new ClassListPanel(logic.getUniqueClassList());
         classListPanelPlaceholder.getChildren().add(classListPanel.getRoot());
@@ -150,7 +149,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Sets the default size based on {@code guiSettings}.
      */
-    private void setWindowDefaultSize(GuiSettings guiSettings) {
+    private void setWindowDefaultSize(GuiSettings guiSettings) { // TODO: full-screen X, Y coordinates not accurate
         primaryStage.setHeight(guiSettings.getWindowHeight());
         primaryStage.setWidth(guiSettings.getWindowWidth());
         if (guiSettings.getWindowCoordinates() != null) {

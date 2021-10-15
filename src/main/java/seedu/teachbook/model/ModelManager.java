@@ -22,7 +22,7 @@ import seedu.teachbook.model.classobject.exceptions.ClassNameWithNameException;
 import seedu.teachbook.model.student.Student;
 
 /**
- * Represents the in-memory model of the teachbook book data.
+ * Represents the in-memory model of the teachbook data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -33,23 +33,22 @@ public class ModelManager implements Model {
     private GeneralIndex currentlySelectedClassIndex;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given teachBook and userPrefs.
      */
     public ModelManager(ReadOnlyTeachBook teachBook, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(teachBook, userPrefs);
 
-        logger.fine("Initializing with teach book: " + teachBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with teachbook: " + teachBook + " and user prefs " + userPrefs);
 
         this.teachBook = new TeachBook(teachBook);
         this.userPrefs = new UserPrefs(userPrefs);
 
-        this.currentlySelectedClassIndex = INDEX_NO_CLASS; // set the index to -2 when there is no class
+        this.currentlySelectedClassIndex = INDEX_NO_CLASS;
         this.filteredStudents = new FilteredList<>(FXCollections.observableArrayList());
         if (this.teachBook.getNumOfClasses() >= 1) {
             updateCurrentlySelectedClass(INDEX_DEFAULT_INITIAL_CLASS);
         }
-
     }
 
     public ModelManager() {
