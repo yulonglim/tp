@@ -45,23 +45,23 @@ public class JsonTeachBookStorage implements TeachBookStorage {
     public Optional<ReadOnlyTeachBook> readTeachBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableTeachBook> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableTeachBook> jsonTeachBook = JsonUtil.readJsonFile(
                 filePath, JsonSerializableTeachBook.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (jsonTeachBook.isEmpty()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
-        } catch (IllegalValueException ive) {
-            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
-            throw new DataConversionException(ive);
+            return Optional.of(jsonTeachBook.get().toModelType());
+        } catch (IllegalValueException exception) {
+            logger.info("Illegal values found in " + filePath + ": " + exception.getMessage());
+            throw new DataConversionException(exception);
         }
     }
 
     @Override
-    public void saveTeachBook(ReadOnlyTeachBook addressBook) throws IOException {
-        saveTeachBook(addressBook, filePath);
+    public void saveTeachBook(ReadOnlyTeachBook teachBook) throws IOException {
+        saveTeachBook(teachBook, filePath);
     }
 
     /**
@@ -69,12 +69,12 @@ public class JsonTeachBookStorage implements TeachBookStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveTeachBook(ReadOnlyTeachBook addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveTeachBook(ReadOnlyTeachBook teachBook, Path filePath) throws IOException {
+        requireNonNull(teachBook);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableTeachBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableTeachBook(teachBook), filePath);
     }
 
 }

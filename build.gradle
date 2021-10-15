@@ -43,7 +43,6 @@ test {
     exclude 'seedu/teachbook/logic/LogicManagerTest.class'
     exclude 'seedu/teachbook/storage/JsonAdaptedStudentTest.class'
     exclude 'seedu/teachbook/model/student/StudentTest.class'
-    exclude 'seedu/teachbook/storage/JsonUserPrefsStorageTest.class'
     exclude 'seedu/teachbook/logic/commands/AddCommandTest.class'
 
     // TODO: rewrite corresponding tests belonging to your part and remove exclude statements
