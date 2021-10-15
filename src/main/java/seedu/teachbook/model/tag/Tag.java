@@ -10,7 +10,7 @@ import static seedu.teachbook.commons.util.AppUtil.checkArgument;
 public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String VALIDATION_REGEX = "\\p{Alnum}+"; // TODO: change the format?
 
     public final String tagName;
 

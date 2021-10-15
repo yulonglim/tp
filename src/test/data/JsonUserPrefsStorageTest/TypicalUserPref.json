@@ -7,5 +7,5 @@
       "y" : 100
     }
   },
-  "addressBookFilePath" : "teachbook.json"
+  "teachBookFilePath" : "teachbook.json"
 }

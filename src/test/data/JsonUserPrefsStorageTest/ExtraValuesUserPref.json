@@ -9,5 +9,5 @@
       "z" : 99
     }
   },
-  "addressBookFilePath" : "teachbook.json"
+  "teachBookFilePath" : "teachbook.json"
 }

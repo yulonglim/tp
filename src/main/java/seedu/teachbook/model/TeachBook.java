@@ -19,7 +19,7 @@ import seedu.teachbook.model.student.UniqueStudentList;
  */
 public class TeachBook implements ReadOnlyTeachBook {
 
-    private final UniqueStudentList students;
+    private UniqueStudentList students;
     private final UniqueClassList classes;
 
     /*
@@ -60,7 +60,7 @@ public class TeachBook implements ReadOnlyTeachBook {
     public void resetData(ReadOnlyTeachBook newData) {
         requireNonNull(newData);
         setClasses(newData.getClassList());
-        setStudents(newData.getStudentList());
+//        setStudents(newData.getStudentList());
     }
 
     //// student-level operations
@@ -113,6 +113,12 @@ public class TeachBook implements ReadOnlyTeachBook {
 
     @Override
     public ObservableList<Student> getStudentList() {
+        students = new UniqueStudentList();
+        for (Class studentClass: classes) {
+            for (Student student: studentClass.getStudentsOfThisClass()) {
+                students.add(student);
+            }
+        }
         return students.asUnmodifiableObservableList();
     }
 

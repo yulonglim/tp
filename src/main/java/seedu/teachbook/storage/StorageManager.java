@@ -12,16 +12,16 @@ import seedu.teachbook.model.ReadOnlyUserPrefs;
 import seedu.teachbook.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of TeachBook data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private TeachBookStorage teachBookStorage;
-    private UserPrefsStorage userPrefsStorage;
+    private final TeachBookStorage teachBookStorage;
+    private final UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code TeachBookStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(TeachBookStorage teachBookStorage, UserPrefsStorage userPrefsStorage) {
         super();
@@ -47,7 +47,7 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ TeachBook methods ==============================
 
     @Override
     public Path getTeachBookFilePath() {
@@ -66,14 +66,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveTeachBook(ReadOnlyTeachBook addressBook) throws IOException {
-        saveTeachBook(addressBook, teachBookStorage.getTeachBookFilePath());
+    public void saveTeachBook(ReadOnlyTeachBook teachBook) throws IOException {
+        saveTeachBook(teachBook, teachBookStorage.getTeachBookFilePath());
     }
 
     @Override
-    public void saveTeachBook(ReadOnlyTeachBook addressBook, Path filePath) throws IOException {
+    public void saveTeachBook(ReadOnlyTeachBook teachBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        teachBookStorage.saveTeachBook(addressBook, filePath);
+        teachBookStorage.saveTeachBook(teachBook, filePath);
     }
 
 }
