@@ -17,6 +17,7 @@ import seedu.teachbook.model.student.Student;
  */
 class JsonAdaptedClass {
 
+    public static final String MESSAGE_DUPLICATE_STUDENT = "Any class contains duplicate students.";
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Class's %s field is missing!";
 
     private final String className;
@@ -59,14 +60,17 @@ class JsonAdaptedClass {
         }
         final ClassName modelClassName = new ClassName(className);
 
-        final List<Student> studentList = new ArrayList<>();
+//        final List<Student> studentList = new ArrayList<>();
         Class modelClass = new Class(modelClassName);
         for (JsonAdaptedStudent student : classList) {
             Student toAdd = student.toModelType();
             toAdd.setStudentClass(modelClass);
-            studentList.add(toAdd);
+            if (modelClass.hasStudent(toAdd)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
+            }
+            modelClass.addStudent(toAdd);
         }
-        modelClass.setStudentsOfThisClass(studentList);
+//        modelClass.setStudentsOfThisClass(studentList);
         return modelClass;
     }
 

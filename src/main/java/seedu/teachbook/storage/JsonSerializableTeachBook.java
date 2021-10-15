@@ -19,7 +19,7 @@ import seedu.teachbook.model.classobject.Class;
 @JsonRootName(value = "teachbook")
 class JsonSerializableTeachBook {
 
-    public static final String MESSAGE_DUPLICATE_CLASS = "teachbook contains duplicate classes.";
+    public static final String MESSAGE_DUPLICATE_CLASS = "TeachBook contains duplicate classes.";
 
     private final List<JsonAdaptedClass> classes = new ArrayList<>();
 
