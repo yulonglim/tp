@@ -158,8 +158,9 @@ public class ModelManager implements Model {
     @Override
     public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
+        this.getCurrentlySelectedClass().setStudent(target, editedStudent);
         teachBook.setStudent(target, editedStudent);
-//        filteredStudents = new FilteredList<>(this.teachBook.getStudentListOfClass(currentlySelectedClassIndex));
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     public Class getCurrentlySelectedClass() {

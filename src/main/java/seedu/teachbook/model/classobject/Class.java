@@ -34,6 +34,12 @@ public class Class {
         return className;
     }
 
+    public void setStudent(Student target, Student editedStudent) {
+        studentsOfThisClass.setStudent(target, editedStudent);
+        classListSet.remove(target);
+        classListSet.add(editedStudent);
+    }
+
     public void addStudent(Student student) {
         this.studentsOfThisClass.add(student);
         classListSet.add(student);

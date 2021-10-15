@@ -56,7 +56,11 @@ public class UniqueStudentList implements Iterable<Student> {
      */
     public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
-
+        try {
+            throw new Exception(String.valueOf(internalList.size()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new StudentNotFoundException();
@@ -67,6 +71,12 @@ public class UniqueStudentList implements Iterable<Student> {
         }
 
         internalList.set(index, editedStudent);
+
+//        try {
+//            throw new Exception(String.valueOf(internalList.size()));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
     /**
