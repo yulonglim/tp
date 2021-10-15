@@ -91,12 +91,16 @@ public class Student {
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Student otherStudent) {
-        if (otherStudent == this) {
-            return true;
+//        if (otherStudent == this) {
+//            return true;
+//        }
+//
+//        return otherStudent != null
+//                && otherStudent.getName().equals(getName());
+        if(otherStudent != null) {
+            return this.equals(otherStudent);
         }
-
-        return otherStudent != null
-                && otherStudent.getName().equals(getName());
+        return false;
     }
 
     /**
