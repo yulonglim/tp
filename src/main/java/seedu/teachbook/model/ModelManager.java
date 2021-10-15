@@ -201,11 +201,11 @@ public class ModelManager implements Model {
 
     private void updateSourceOfFilteredStudentList() {
         if (currentlySelectedClassIndex.equals(INDEX_LIST_ALL)) {
-            filteredStudents = new FilteredList<>(this.teachBook.getStudentList()); // this is to "list all"
+            filteredStudents = new FilteredList<>(teachBook.getStudentList());
         } else if (currentlySelectedClassIndex.equals(INDEX_NO_CLASS)) {
             filteredStudents = new FilteredList<>(FXCollections.observableArrayList());
         } else {
-            filteredStudents = new FilteredList<>(this.teachBook.getStudentListOfClass(currentlySelectedClassIndex));
+            filteredStudents = new FilteredList<>(teachBook.getStudentListOfClass(currentlySelectedClassIndex));
         }
         updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
     }
