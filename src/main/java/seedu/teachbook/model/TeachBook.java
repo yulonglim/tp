@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.classobject.Class;
@@ -20,7 +19,7 @@ import seedu.teachbook.model.student.UniqueStudentList;
  */
 public class TeachBook implements ReadOnlyTeachBook {
 
-    private final UniqueStudentList students;
+    private UniqueStudentList students;
     private final UniqueClassList classes;
 
     /*
@@ -114,13 +113,13 @@ public class TeachBook implements ReadOnlyTeachBook {
 
     @Override
     public ObservableList<Student> getStudentList() {
-        ObservableList<Student> allStudentList = FXCollections.observableArrayList();
+        students = new UniqueStudentList();
         for (Class studentClass: classes) {
             for (Student student: studentClass.getStudentsOfThisClass()) {
-                allStudentList.add(student);
+                students.add(student);
             }
         }
-        return FXCollections.unmodifiableObservableList(allStudentList);
+        return students.asUnmodifiableObservableList();
     }
 
     public int getNumOfClasses() {
