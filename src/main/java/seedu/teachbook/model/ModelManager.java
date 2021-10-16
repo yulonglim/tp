@@ -158,7 +158,7 @@ public class ModelManager implements Model {
     public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
         this.getCurrentlySelectedClass().setStudent(target, editedStudent);
-        teachBook.setStudent(target, editedStudent);
+//        teachBook.setStudent(target, editedStudent);
         updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
