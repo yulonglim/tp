@@ -30,6 +30,8 @@ public class ClassCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
+    @FXML
+    private Label numberOfStudents;
 
 
     /**
@@ -40,6 +42,7 @@ public class ClassCard extends UiPart<Region> {
         this.classObj = classObj;
         id.setText(displayedIndex + ". ");
         name.setText(classObj.getClassName().nameOfClass);
+        numberOfStudents.setText(Integer.toString(classObj.getClassSize()));
     }
 
     @Override
