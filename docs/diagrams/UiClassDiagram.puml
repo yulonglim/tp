@@ -47,7 +47,7 @@ MainWindow -left-|> UiPart
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 StudentListPanel --|> UiPart
-StudentCard --|> UiPart
+StudentCard -left-|> UiPart
 ClassListPanel --|> UiPart
 ClassCard --|> UiPart
 StatusBarFooter --|> UiPart
