@@ -77,9 +77,10 @@ public class TeachBook implements ReadOnlyTeachBook {
      * Adds a student to the teachbook book.
      * The student must not already exist in the teachbook book.
      */
-//    public void addStudent(Student p) {
-//        assert
-//    }
+    public void addStudent(Student p) {
+        assert(false); // this method should not be called
+        students.add(p);
+    }
 
     /**
      * Replaces the given student {@code target} in the list with {@code editedPerson}.
