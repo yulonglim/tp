@@ -17,6 +17,8 @@ TeachBook is a **desktop app for teachers to manage student contacts, optimized 
         * [Delete](#deleting-students-contact-information--delete)
         * [Find](#locating-students-by-name-find)
         * [Clear](#clearing-all-entries--clear)
+        * [Redo](#redo--redo)
+        * [Undo](#undo--undo)
         * [Exit](#exiting-the-program--exit)
     * [FAQ](#faq)
     * [Command summary](#command-summary)
@@ -156,6 +158,24 @@ Examples:
 
 Format: `clear`
 
+### Undo : `undo`
+
+Undo previously done commands.
+
+Format: `undo`
+
+Examples:
+* `undo` after `addClass Hello World` deletes Class with name `Hello World` from Teachbook.
+
+### Redo : `Redo`
+
+Redo previously undo commands.
+
+Format: `redo`
+
+Examples:
+* `redo` after `undo` of `addClass Hello World` adds back Class with name `Hello World` to Teachbook.
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -190,5 +210,7 @@ Action     | Format, Examples
 **Tag**    | `tag ID t/TAG1 [t/TAG2]…` <br> e.g., `tag A2 t/class monitor`
 **Print**  | `print c/COLUMN1 [c/COLUMN2]...` <br. e.g. , `print c/Signature`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Undo**   | `undo`
+**Redo**   | `redo`
 **List**   | `list`
 **Help**   | `help`
