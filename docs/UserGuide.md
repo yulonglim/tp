@@ -8,7 +8,16 @@ TeachBook is a **desktop app for teachers to manage student contacts, optimized 
 * Table of Contents
     * [Quick start](#quick-start)
     * [Features](#features)
-        * {to be updated}
+        * [Help](#viewing-help--help)
+        * [Add](#adding-a-student-add)
+        * [List](#listing-all-students--list)
+        * [Edit](#editing-a-student--edit)
+        * [Tag](#tagging-a-student--tag)
+        * [Print](#printing-to-excel--print)
+        * [Delete](#deleting-students-contact-information--delete)
+        * [Find](#locating-students-by-name-find)
+        * [Clear](#clearing-all-entries--clear)
+        * [Exit](#exiting-the-program--exit)
     * [FAQ](#faq)
     * [Command summary](#command-summary)
 
@@ -113,6 +122,19 @@ Examples:
 * `tag B1 t/assistant class monitor t/secretary` Assigns the student with ID B1 the class role tag assistant class 
 monitor and secretary
 
+### Printing to Excel : `print`
+
+Prints a student list of current selected class with customized columns.
+
+Format: `print c/COLUMN1 [c/COLUMN2] ...​`
+
+* First Column is the names of students in currently selected class.
+* Column represents column headers in the Excel file.
+
+Examples:
+
+* `print c/Signature` Creates an Excel (.xls) file with a student name column and Signature column
+
 ### Deleting students’ contact information : `delete`
 
 Deletes the specified students’ contact information from TeachBook.
@@ -166,6 +188,7 @@ Action     | Format, Examples
 **Delete** | `delete ID`<br> e.g., `delete A2`
 **Edit**   | `edit ID [n/NAME] [c/CLASS] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BLOOD_TYPE] [pc/PARENTS_CONTACT]​`<br> e.g.,`edit B3 n/Alice Yeoh b/O+ pc/98533322`
 **Tag**    | `tag ID t/TAG1 [t/TAG2]…` <br> e.g., `tag A2 t/class monitor`
+**Print**  | `print c/COLUMN1 [c/COLUMN2]...` <br. e.g. , `print c/Signature`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
 **Help**   | `help`
