@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2122S1-CS2103T-W10-2/tp/blob/master/src/main/java/seedu/teachbook/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2122S1-CS2103T-W10-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -82,7 +82,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Student` object residing in the `Model`.
 
 ### Logic component
 
@@ -121,12 +121,12 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the teach book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the teach book data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
+* stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TeachBook`, which `Person` references. This allows `TeachBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TeachBook`, which `Student` references. This allows `TeachBook` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -275,28 +275,29 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​           | I want to …​                          | So that I can…​                                                        |
-| -------- | -------------------- | ---------------------------------------- | ------------------------------------------------------------------------- |
-| `* * *`  | new user             | see usage instructions                   | refer to instructions when I forget how to use the App                    |
-| `* * *`  | teacher              | add students                             |                                                                           |
-| `* *`    | teacher              | modify contacts                            | change information easily rather than creating a new contact to replace the previous one.
-| `* *`    | teacher with students whom require special attention | add important information about my students such as diet, allergy and existing health condition | I can quickly react to any medical emergency |
-| `* *`    | teacher who likes to keep work and personal life separate       | have separate personal contacts with school contacts | my contact list won't be overpopulated |
-| `* *`    | teacher              | easily contact students' parents         | the parents can address to any matters as soon as possible                |
-| `* * *`  | teacher              | delete students with specific ID         | remove specific students who are no longer in my class                    |
-| `* * *`  | teacher              | find a student by name                   | locate details of students without having to go through the entire list   |
-| `* *`    | teacher              | sort students by name                    | locate a student easily                                                   |
-| `* *`    | teacher              | Add all students from a class at once    | quickly add the information of the students in each class.
-| `* *`    | teacher              | delete all students from a class at once | quickly clean up the TeachBook when I no longer teach s class             |
-| `* *`    | teacher              | filter all students by tag               | easily locate all students with the same tag (probably having something in common) |
-| `*`      | teacher who wants to remember students I have taught | remove all students I no longer teach from the app but keep a record of the list in another file | start over with a clean slate and can retrieve records I need in the future |
-| `* *`    | teacher              | undo the most recent command             | easily revert everything to the previous state                            |
-| `*`      | teacher              | remove all students from the contact     | clear my contact in one go
-| `* *`    | teacher              | separate personal contacts with school contacts | prevent my contact list from overpopulating.
-| `* *`    | teacher              | assign a class role to a student         | identify students through their class role
-| `* *`    | teacher              | assign multiple class roles to a student | need not to assign class roles to student one at a time
-| `*`      | teacher              | view the list of all students            | have an overview of all my students
-| `*`      | teacher              | view the information of a student        | take a closer look at a student's information
+| Priority | As a …​                                                | I want to …​                                                                                 | So that I can…​                                                                       |
+| -------- | --------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `* * *`  | new user                                                  | see usage instructions                                                                          | refer to instructions when I forget how to use the App                                   |
+| `* * *`  | teacher                                                   | add students                                                                                    |                                                                                          |
+| `* *`    | teacher                                                   | modify contacts                                                                                 | change information easily rather than creating a new contact to replace the previous one |
+| `* *`    | teacher with students whom require special attention      | add important information about my students such as diet, allergy and existing health condition | I can quickly react to any medical emergency                                             |
+| `* *`    | teacher who likes to keep work and personal life separate | have separate personal contacts with school contacts                                            | my contact list won't be overpopulated                                                   |
+| `* *`    | teacher                                                   | easily contact students' parents                                                                | the parents can address to any matters as soon as possible                               |
+| `* * *`  | teacher                                                   | delete students with specific ID                                                                | remove specific students who are no longer in my class                                   |
+| `* * *`  | teacher                                                   | find a student by name                                                                          | locate details of students without having to go through the entire list                  |
+| `* *`    | teacher                                                   | sort students by name                                                                           | locate a student easily                                                                  |
+| `* *`    | teacher                                                   | Add all students from a class at once                                                           | quickly add the information of the students in each class.                               |
+| `* *`    | teacher                                                   | delete all students from a class at once                                                        | quickly clean up the TeachBook when I no longer teach s class                            |
+| `* *`    | teacher                                                   | filter all students by tag                                                                      | easily locate all students with the same tag (probably having something in common)       |
+| `*`      | teacher who wants to remember students I have taught      | remove all students I no longer teach but keep a record of the list in another file             | start over with a clean slate and can retrieve records I need in the future              |
+| `* *`    | teacher                                                   | undo the most recent command                                                                    | easily revert everything to the previous state                                           |
+| `*`      | teacher                                                   | remove all students from the contact                                                            | clear my contact in one go                                                               |
+| `* *`    | teacher                                                   | separate personal contacts with school contacts                                                 | prevent my contact list from overpopulating |
+| `* *`    | teacher                                                   | assign a class role to a student                                                                | identify students through their class role |
+| `* *`    | teacher                                                   | assign multiple class roles to a student                                                        | need not to assign class roles to student one at a time |
+| `*`      | teacher                                                   | view the list of all students                                                                   | have an overview of all my students |
+| `*`      | teacher                                                   | view the information of a student                                                               | take a closer look at a student's information |
+
 *{More to be added}*
 
 ### Use cases
