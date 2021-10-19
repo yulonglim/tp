@@ -110,6 +110,8 @@ public class ModelManager implements Model {
     @Override
     public boolean hasStudent(Student student) {
         requireNonNull(student);
+        Class currentlySelectedClass = this.getCurrentlySelectedClass();
+        student.setStudentClass(currentlySelectedClass);
         return getCurrentlySelectedClass().hasStudent(student);
     }
 
@@ -146,11 +148,9 @@ public class ModelManager implements Model {
 
     @Override
     public void addStudent(Student student) {
-        // teachBook.addStudent(student);
         Class currentlySelectedClass = this.getCurrentlySelectedClass();
         student.setStudentClass(currentlySelectedClass);
         currentlySelectedClass.addStudent(student);
-        teachBook.addStudent(student);
         updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
     }
 

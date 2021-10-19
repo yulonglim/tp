@@ -19,7 +19,7 @@ import seedu.teachbook.model.student.UniqueStudentList;
  */
 public class TeachBook implements ReadOnlyTeachBook {
 
-    private UniqueStudentList students;
+    private UniqueStudentList students; // different from AB3: this variable is for "list all" command only!
     private final UniqueClassList classes;
 
     /*
@@ -77,9 +77,9 @@ public class TeachBook implements ReadOnlyTeachBook {
      * Adds a student to the teachbook book.
      * The student must not already exist in the teachbook book.
      */
-    public void addStudent(Student p) {
-        students.add(p);
-    }
+//    public void addStudent(Student p) {
+//        assert
+//    }
 
     /**
      * Replaces the given student {@code target} in the list with {@code editedPerson}.
