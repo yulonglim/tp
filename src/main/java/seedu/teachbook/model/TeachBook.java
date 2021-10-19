@@ -29,13 +29,13 @@ public class TeachBook implements ReadOnlyTeachBook {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */
-    {
+     */ {
         students = new UniqueStudentList();
         classes = new UniqueClassList();
     }
 
-    public TeachBook() {}
+    public TeachBook() {
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -61,12 +61,11 @@ public class TeachBook implements ReadOnlyTeachBook {
     public void resetData(ReadOnlyTeachBook newData) {
         requireNonNull(newData);
         ObservableList<Class> toCopy = FXCollections.observableArrayList();
-        for (Class c:
-                newData.getClassList()) {
+        for (Class c : newData.getClassList()) {
             Class toAdd = new Class(c.getClassName());
-            for (Student s:
-                 c.getStudentsOfThisClass()) {
-                Student studentToAdd = new Student(s.getName(),s.getPhone(),s.getEmail(),s.getAddress(),s.getTags());
+            for (Student s : c.getStudentsOfThisClass()) {
+                Student studentToAdd = new Student(s.getName(), s.getPhone(),
+                        s.getEmail(), s.getAddress(), s.getTags());
                 studentToAdd.setStudentClass(toAdd);
                 toAdd.addStudent(studentToAdd);
 
@@ -129,8 +128,8 @@ public class TeachBook implements ReadOnlyTeachBook {
     @Override
     public ObservableList<Student> getStudentList() {
         UniqueStudentList studentsToAdd = new UniqueStudentList();
-        for (Class studentClass: classes) {
-            for (Student student: studentClass.getStudentsOfThisClass()) {
+        for (Class studentClass : classes) {
+            for (Student student : studentClass.getStudentsOfThisClass()) {
                 studentsToAdd.add(student);
             }
         }

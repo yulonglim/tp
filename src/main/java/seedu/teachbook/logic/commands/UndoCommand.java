@@ -2,7 +2,6 @@ package seedu.teachbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
 
@@ -25,7 +24,8 @@ public class UndoCommand extends Command {
 
         model.undoAddressBook();
         model.updateCurrentlySelectedClass(model.getCurrentlySelectedClassIndex());
-        return new CommandResult(MESSAGE_SUCCESS,false,false,true,true);
+        return new CommandResult(MESSAGE_SUCCESS, false, false,
+                true, true);
     }
 
 }

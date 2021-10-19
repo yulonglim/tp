@@ -24,7 +24,8 @@ public class RedoCommand extends Command {
 
         model.redoAddressBook();
         model.updateCurrentlySelectedClass(model.getCurrentlySelectedClassIndex());
-        return new CommandResult(MESSAGE_SUCCESS,false,false,true,true);
+        return new CommandResult(MESSAGE_SUCCESS, false, false,
+                true, true);
     }
 
 }
