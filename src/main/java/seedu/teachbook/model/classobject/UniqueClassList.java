@@ -9,7 +9,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.teachbook.commons.core.index.GeneralIndex;
-import seedu.teachbook.model.classobject.exceptions.ClassNameWithNameException;
+import seedu.teachbook.model.classobject.exceptions.NoClassWithNameException;
 import seedu.teachbook.model.classobject.exceptions.DuplicateClassException;
 import seedu.teachbook.model.classobject.exceptions.NoClassAtIndexException;
 
@@ -60,7 +60,7 @@ public class UniqueClassList implements Iterable<Class> {
         requireAllNonNull(target, editedClass);
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new ClassNameWithNameException();
+            throw new NoClassWithNameException();
         }
         if (!target.isSameClass(editedClass) && contains(editedClass)) {
             throw new DuplicateClassException();
@@ -75,7 +75,7 @@ public class UniqueClassList implements Iterable<Class> {
     public void remove(Class toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new ClassNameWithNameException();
+            throw new NoClassWithNameException();
         }
     }
 
@@ -111,13 +111,13 @@ public class UniqueClassList implements Iterable<Class> {
         }
     }
 
-    public GeneralIndex locateClass(ClassNameDescriptor className) throws ClassNameWithNameException {
+    public GeneralIndex locateClass(ClassNameDescriptor className) throws NoClassWithNameException {
         for (int i = 0; i < internalList.size(); i++) {
             if (internalList.get(i).getClassName().equals((className))) {
                 return GeneralIndex.fromZeroBased(i);
             }
         }
-        throw new ClassNameWithNameException();
+        throw new NoClassWithNameException();
     }
 
     public int size() {

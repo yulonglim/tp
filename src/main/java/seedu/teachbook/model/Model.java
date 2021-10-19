@@ -8,7 +8,7 @@ import seedu.teachbook.commons.core.GuiSettings;
 import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
-import seedu.teachbook.model.classobject.exceptions.ClassNameWithNameException;
+import seedu.teachbook.model.classobject.exceptions.NoClassWithNameException;
 import seedu.teachbook.model.student.Student;
 
 /**
@@ -98,6 +98,8 @@ public interface Model {
      */
     void setStudent(Student target, Student editedStudent);
 
+    void setClassForStudent(Student student);
+
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
 
@@ -110,7 +112,7 @@ public interface Model {
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
 
-    GeneralIndex getIndexOfClass(ClassNameDescriptor className) throws ClassNameWithNameException;
+    GeneralIndex getIndexOfClass(ClassNameDescriptor className) throws NoClassWithNameException;
 
     void updateCurrentlySelectedClass(GeneralIndex newClassIndex);
 

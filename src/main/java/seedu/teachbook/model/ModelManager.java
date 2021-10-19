@@ -18,7 +18,7 @@ import seedu.teachbook.commons.core.LogsCenter;
 import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
-import seedu.teachbook.model.classobject.exceptions.ClassNameWithNameException;
+import seedu.teachbook.model.classobject.exceptions.NoClassWithNameException;
 import seedu.teachbook.model.student.Student;
 
 /**
@@ -122,12 +122,14 @@ public class ModelManager implements Model {
     @Override
     public void addClass(Class aClass) {
         teachBook.addClass(aClass);
+
         updateCurrentlySelectedClass(GeneralIndex.fromOneBased(teachBook.getClassList().size()));
     }
 
     @Override
     public void deleteClass(Class target) {
         teachBook.removeClass(target);
+
         if (teachBook.getNumOfClasses() == 0) {
             updateCurrentlySelectedClass(INDEX_NO_CLASS);
         } else if (currentlySelectedClassIndex.getOneBased() > teachBook.getNumOfClasses()) {
@@ -141,12 +143,16 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteStudent(Student target) {
-        teachBook.removeStudent(target);
+        teachBook.removeStudent(currentlySelectedClassIndex, target);
     }
 
     @Override
     public void addStudent(Student student) {
+        assert(!currentlySelectedClassIndex.equals(INDEX_NO_CLASS));
+        assert(!currentlySelectedClassIndex.equals(INDEX_LIST_ALL));
+
         teachBook.addStudent(currentlySelectedClassIndex, student);
+
         updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
@@ -155,7 +161,16 @@ public class ModelManager implements Model {
         teachBook.setStudent(currentlySelectedClassIndex, target, editedStudent);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public void setClassForStudent(Student student) {
+        requireNonNull(student);
+        assert(!currentlySelectedClassIndex.equals(INDEX_NO_CLASS));
+        assert(!currentlySelectedClassIndex.equals(INDEX_LIST_ALL));
+
+        teachBook.setClassForStudent(currentlySelectedClassIndex, student);
+    }
+
+    //=========== Filtered Student List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
@@ -178,7 +193,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public GeneralIndex getIndexOfClass(ClassNameDescriptor className) throws ClassNameWithNameException {
+    public GeneralIndex getIndexOfClass(ClassNameDescriptor className) throws NoClassWithNameException {
         return teachBook.getIndexOfClass(className);
     }
 
