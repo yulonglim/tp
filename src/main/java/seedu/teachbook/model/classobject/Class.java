@@ -63,6 +63,10 @@ public class Class {
                 && otherClass.getClassName().equals(getClassName());
     }
 
+    public int getClassSize() {
+        return this.studentsOfThisClass.size();
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
