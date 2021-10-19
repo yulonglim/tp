@@ -186,6 +186,31 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public boolean canUndoAddressBook() {
+            return false;
+        }
+
+        @Override
+        public boolean canRedoAddressBook() {
+            return false;
+        }
+
+        @Override
+        public void undoAddressBook() {
+
+        }
+
+        @Override
+        public void redoAddressBook() {
+
+        }
+
+        @Override
+        public void commitAddressBook() {
+
+        }
+
     }
 
     /**

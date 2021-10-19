@@ -27,7 +27,7 @@ import seedu.teachbook.model.student.Student;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final TeachBook teachBook;
+    private final VersionedTeachBook teachBook;
     private final UserPrefs userPrefs;
     private FilteredList<Student> filteredStudents;
     private GeneralIndex currentlySelectedClassIndex;
@@ -41,7 +41,7 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with teachbook: " + teachBook + " and user prefs " + userPrefs);
 
-        this.teachBook = new TeachBook(teachBook);
+        this.teachBook = new VersionedTeachBook(teachBook);
         this.userPrefs = new UserPrefs(userPrefs);
 
         this.currentlySelectedClassIndex = INDEX_NO_CLASS;
@@ -58,14 +58,14 @@ public class ModelManager implements Model {
     //=========== UserPrefs ==================================================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
-        this.userPrefs.resetData(userPrefs);
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
     }
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
+    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        requireNonNull(userPrefs);
+        this.userPrefs.resetData(userPrefs);
     }
 
     @Override
@@ -93,13 +93,13 @@ public class ModelManager implements Model {
     //=========== TeachBook ================================================================================
 
     @Override
-    public void setTeachBook(ReadOnlyTeachBook teachBook) {
-        this.teachBook.resetData(teachBook);
+    public ReadOnlyTeachBook getTeachBook() {
+        return teachBook;
     }
 
     @Override
-    public ReadOnlyTeachBook getTeachBook() {
-        return teachBook;
+    public void setTeachBook(ReadOnlyTeachBook teachBook) {
+        this.teachBook.resetData(teachBook);
     }
 
     @Override
@@ -210,6 +210,34 @@ public class ModelManager implements Model {
             filteredStudents = new FilteredList<>(teachBook.getStudentListOfClass(currentlySelectedClassIndex));
         }
         updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    //=========== Undo/Redo =================================================================================
+
+
+    @Override
+    public boolean canUndoAddressBook() {
+        return this.teachBook.canUndo();
+    }
+
+    @Override
+    public boolean canRedoAddressBook() {
+        return this.teachBook.canRedo();
+    }
+
+    @Override
+    public void undoAddressBook() {
+        this.teachBook.undo();
+    }
+
+    @Override
+    public void redoAddressBook() {
+        this.teachBook.redo();
+    }
+
+    @Override
+    public void commitAddressBook() {
+        this.teachBook.commit();
     }
 
     @Override

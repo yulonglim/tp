@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.classobject.Class;
@@ -19,7 +20,7 @@ import seedu.teachbook.model.student.UniqueStudentList;
  */
 public class TeachBook implements ReadOnlyTeachBook {
 
-    private UniqueStudentList students;
+    private final UniqueStudentList students;
     private final UniqueClassList classes;
 
     /*
@@ -59,7 +60,21 @@ public class TeachBook implements ReadOnlyTeachBook {
      */
     public void resetData(ReadOnlyTeachBook newData) {
         requireNonNull(newData);
-        setClasses(newData.getClassList());
+        ObservableList<Class> toCopy = FXCollections.observableArrayList();
+        for (Class c:
+                newData.getClassList()) {
+            Class toAdd = new Class(c.getClassName());
+            for (Student s:
+                 c.getStudentsOfThisClass()) {
+                Student studentToAdd = new Student(s.getName(),s.getPhone(),s.getEmail(),s.getAddress(),s.getTags());
+                studentToAdd.setStudentClass(toAdd);
+                toAdd.addStudent(studentToAdd);
+
+            }
+            toCopy.add(toAdd);
+        }
+
+        setClasses(toCopy);
 //        setStudents(newData.getStudentList());
     }
 
@@ -113,13 +128,13 @@ public class TeachBook implements ReadOnlyTeachBook {
 
     @Override
     public ObservableList<Student> getStudentList() {
-        students = new UniqueStudentList();
+        UniqueStudentList studentsToAdd = new UniqueStudentList();
         for (Class studentClass: classes) {
             for (Student student: studentClass.getStudentsOfThisClass()) {
-                students.add(student);
+                studentsToAdd.add(student);
             }
         }
-        return students.asUnmodifiableObservableList();
+        return studentsToAdd.asUnmodifiableObservableList();
     }
 
     public int getNumOfClasses() {
