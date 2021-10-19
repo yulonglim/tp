@@ -88,7 +88,7 @@ public class TeachBook implements ReadOnlyTeachBook {
         if (classIndex.equals(INDEX_LIST_ALL)) {
             return students.contains(student);
         } else {
-            assert(getClassAtIndex(classIndex).equals(student.getStudentClass()));
+            assert getClassAtIndex(classIndex).equals(student.getStudentClass());
         }
         return student.getStudentClass().containsStudent(student);
     }
@@ -99,7 +99,7 @@ public class TeachBook implements ReadOnlyTeachBook {
      */
     public void addStudent(GeneralIndex classIndex, Student studentToAdd) {
         requireAllNonNull(classIndex, studentToAdd);
-        assert(getClassAtIndex(classIndex).equals(studentToAdd.getStudentClass()));
+        assert getClassAtIndex(classIndex).equals(studentToAdd.getStudentClass());
         studentToAdd.getStudentClass().addStudent(studentToAdd);
     }
 
@@ -112,9 +112,9 @@ public class TeachBook implements ReadOnlyTeachBook {
     public void setStudent(GeneralIndex classIndex, Student target, Student editedStudent) {
         requireAllNonNull(classIndex, target, editedStudent);
         if (classIndex.equals(INDEX_LIST_ALL)) {
-            students.setStudent(target, editedStudent);
+            students.setStudent(target, editedStudent); // edit twice
         } else {
-            assert(getClassAtIndex(classIndex).equals(target.getStudentClass()));
+            assert getClassAtIndex(classIndex).equals(target.getStudentClass());
         }
         target.getStudentClass().setStudent(target, editedStudent);
     }
@@ -125,9 +125,9 @@ public class TeachBook implements ReadOnlyTeachBook {
      */
     public void removeStudent(GeneralIndex classIndex, Student key) {
         if (classIndex.equals(INDEX_LIST_ALL)) {
-            students.remove(key);
+            students.remove(key); // delete twice
         } else {
-            assert(getClassAtIndex(classIndex).equals(key.getStudentClass()));
+            assert getClassAtIndex(classIndex).equals(key.getStudentClass());
         }
         key.getStudentClass().removeStudent(key);
     }
