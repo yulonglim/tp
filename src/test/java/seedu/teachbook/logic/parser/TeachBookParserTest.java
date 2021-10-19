@@ -26,8 +26,8 @@ import seedu.teachbook.logic.parser.exceptions.ParseException;
 import seedu.teachbook.model.student.NameContainsKeywordsPredicate;
 import seedu.teachbook.model.student.Student;
 import seedu.teachbook.testutil.EditPersonDescriptorBuilder;
-import seedu.teachbook.testutil.PersonBuilder;
 import seedu.teachbook.testutil.PersonUtil;
+import seedu.teachbook.testutil.StudentBuilder;
 
 public class TeachBookParserTest {
 
@@ -35,7 +35,7 @@ public class TeachBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Student student = new PersonBuilder().build();
+        Student student = new StudentBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(student));
         assertEquals(new AddCommand(student), command);
     }
@@ -55,7 +55,7 @@ public class TeachBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Student student = new PersonBuilder().build();
+        Student student = new StudentBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(student).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));

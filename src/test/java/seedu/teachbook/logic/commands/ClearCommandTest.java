@@ -1,7 +1,7 @@
 package seedu.teachbook.logic.commands;
 
 import static seedu.teachbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.teachbook.testutil.TypicalPersons.getTypicalTeachBook;
+import static seedu.teachbook.testutil.TypicalStudents.getTypicalTeachBook;
 
 import org.junit.jupiter.api.Test;
 

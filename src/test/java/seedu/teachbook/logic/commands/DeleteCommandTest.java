@@ -7,7 +7,7 @@ import static seedu.teachbook.logic.commands.CommandTestUtil.assertCommandSucces
 import static seedu.teachbook.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.teachbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.teachbook.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.teachbook.testutil.TypicalPersons.getTypicalTeachBook;
+import static seedu.teachbook.testutil.TypicalStudents.getTypicalTeachBook;
 
 import org.junit.jupiter.api.Test;
 

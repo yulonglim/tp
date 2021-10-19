@@ -2,7 +2,6 @@ package seedu.teachbook.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_LIST_ALL;
-import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_NO_CLASS;
 import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
@@ -85,11 +84,7 @@ public class TeachBook implements ReadOnlyTeachBook {
      */
     public void addStudent(GeneralIndex classIndex, Student studentToAdd) {
         requireAllNonNull(classIndex, studentToAdd);
-        if (classIndex.equals(INDEX_NO_CLASS) || classIndex.equals(INDEX_LIST_ALL)) {
-            throw new RuntimeException(""); // TODO: add a new Exception
-        } else {
-            assert(getClassAtIndex(classIndex).equals(studentToAdd.getStudentClass()));
-        }
+        assert(getClassAtIndex(classIndex).equals(studentToAdd.getStudentClass()));
         studentToAdd.getStudentClass().addStudent(studentToAdd);
     }
 

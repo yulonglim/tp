@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.teachbook.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.teachbook.testutil.Assert.assertThrows;
-import static seedu.teachbook.testutil.TypicalPersons.ALICE;
-import static seedu.teachbook.testutil.TypicalPersons.BENSON;
+import static seedu.teachbook.testutil.TypicalStudents.ALICE;
+import static seedu.teachbook.testutil.TypicalStudents.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        TeachBook teachBook = new TeachBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        TeachBook teachBook = new TeachBookBuilder().withStudent(ALICE).withStudent(BENSON).build();
         TeachBook differentTeachBook = new TeachBook();
         UserPrefs userPrefs = new UserPrefs();
 

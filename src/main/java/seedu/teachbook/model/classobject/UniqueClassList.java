@@ -9,9 +9,9 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.teachbook.commons.core.index.GeneralIndex;
-import seedu.teachbook.model.classobject.exceptions.NoClassWithNameException;
 import seedu.teachbook.model.classobject.exceptions.DuplicateClassException;
 import seedu.teachbook.model.classobject.exceptions.NoClassAtIndexException;
+import seedu.teachbook.model.classobject.exceptions.NoClassWithNameException;
 
 /**
  * A list of Classes that enforces uniqueness between its elements and does not allow nulls.

@@ -3,7 +3,7 @@ package seedu.teachbook.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.teachbook.storage.JsonAdaptedStudent.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.teachbook.testutil.Assert.assertThrows;
-import static seedu.teachbook.testutil.TypicalPersons.BENSON;
+import static seedu.teachbook.testutil.TypicalStudents.BENSON;
 
 import java.util.ArrayList;
 import java.util.List;
