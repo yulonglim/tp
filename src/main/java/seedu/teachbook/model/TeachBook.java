@@ -1,9 +1,12 @@
 package seedu.teachbook.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_LIST_ALL;
+import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.classobject.Class;
