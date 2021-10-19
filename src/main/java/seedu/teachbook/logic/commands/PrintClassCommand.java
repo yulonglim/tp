@@ -3,6 +3,7 @@ package seedu.teachbook.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_COLUMN;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.teachbook.commons.util.ExcelUtil;
@@ -17,12 +18,14 @@ public class PrintClassCommand extends Command {
 
     public static final String COMMAND_WORD = "print";
 
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Prints the current selected class "
             + "Parameters: "
-            + "[" + PREFIX_COLUMN + "TAG]...\n"
+            + "[" + PREFIX_COLUMN + "COL]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_COLUMN + "Grades "
-            + PREFIX_COLUMN + "Sign Here";
+            + PREFIX_COLUMN + "Sign Here"
+            + PREFIX_COLUMN + "Phone";
 
     public static final String PRINT_SUCCESS =
             "Excel file created!";
@@ -34,11 +37,61 @@ public class PrintClassCommand extends Command {
         this.columnList = columnList;
     }
 
+    private static List<String> generateColumn(String columnName, List<Student> studentList) {
+        List<String> result = new ArrayList<>();
+        result.add(columnName);
+
+        switch (columnName.toLowerCase()) {
+        case "class":
+            for (Student student : studentList) {
+                result.add(student.getStudentClass().getClassName().nameOfClass);
+            }
+            break;
+
+        case "phone":
+            for (Student student : studentList) {
+                result.add(student.getPhone().value);
+            }
+            break;
+
+        case "email":
+            for (Student student : studentList) {
+                result.add(student.getEmail().value);
+            }
+            break;
+
+        case "remark":
+            for (Student student : studentList) {
+                result.add(student.getTags().toString());
+            }
+            break;
+
+        default:
+            for (int i = 0; i < studentList.size(); i++) {
+                result.add("");
+            }
+            break;
+        }
+        return result;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Student> toPrint = model.getFilteredStudentList();
-        ExcelUtil.toExcel(toPrint, columnList);
+        List<Student> studentList = model.getFilteredStudentList();
+        List<List<String>> toPrint = new ArrayList<>();
+        List<String> studentNames = new ArrayList<>();
+        studentNames.add("Name");
+        for (Student s : studentList) {
+            studentNames.add(s.getName().fullName);
+        }
+
+        toPrint.add(studentNames);
+        for (String columnName : columnList) {
+            toPrint.add(generateColumn(columnName, studentList));
+        }
+
+        ExcelUtil.toExcel(toPrint);
 
         return new CommandResult(PRINT_SUCCESS,
                 false, false, false, false);

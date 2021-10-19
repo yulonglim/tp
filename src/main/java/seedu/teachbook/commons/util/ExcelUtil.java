@@ -12,8 +12,6 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
-import seedu.teachbook.model.student.Student;
-
 public class ExcelUtil {
 
     private static Font setHeaderFont(Font headerFont) {
@@ -23,17 +21,17 @@ public class ExcelUtil {
         return headerFont;
     }
 
-    public static void toExcel(List<Student> studentList, List<String> columns) {
+    public static void toExcel(List<List<String>> listOfColumns) {
         try {
             Workbook workbook = new HSSFWorkbook();
             Sheet sh = workbook.createSheet("Student List");
-            String[] columnHeadings = new String[columns.size() + 1];
-            columnHeadings[0] = "Name";
-            for (int i = 0; i < columns.size(); i++) {
-                columnHeadings[i + 1] = columns.get(i);
-            }
-            Font headerFont = setHeaderFont(workbook.createFont());
+            String[] columnHeadings = new String[listOfColumns.size() + 1];
 
+            for (int i = 0; i < listOfColumns.size(); i++) {
+                columnHeadings[i] = StringUtil.toCamelCase(listOfColumns.get(i).get(0));
+            }
+
+            Font headerFont = setHeaderFont(workbook.createFont());
             CellStyle headerStyle = workbook.createCellStyle();
             headerStyle.setFont(headerFont);
 
@@ -43,10 +41,12 @@ public class ExcelUtil {
                 cell.setCellValue(columnHeadings[i]);
                 cell.setCellStyle(headerStyle);
             }
-            int rownum = 1;
-            for (Student student : studentList) {
-                Row row = sh.createRow(rownum++);
-                row.createCell(0).setCellValue(student.getName().fullName);
+
+            for (int i = 1; i < listOfColumns.get(0).size(); i++) {
+                Row row = sh.createRow(i);
+                for (int j = 0; j < listOfColumns.size(); j++) {
+                    row.createCell(j).setCellValue(listOfColumns.get(j).get(i));
+                }
             }
 
             for (int i = 0; i < columnHeadings.length; i++) {
