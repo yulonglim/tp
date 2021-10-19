@@ -6,23 +6,7 @@ title: User Guide
 TeachBook is a **desktop app for teachers to manage student contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). It is targeted towards teachers who can type fast. It allows teachers to store and organise contacts related to their students into different classes. On top of that, teachers can tag the class role of the student.
 
 * Table of Contents
-    * [Quick start](#quick-start)
-    * [Features](#features)
-        * [Help](#viewing-help--help)
-        * [Add](#adding-a-student-add)
-        * [Delete](#deleting-students-contact-information--delete)
-        * [Edit](#editing-a-student--edit)
-        * [Select](#selecting-a-class--select)
-        * [AddClass](#adding-a-class--addclass)
-        * [DeleteClass](#deleting-a-class--deleteclass)
-        * [EditClass](#editing-a-class--editclass)
-        * [List](#listing-all-students--list)
-        * [Find](#locating-students-by-name-find)
-        * [Print](#printing-to-excel--print)
-        * [Clear](#clearing-all-entries--clear)
-        * [Exit](#exiting-the-program--exit)
-    * [FAQ](#faq)
-    * [Command summary](#command-summary)
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -40,7 +24,7 @@ TeachBook is a **desktop app for teachers to manage student contacts, optimized 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   {to be updated}
+   {update or delete this point}
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -54,7 +38,7 @@ TeachBook is a **desktop app for teachers to manage student contacts, optimized 
 
 {to be updated}
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -63,13 +47,13 @@ TeachBook is a **desktop app for teachers to manage student contacts, optimized 
 
 Shows a message explaining how to access the help page.
 
-{image to be updated}
+![help message](images/helpMessage.png)
 
 Format: `help`
 
-### Adding a student: `add`
+### Adding a student : `add`
 
-Adds a student to TeachBook.
+Adds a student to the TeachBook.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BLOOD_TYPE] [pc/PARENTS_CONTACT] [t/TAG1] [t/TAG2]...`
 
@@ -82,68 +66,89 @@ A student can have any number of tags (including 0)
 * Student number will automatically be assigned once student is added.
 
 Examples:
-* `add n/John Doe p/91234567 e/johndoe@example.com a/21 Lower Kent Ridge Road, Singapore 119077` Adds the bare minimum contact information of a student named John Doe from class A into TeachBook.
-* `add n/Jane Doe p/91234567 e/johndoe@example.com a/21 Lower Kent Ridge Road, Singapore 119077 b/AB+ pc/92349983 t/Class Monitor` Adds contact information of Jane Doe with all the optional information into TeachBook.
+* `add n/John Doe p/91234567 e/johndoe@example.com a/21 Lower Kent Ridge Road, Singapore 119077` adds the bare minimum contact information of a student named John Doe from class A into the TeachBook.
+* `add n/Jane Doe p/91234567 e/johndoe@example.com a/21 Lower Kent Ridge Road, Singapore 119077 b/AB+ pc/92349983 t/Class Monitor` adds contact information of Jane Doe with all the optional information into the TeachBook.
 
-### Deleting students’ contact information : `delete`
+### Deleting a student : `delete`
 
-Deletes the specified students’ contact information from TeachBook.
+Deletes the specified student from the TeachBook.
 
 Format: `delete INDEX`
 
-* Deletes the contact information of the student with the specified `INDEX`.
+* Deletes the student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed student list.
+* The index must be a positive integer 1, 2, 3, ...
 
 Examples:
-* `delete 2` Deletes the contact information of the student with `INDEX 2` from TeachBook.
+* `list all` followed by `delete 2` deletes the 2nd student in the TeachBook.
+* `find John` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
 ### Editing a student : `edit`
 
-Edits the specified student's contact information from TeachBook. It can also be used to add previously not-added
-information.
+Edits an existing student in the TeachBook. You can also use this command to add previously not-added information.
 
-Format: `edit INDEX [n/NAME] [c/CLASS] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BLOOD_TYPE] [pc/PARENTS_CONTACT] [t\TAG1] [t\TAG2]...`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG1] [t/TAG2]...`
 
 * Edits the student at the specified `INDEX`.
-* The `INDEX` must be a positive integer 1, 2, 3, ...
-* At least one of the optional fields must be provided.
+* The index refers to the index number shown in the displayed student list.
+* The index must be a positive integer 1, 2, 3, ...
 * Existing values will be updated to the input values.
 
 Examples:
-* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the student with `INDEX 1` to be
-  `91234567` and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower b/O+` Edits the name of the student with `INDEX 2` to be `Betsy Crower` and adds additional
-  information (e.g., blood type and parents contact) that is not previously added.
+* `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
+* `edit 2 n/Joseph Chan t/` edits the name of the 2nd student to be `Joseph Chan` and clears all existing tags.
 
 ### Selecting a class : `select`
 
 ### Adding a class : `addClass`
 
-### Deleting a class : `deleteClass`
+Adds a class with the specified class name to the TeachBook.
 
-Deletes the specified class from TeachBook.
-
-Format: `deleteClass CLASSNAME`
-
-* Deletes the class with the specified `CLASSNAME`
+Format: `addClass CLASS_NAME`
 
 Examples:
-* `deleteClass A` Deletes the class with `CLASSNAME A` from TeachBook.
+* `addClass A`
+
+### Deleting a class : `deleteClass`
+
+Deletes the specified class from the TeachBook.
+
+Format: `deleteClass CLASS_NAME`
+
+* Deletes the class with the specified `CLASS_NAME`
+
+Examples:
+* `deleteClass A` Deletes the class named `A` from the TeachBook.
 
 ### Editing a class : `editClass`
 
-### Listing all students : `list`
+Edits an existing class in the TeachBook.
 
-Shows the list of all students from the currently selected class or the list of all students from all classes in TeachBook.
+Format: `editClass INDEX n/CLASS_NAME`
 
-* Lists all students from all classes by appending the `all` option.
-
-Format: `list [all]`
+* Edits the class at the specified `INDEX`.
+* The index refers to the index number shown in the displayed class list.
+* The index must be a positive integer 1, 2, 3, ...
+* Existing values will be updated to the input values.
 
 Examples:
-* `list` Lists all students from the currently selected class.
-* `list all` Lists all students from all classes.
+* `edit 1 n/Ace` edits the class name of the 1st class to be `Ace`.
 
-### Locating students by name: `find`
+### Listing all students : `list`
+
+Shows the list of all students from the currently selected class or the entire TeachBook.
+
+Format: `list`  `list all`  `list absentee`
+
+* `list` lists all students from the currently selected class or the entire TeachBook.
+* `list all` lists all students in the TeachBook.
+* `list absentee` lists all students from the currently selected class or the entire TeachBook whose status is unmarked.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+`list all` clears any currently selected class. As a result, any command followed by `list all` will be operating on all students in the TeachBook.
+</div>
+
+### Locating students by name : `find`
 
 Finds students whose name contain any of the given keywords.
 
@@ -157,7 +162,7 @@ Format: `find KEYWORD1 [KEYWORD2]...`
 
 Examples:
 * `find John Doe` returns only one `John Doe` from the currently selected class, even though there is another `John Doe` from a different class.
-* `list all` followed by `find John Doe` returns two `John Doe`, assuming that there are two `John Doe` in the entire TeachBook, one from class `A` and another one from class `B`.
+* `list all` followed by `find John Doe` returns two `John Doe`, assuming that there are two `John Doe` in the entire the TeachBook, one from class `A` and another one from class `B`.
 
 ### Printing to Excel : `print`
 
@@ -173,23 +178,28 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all classes and students from TeachBook.
+Clears all classes and students from the TeachBook.
 
 Format: `clear`
 
 ### Exiting the program : `exit`
 
-Exits the program.
+Exits the app.
 
 Format: `exit`
 
 ### Saving the data
 
-TeachBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+* **Except for attendance data**, TeachBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+* **You need to execute `print` command to save any attendance data.**
 
 ### Editing the data file
 
-{to be updated}
+TeachBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, TeachBook will discard all data and start with an empty data file at the next run.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -207,12 +217,12 @@ Action             | Format, Examples
 **Help**           | `help`
 **Add student**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BLOOD_TYPE] [pc/PARENTS_CONTACT] [t/TAG1] [t/TAG2]...` <br> e.g., `add n/John Doe p/91234567 e/johndoe@example.com a/21 Lower Kent Ridge Road, Singapore 119077 b/AB+ pc/92039923 t/class treasurer`
 **Delete student** | `delete INDEX` <br> e.g., `delete 1`
-**Edit student**   | `edit INDEX [n/NAME] [c/CLASS] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BLOOD_TYPE] [pc/PARENTS_CONTACT] [t/TAG1] [t/TAG2]...` <br> e.g.,`edit 3 n/Alice Yeoh b/O+ pc/98533322`
-**Select class**   | `select CLASSNAME` <br> e.g., `select A`
-**Add class**      | `addClass CLASSNAME` <br> e.g., `addClass A`
-**Delete class**   | `deleteClass CLASSNAME` <br> e.g., `deleteClass A`
-**Edit class**     | `editClass OLDCLASSNAME NEWCLASSNAME` <br> e.g., `editClass A ClassA`
-**List**           | `list [all]` <br> e.g., `list `, `list all`
+**Edit student**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG1] [t/TAG2]...` <br> e.g.,`edit 2 n/Joseph Chan t/`
+**Select class**   | `select CLASS_NAME` <br> e.g., `select A`
+**Add class**      | `addClass CLASS_NAME` <br> e.g., `addClass A`
+**Delete class**   | `deleteClass CLASS_NAME` <br> e.g., `deleteClass A`
+**Edit class**     | `editClass INDEX n/CLASS_NAME` <br> e.g., `editClass 1 n/Ace`
+**List**           | `list `  `list all`  `list absentee`
 **Find**           | `find KEYWORD1 [KEYWORD2]...`<br> e.g., `find James Jake`
 **Print**          | `print c/COLUMN1 [c/COLUMN2]...` <br> e.g. , `print c/Signature`
 **Clear**          | `clear`
