@@ -1,6 +1,9 @@
 package seedu.teachbook.testutil;
 
+import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.TeachBook;
+import seedu.teachbook.model.classobject.Class;
+import seedu.teachbook.model.classobject.ClassName;
 import seedu.teachbook.model.student.Student;
 
 /**
@@ -14,6 +17,7 @@ public class TeachBookBuilder {
 
     public TeachBookBuilder() {
         teachBook = new TeachBook();
+        teachBook.addClass(new Class(new ClassName("A")));
     }
 
     public TeachBookBuilder(TeachBook teachBook) {
@@ -23,8 +27,8 @@ public class TeachBookBuilder {
     /**
      * Adds a new {@code Person} to the {@code AddressBook} that we are building.
      */
-    public TeachBookBuilder withPerson(Student student) {
-        teachBook.addStudent(student);
+    public TeachBookBuilder withStudent(Student student) {
+        teachBook.addStudent(GeneralIndex.fromOneBased(1), student);
         return this;
     }
 

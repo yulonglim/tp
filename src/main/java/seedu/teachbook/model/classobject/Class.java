@@ -50,7 +50,7 @@ public class Class {
         classListSet.remove(student);
     }
 
-    public boolean hasStudent(Student student) {
+    public boolean containsStudent(Student student) {
         return studentsOfThisClass.contains(student);
     }
 

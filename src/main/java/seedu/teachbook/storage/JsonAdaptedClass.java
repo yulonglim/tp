@@ -65,7 +65,7 @@ class JsonAdaptedClass {
         for (JsonAdaptedStudent student : classList) {
             Student toAdd = student.toModelType();
             toAdd.setStudentClass(modelClass);
-            if (modelClass.hasStudent(toAdd)) {
+            if (modelClass.containsStudent(toAdd)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
             }
             modelClass.addStudent(toAdd);

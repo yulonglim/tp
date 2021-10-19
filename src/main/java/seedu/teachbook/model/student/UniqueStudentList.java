@@ -67,12 +67,6 @@ public class UniqueStudentList implements Iterable<Student> {
         }
 
         internalList.set(index, editedStudent);
-
-//        try {
-//            throw new Exception(String.valueOf(internalList.size()));
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
     }
 
     /**
