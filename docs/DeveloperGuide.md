@@ -176,7 +176,7 @@ Step 2. The user executes `delete 5` command to delete the 5th student in the te
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitTeachBook()`, causing another modified teach book state to be saved into the `teachBookStateList`.
+Step 3. The user executes `add n/David ...` to add a new student. The `add` command also calls `Model#commitTeachBook()`, causing another modified teach book state to be saved into the `teachBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -211,7 +211,7 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitTeachBook()`. Since the `currentStatePointer` is not pointing at the end of the `teachBookStateList`, all teach book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitTeachBook()`. Since the `currentStatePointer` is not pointing at the end of the `teachBookStateList`, all teach book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David ...` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -273,9 +273,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priorities: High (must have) - `* * *` , Medium (nice to have) - `* *` , Low (unlikely to have) - `*`
 
-| Priority | As a …​                                                | I want to …​                                                                                 | So that I can…​                                                                       |
+| Priority | As a ...                                                  | I want to ...                                                                                   | So that I can ...                                                                        |
 | -------- | --------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `* * *`  | new user                                                  | see usage instructions                                                                          | refer to instructions when I forget how to use the App                                   |
 | `* * *`  | teacher                                                   | add students                                                                                    |                                                                                          |
@@ -292,11 +292,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | teacher who wants to remember students I have taught      | remove all students I no longer teach but keep a record of the list in another file             | start over with a clean slate and can retrieve records I need in the future              |
 | `* *`    | teacher                                                   | undo the most recent command                                                                    | easily revert everything to the previous state                                           |
 | `*`      | teacher                                                   | remove all students from the contact                                                            | clear my contact in one go                                                               |
-| `* *`    | teacher                                                   | separate personal contacts with school contacts                                                 | prevent my contact list from overpopulating |
-| `* *`    | teacher                                                   | assign a class role to a student                                                                | identify students through their class role |
-| `* *`    | teacher                                                   | assign multiple class roles to a student                                                        | need not to assign class roles to student one at a time |
-| `*`      | teacher                                                   | view the list of all students                                                                   | have an overview of all my students |
-| `*`      | teacher                                                   | view the information of a student                                                               | take a closer look at a student's information |
+| `* *`    | teacher                                                   | separate personal contacts with school contacts                                                 | prevent my contact list from overpopulating                                              |
+| `* *`    | teacher                                                   | assign a class role to a student                                                                | identify students through their class role                                               |
+| `* *`    | teacher                                                   | assign multiple class roles to a student                                                        | need not to assign class roles to student one at a time                                  |
+| `*`      | teacher                                                   | view the list of all students                                                                   | have an overview of all my students                                                      |
+| `*`      | teacher                                                   | view the information of a student                                                               | take a closer look at a student's information                                            |
 
 *{More to be added}*
 
@@ -401,7 +401,7 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. _{ more test cases ... }_
 
 ### Deleting a student
 
@@ -418,7 +418,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. _{ more test cases ... }_
 
 ### Saving data
 
@@ -426,4 +426,4 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+1. _{ more test cases ... }_
