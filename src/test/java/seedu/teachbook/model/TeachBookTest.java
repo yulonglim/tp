@@ -48,15 +48,15 @@ public class TeachBookTest {
 //        assertThrows(DuplicateStudentException.class, () -> teachBook.resetData(newData));
 //    }
 
-    @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> teachBook.hasStudent(null));
-    }
+//    @Test
+//    public void hasPerson_nullPerson_throwsNullPointerException() {
+//        assertThrows(NullPointerException.class, () -> teachBook.hasStudent(null));
+//    }
 
-    @Test
-    public void hasPerson_personNotInTeachBook_returnsFalse() {
-        assertFalse(teachBook.hasStudent(ALICE));
-    }
+//    @Test
+//    public void hasPerson_personNotInTeachBook_returnsFalse() {
+//        assertFalse(teachBook.hasStudent(ALICE));
+//    }
 
 //    @Test
 //    public void hasPerson_personInTeachBook_returnsTrue() {

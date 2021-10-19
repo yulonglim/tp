@@ -110,9 +110,7 @@ public class ModelManager implements Model {
     @Override
     public boolean hasStudent(Student student) {
         requireNonNull(student);
-        Class currentlySelectedClass = this.getCurrentlySelectedClass();
-        student.setStudentClass(currentlySelectedClass);
-        return getCurrentlySelectedClass().hasStudent(student);
+        return teachBook.hasStudent(currentlySelectedClassIndex, student);
     }
 
     @Override
@@ -148,22 +146,13 @@ public class ModelManager implements Model {
 
     @Override
     public void addStudent(Student student) {
-        Class currentlySelectedClass = this.getCurrentlySelectedClass();
-        student.setStudentClass(currentlySelectedClass);
-        currentlySelectedClass.addStudent(student);
-        updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        teachBook.addStudent(currentlySelectedClassIndex, student);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
     @Override
     public void setStudent(Student target, Student editedStudent) {
-        requireAllNonNull(target, editedStudent);
-        this.getCurrentlySelectedClass().setStudent(target, editedStudent);
-//        teachBook.setStudent(target, editedStudent);
-        updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    public Class getCurrentlySelectedClass() {
-        return teachBook.getClassAtIndex(currentlySelectedClassIndex);
+        teachBook.setStudent(currentlySelectedClassIndex, target, editedStudent);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -193,10 +182,9 @@ public class ModelManager implements Model {
         return teachBook.getIndexOfClass(className);
     }
 
-    // call this method by passing in an index (use -1 when list all!)
-    // when "select class"/"list all"/... (when there is a need to change the "source")
     @Override
     public void updateCurrentlySelectedClass(GeneralIndex newClassIndex) {
+        requireNonNull(newClassIndex);
         currentlySelectedClassIndex = newClassIndex;
         updateSourceOfFilteredStudentList();
     }
@@ -209,7 +197,7 @@ public class ModelManager implements Model {
         } else {
             filteredStudents = new FilteredList<>(teachBook.getStudentListOfClass(currentlySelectedClassIndex));
         }
-        updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
     @Override

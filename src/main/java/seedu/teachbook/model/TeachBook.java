@@ -60,7 +60,6 @@ public class TeachBook implements ReadOnlyTeachBook {
     public void resetData(ReadOnlyTeachBook newData) {
         requireNonNull(newData);
         setClasses(newData.getClassList());
-//        setStudents(newData.getStudentList());
     }
 
     //// student-level operations
@@ -68,18 +67,18 @@ public class TeachBook implements ReadOnlyTeachBook {
     /**
      * Returns true if a student with the same identity as {@code student} exists in the teachbook book.
      */
-    public boolean hasStudent(Student student) {
+    public boolean hasStudent(GeneralIndex classIndex, Student student) {
         requireNonNull(student);
-        return students.contains(student);
+        return getClassAtIndex(classIndex).containsStudent(student);
     }
 
     /**
      * Adds a student to the teachbook book.
      * The student must not already exist in the teachbook book.
      */
-    public void addStudent(Student p) {
-        assert(false); // this method should not be called
-        students.add(p);
+    public void addStudent(GeneralIndex classIndex, Student studentToAdd) {
+        requireNonNull(studentToAdd);
+        getClassAtIndex(classIndex).addStudent(studentToAdd);
     }
 
     /**
@@ -88,9 +87,9 @@ public class TeachBook implements ReadOnlyTeachBook {
      * The student identity of {@code editedPerson} must not be the same as
      * another existing student in the teachbook book.
      */
-    public void setStudent(Student target, Student editedStudent) {
-        requireNonNull(editedStudent);
-        students.setStudent(target, editedStudent);
+    public void setStudent(GeneralIndex classIndex, Student target, Student editedStudent) {
+        requireNonNull(target);
+        getClassAtIndex(classIndex).setStudent(target, editedStudent);
     }
 
     /**
@@ -98,7 +97,7 @@ public class TeachBook implements ReadOnlyTeachBook {
      * {@code key} must exist in the teachbook book.
      */
     public void removeStudent(Student key) {
-        // students.remove(key); // used only for "all student list"
+        students.remove(key); // used only for "all student list"
         System.out.println("here:     " + key);
         System.out.println("here:     " + key.getStudentClass());
         Class c = key.getStudentClass();
@@ -136,7 +135,7 @@ public class TeachBook implements ReadOnlyTeachBook {
     }
 
     public Class getClassAtIndex(GeneralIndex classIndex) {
-        return classes.getClassAtIndex(classIndex);
+        return classes.getClassAtIndex(classIndex); // TODO: get class or let unique class list do things?
     }
 
     @Override
