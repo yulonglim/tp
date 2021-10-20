@@ -154,6 +154,37 @@ Classes used by multiple components are in the `seedu.teachbook.commons` package
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Integration of class feature
+
+#### Design considerations
+
+**Aspect: Structure of the new model component**
+
+To integrate the new class feature into the existing AB3 product, we decided that each student object should have a reference to its class, and there should only be one class object for the same class. We considered and compared a few designs of the rest of the model component:
+
+* **Alternative 1 (current choice):** `TeachBook` maintains a list of all classes. Each class maintains a list of all students in that class. A unique student list containing all students in all classes is generated every time when users execute the `list all` command.
+  * Pros
+    * When adding/deleting students, we only need to add/delete ONCE using a class's student list at most times.
+    * The filtered student list inside `ModelManager` can take the student list of the currently selected class as its source directly.
+  * Cons
+    * When `list all`, we need to construct the unique student list by iterating through each class's student list, which can degrade the performance of the `list all` command.
+
+* **Alternative 2:** `TeachBook` maintains a list of all classes. Each class maintains a list of all students in that class. `TeachBook` also maintains a unique student list containing all students in all classes.
+  * Pros
+    * The filtered student list inside `ModelManager` can still take the student list of the currently selected class as its source directly.
+    * When `list all`, the filtered student list can also take the maintained unique student list as its source directly.
+  * Cons
+    * When adding/deleting students, we always need to add/delete TWICE. This means we need to modify both a class's student list and the unique student list.
+    * If we simply add/delete students of the unique student list without maintaining a specific order of all the students, the list can look messy when `list all`. We may still need to do a sorting by class when `list all`, which actually also degrades the performance of `list all`.
+
+* **Alternative 3:** `TeachBook` only maintains a unique student list containing all students in all classes.
+  * Pros
+    * Easiest to implement and most components can be reused from AB3.
+    * When adding/deleting students, we only need to add/delete ONCE using the unique student list.
+  * Cons
+    * Similar to _Alternative 2_, there is still the need to maintain the order of students in the unique student list.
+    * We always need a predicate to screen out students of the currently selected class. Since users may interact with a specific class at most times, this can degrade the performance of most commands.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -219,7 +250,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How undo & redo executes:**
 
@@ -372,6 +403,7 @@ Extensions:
 * **Student number**: A positive integer 1, 2, 3, ...
 * **ID**: A serial number assigned to a student when he/she is added to the TeachBook. **ID** is made up of a student's _class number_ and his/her _student number_ in the class,
 e.g. if a student is from class A and has student number 2, then the student’s ID would be A2.
+* **Currently selected class**:
 
 *{More to be added}*
 
