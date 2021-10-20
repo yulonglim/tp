@@ -185,6 +185,30 @@ To integrate the new class feature into the existing AB3 product, we decided tha
     * Similar to _Alternative 2_, there is still the need to maintain the order of students in the unique student list.
     * We always need a predicate to screen out students of the currently selected class. Since users may interact with a specific class at most times, this can degrade the performance of most commands.
 
+### Synchronization of Student List in Model and UI
+
+To ensure synchronization throughout the program, `ModelManager` maintains a `filteredStudents` observable, which is 
+observed by `MainWindow`. `filteredStudents` contains the list of students to be displayed in the UI.
+
+![UiAndModel](images/UiAndModel.png)
+
+`SelectCommand` and `ListCommand` with the `all` option i.e., `list all` are the only two commands that will modify the
+`filteredStudents` entirely, i.e., a new observable is created and replaces the existing observable, via 
+`ModelManager#updateSourceOfFilteredStudentList()`. However, this change is not observed by `MainWindow` as `MainWindow`
+only observes changes within the observable, i.e., the previous `filteredStudents` observable. To mitigate this issue,
+the `updateStudentListPanel` flag, in the `commandResult` returned after the execution of both `SelectCommand` and 
+`ListCommand` with the `all` option, is set to `true`. The flag then triggers the `MainWindow` to retrieve the new 
+`filteredStudents` observable via the `MainWindow#updateStudentListPannel()` and start observing changes in the new 
+observable. Thereafter, the student list in the UI is again in sync with the student list in the Model.
+
+Below is the sequence diagram of the execution of the `SelectCommand`.
+
+![SelectSequenceDiagram](images/SelectSequenceDiagram.png)
+
+Below is the sequence diagram of the execution of the `ListCommand` with the `all` option.
+
+![ListAllSequenceDiagram](images/ListAllSequenceDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
