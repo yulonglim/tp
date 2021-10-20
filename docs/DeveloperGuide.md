@@ -185,6 +185,30 @@ To integrate the new class feature into the existing AB3 product, we decided tha
     * Similar to _Alternative 2_, there is still the need to maintain the order of students in the unique student list.
     * We always need a predicate to screen out students of the currently selected class. Since users may interact with a specific class at most times, this can degrade the performance of most commands.
 
+### Delete class feature
+
+#### Implementation
+
+The delete class feature allows users to delete a class and all students in the class from the TeachBook. This feature is facilitated by `DeleteClassCommand` and `DeleteClassCommandParser`.
+
+Given below is an example usage scenario and how the delete class mechanism behaves.
+
+The following object diagram shows an example initial state of the TeachBook:
+
+<img src="images/DeleteClassObjectDiagram0.png" width="520" />
+
+The following sequence diagram shows interactions within the `Logic` component and part of the `Model` component for the `deleteClass B` command:
+
+![Interactions Inside the Logic and Model Components for the `deleteClass B` Command](images/DeleteClassSequenceDiagram.png)
+
+The following object diagram shows the updated TeachBook:
+
+<img src="images/DeleteClassObjectDiagram1.png" width="280" />
+
+#### Design considerations
+
+_{To be updated later}_
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
