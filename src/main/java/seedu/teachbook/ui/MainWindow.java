@@ -1,5 +1,6 @@
 package seedu.teachbook.ui;
 
+import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_LIST_ALL;
 import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_NO_CLASS;
 
 import java.util.logging.Logger;
@@ -119,9 +120,6 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         updateStudentListPanel();
 
-        classListPanel = new ClassListPanel(logic.getUniqueClassList());
-        classListPanelPlaceholder.getChildren().add(classListPanel.getRoot());
-
         updateClassListPanel();
 
         resultDisplay = new ResultDisplay();
@@ -140,9 +138,13 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     void updateClassListPanel() {
+        classListPanel = new ClassListPanel(logic.getUniqueClassList());
+        classListPanelPlaceholder.getChildren().add(classListPanel.getRoot());
+
         GeneralIndex newSelectedClassIndex = logic.getCurrentlySelectedClassIndex();
-        if (!newSelectedClassIndex.equals(INDEX_NO_CLASS)) {
-            classListPanel.reload(newSelectedClassIndex.getZeroBased());
+        if (!newSelectedClassIndex.equals(INDEX_NO_CLASS)
+                && !newSelectedClassIndex.equals(INDEX_LIST_ALL)) {
+            classListPanel.select(newSelectedClassIndex.getZeroBased());
         }
     }
 
