@@ -91,7 +91,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName.set("teachbook-v1.2.jar")
+    archiveFileName.set("teachbook-v1.2.1.jar")
 }
 
 defaultTasks 'clean', 'test'
