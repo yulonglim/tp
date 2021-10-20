@@ -100,6 +100,18 @@ Examples:
 
 ### Selecting a class : `select`
 
+Selects the **class** to be shown by TeachBook.
+
+Format: `select CLASSNAME`
+
+* The `CLASSNAME` to be selected is case-sensitive and must be already inside the list. If not TeachBook will return `The class does not exist`.
+* The currently selected class will be highlighted in blue as seen in the image below where class named `B` is selected.
+
+![select_example](images/select_example.png)
+
+Example:
+* `select A` Selects the class named `A` from the list of classes.
+
 ### Adding a class : `addClass`
 
 Adds a class with the specified class name to the TeachBook.
