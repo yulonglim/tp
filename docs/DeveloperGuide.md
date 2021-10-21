@@ -185,11 +185,11 @@ To integrate the new class feature into the existing AB3 product, we decided tha
     * Similar to _Alternative 2_, there is still the need to maintain the order of students in the unique student list.
     * We always need a predicate to screen out students of the currently selected class. Since users may interact with a specific class at most times, this can degrade the performance of most commands.
 
-### \[Proposed\] Undo/redo feature
+### Undo/redo feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedTeachBook`. It extends `TeachBook` with an undo/redo history, stored internally as an `teachBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The undo/redo mechanism is facilitated by `VersionedTeachBook`. It extends `TeachBook` with an undo/redo history, stored internally as an `teachBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
 * `VersionedTeachBook#commit()` — Saves the current teach book state in its history.
 * `VersionedTeachBook#undo()` — Restores the previous teach book state from its history.
@@ -254,7 +254,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire teach book.
+* **Alternative 1 (choice):** Saves the entire teach book.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
