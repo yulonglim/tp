@@ -50,8 +50,7 @@ public class ClassListPanel extends UiPart<Region> {
         }
     }
 
-    public void reload(int currentlySelectedClassIndex) {
-        classListView.getSelectionModel().clearAndSelect(-1);
+    public void select(int currentlySelectedClassIndex) {
         classListView.getSelectionModel().clearAndSelect(currentlySelectedClassIndex);
         classListView.getFocusModel().focus(currentlySelectedClassIndex);
         classListView.scrollTo(currentlySelectedClassIndex);
