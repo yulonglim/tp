@@ -259,6 +259,27 @@ Given below is the activity diagram for the same scenario above
 
 ![EditCommandActivityDiagram](images/EditCommandActivityDiagram.png)
 
+### 2. Add class feature
+
+TeachBook allows users to add classes.
+
+#### 2.1 Implementation details
+
+The addClass command is implemented using multiple classes. Firstly, when the user input `addClass A`, the LogicManager
+will invoke the parseCommand of TeachBookParser to create a addClassCommandParse object. The parse method in 
+the AddClassCommandParser will be called to parse the inputs. It will create a class object named `A` and then return a
+`addClassCommand` object. The returned `addClassCommand` then runs the `execute()` method which will in turn invoke the chain of
+`addClass()`, `addClass()`, `add()` and `add()` command by the `model`, `TeachBook`, `UniqueClassList` and `ObservableList` classes
+respectively.
+
+The addClass command has the following format:
+`addClass CLASS_NAME`
+
+Given below is the sequence diagram on how addClass Command behaves in TeachBook when the user tries to add a class
+named `A`.
+
+![AddClassSequenceDiagram](images/AddClassSequenceDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
