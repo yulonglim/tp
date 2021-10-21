@@ -85,7 +85,11 @@ deactivate ObservableList
 deactivate UniqueClassList
 deactivate TeachBook
 
-Model --> AddClassCommand
+Model -> Model : updateCurrentlySelectedClass()
+activate Model
+Model -> Model : updateSourceOfFilteredStudentList()
+activate Model
+deactivate Model
 deactivate Model
 
 create CommandResult
