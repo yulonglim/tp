@@ -121,6 +121,7 @@ public class UniqueClassList implements Iterable<Class> {
     }
 
     public int size() {
+        assert (internalList.size() >= 0);
         return internalList.size();
     }
 
