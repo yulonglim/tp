@@ -95,6 +95,9 @@ public class ModelManager implements Model {
     @Override
     public void setTeachBook(ReadOnlyTeachBook teachBook) {
         this.teachBook.resetData(teachBook);
+        this.filteredStudents = new FilteredList<>(FXCollections.observableArrayList());
+
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
     @Override

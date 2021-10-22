@@ -18,6 +18,7 @@ public class ClearCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.setTeachBook(new TeachBook());
-        return new CommandResult(MESSAGE_SUCCESS);
+        // Make Teachbook filtered list empty again
+        return new CommandResult(MESSAGE_SUCCESS, false, false, true, true);
     }
 }
