@@ -106,6 +106,7 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     public int size() {
+        assert (internalList.size() >= 0);
         return internalList.size();
     }
 
