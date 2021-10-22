@@ -10,6 +10,7 @@ import seedu.teachbook.commons.util.ExcelUtil;
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
 import seedu.teachbook.model.student.Student;
+import seedu.teachbook.model.tag.Tag;
 
 /**
  * Switches to another class identified using its name.
@@ -60,9 +61,14 @@ public class PrintClassCommand extends Command {
             }
             break;
 
-        case "remark":
+        case "remarks":
             for (Student student : studentList) {
-                result.add(student.getTags().toString());
+                StringBuilder remarks = new StringBuilder();
+                for (Tag t : student.getTags()) {
+                    remarks.append(t.tagName + "; ");
+                }
+
+                result.add(remarks.toString());
             }
             break;
 
