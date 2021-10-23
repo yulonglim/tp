@@ -228,7 +228,7 @@ public class ModelManager implements Model {
     }
 
     public boolean isValidGrade(Grade grade) {
-        return this.gradeList.contains(grade);
+        return this.gradeList.contains(grade) || grade.value.equals("Not graded");
     }
 
     @Override
