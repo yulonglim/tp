@@ -129,7 +129,9 @@ public class ParserUtil {
     }
 
     public static Grade parseGrade(String grade) throws ParseException {
-        requireNonNull(grade);
+        if(grade == null) {
+            grade = "";
+        }
         String trimmedGrade = grade.trim();
         return new Grade(trimmedGrade);
     }

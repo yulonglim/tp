@@ -7,7 +7,9 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.teachbook.logic.commands.AddCommand;
+import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
+import seedu.teachbook.model.ModelManager;
 import seedu.teachbook.model.gradeObject.Grade;
 import seedu.teachbook.model.student.Address;
 import seedu.teachbook.model.student.Email;
@@ -20,7 +22,6 @@ import seedu.teachbook.model.tag.Tag;
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser implements Parser<AddCommand> {
-
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
@@ -40,7 +41,12 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Grade grade = ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get());
+        Grade grade;
+        if (argMultimap.getValue(PREFIX_GRADE).isEmpty()) {
+            grade = new Grade(AddCommand.NOT_GRADED);
+        } else {
+            grade = ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get());
+        }
 
         Student student = new Student(name, phone, email, address, tagList, grade);
 

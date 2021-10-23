@@ -123,6 +123,8 @@ public interface Model {
 
     void setGradeList(ArrayList<Grade> grades);
 
+    boolean isValidGrade(Grade grade);
+
     void updateCurrentlySelectedClass(GeneralIndex newClassIndex);
 
     GeneralIndex getCurrentlySelectedClassIndex();

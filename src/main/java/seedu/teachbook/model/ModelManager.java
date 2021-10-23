@@ -38,6 +38,7 @@ public class ModelManager implements Model {
     private FilteredList<Student> filteredStudents;
     private GeneralIndex currentlySelectedClassIndex;
     private ArrayList<Grade> gradeList = new ArrayList<>();
+
     /**
      * Initializes a ModelManager with the given teachBook and userPrefs.
      */
@@ -228,6 +229,10 @@ public class ModelManager implements Model {
 
     public void setGradeList(ArrayList<Grade> grades) {
         gradeList = grades;
+    }
+
+    public boolean isValidGrade(Grade grade) {
+        return this.gradeList.contains(grade);
     }
 
     @Override
