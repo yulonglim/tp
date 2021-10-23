@@ -1,6 +1,7 @@
 package seedu.teachbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.teachbook.logic.commands.AddCommand.GRADE_NOT_SET;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_NAME;
@@ -19,6 +20,7 @@ import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.commons.util.CollectionUtil;
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
+import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.student.Address;
 import seedu.teachbook.model.student.Email;
 import seedu.teachbook.model.student.Name;
@@ -81,6 +83,13 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
+        if (model.getGradeList().size() == 0 && !editedStudent.getGrade().value.equals(AddCommand.NOT_GRADED)) {
+            throw new CommandException(GRADE_NOT_SET);
+        }
+
+        if (!model.isValidGrade(editedStudent.getGrade())) {
+            throw new CommandException(AddCommand.INVALID_GRADE);
+        }
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
@@ -98,7 +107,9 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(studentToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(studentToEdit.getTags());
-        Student editedStudent = new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        Grade updatedGrade = editPersonDescriptor.getGrade().orElse(studentToEdit.getGrade());
+        Student editedStudent = new Student(updatedName, updatedPhone, updatedEmail,
+                                            updatedAddress, updatedTags, updatedGrade);
         editedStudent.setStudentClass(studentToEdit.getStudentClass());
         return editedStudent;
     }
@@ -131,6 +142,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Grade grade;
 
         public EditPersonDescriptor() {}
 
@@ -144,13 +156,14 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setGrade(toCopy.grade);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, grade);
         }
 
         public void setName(Name name) {
@@ -183,6 +196,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setGrade(Grade grade) {
+            this.grade = grade;
+        }
+
+        public Optional<Grade> getGrade() {
+            return Optional.ofNullable(grade);
         }
 
         /**

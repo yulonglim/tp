@@ -5,6 +5,7 @@ import java.util.Set;
 
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
+import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.student.Address;
 import seedu.teachbook.model.student.Email;
 import seedu.teachbook.model.student.Name;
@@ -23,6 +24,7 @@ public class StudentBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_CLASS = "A";
+    public static final String DEFAULT_GRADE = "";
 
     private Name name;
     private Phone phone;
@@ -30,6 +32,7 @@ public class StudentBuilder {
     private Address address;
     private Class myClass;
     private Set<Tag> tags;
+    private Grade grade;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -41,6 +44,7 @@ public class StudentBuilder {
         address = new Address(DEFAULT_ADDRESS);
         myClass = new Class(new ClassName(DEFAULT_CLASS));
         tags = new HashSet<>();
+        grade = new Grade(DEFAULT_GRADE);
     }
 
     /**
@@ -53,6 +57,7 @@ public class StudentBuilder {
         address = studentToCopy.getAddress();
         myClass = studentToCopy.getStudentClass();
         tags = new HashSet<>(studentToCopy.getTags());
+        grade = studentToCopy.getGrade();
     }
 
     /**
@@ -95,6 +100,11 @@ public class StudentBuilder {
         return this;
     }
 
+    public StudentBuilder withGrade(String grade) {
+        this.grade = new Grade(grade);
+        return this;
+    }
+
     /**
      * Sets the {@code Class} of the {@code Student} that we are building.
      */
@@ -104,7 +114,7 @@ public class StudentBuilder {
     }
 
     public Student build() {
-        return new Student(name, phone, email, address, tags);
+        return new Student(name, phone, email, address, tags, grade);
     }
 
 }
