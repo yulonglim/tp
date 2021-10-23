@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_LIST_ALL;
 import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -14,6 +13,7 @@ import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.classobject.UniqueClassList;
 import seedu.teachbook.model.classobject.exceptions.NoClassWithNameException;
 import seedu.teachbook.model.gradeobject.Grade;
+import seedu.teachbook.model.gradeobject.GradingSystem;
 import seedu.teachbook.model.student.Student;
 import seedu.teachbook.model.student.UniqueStudentList;
 
@@ -26,7 +26,7 @@ public class TeachBook implements ReadOnlyTeachBook {
     private UniqueStudentList students; // different from AB3: this variable is for "list all" command only!
     private final UniqueClassList classes;
 
-    private ArrayList<Grade> gradeList;
+    private GradingSystem gradingSystem;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -38,7 +38,7 @@ public class TeachBook implements ReadOnlyTeachBook {
     {
         students = new UniqueStudentList();
         classes = new UniqueClassList();
-        gradeList = new ArrayList<>();
+        gradingSystem = new GradingSystem();
     }
 
     public TeachBook() {}
@@ -161,16 +161,20 @@ public class TeachBook implements ReadOnlyTeachBook {
         return classes.getClassAtIndex(classIndex); // TODO: get class or let unique class list do things?
     }
 
-    public ArrayList<Grade> getGradeList() {
-        return gradeList;
+    public GradingSystem getGradingSystem() {
+        return gradingSystem;
     }
 
-    public void setGradeList(ArrayList<Grade> gradeList) {
-        this.gradeList = gradeList;
+    public void setGradingSystem(GradingSystem newGradingSystem) {
+        gradingSystem = newGradingSystem;
+    }
+
+    public boolean hasExistingGradingSystem() {
+        return gradingSystem.isInUse();
     }
 
     public boolean isValidGrade(Grade grade) {
-        return this.gradeList.contains(grade) || grade.value.equals("Not graded");
+        return gradingSystem.isValidGrade(grade);
     }
 
     @Override
