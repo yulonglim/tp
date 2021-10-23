@@ -8,7 +8,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_GRADE;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class SetGradeCommand extends Command{
 

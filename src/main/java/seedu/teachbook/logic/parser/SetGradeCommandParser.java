@@ -5,7 +5,6 @@ import seedu.teachbook.logic.parser.exceptions.ParseException;
 import seedu.teachbook.model.gradeObject.Grade;
 
 import java.util.ArrayList;
-import java.util.Set;
 import java.util.stream.Stream;
 
 import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
