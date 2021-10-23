@@ -1,8 +1,6 @@
 package seedu.teachbook.model.classobject;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import seedu.teachbook.model.student.Student;
 import seedu.teachbook.model.student.UniqueStudentList;
