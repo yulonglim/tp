@@ -11,7 +11,6 @@ public class Class {
 
     private final ClassName className;
     private UniqueStudentList studentsOfThisClass;
-    private Set<Student> classListSet = new HashSet<>();
 
     public Class(ClassName className) {
         this.className = className;
@@ -22,12 +21,9 @@ public class Class {
         return studentsOfThisClass;
     }
 
-    public Set<Student> getClassListSet() {
-        return classListSet;
-    }
+
     public void setStudentsOfThisClass(List<Student> students) {
         this.studentsOfThisClass.setStudents(students);
-        classListSet.addAll(students);
     }
 
     public ClassName getClassName() {
@@ -36,18 +32,14 @@ public class Class {
 
     public void setStudent(Student target, Student editedStudent) {
         studentsOfThisClass.setStudent(target, editedStudent);
-        classListSet.remove(target);
-        classListSet.add(editedStudent);
     }
 
     public void addStudent(Student student) {
         this.studentsOfThisClass.add(student);
-        classListSet.add(student);
     }
 
     public void removeStudent(Student student) {
         this.studentsOfThisClass.remove(student);
-        classListSet.remove(student);
     }
 
     public boolean containsStudent(Student student) {
