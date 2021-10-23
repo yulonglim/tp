@@ -1,56 +1,54 @@
 package seedu.teachbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_GRADE;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
 import seedu.teachbook.model.gradeobject.Grade;
+import seedu.teachbook.model.gradeobject.GradingSystem;
 
 public class SetGradeCommand extends Command {
 
     public static final String COMMAND_WORD = "setGrade";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets a grading system "
-            + "Parameters: "
-            + PREFIX_GRADE + "Grade1>Grade2>Grade3... "
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_GRADE + "A>B>C>D>E";
-    public static final String MESSAGE_SUCCESS = "Grading system set: %1$s";
-    public static final String MESSAGE_GRADE_EXISTS = "Grade has already been set. Delete grades before setting again";
-    public final ArrayList<Grade> grades;
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets a grading system\n"
+            + "Parameters: Grade1>Grade2>Grade3... "
+            + "Example: " + COMMAND_WORD + " A>B>C>D>E";
+    public static final String MESSAGE_SUCCESS = "New grading system set: %1$s";
+    public static final String MESSAGE_GRADING_SYSTEM_EXISTS =
+            "A grading system is currently in use. Delete the grading system before setting again";
+
+    public final List<Grade> gradeList;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an SetGradeCommand to set a new grading system
      */
-    public SetGradeCommand(ArrayList<Grade> grades) {
+    public SetGradeCommand(List<Grade> grades) {
         requireNonNull(grades);
-        this.grades = grades;
-    }
-
-    public String gradeToString() {
-        StringBuilder result = new StringBuilder();
-        for (Grade grade : grades) {
-            result.append(grade.toString()).append(" ");
-        }
-        return result.toString();
+        this.gradeList = grades;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (model.getGradeList().size() != 0) {
-            throw new CommandException(MESSAGE_GRADE_EXISTS);
+
+        if (model.hasExistingGradingSystem()) {
+            throw new CommandException(MESSAGE_GRADING_SYSTEM_EXISTS);
         }
-        model.setGradeList(grades);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, gradeToString()));
+
+        GradingSystem gradingSystem = new GradingSystem(gradeList);
+        model.setGradingSystem(gradingSystem);
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, gradingSystem));
     }
-//
+
+    // TODO: change later
 //    @Override
 //    public boolean equals(Object other) {
 //        return other == this // short circuit if same object
 //                || (other instanceof seedu.teachbook.logic.commands.SetGradeCommand // instanceof handles nulls
 //                && Arrays.equals(grades, ((SetGradeCommand) other).grades));
 //    }
+
 }

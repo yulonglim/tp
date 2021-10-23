@@ -68,7 +68,14 @@ public class PersonCard extends UiPart<Region> {
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        grade.setText(student.getGrade().value);
+
+        String gradeContent = student.getGrade().value;
+        if (gradeContent.equals("")) {
+            grade.setMinHeight(0.0);
+            grade.setPrefHeight(0.0);
+        } else {
+            grade.setText(gradeContent);
+        }
     }
 
     @Override

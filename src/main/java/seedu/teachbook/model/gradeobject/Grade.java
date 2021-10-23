@@ -1,7 +1,9 @@
 package seedu.teachbook.model.gradeobject;
 
 public class Grade {
+
     public final String value;
+
     public Grade(String grade) {
         this.value = grade;
     }

@@ -1,7 +1,6 @@
 package seedu.teachbook.model;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.function.Predicate;
 
@@ -12,6 +11,7 @@ import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.classobject.exceptions.NoClassWithNameException;
 import seedu.teachbook.model.gradeobject.Grade;
+import seedu.teachbook.model.gradeobject.GradingSystem;
 import seedu.teachbook.model.student.Student;
 
 /**
@@ -120,9 +120,11 @@ public interface Model {
 
     GeneralIndex getIndexOfClass(ClassNameDescriptor className) throws NoClassWithNameException;
 
-    ArrayList<Grade> getGradeList();
+    GradingSystem getGradingSystem();
 
-    void setGradeList(ArrayList<Grade> gradeList);
+    void setGradingSystem(GradingSystem gradingSystem);
+
+    boolean hasExistingGradingSystem();
 
     boolean isValidGrade(Grade grade);
 

@@ -2,8 +2,10 @@ package seedu.teachbook.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.teachbook.commons.core.index.Index;
@@ -128,14 +130,6 @@ public class ParserUtil {
         return new Tag(trimmedTag);
     }
 
-    public static Grade parseGrade(String grade) throws ParseException {
-        if (grade == null) {
-            grade = "";
-        }
-        String trimmedGrade = grade.trim();
-        return new Grade(trimmedGrade);
-    }
-
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
@@ -148,5 +142,24 @@ public class ParserUtil {
         return tagSet;
     }
 
+    public static Grade parseGrade(String grade) throws ParseException {
+        requireNonNull(grade);
+        String trimmedGrade = grade.trim();
+        // TODO: validate grade format
+//        if (!Grade.isValidGrade(trimmedGrade)) {
+//            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
+//        }
+        return new Grade(trimmedGrade);
+    }
+
+    public static List<Grade> parseGrades(String grades) throws ParseException {
+        requireNonNull(grades);
+        final List<Grade> gradeList = new ArrayList<>();
+        String[] stringGradeList = grades.split(">");
+        for (String grade : stringGradeList) {
+            gradeList.add(parseGrade(grade));
+        }
+        return gradeList;
+    }
 
 }

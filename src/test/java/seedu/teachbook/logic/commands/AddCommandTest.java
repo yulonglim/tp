@@ -25,6 +25,7 @@ import seedu.teachbook.model.TeachBook;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.gradeobject.Grade;
+import seedu.teachbook.model.gradeobject.GradingSystem;
 import seedu.teachbook.model.student.Student;
 import seedu.teachbook.testutil.StudentBuilder;
 
@@ -184,12 +185,17 @@ public class AddCommandTest {
         }
 
         @Override
-        public ArrayList<Grade> getGradeList() {
+        public GradingSystem getGradingSystem() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setGradeList(ArrayList<Grade> gradeList) {
+        public void setGradingSystem(GradingSystem gradingSystem) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasExistingGradingSystem() {
             throw new AssertionError("This method should not be called.");
         }
 
