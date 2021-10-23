@@ -2,6 +2,7 @@ package seedu.teachbook.model;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -57,6 +58,9 @@ public interface Model {
 
     /** Returns the teachbook */
     ReadOnlyTeachBook getTeachBook();
+
+    /** Returns the index of the currently selected class on ui */
+    GeneralIndex getCurrentlySelectedClassIndex();
 
     /**
      * Returns true if a student with the same identity as {@code student} exists in the teachbook.
@@ -118,12 +122,12 @@ public interface Model {
 
     ArrayList<Grade> getGradeList();
 
-    void setGradeList(ArrayList<Grade> grades);
+    void setGradeList(ArrayList<Grade> gradeList);
 
     boolean isValidGrade(Grade grade);
 
     void updateCurrentlySelectedClass(GeneralIndex newClassIndex);
 
-    GeneralIndex getCurrentlySelectedClassIndex();
+    void reorderFilteredStudentList(Comparator<? super Student> comparator);
 
 }

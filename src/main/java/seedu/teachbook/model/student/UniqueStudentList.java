@@ -12,12 +12,12 @@ import seedu.teachbook.model.student.exceptions.DuplicateStudentException;
 import seedu.teachbook.model.student.exceptions.StudentNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A student is considered unique by comparing using {@code Person#isSamePerson(Person)}.
- * As such, adding and updating of persons uses Person#isSamePerson(Person) for equality so as to
- * ensure that the student being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a student uses Person#equals(Object) so
- * as to ensure that the student with exactly the same fields will be removed.
+ * A list of students that enforces uniqueness between its elements and does not allow nulls.
+ * A student is considered unique by comparing using {@code Student#isSameStudent(Student)}.
+ * As such, adding and updating of students uses Student#isSameStudent(Student) for equality so as to
+ * ensure that the student being added or updated is unique in terms of identity in the UniqueStudentList.
+ * However, the removal of a student uses Student#equals(Object) to ensure that
+ * the student with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -50,9 +50,9 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
-     * Replaces the student {@code target} in the list with {@code editedPerson}.
+     * Replaces the student {@code target} in the list with {@code editedStudent}.
      * {@code target} must exist in the list.
-     * The student identity of {@code editedPerson} must not be the same as another existing student in the list.
+     * The student identity of {@code editedStudent} must not be the same as another existing student in the list.
      */
     public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
@@ -86,8 +86,8 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code students}.
+     * {@code students} must not contain duplicate students.
      */
     public void setStudents(List<Student> students) {
         requireAllNonNull(students);
@@ -105,6 +105,9 @@ public class UniqueStudentList implements Iterable<Student> {
         return internalUnmodifiableList;
     }
 
+    /**
+     * Returns the number of students in this list.
+     */
     public int size() {
         assert (internalList.size() >= 0);
         return internalList.size();
@@ -128,7 +131,7 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code students} contains only unique students.
      */
     private boolean studentsAreUnique(List<Student> students) {
         for (int i = 0; i < students.size() - 1; i++) {

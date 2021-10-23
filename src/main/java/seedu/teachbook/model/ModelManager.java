@@ -8,6 +8,7 @@ import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -33,7 +34,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private FilteredList<Student> filteredStudents;
     private GeneralIndex currentlySelectedClassIndex;
-    private ArrayList<Grade> gradeList = new ArrayList<>();
 
     /**
      * Initializes a ModelManager with the given teachBook and userPrefs.
@@ -219,16 +219,24 @@ public class ModelManager implements Model {
         updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
+    @Override
     public ArrayList<Grade> getGradeList() {
-        return gradeList;
+        return teachBook.getGradeList();
     }
 
-    public void setGradeList(ArrayList<Grade> grades) {
-        gradeList = grades;
+    @Override
+    public void setGradeList(ArrayList<Grade> gradeList) {
+        teachBook.setGradeList(gradeList);
     }
 
+    @Override
     public boolean isValidGrade(Grade grade) {
-        return this.gradeList.contains(grade) || grade.value.equals("Not graded");
+        return teachBook.isValidGrade(grade);
+    }
+
+    @Override
+    public void reorderFilteredStudentList(Comparator<? super Student> comparator) {
+        filteredStudents.sort(comparator);
     }
 
     @Override
