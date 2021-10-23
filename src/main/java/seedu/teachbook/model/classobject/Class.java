@@ -1,7 +1,5 @@
 package seedu.teachbook.model.classobject;
 
-import java.util.Comparator;
-
 import javafx.collections.ObservableList;
 import seedu.teachbook.model.student.Student;
 import seedu.teachbook.model.student.UniqueStudentList;
