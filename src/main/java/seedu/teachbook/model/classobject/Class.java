@@ -1,7 +1,6 @@
 package seedu.teachbook.model.classobject;
 
-import java.util.List;
-
+import javafx.collections.ObservableList;
 import seedu.teachbook.model.student.Student;
 import seedu.teachbook.model.student.UniqueStudentList;
 
@@ -15,13 +14,8 @@ public class Class {
         this.studentsOfThisClass = new UniqueStudentList();
     }
 
-    public UniqueStudentList getStudentsOfThisClass() {
-        return studentsOfThisClass;
-    }
-
-
-    public void setStudentsOfThisClass(List<Student> students) {
-        this.studentsOfThisClass.setStudents(students);
+    public ObservableList<Student> getStudentsOfThisClass() {
+        return studentsOfThisClass.asUnmodifiableObservableList();
     }
 
     public ClassName getClassName() {

@@ -159,7 +159,7 @@ public class TeachBook implements ReadOnlyTeachBook {
     }
 
     public ObservableList<Student> getStudentListOfClass(GeneralIndex classIndex) {
-        return classes.getClassAtIndex(classIndex).getStudentsOfThisClass().asUnmodifiableObservableList();
+        return classes.getClassAtIndex(classIndex).getStudentsOfThisClass();
     }
 
     public GeneralIndex getIndexOfClass(ClassNameDescriptor className) throws NoClassWithNameException {

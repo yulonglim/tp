@@ -3,6 +3,7 @@ package seedu.teachbook.logic.parser;
 import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_TAG;
@@ -12,10 +13,12 @@ import java.util.stream.Stream;
 
 import seedu.teachbook.logic.commands.AddCommand;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
+import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.student.Address;
 import seedu.teachbook.model.student.Email;
 import seedu.teachbook.model.student.Name;
 import seedu.teachbook.model.student.Phone;
+import seedu.teachbook.model.student.Remark;
 import seedu.teachbook.model.student.Student;
 import seedu.teachbook.model.tag.Tag;
 
@@ -31,7 +34,8 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                                                PREFIX_ADDRESS, PREFIX_TAG, PREFIX_GRADE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -42,9 +46,16 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Remark remark = new Remark(""); // add command does not allow adding remarks straight away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Grade grade;
+        if (argMultimap.getValue(PREFIX_GRADE).isEmpty()) {
+            grade = new Grade(AddCommand.NOT_GRADED);
+        } else {
+            grade = ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get());
+        }
 
-        Student student = new Student(name, phone, email, address, tagList);
+        Student student = new Student(name, phone, email, address, remark, tagList, grade);
 
         return new AddCommand(student);
     }

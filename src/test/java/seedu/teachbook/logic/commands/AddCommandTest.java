@@ -23,6 +23,7 @@ import seedu.teachbook.model.ReadOnlyUserPrefs;
 import seedu.teachbook.model.TeachBook;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
+import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.student.Student;
 import seedu.teachbook.testutil.StudentBuilder;
 
@@ -182,6 +183,21 @@ public class AddCommandTest {
         }
 
         @Override
+        public ArrayList<Grade> getGradeList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setGradeList(ArrayList<Grade> grades) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isValidGrade(Grade grade) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateCurrentlySelectedClass(GeneralIndex newClassIndex) {
             throw new AssertionError("This method should not be called.");
         }
@@ -232,7 +248,7 @@ public class AddCommandTest {
         @Override
         public boolean hasStudent(Student student) {
             requireNonNull(student);
-            return this.student.isSamePerson(student);
+            return this.student.isSameStudent(student);
         }
     }
 
@@ -245,7 +261,7 @@ public class AddCommandTest {
         @Override
         public boolean hasStudent(Student student) {
             requireNonNull(student);
-            return personsAdded.stream().anyMatch(student::isSamePerson);
+            return personsAdded.stream().anyMatch(student::isSameStudent);
         }
 
         @Override

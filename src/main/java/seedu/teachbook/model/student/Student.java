@@ -8,11 +8,12 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.teachbook.model.classobject.Class;
+import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.tag.Tag;
 
 
 /**
- * Represents a Student in TeachBook.
+ * Represents a Student in the teachbook.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Student {
@@ -25,28 +26,28 @@ public class Student {
     // Optional fields
     private final Email email;
     private final Address address;
+    private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
+    private final Grade grade;
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.studentClass = null;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
+    public Student(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags, Grade grade) {
+        this(name, phone, null, email, address, remark, tags, grade);
     }
 
-    /**
-     * Every field must be present and not null.
-     */
-    public Student studentFromStorage(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        // TODO: add student to currently select class
-        // Current implementation: hardcoded
-        return new Student(name, phone, email, address, tags);
+    public Student(Name name, Phone phone, Class studentClass, Email email,
+                   Address address, Remark remark, Set<Tag> tags, Grade grade) {
+        requireAllNonNull(name, phone, email, address, tags, grade);
+        this.name = name;
+        this.phone = phone;
+        this.studentClass = studentClass;
+        this.email = email;
+        this.address = address;
+        this.remark = remark;
+        this.tags.addAll(tags);
+        this.grade = grade;
     }
 
     public Name getName() {
@@ -69,10 +70,17 @@ public class Student {
         return address;
     }
 
+    public Remark getRemark() {
+        return remark;
+    }
+
+    public Grade getGrade() {
+        return grade;
+    }
+
     public void setStudentClass(Class studentClass) {
         this.studentClass = studentClass;
     }
-
 
 
     /**
@@ -83,29 +91,24 @@ public class Student {
         return Collections.unmodifiableSet(tags);
     }
 
-    // TODO: should a student be uniquely identified by his/her class and name?
-    // Current implementation: a student is uniquely identified by his/her name only
-    // (although two students are from different classes, they cannot have the same name)
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both students have the same name and are from the same class.
+     * This defines a weaker notion of equality between two students.
      */
-    public boolean isSamePerson(Student otherStudent) {
-//        if (otherStudent == this) {
-//            return true;
-//        }
-//
-//        return otherStudent != null
-//                && otherStudent.getName().equals(getName());
-        if (otherStudent != null) {
-            return this.equals(otherStudent);
+    public boolean isSameStudent(Student otherStudent) {
+        if (otherStudent == this) {
+            return true;
         }
-        return false;
+
+        // TODO: should a student be uniquely identified by his/her class and name?
+        return otherStudent != null
+                && otherStudent.getName().equals(getName())
+                && otherStudent.getStudentClass().equals(getStudentClass());
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both students have the same identity and data fields.
+     * This defines a stronger notion of equality between two students.
      */
     @Override
     public boolean equals(Object other) {
@@ -123,6 +126,7 @@ public class Student {
                 && otherStudent.getStudentClass().equals(getStudentClass())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getAddress().equals(getAddress())
+                && otherStudent.getRemark().equals(getRemark())
                 && otherStudent.getTags().equals(getTags());
     }
 
@@ -140,10 +144,14 @@ public class Student {
                 .append(getPhone())
                 .append("; Class: ")
                 .append(getStudentClass())
-                .append("; Email: ")
+                .append("; Email: ") // TODO: when email, address, or remark are empty, follow tags
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Remark: ")
+                .append(getRemark())
+                .append("; Grade: ")
+                .append(getGrade());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

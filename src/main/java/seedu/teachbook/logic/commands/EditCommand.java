@@ -1,6 +1,8 @@
 package seedu.teachbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.teachbook.logic.commands.AddCommand.GRADE_NOT_SET;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_NAME;
@@ -19,10 +21,13 @@ import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.commons.util.CollectionUtil;
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
+import seedu.teachbook.model.classobject.Class;
+import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.student.Address;
 import seedu.teachbook.model.student.Email;
 import seedu.teachbook.model.student.Name;
 import seedu.teachbook.model.student.Phone;
+import seedu.teachbook.model.student.Remark;
 import seedu.teachbook.model.student.Student;
 import seedu.teachbook.model.tag.Tag;
 
@@ -51,18 +56,16 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the class";
 
     private final Index index;
-    private final EditPersonDescriptor editStudentDescriptor;
+    private final EditStudentDescriptor editStudentDescriptor;
 
     /**
      * @param index of the student in the filtered student list to edit
      * @param editStudentDescriptor details to edit the student with
      */
-    public EditCommand(Index index, EditPersonDescriptor editStudentDescriptor) {
-        requireNonNull(index);
-        requireNonNull(editStudentDescriptor);
-
+    public EditCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
+        requireAllNonNull(index, editStudentDescriptor);
         this.index = index;
-        this.editStudentDescriptor = new EditPersonDescriptor(editStudentDescriptor);
+        this.editStudentDescriptor = new EditStudentDescriptor(editStudentDescriptor);
     }
 
     @Override
@@ -77,10 +80,17 @@ public class EditCommand extends Command {
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
 
-        if (!studentToEdit.isSamePerson(editedStudent) && model.hasStudent(editedStudent)) {
+        if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
+        if (model.getGradeList().size() == 0 && !editedStudent.getGrade().value.equals(AddCommand.NOT_GRADED)) {
+            throw new CommandException(GRADE_NOT_SET);
+        }
+
+        if (!model.isValidGrade(editedStudent.getGrade())) {
+            throw new CommandException(AddCommand.INVALID_GRADE);
+        }
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         model.commitAddressBook();
@@ -89,19 +99,22 @@ public class EditCommand extends Command {
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * edited with {@code editStudentDescriptor}.
      */
-    private static Student createEditedStudent(Student studentToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Student createEditedStudent(Student studentToEdit, EditStudentDescriptor editStudentDescriptor) {
         assert studentToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(studentToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(studentToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(studentToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(studentToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(studentToEdit.getTags());
-        Student editedStudent = new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
-        editedStudent.setStudentClass(studentToEdit.getStudentClass());
-        return editedStudent;
+        Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
+        Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
+        Class updatedClass = studentToEdit.getStudentClass(); // edit command does not allow editing class
+        Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
+        Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
+        Remark updatedRemark = studentToEdit.getRemark(); // edit command does not allow editing remarks
+        Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
+        Grade updatedGrade = editStudentDescriptor.getGrade().orElse(studentToEdit.getGrade());
+
+        return new Student(updatedName, updatedPhone, updatedClass,
+                updatedEmail, updatedAddress, updatedRemark, updatedTags, updatedGrade);
     }
 
     @Override
@@ -126,32 +139,34 @@ public class EditCommand extends Command {
      * Stores the details to edit the student with. Each non-empty field value will replace the
      * corresponding field value of the student.
      */
-    public static class EditPersonDescriptor {
+    public static class EditStudentDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Grade grade;
 
-        public EditPersonDescriptor() {}
+        public EditStudentDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditStudentDescriptor(EditStudentDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setGrade(toCopy.grade);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, grade);
         }
 
         public void setName(Name name) {
@@ -186,6 +201,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public void setGrade(Grade grade) {
+            this.grade = grade;
+        }
+
+        public Optional<Grade> getGrade() {
+            return Optional.ofNullable(grade);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -211,12 +234,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditStudentDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditStudentDescriptor e = (EditStudentDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
