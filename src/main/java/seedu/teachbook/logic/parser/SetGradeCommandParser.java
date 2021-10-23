@@ -2,7 +2,9 @@ package seedu.teachbook.logic.parser;
 
 import seedu.teachbook.logic.commands.SetGradeCommand;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
+import seedu.teachbook.model.gradeObject.Grade;
 
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -16,8 +18,11 @@ public class SetGradeCommandParser implements Parser<SetGradeCommand>{
         if(!arePrefixesPresent(argMultimap, PREFIX_GRADE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetGradeCommand.MESSAGE_USAGE));
         }
-        String grades = ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get());
-        String[] gradeList = grades.split(">");
+        ArrayList<Grade> gradeList = new ArrayList<>();
+        String[] stringGradeList = (argMultimap.getValue(PREFIX_GRADE).get()).split(">");
+        for(String grade : stringGradeList) {
+            gradeList.add(ParserUtil.parseGrade(grade));
+        }
         return new SetGradeCommand(gradeList);
     }
 

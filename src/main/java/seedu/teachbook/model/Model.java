@@ -116,7 +116,7 @@ public interface Model {
 
     ArrayList<Grade> getGradeList();
 
-    void setGradeList(String[] grades);
+    void setGradeList(ArrayList<Grade> grades);
 
     void updateCurrentlySelectedClass(GeneralIndex newClassIndex);
 

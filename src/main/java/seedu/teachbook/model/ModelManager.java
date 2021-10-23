@@ -218,10 +218,8 @@ public class ModelManager implements Model {
         return gradeList;
     }
 
-    public void setGradeList(String[] grades) {
-        for (String grade : grades) {
-            gradeList.add(new Grade(grade));
-        }
+    public void setGradeList(ArrayList<Grade> grades) {
+        gradeList = grades;
     }
 
     @Override

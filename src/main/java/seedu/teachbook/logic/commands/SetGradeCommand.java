@@ -2,15 +2,17 @@ package seedu.teachbook.logic.commands;
 
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
+import seedu.teachbook.model.gradeObject.Grade;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_GRADE;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class SetGradeCommand extends Command{
 
-    public final String[] grades;
+    public final ArrayList<Grade> grades;
     public static final String COMMAND_WORD = "setGrade";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets a grading system "
@@ -25,15 +27,15 @@ public class SetGradeCommand extends Command{
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public SetGradeCommand(String[] grades) {
+    public SetGradeCommand(ArrayList<Grade> grades) {
         requireNonNull(grades);
         this.grades = grades;
     }
 
     public String gradeToString() {
         StringBuilder result = new StringBuilder();
-        for(String grade : grades) {
-            result.append(grade).append(" ");
+        for(Grade grade : grades) {
+            result.append(grade.toString()).append(" ");
         }
         return result.toString();
     }
@@ -47,11 +49,11 @@ public class SetGradeCommand extends Command{
         model.setGradeList(grades);
         return new CommandResult(String.format(MESSAGE_SUCCESS, gradeToString()));
     }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof seedu.teachbook.logic.commands.SetGradeCommand // instanceof handles nulls
-                && Arrays.equals(grades, ((SetGradeCommand) other).grades));
-    }
+//
+//    @Override
+//    public boolean equals(Object other) {
+//        return other == this // short circuit if same object
+//                || (other instanceof seedu.teachbook.logic.commands.SetGradeCommand // instanceof handles nulls
+//                && Arrays.equals(grades, ((SetGradeCommand) other).grades));
+//    }
 }
