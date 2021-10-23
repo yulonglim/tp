@@ -127,6 +127,11 @@ public class ParserUtil {
         return new Tag(trimmedTag);
     }
 
+    public static String parseGrade(String grade) throws ParseException {
+        requireNonNull(grade);
+        return grade.trim();
+    }
+
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
@@ -138,4 +143,6 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+
 }
