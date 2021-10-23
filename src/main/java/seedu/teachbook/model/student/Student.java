@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.teachbook.model.classobject.Class;
-import seedu.teachbook.model.gradeObject.Grade;
+import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.tag.Tag;
 
 
@@ -46,7 +46,8 @@ public class Student {
     /**
      * Every field must be present and not null.
      */
-    public Student studentFromStorage(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Grade grade) {
+    public Student studentFromStorage(Name name, Phone phone, Email email,
+                                      Address address, Set<Tag> tags, Grade grade) {
         // TODO: add student to currently select class
         // Current implementation: hardcoded
         return new Student(name, phone, email, address, tags, grade);

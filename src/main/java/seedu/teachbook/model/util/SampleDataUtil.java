@@ -8,7 +8,7 @@ import seedu.teachbook.model.ReadOnlyTeachBook;
 import seedu.teachbook.model.TeachBook;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
-import seedu.teachbook.model.gradeObject.Grade;
+import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.student.Address;
 import seedu.teachbook.model.student.Email;
 import seedu.teachbook.model.student.Name;

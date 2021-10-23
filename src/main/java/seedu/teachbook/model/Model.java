@@ -9,11 +9,8 @@ import seedu.teachbook.commons.core.GuiSettings;
 import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
-
-//import seedu.teachbook.model.classobject.exceptions.ClassNameWithNameException;
-import seedu.teachbook.model.gradeObject.Grade;
-
 import seedu.teachbook.model.classobject.exceptions.NoClassWithNameException;
+import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.student.Student;
 
 /**

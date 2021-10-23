@@ -20,15 +20,13 @@ import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.commons.util.CollectionUtil;
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
-import seedu.teachbook.model.gradeObject.Grade;
+import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.student.Address;
 import seedu.teachbook.model.student.Email;
 import seedu.teachbook.model.student.Name;
 import seedu.teachbook.model.student.Phone;
 import seedu.teachbook.model.student.Student;
 import seedu.teachbook.model.tag.Tag;
-
-import javax.swing.text.html.Option;
 
 /**
  * Edits the details of an existing student in the teachbook.
@@ -110,7 +108,8 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(studentToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(studentToEdit.getTags());
         Grade updatedGrade = editPersonDescriptor.getGrade().orElse(studentToEdit.getGrade());
-        Student editedStudent = new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedGrade);
+        Student editedStudent = new Student(updatedName, updatedPhone, updatedEmail,
+                                            updatedAddress, updatedTags, updatedGrade);
         editedStudent.setStudentClass(studentToEdit.getStudentClass());
         return editedStudent;
     }

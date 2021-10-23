@@ -1,4 +1,4 @@
-package seedu.teachbook.model.gradeObject;
+package seedu.teachbook.model.gradeobject;
 
 public class Grade {
     public final String value;
