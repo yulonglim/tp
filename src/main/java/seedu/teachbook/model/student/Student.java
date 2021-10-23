@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.teachbook.model.classobject.Class;
+import seedu.teachbook.model.gradeObject.Grade;
 import seedu.teachbook.model.tag.Tag;
 
 
@@ -25,28 +26,30 @@ public class Student {
     // Optional fields
     private final Email email;
     private final Address address;
+    private final Grade grade;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Grade grade) {
+        requireAllNonNull(name, phone, email, address, tags, grade);
         this.name = name;
         this.phone = phone;
         this.studentClass = null;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.grade = grade;
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Student studentFromStorage(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Student studentFromStorage(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Grade grade) {
         // TODO: add student to currently select class
         // Current implementation: hardcoded
-        return new Student(name, phone, email, address, tags);
+        return new Student(name, phone, email, address, tags, grade);
     }
 
     public Name getName() {
@@ -67,6 +70,10 @@ public class Student {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Grade getGrade() {
+        return grade;
     }
 
     public void setStudentClass(Class studentClass) {

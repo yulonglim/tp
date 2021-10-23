@@ -19,12 +19,15 @@ import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.commons.util.CollectionUtil;
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
+import seedu.teachbook.model.gradeObject.Grade;
 import seedu.teachbook.model.student.Address;
 import seedu.teachbook.model.student.Email;
 import seedu.teachbook.model.student.Name;
 import seedu.teachbook.model.student.Phone;
 import seedu.teachbook.model.student.Student;
 import seedu.teachbook.model.tag.Tag;
+
+import javax.swing.text.html.Option;
 
 /**
  * Edits the details of an existing student in the teachbook.
@@ -98,7 +101,8 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(studentToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(studentToEdit.getTags());
-        Student editedStudent = new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        Grade updatedGrade = editPersonDescriptor.getGrade().orElse(studentToEdit.getGrade());
+        Student editedStudent = new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedGrade);
         editedStudent.setStudentClass(studentToEdit.getStudentClass());
         return editedStudent;
     }
@@ -131,6 +135,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Grade grade;
 
         public EditPersonDescriptor() {}
 
@@ -144,6 +149,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setGrade(toCopy.grade);
         }
 
         /**
@@ -183,6 +189,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setGrade(Grade grade) {
+            this.grade = grade;
+        }
+
+        public Optional<Grade> getGrade() {
+            return Optional.ofNullable(grade);
         }
 
         /**

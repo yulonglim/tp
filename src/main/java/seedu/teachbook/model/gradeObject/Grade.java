@@ -1,13 +1,13 @@
 package seedu.teachbook.model.gradeObject;
 
 public class Grade {
-    private final String grade;
+    public final String value;
     public Grade(String grade) {
-        this.grade = grade;
+        this.value = grade;
     }
 
     @Override
     public String toString() {
-        return grade;
+        return value;
     }
 }
