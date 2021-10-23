@@ -40,7 +40,7 @@ class JsonAdaptedClass {
      */
     public JsonAdaptedClass(Class source) {
         className = source.getClassName().nameOfClass;
-        classList.addAll(source.getClassListSet().stream()
+        classList.addAll(source.getStudentsOfThisClass().stream()
                 .map(JsonAdaptedStudent::new)
                 .collect(Collectors.toList()));
     }
