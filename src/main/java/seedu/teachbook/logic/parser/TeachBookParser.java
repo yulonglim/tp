@@ -6,18 +6,7 @@ import static seedu.teachbook.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.teachbook.logic.commands.AddClassCommand;
-import seedu.teachbook.logic.commands.AddCommand;
-import seedu.teachbook.logic.commands.ClearCommand;
-import seedu.teachbook.logic.commands.Command;
-import seedu.teachbook.logic.commands.DeleteClassCommand;
-import seedu.teachbook.logic.commands.DeleteCommand;
-import seedu.teachbook.logic.commands.EditCommand;
-import seedu.teachbook.logic.commands.ExitCommand;
-import seedu.teachbook.logic.commands.FindCommand;
-import seedu.teachbook.logic.commands.HelpCommand;
-import seedu.teachbook.logic.commands.ListCommand;
-import seedu.teachbook.logic.commands.SelectClassCommand;
+import seedu.teachbook.logic.commands.*;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
 
 /**
@@ -46,6 +35,8 @@ public class TeachBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
+        case SetGradeCommand.COMMAND_WORD:
+            return new SetGradeCommandParser().parse(arguments);
         case SelectClassCommand.COMMAND_WORD:
             return new SelectClassCommandParser().parse(arguments);
 

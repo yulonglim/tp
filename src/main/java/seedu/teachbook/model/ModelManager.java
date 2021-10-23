@@ -7,6 +7,7 @@ import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_NO_CLASS;
 import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -19,6 +20,7 @@ import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.classobject.exceptions.ClassNameWithNameException;
+import seedu.teachbook.model.gradeObject.Grade;
 import seedu.teachbook.model.student.Student;
 
 /**
@@ -31,7 +33,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private FilteredList<Student> filteredStudents;
     private GeneralIndex currentlySelectedClassIndex;
-
+    private ArrayList<Grade> gradeList = new ArrayList<>();
     /**
      * Initializes a ModelManager with the given teachBook and userPrefs.
      */
@@ -210,6 +212,16 @@ public class ModelManager implements Model {
             filteredStudents = new FilteredList<>(teachBook.getStudentListOfClass(currentlySelectedClassIndex));
         }
         updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    public ArrayList<Grade> getGradeList() {
+        return gradeList;
+    }
+
+    public void setGradeList(String[] grades) {
+        for (String grade : grades) {
+            gradeList.add(new Grade(grade));
+        }
     }
 
     @Override
