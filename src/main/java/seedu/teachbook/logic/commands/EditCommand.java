@@ -110,7 +110,7 @@ public class EditCommand extends Command {
         Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
         Remark updatedRemark = studentToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
-        Grade updatedGrade = editPersonDescriptor.getGrade().orElse(studentToEdit.getGrade());
+        Grade updatedGrade = editStudentDescriptor.getGrade().orElse(studentToEdit.getGrade());
 
         return new Student(updatedName, updatedPhone, updatedClass,
                 updatedEmail, updatedAddress, updatedRemark, updatedTags, updatedGrade);
