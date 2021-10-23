@@ -18,6 +18,7 @@ import seedu.teachbook.model.student.Address;
 import seedu.teachbook.model.student.Email;
 import seedu.teachbook.model.student.Name;
 import seedu.teachbook.model.student.Phone;
+import seedu.teachbook.model.student.Remark;
 import seedu.teachbook.model.student.Student;
 import seedu.teachbook.model.tag.Tag;
 
@@ -25,6 +26,7 @@ import seedu.teachbook.model.tag.Tag;
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser implements Parser<AddCommand> {
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
@@ -44,6 +46,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Remark remark = new Remark(""); // add command does not allow adding remarks straight away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Grade grade;
         if (argMultimap.getValue(PREFIX_GRADE).isEmpty()) {
@@ -52,7 +55,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             grade = ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get());
         }
 
-        Student student = new Student(name, phone, email, address, tagList, grade);
+        Student student = new Student(name, phone, email, address, remark, tagList, grade);
 
         return new AddCommand(student);
     }

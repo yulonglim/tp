@@ -40,7 +40,7 @@ class JsonAdaptedClass {
      */
     public JsonAdaptedClass(Class source) {
         className = source.getClassName().nameOfClass;
-        classList.addAll(source.getClassListSet().stream()
+        classList.addAll(source.getStudentsOfThisClass().stream()
                 .map(JsonAdaptedStudent::new)
                 .collect(Collectors.toList()));
     }
@@ -60,7 +60,6 @@ class JsonAdaptedClass {
         }
         final ClassName modelClassName = new ClassName(className);
 
-//        final List<Student> studentList = new ArrayList<>();
         Class modelClass = new Class(modelClassName);
         for (JsonAdaptedStudent student : classList) {
             Student toAdd = student.toModelType();
@@ -70,7 +69,7 @@ class JsonAdaptedClass {
             }
             modelClass.addStudent(toAdd);
         }
-//        modelClass.setStudentsOfThisClass(studentList);
+
         return modelClass;
     }
 

@@ -39,6 +39,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label remark;
+    @FXML
     private FlowPane tags;
     @FXML
     private Label grade;
@@ -54,6 +56,15 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(student.getPhone().value);
         address.setText(student.getAddress().value);
         email.setText(student.getEmail().value);
+
+        String remarkContent = student.getRemark().value;
+        if (remarkContent.equals("")) {
+            remark.setMinHeight(0.0);
+            remark.setPrefHeight(0.0);
+        } else {
+            remark.setText(remarkContent);
+        }
+
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
