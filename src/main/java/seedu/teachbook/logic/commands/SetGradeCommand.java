@@ -16,7 +16,7 @@ public class SetGradeCommand extends Command{
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets a grading system "
             + "Parameters: "
-            + PREFIX_GRADE + "Grade "
+            + PREFIX_GRADE + "Grade1>Grade2>Grade3... "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_GRADE + "A>B>C>D>E";
 
