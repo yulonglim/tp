@@ -1,6 +1,7 @@
 package seedu.teachbook.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -9,6 +10,7 @@ import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.classobject.exceptions.NoClassWithNameException;
+import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.student.Student;
 
 /**
@@ -113,6 +115,12 @@ public interface Model {
     void updateFilteredStudentList(Predicate<Student> predicate);
 
     GeneralIndex getIndexOfClass(ClassNameDescriptor className) throws NoClassWithNameException;
+
+    ArrayList<Grade> getGradeList();
+
+    void setGradeList(ArrayList<Grade> grades);
+
+    boolean isValidGrade(Grade grade);
 
     void updateCurrentlySelectedClass(GeneralIndex newClassIndex);
 

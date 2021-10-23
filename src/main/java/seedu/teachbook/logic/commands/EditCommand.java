@@ -2,6 +2,7 @@ package seedu.teachbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.teachbook.logic.commands.AddCommand.GRADE_NOT_SET;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_NAME;
@@ -21,6 +22,7 @@ import seedu.teachbook.commons.util.CollectionUtil;
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
 import seedu.teachbook.model.classobject.Class;
+import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.student.Address;
 import seedu.teachbook.model.student.Email;
 import seedu.teachbook.model.student.Name;
@@ -82,6 +84,13 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
+        if (model.getGradeList().size() == 0 && !editedStudent.getGrade().value.equals(AddCommand.NOT_GRADED)) {
+            throw new CommandException(GRADE_NOT_SET);
+        }
+
+        if (!model.isValidGrade(editedStudent.getGrade())) {
+            throw new CommandException(AddCommand.INVALID_GRADE);
+        }
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
@@ -101,9 +110,10 @@ public class EditCommand extends Command {
         Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
         Remark updatedRemark = studentToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
+        Grade updatedGrade = editPersonDescriptor.getGrade().orElse(studentToEdit.getGrade());
 
         return new Student(updatedName, updatedPhone, updatedClass,
-                updatedEmail, updatedAddress, updatedRemark, updatedTags);
+                updatedEmail, updatedAddress, updatedRemark, updatedTags, updatedGrade);
     }
 
     @Override
@@ -134,6 +144,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Grade grade;
 
         public EditStudentDescriptor() {}
 
@@ -147,13 +158,14 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setGrade(toCopy.grade);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, grade);
         }
 
         public void setName(Name name) {
@@ -186,6 +198,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setGrade(Grade grade) {
+            this.grade = grade;
+        }
+
+        public Optional<Grade> getGrade() {
+            return Optional.ofNullable(grade);
         }
 
         /**

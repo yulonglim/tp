@@ -11,6 +11,7 @@ import seedu.teachbook.commons.util.StringUtil;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
 import seedu.teachbook.model.classobject.ClassName;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
+import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.student.Address;
 import seedu.teachbook.model.student.Email;
 import seedu.teachbook.model.student.Name;
@@ -127,6 +128,14 @@ public class ParserUtil {
         return new Tag(trimmedTag);
     }
 
+    public static Grade parseGrade(String grade) throws ParseException {
+        if (grade == null) {
+            grade = "";
+        }
+        String trimmedGrade = grade.trim();
+        return new Grade(trimmedGrade);
+    }
+
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
@@ -138,4 +147,6 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+
 }

@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.teachbook.model.classobject.Class;
+import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.tag.Tag;
 
 
@@ -27,17 +28,18 @@ public class Student {
     private final Address address;
     private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
+    private final Grade grade;
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
-        this(name, phone, null, email, address, remark, tags);
+    public Student(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags, Grade grade) {
+        this(name, phone, null, email, address, remark, tags, grade);
     }
 
     public Student(Name name, Phone phone, Class studentClass, Email email,
-                   Address address, Remark remark, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+                   Address address, Remark remark, Set<Tag> tags, Grade grade) {
+        requireAllNonNull(name, phone, email, address, tags, grade);
         this.name = name;
         this.phone = phone;
         this.studentClass = studentClass;
@@ -45,6 +47,7 @@ public class Student {
         this.address = address;
         this.remark = remark;
         this.tags.addAll(tags);
+        this.grade = grade;
     }
 
     public Name getName() {
@@ -69,6 +72,10 @@ public class Student {
 
     public Remark getRemark() {
         return remark;
+    }
+
+    public Grade getGrade() {
+        return grade;
     }
 
     public void setStudentClass(Class studentClass) {
@@ -142,7 +149,9 @@ public class Student {
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Remark: ")
-                .append(getRemark());
+                .append(getRemark())
+                .append("; Grade: ")
+                .append(getGrade());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

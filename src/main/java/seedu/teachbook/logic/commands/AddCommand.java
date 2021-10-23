@@ -39,7 +39,9 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the class";
     public static final String MESSAGE_NO_CLASS = "Add the first class before adding any student!";
     public static final String MESSAGE_LIST_ALL = "Select a class before adding any student!";
-
+    public static final String GRADE_NOT_SET = "Set grade before adding/editing any grades.";
+    public static final String NOT_GRADED = "Not graded";
+    public static final String INVALID_GRADE = "Invalid grade";
     private final Student toAdd;
 
     /**
@@ -65,6 +67,14 @@ public class AddCommand extends Command {
         model.setClassForStudent(toAdd);
         if (model.hasStudent(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
+        }
+
+        if (model.getGradeList().size() == 0 && !toAdd.getGrade().value.equals(AddCommand.NOT_GRADED)) {
+            throw new CommandException(GRADE_NOT_SET);
+        }
+
+        if (!model.isValidGrade(toAdd.getGrade())) {
+            throw new CommandException(AddCommand.INVALID_GRADE);
         }
 
         model.addStudent(toAdd);
