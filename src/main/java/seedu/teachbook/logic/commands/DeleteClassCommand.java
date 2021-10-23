@@ -10,7 +10,7 @@ import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
-import seedu.teachbook.model.classobject.exceptions.ClassNameWithNameException;
+import seedu.teachbook.model.classobject.exceptions.NoClassWithNameException;
 
 /**
  * Deletes a class identified using its name.
@@ -40,7 +40,7 @@ public class DeleteClassCommand extends Command {
 
         try {
             classIndex = model.getIndexOfClass(className);
-        } catch (ClassNameWithNameException exception) {
+        } catch (NoClassWithNameException exception) {
             throw new CommandException(Messages.MESSAGE_CLASS_DOES_NOT_EXIST);
         }
 

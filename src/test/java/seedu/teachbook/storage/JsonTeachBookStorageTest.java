@@ -3,10 +3,10 @@ package seedu.teachbook.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.teachbook.testutil.Assert.assertThrows;
-import static seedu.teachbook.testutil.TypicalPersons.ALICE;
-import static seedu.teachbook.testutil.TypicalPersons.HOON;
-import static seedu.teachbook.testutil.TypicalPersons.IDA;
-import static seedu.teachbook.testutil.TypicalPersons.getTypicalTeachBook;
+import static seedu.teachbook.testutil.TypicalStudents.ALICE;
+import static seedu.teachbook.testutil.TypicalStudents.HOON;
+import static seedu.teachbook.testutil.TypicalStudents.IDA;
+import static seedu.teachbook.testutil.TypicalStudents.getTypicalTeachBook;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -15,6 +15,7 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.commons.exceptions.DataConversionException;
 import seedu.teachbook.model.ReadOnlyTeachBook;
 import seedu.teachbook.model.TeachBook;
@@ -72,14 +73,14 @@ public class JsonTeachBookStorageTest {
         assertEquals(original, new TeachBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addStudent(HOON);
-        original.removeStudent(ALICE);
+        original.addStudent(GeneralIndex.fromOneBased(1), HOON);
+        original.removeStudent(GeneralIndex.fromOneBased(1), ALICE);
         jsonTeachBookStorage.saveTeachBook(original, filePath);
         readBack = jsonTeachBookStorage.readTeachBook(filePath).get();
         assertEquals(original, new TeachBook(readBack));
 
         // Save and read without specifying file path
-        original.addStudent(IDA);
+        original.addStudent(GeneralIndex.fromOneBased(1), IDA);
         jsonTeachBookStorage.saveTeachBook(original); // file path not specified
         readBack = jsonTeachBookStorage.readTeachBook().get(); // file path not specified
         assertEquals(original, new TeachBook(readBack));

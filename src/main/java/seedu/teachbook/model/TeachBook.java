@@ -1,6 +1,8 @@
 package seedu.teachbook.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_LIST_ALL;
+import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
@@ -9,7 +11,7 @@ import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.classobject.UniqueClassList;
-import seedu.teachbook.model.classobject.exceptions.ClassNameWithNameException;
+import seedu.teachbook.model.classobject.exceptions.NoClassWithNameException;
 import seedu.teachbook.model.student.Student;
 import seedu.teachbook.model.student.UniqueStudentList;
 
@@ -19,7 +21,7 @@ import seedu.teachbook.model.student.UniqueStudentList;
  */
 public class TeachBook implements ReadOnlyTeachBook {
 
-    private UniqueStudentList students;
+    private UniqueStudentList students; // different from AB3: this variable is for "list all" command only!
     private final UniqueClassList classes;
 
     /*
@@ -60,7 +62,6 @@ public class TeachBook implements ReadOnlyTeachBook {
     public void resetData(ReadOnlyTeachBook newData) {
         requireNonNull(newData);
         setClasses(newData.getClassList());
-//        setStudents(newData.getStudentList());
     }
 
     //// student-level operations
@@ -68,17 +69,23 @@ public class TeachBook implements ReadOnlyTeachBook {
     /**
      * Returns true if a student with the same identity as {@code student} exists in the teachbook book.
      */
-    public boolean hasStudent(Student student) {
-        requireNonNull(student);
-        return students.contains(student);
+    public boolean hasStudent(GeneralIndex classIndex, Student student) {
+        if (classIndex.equals(INDEX_LIST_ALL)) {
+            return students.contains(student);
+        } else {
+            assert getClassAtIndex(classIndex).equals(student.getStudentClass());
+        }
+        return student.getStudentClass().containsStudent(student);
     }
 
     /**
      * Adds a student to the teachbook book.
      * The student must not already exist in the teachbook book.
      */
-    public void addStudent(Student p) {
-        students.add(p);
+    public void addStudent(GeneralIndex classIndex, Student studentToAdd) {
+        requireAllNonNull(classIndex, studentToAdd);
+        assert getClassAtIndex(classIndex).equals(studentToAdd.getStudentClass());
+        studentToAdd.getStudentClass().addStudent(studentToAdd);
     }
 
     /**
@@ -87,21 +94,31 @@ public class TeachBook implements ReadOnlyTeachBook {
      * The student identity of {@code editedPerson} must not be the same as
      * another existing student in the teachbook book.
      */
-    public void setStudent(Student target, Student editedStudent) {
-        requireNonNull(editedStudent);
-        students.setStudent(target, editedStudent);
+    public void setStudent(GeneralIndex classIndex, Student target, Student editedStudent) {
+        requireAllNonNull(classIndex, target, editedStudent);
+        if (classIndex.equals(INDEX_LIST_ALL)) {
+            students.setStudent(target, editedStudent); // edit twice
+        } else {
+            assert getClassAtIndex(classIndex).equals(target.getStudentClass());
+        }
+        target.getStudentClass().setStudent(target, editedStudent);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the teachbook book.
      */
-    public void removeStudent(Student key) {
-        // students.remove(key); // used only for "all student list"
-        System.out.println("here:     " + key);
-        System.out.println("here:     " + key.getStudentClass());
-        Class c = key.getStudentClass();
-        c.removeStudent(key);
+    public void removeStudent(GeneralIndex classIndex, Student key) {
+        if (classIndex.equals(INDEX_LIST_ALL)) {
+            students.remove(key); // delete twice
+        } else {
+            assert getClassAtIndex(classIndex).equals(key.getStudentClass());
+        }
+        key.getStudentClass().removeStudent(key);
+    }
+
+    public void setClassForStudent(GeneralIndex classIndex, Student student) {
+        student.setStudentClass(getClassAtIndex(classIndex));
     }
 
     //// util methods
@@ -130,12 +147,13 @@ public class TeachBook implements ReadOnlyTeachBook {
         return classes.getClassAtIndex(classIndex).getStudentsOfThisClass().asUnmodifiableObservableList();
     }
 
-    public GeneralIndex getIndexOfClass(ClassNameDescriptor className) throws ClassNameWithNameException {
+    public GeneralIndex getIndexOfClass(ClassNameDescriptor className) throws NoClassWithNameException {
+        requireNonNull(className);
         return classes.locateClass(className);
     }
 
     public Class getClassAtIndex(GeneralIndex classIndex) {
-        return classes.getClassAtIndex(classIndex);
+        return classes.getClassAtIndex(classIndex); // TODO: get class or let unique class list do things?
     }
 
     @Override

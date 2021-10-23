@@ -50,7 +50,7 @@ public class Class {
         classListSet.remove(student);
     }
 
-    public boolean hasStudent(Student student) {
+    public boolean containsStudent(Student student) {
         return studentsOfThisClass.contains(student);
     }
 
@@ -61,6 +61,10 @@ public class Class {
 
         return otherClass != null
                 && otherClass.getClassName().equals(getClassName());
+    }
+
+    public int getClassSize() {
+        return this.studentsOfThisClass.size();
     }
 
     @Override

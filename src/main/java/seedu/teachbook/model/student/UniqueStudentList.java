@@ -67,12 +67,6 @@ public class UniqueStudentList implements Iterable<Student> {
         }
 
         internalList.set(index, editedStudent);
-
-//        try {
-//            throw new Exception(String.valueOf(internalList.size()));
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
     }
 
     /**
@@ -109,6 +103,11 @@ public class UniqueStudentList implements Iterable<Student> {
      */
     public ObservableList<Student> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    public int size() {
+        assert (internalList.size() >= 0);
+        return internalList.size();
     }
 
     @Override

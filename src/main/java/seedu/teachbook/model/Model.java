@@ -9,8 +9,12 @@ import seedu.teachbook.commons.core.GuiSettings;
 import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
+<<<<<<< HEAD
 import seedu.teachbook.model.classobject.exceptions.ClassNameWithNameException;
 import seedu.teachbook.model.gradeObject.Grade;
+=======
+import seedu.teachbook.model.classobject.exceptions.NoClassWithNameException;
+>>>>>>> 5c7a71f6f9f13e8a13d2dab1255c9f4584c5022b
 import seedu.teachbook.model.student.Student;
 
 /**
@@ -18,7 +22,7 @@ import seedu.teachbook.model.student.Student;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Student> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -100,6 +104,8 @@ public interface Model {
      */
     void setStudent(Student target, Student editedStudent);
 
+    void setClassForStudent(Student student);
+
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
 
@@ -112,7 +118,7 @@ public interface Model {
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
 
-    GeneralIndex getIndexOfClass(ClassNameDescriptor className) throws ClassNameWithNameException;
+    GeneralIndex getIndexOfClass(ClassNameDescriptor className) throws NoClassWithNameException;
 
     ArrayList<Grade> getGradeList();
 

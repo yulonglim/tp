@@ -1,14 +1,14 @@
 package seedu.teachbook.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static seedu.teachbook.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.teachbook.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.teachbook.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.teachbook.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.teachbook.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.teachbook.testutil.Assert.assertThrows;
-import static seedu.teachbook.testutil.TypicalPersons.AMY;
+import static seedu.teachbook.testutil.TypicalStudents.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -30,7 +30,7 @@ import seedu.teachbook.model.student.Student;
 import seedu.teachbook.storage.JsonTeachBookStorage;
 import seedu.teachbook.storage.JsonUserPrefsStorage;
 import seedu.teachbook.storage.StorageManager;
-import seedu.teachbook.testutil.PersonBuilder;
+import seedu.teachbook.testutil.StudentBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -59,7 +59,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -81,7 +81,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
-        Student expectedStudent = new PersonBuilder(AMY).withTags().build();
+        Student expectedStudent = new StudentBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addStudent(expectedStudent);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

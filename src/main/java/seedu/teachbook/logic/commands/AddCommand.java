@@ -1,6 +1,7 @@
 package seedu.teachbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_LIST_ALL;
 import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_NO_CLASS;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -35,8 +36,9 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the class";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the class";
     public static final String MESSAGE_NO_CLASS = "Add the first class before adding any student!";
+    public static final String MESSAGE_LIST_ALL = "Select a class before adding any student!";
 
     private final Student toAdd;
 
@@ -56,12 +58,18 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_NO_CLASS);
         }
 
+        if (model.getCurrentlySelectedClassIndex().equals(INDEX_LIST_ALL)) {
+            throw new CommandException(MESSAGE_LIST_ALL);
+        }
+
+        model.setClassForStudent(toAdd);
         if (model.hasStudent(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
         model.addStudent(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, false,
+                true, false);
     }
 
     @Override

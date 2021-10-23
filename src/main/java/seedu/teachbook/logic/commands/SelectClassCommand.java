@@ -7,7 +7,7 @@ import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
-import seedu.teachbook.model.classobject.exceptions.ClassNameWithNameException;
+import seedu.teachbook.model.classobject.exceptions.NoClassWithNameException;
 
 /**
  * Switches to another class identified using its name.
@@ -37,7 +37,7 @@ public class SelectClassCommand extends Command {
 
         try {
             newClassIndex = model.getIndexOfClass(newClassName);
-        } catch (ClassNameWithNameException exception) {
+        } catch (NoClassWithNameException exception) {
             throw new CommandException(Messages.MESSAGE_CLASS_DOES_NOT_EXIST);
         }
 

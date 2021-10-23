@@ -19,8 +19,12 @@ import seedu.teachbook.commons.core.LogsCenter;
 import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
+<<<<<<< HEAD
 import seedu.teachbook.model.classobject.exceptions.ClassNameWithNameException;
 import seedu.teachbook.model.gradeObject.Grade;
+=======
+import seedu.teachbook.model.classobject.exceptions.NoClassWithNameException;
+>>>>>>> 5c7a71f6f9f13e8a13d2dab1255c9f4584c5022b
 import seedu.teachbook.model.student.Student;
 
 /**
@@ -97,6 +101,7 @@ public class ModelManager implements Model {
     @Override
     public void setTeachBook(ReadOnlyTeachBook teachBook) {
         this.teachBook.resetData(teachBook);
+        this.filteredStudents = new FilteredList<>(FXCollections.observableArrayList());
     }
 
     @Override
@@ -112,7 +117,7 @@ public class ModelManager implements Model {
     @Override
     public boolean hasStudent(Student student) {
         requireNonNull(student);
-        return getCurrentlySelectedClass().hasStudent(student);
+        return teachBook.hasStudent(currentlySelectedClassIndex, student);
     }
 
     @Override
@@ -124,12 +129,14 @@ public class ModelManager implements Model {
     @Override
     public void addClass(Class aClass) {
         teachBook.addClass(aClass);
+
         updateCurrentlySelectedClass(GeneralIndex.fromOneBased(teachBook.getClassList().size()));
     }
 
     @Override
     public void deleteClass(Class target) {
         teachBook.removeClass(target);
+
         if (teachBook.getNumOfClasses() == 0) {
             updateCurrentlySelectedClass(INDEX_NO_CLASS);
         } else if (currentlySelectedClassIndex.getOneBased() > teachBook.getNumOfClasses()) {
@@ -143,32 +150,34 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteStudent(Student target) {
-        teachBook.removeStudent(target);
+        teachBook.removeStudent(currentlySelectedClassIndex, target);
     }
 
     @Override
     public void addStudent(Student student) {
-        // teachBook.addStudent(student);
-        Class currentlySelectedClass = this.getCurrentlySelectedClass();
-        student.setStudentClass(currentlySelectedClass);
-        currentlySelectedClass.addStudent(student);
-        teachBook.addStudent(student);
-        updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        assert(!currentlySelectedClassIndex.equals(INDEX_NO_CLASS));
+        assert(!currentlySelectedClassIndex.equals(INDEX_LIST_ALL));
+
+        teachBook.addStudent(currentlySelectedClassIndex, student);
+
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
     @Override
     public void setStudent(Student target, Student editedStudent) {
-        requireAllNonNull(target, editedStudent);
-        this.getCurrentlySelectedClass().setStudent(target, editedStudent);
-        teachBook.setStudent(target, editedStudent);
-        updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        teachBook.setStudent(currentlySelectedClassIndex, target, editedStudent);
     }
 
-    public Class getCurrentlySelectedClass() {
-        return teachBook.getClassAtIndex(currentlySelectedClassIndex);
+    @Override
+    public void setClassForStudent(Student student) {
+        requireNonNull(student);
+        assert(!currentlySelectedClassIndex.equals(INDEX_NO_CLASS));
+        assert(!currentlySelectedClassIndex.equals(INDEX_LIST_ALL));
+
+        teachBook.setClassForStudent(currentlySelectedClassIndex, student);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Student List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
@@ -191,14 +200,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public GeneralIndex getIndexOfClass(ClassNameDescriptor className) throws ClassNameWithNameException {
+    public GeneralIndex getIndexOfClass(ClassNameDescriptor className) throws NoClassWithNameException {
         return teachBook.getIndexOfClass(className);
     }
 
-    // call this method by passing in an index (use -1 when list all!)
-    // when "select class"/"list all"/... (when there is a need to change the "source")
     @Override
     public void updateCurrentlySelectedClass(GeneralIndex newClassIndex) {
+        requireNonNull(newClassIndex);
         currentlySelectedClassIndex = newClassIndex;
         updateSourceOfFilteredStudentList();
     }
@@ -211,7 +219,7 @@ public class ModelManager implements Model {
         } else {
             filteredStudents = new FilteredList<>(teachBook.getStudentListOfClass(currentlySelectedClassIndex));
         }
-        updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
     public ArrayList<Grade> getGradeList() {
