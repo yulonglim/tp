@@ -69,7 +69,7 @@ public class UnmarkCommand extends Command {
             model.setStudent(studentToUnmark, editedStudent);
         }
 
-        model.commitAddressBook();
+        model.commitTeachBook();
         return new CommandResult(String.format(MESSAGE_UNMARK_STUDENT_SUCCESS, studentsToUnmark), false,
                 false, true, false);
     }

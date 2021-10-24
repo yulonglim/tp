@@ -69,7 +69,7 @@ public class MarkCommand extends Command {
             model.setStudent(studentToMark, editedStudent);
         }
 
-        model.commitAddressBook();
+        model.commitTeachBook();
         return new CommandResult(String.format(MESSAGE_MARK_STUDENT_SUCCESS, studentsToMark), false,
                 false, true, false);
     }
