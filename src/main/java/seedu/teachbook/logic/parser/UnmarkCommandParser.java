@@ -19,8 +19,14 @@ public class UnmarkCommandParser implements Parser<UnmarkCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public UnmarkCommand parse(String args) throws ParseException {
+        String trimmedArgs = args.trim();
+
+        if (trimmedArgs.equals("all")) {
+            return new UnmarkCommand();
+        }
+
         try {
-            String[] rawIndices = args.trim().split(" ");
+            String[] rawIndices = trimmedArgs.split(" ");
             ArrayList<Index> indices = new ArrayList<>();
             for (String rawIndex : rawIndices) {
                 indices.add(ParserUtil.parseIndex(rawIndex));

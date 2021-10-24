@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import seedu.teachbook.commons.core.Messages;
@@ -29,9 +28,16 @@ public class UnmarkCommand extends Command {
     public static final String MESSAGE_UNMARK_STUDENT_SUCCESS = "Unmarked Student(s): %1$s";
 
     private final ArrayList<Index> targetIndices;
+    private final boolean isAll;
 
     public UnmarkCommand(ArrayList<Index> targetIndices) {
         this.targetIndices = targetIndices;
+        isAll = false;
+    }
+
+    public UnmarkCommand() {
+        targetIndices = new ArrayList<>();
+        isAll = true;
     }
 
     @Override
@@ -39,15 +45,18 @@ public class UnmarkCommand extends Command {
         requireNonNull(model);
         List<Student> lastShownList = model.getFilteredStudentList();
 
-        // Ensures all indices are valid before executing the command
-        for (Index targetIndex : targetIndices) {
-            if (targetIndex.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        if (isAll) {
+            for (int i = 0; i < lastShownList.size(); i++) {
+                targetIndices.add(Index.fromZeroBased(i));
+            }
+        } else {
+            // Ensures all indices are valid before executing the command
+            for (Index targetIndex : targetIndices) {
+                if (targetIndex.getZeroBased() >= lastShownList.size()) {
+                    throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+                }
             }
         }
-
-        // Sort first to ensure index order to be unmarked
-        targetIndices.sort(Comparator.comparingInt(Index::getZeroBased));
 
         List<Student> studentsToUnmark = new ArrayList<>();
         for (Index targetIndex : targetIndices) {

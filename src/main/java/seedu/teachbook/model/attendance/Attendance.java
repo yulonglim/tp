@@ -3,8 +3,6 @@ package seedu.teachbook.model.attendance;
 import java.time.LocalDate;
 import java.util.Objects;
 
-import seedu.teachbook.model.student.Phone;
-
 /**
  * Represents a Student's attendance in the teachbook.
  */
