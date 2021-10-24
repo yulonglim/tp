@@ -118,6 +118,8 @@ public class PrintCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof PrintCommand);
+                || (other instanceof PrintCommand // instanceof handles nulls
+                && columnList.equals(((PrintCommand) other).columnList));
     }
+
 }
