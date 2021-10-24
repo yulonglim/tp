@@ -95,7 +95,7 @@ public class ModelManager implements Model {
     @Override
     public void setTeachBook(ReadOnlyTeachBook teachBook) {
         this.teachBook.resetData(teachBook);
-        this.filteredStudents = new FilteredList<>(FXCollections.observableArrayList());
+        setNewEmptyFilteredList();
     }
 
     @Override
@@ -214,6 +214,10 @@ public class ModelManager implements Model {
             filteredStudents = new FilteredList<>(teachBook.getStudentListOfClass(currentlySelectedClassIndex));
         }
         updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+    }
+
+    private void setNewEmptyFilteredList() {
+        this.filteredStudents = new FilteredList<>(FXCollections.observableArrayList());
     }
 
     @Override
