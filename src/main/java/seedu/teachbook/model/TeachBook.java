@@ -193,6 +193,7 @@ public class TeachBook implements ReadOnlyTeachBook {
 
     public void reorderStudents(GeneralIndex classIndex, Comparator<? super Student> comparator) {
         if (classIndex.equals(INDEX_LIST_ALL)) {
+            // TODO: reorder students in each class when sort when list all
             students.sort(comparator);
         } else {
             getClassAtIndex(classIndex).reorderStudents(comparator);
