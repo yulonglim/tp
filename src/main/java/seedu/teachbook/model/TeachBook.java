@@ -63,6 +63,7 @@ public class TeachBook implements ReadOnlyTeachBook {
 
     public void resetGradingSystem() {
         this.gradingSystem = new GradingSystem();
+        students.resetGrade();
     }
 
     /**
