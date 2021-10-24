@@ -2,7 +2,8 @@ package seedu.teachbook.model.gradeobject;
 
 public class Grade {
 
-    public static final String MESSAGE_CONSTRAINTS = "Grades can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Grades can take any values but it should not contain \">\", and it should not be blank";
 
     /*
      * The first character of the grade must not be a whitespace,

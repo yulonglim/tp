@@ -157,6 +157,9 @@ public class ParserUtil {
 
     public static List<Grade> parseGrades(String grades) throws ParseException {
         requireNonNull(grades);
+        if (grades.endsWith(">")) {
+            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
+        }
         final List<Grade> gradeList = new ArrayList<>();
         String[] stringGradeList = grades.split(">");
         for (String grade : stringGradeList) {
