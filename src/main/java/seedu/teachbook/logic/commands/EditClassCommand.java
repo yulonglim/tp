@@ -1,13 +1,12 @@
 package seedu.teachbook.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_NAME;
+
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.teachbook.logic.parser.CliSyntax.*;
-import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_TAG;
 
 public class EditClassCommand extends Command {
     public static final String COMMAND_WORD = "editClass";
@@ -21,10 +20,14 @@ public class EditClassCommand extends Command {
     public static final String MESSAGE_DUPLICATE_CLASS = "Class already exists in teachbook!";
     public static final String EMPTY_CLASSNAME = "Class name cannot be an empty string";
 
-    public String newClassName;
+    private String newClassName;
 
     public EditClassCommand(String newClassName) {
         this.newClassName = newClassName;
+    }
+
+    public String getNewClassName() {
+        return newClassName;
     }
 
     @Override

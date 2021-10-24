@@ -1,14 +1,13 @@
 package seedu.teachbook.logic.parser;
 
-import seedu.teachbook.logic.commands.AddCommand;
-import seedu.teachbook.logic.commands.EditClassCommand;
-import seedu.teachbook.logic.parser.exceptions.ParseException;
+import static java.util.Objects.requireNonNull;
+import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.stream.Stream;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.teachbook.logic.parser.CliSyntax.*;
+import seedu.teachbook.logic.commands.EditClassCommand;
+import seedu.teachbook.logic.parser.exceptions.ParseException;
 
 public class EditClassCommandParser implements Parser<EditClassCommand> {
     @Override
