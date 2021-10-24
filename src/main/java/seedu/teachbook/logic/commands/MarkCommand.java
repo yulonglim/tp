@@ -27,10 +27,10 @@ public class MarkCommand extends Command {
 
     public static final String MESSAGE_MARK_STUDENT_SUCCESS = "Marked Student(s): %1$s";
 
-    private final ArrayList<Index> targetIndices;
+    private final List<Index> targetIndices;
     private final boolean isAll;
 
-    public MarkCommand(ArrayList<Index> targetIndices) {
+    public MarkCommand(List<Index> targetIndices) {
         this.targetIndices = targetIndices;
         isAll = false;
     }
