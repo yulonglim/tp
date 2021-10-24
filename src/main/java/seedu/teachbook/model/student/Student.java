@@ -87,6 +87,10 @@ public class Student {
         this.grade = new Grade(NOT_GRADED);
     }
 
+    public void setGrade(Grade grade) {
+        this.grade = grade;
+    }
+
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
