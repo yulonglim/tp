@@ -7,10 +7,10 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.teachbook.model.attendance.Attendance;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.tag.Tag;
-
 
 /**
  * Represents a Student in the teachbook.
@@ -28,17 +28,19 @@ public class Student {
     private final Address address;
     private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
+    private Attendance attendance;
     private final Grade grade;
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags, Grade grade) {
-        this(name, phone, null, email, address, remark, tags, grade);
+    public Student(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags,
+                   Attendance attendance, Grade grade) {
+        this(name, phone, null, email, address, remark, tags, attendance, grade);
     }
 
     public Student(Name name, Phone phone, Class studentClass, Email email,
-                   Address address, Remark remark, Set<Tag> tags, Grade grade) {
+                   Address address, Remark remark, Set<Tag> tags, Attendance attendance, Grade grade) {
         requireAllNonNull(name, phone, email, address, tags, grade);
         this.name = name;
         this.phone = phone;
@@ -47,6 +49,7 @@ public class Student {
         this.address = address;
         this.remark = remark;
         this.tags.addAll(tags);
+        this.attendance = attendance;
         this.grade = grade;
     }
 
@@ -74,21 +77,24 @@ public class Student {
         return remark;
     }
 
-    public Grade getGrade() {
-        return grade;
-    }
-
-    public void setStudentClass(Class studentClass) {
-        this.studentClass = studentClass;
-    }
-
-
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Attendance getAttendance() {
+        return attendance;
+    }
+
+    public Grade getGrade() {
+        return grade;
+    }
+
+    public void setStudentClass(Class studentClass) {
+        this.studentClass = studentClass;
     }
 
     /**
@@ -127,13 +133,15 @@ public class Student {
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getAddress().equals(getAddress())
                 && otherStudent.getRemark().equals(getRemark())
-                && otherStudent.getTags().equals(getTags());
+                && otherStudent.getTags().equals(getTags())
+                && otherStudent.getAttendance().equals(getAttendance())
+                && otherStudent.getGrade().equals(getGrade());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, studentClass, email, address, tags);
+        return Objects.hash(name, phone, studentClass, email, address, remark, tags, attendance, grade);
     }
 
     @Override
@@ -150,6 +158,8 @@ public class Student {
                 .append(getAddress())
                 .append("; Remark: ")
                 .append(getRemark())
+                .append("; Attendance: ")
+                .append(getAttendance())
                 .append("; Grade: ")
                 .append(getGrade());
 

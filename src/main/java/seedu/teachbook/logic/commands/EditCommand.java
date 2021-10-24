@@ -23,6 +23,7 @@ import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.commons.util.CollectionUtil;
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
+import seedu.teachbook.model.attendance.Attendance;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.student.Address;
@@ -116,10 +117,11 @@ public class EditCommand extends Command {
         Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
         Remark updatedRemark = studentToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
+        Attendance updatedAttendance = studentToEdit.getAttendance(); // edit command does not allow editing attendance
         Grade updatedGrade = editStudentDescriptor.getGrade().orElse(studentToEdit.getGrade());
 
-        return new Student(updatedName, updatedPhone, updatedClass,
-                updatedEmail, updatedAddress, updatedRemark, updatedTags, updatedGrade);
+        return new Student(updatedName, updatedPhone, updatedClass, updatedEmail, updatedAddress, updatedRemark,
+                updatedTags, updatedAttendance, updatedGrade);
     }
 
     @Override

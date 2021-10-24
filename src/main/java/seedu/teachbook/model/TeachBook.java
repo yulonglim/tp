@@ -70,8 +70,8 @@ public class TeachBook implements ReadOnlyTeachBook {
         for (Class c : newData.getClassList()) {
             Class toAdd = new Class(c.getClassName());
             for (Student s : c.getStudentsOfThisClass()) {
-                Student studentToAdd = new Student(s.getName(), s.getPhone(),
-                        s.getEmail(), s.getAddress(), s.getRemark(), s.getTags(), s.getGrade());
+                Student studentToAdd = new Student(s.getName(), s.getPhone(), s.getEmail(), s.getAddress(),
+                        s.getRemark(), s.getTags(), s.getAttendance(), s.getGrade());
                 studentToAdd.setStudentClass(toAdd);
                 toAdd.addStudent(studentToAdd);
 

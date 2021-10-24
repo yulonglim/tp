@@ -1,5 +1,6 @@
 package seedu.teachbook.storage;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -10,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.teachbook.commons.exceptions.IllegalValueException;
+import seedu.teachbook.model.attendance.Attendance;
 import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.student.Address;
 import seedu.teachbook.model.student.Email;
@@ -32,6 +34,7 @@ class JsonAdaptedStudent {
     private final String address;
     private final String remark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String attendance;
     private String grade = null;
 
     /**
@@ -42,6 +45,7 @@ class JsonAdaptedStudent {
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
                               @JsonProperty("remark") String remark,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                              @JsonProperty("attendance") String attendance,
                               @JsonProperty("grade") String grade) {
         this.name = name;
         this.phone = phone;
@@ -51,6 +55,7 @@ class JsonAdaptedStudent {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.attendance = attendance;
         if (grade != null) {
             this.grade = grade;
         }
@@ -68,6 +73,7 @@ class JsonAdaptedStudent {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        attendance = source.getAttendance().toString();
         grade = source.getGrade().value;
     }
 
@@ -121,9 +127,19 @@ class JsonAdaptedStudent {
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
 
+        if (attendance == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
+        }
+        String[] attendanceComponents = attendance.split(" ");
+        assert attendanceComponents.length == 2;
+        boolean isPresent = attendanceComponents[0].equals("Present");
+        LocalDate lastModified = LocalDate.parse(attendanceComponents[1]);
+        final Attendance modelAttendance = new Attendance(isPresent, lastModified);
+
         final Grade modelGrade = new Grade(grade);
 
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags, modelGrade);
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags, modelAttendance,
+                modelGrade);
     }
 
 }

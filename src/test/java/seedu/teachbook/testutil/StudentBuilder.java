@@ -1,8 +1,10 @@
 package seedu.teachbook.testutil;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.teachbook.model.attendance.Attendance;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
 import seedu.teachbook.model.gradeobject.Grade;
@@ -26,6 +28,7 @@ public class StudentBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_REMARK = "Allergic to seafood.";
+    public static final String DEFAULT_ATTENDANCE = "Absent 2021-10-24";
     public static final String DEFAULT_GRADE = "";
 
     private Name name;
@@ -35,6 +38,7 @@ public class StudentBuilder {
     private Address address;
     private Remark remark;
     private Set<Tag> tags;
+    private Attendance attendance;
     private Grade grade;
 
     /**
@@ -48,6 +52,10 @@ public class StudentBuilder {
         address = new Address(DEFAULT_ADDRESS);
         remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
+        String[] attendanceComponents = DEFAULT_ATTENDANCE.split(" ");
+        boolean isPresent = attendanceComponents[0].equals("Present");
+        LocalDate lastModified = LocalDate.parse(attendanceComponents[1]);
+        attendance = new Attendance(isPresent, lastModified);
         grade = new Grade(DEFAULT_GRADE);
     }
 
@@ -62,6 +70,7 @@ public class StudentBuilder {
         address = studentToCopy.getAddress();
         remark = studentToCopy.getRemark();
         tags = new HashSet<>(studentToCopy.getTags());
+        attendance = studentToCopy.getAttendance();
         grade = studentToCopy.getGrade();
     }
 
@@ -121,13 +130,24 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Attendance} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withAttendance(String attendance) {
+        String[] attendanceComponents = attendance.split("");
+        boolean isPresent = attendanceComponents[0].equals("Present");
+        LocalDate lastModified = LocalDate.parse(attendanceComponents[1]);
+        this.attendance = new Attendance(isPresent, lastModified);
+        return this;
+    }
+
     public StudentBuilder withGrade(String grade) {
         this.grade = new Grade(grade);
         return this;
     }
 
     public Student build() {
-        return new Student(name, phone, studentClass, email, address, remark, tags, grade);
+        return new Student(name, phone, studentClass, email, address, remark, tags, attendance, grade);
     }
 
 }

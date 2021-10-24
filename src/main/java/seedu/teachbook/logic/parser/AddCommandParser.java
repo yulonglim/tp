@@ -9,11 +9,13 @@ import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.teachbook.model.gradeobject.GradingSystem.NOT_GRADED;
 
+import java.time.LocalDate;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.teachbook.logic.commands.AddCommand;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
+import seedu.teachbook.model.attendance.Attendance;
 import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.student.Address;
 import seedu.teachbook.model.student.Email;
@@ -48,6 +50,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Remark remark = new Remark(""); // add command does not allow adding remarks straight away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Attendance attendance = new Attendance(false, LocalDate.now());
 
         Grade grade;
         if (argMultimap.getValue(PREFIX_GRADE).isEmpty()) {
@@ -56,7 +59,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             grade = ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get());
         }
 
-        Student student = new Student(name, phone, email, address, remark, tagList, grade);
+        Student student = new Student(name, phone, email, address, remark, tagList, attendance, grade);
 
         return new AddCommand(student);
     }
