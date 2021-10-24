@@ -61,17 +61,27 @@ public class PrintClassCommand extends Command {
             }
             break;
 
-        case "remarks":
+        case "tags":
             for (Student student : studentList) {
                 StringBuilder remarks = new StringBuilder();
                 for (Tag t : student.getTags()) {
                     remarks.append(t.tagName + "; ");
                 }
-
                 result.add(remarks.toString());
             }
             break;
 
+        case "grades":
+            for (Student student : studentList) {
+                result.add(student.getGrade().value);
+            }
+            break;
+
+        case "remarks":
+            for (Student student : studentList) {
+                result.add(student.getRemark().value);
+            }
+            break;
         default:
             for (int i = 0; i < studentList.size(); i++) {
                 result.add("");
