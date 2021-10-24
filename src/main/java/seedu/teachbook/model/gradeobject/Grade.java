@@ -2,11 +2,16 @@ package seedu.teachbook.model.gradeobject;
 
 public class Grade {
 
+    public static final String MESSAGE_CONSTRAINTS = "Grade cannot be an empty string!";
     public final String value;
 
     public Grade(String grade) {
         this.value = grade;
     }
+
+//    public static boolean isValidGrade(String grade) {
+//        return grade.equals("");
+//    }
 
     @Override
     public String toString() {

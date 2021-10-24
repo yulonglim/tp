@@ -1,17 +1,18 @@
 package seedu.teachbook.model.gradeobject;
 
-import seedu.teachbook.model.student.Student;
+import static seedu.teachbook.model.gradeobject.GradingSystem.NOT_GRADED;
 
 import java.util.Comparator;
 import java.util.List;
 
-import static seedu.teachbook.model.gradeobject.GradingSystem.NOT_GRADED;
+import seedu.teachbook.model.student.Student;
+
 
 public class GradeComparator implements Comparator<Student> {
-    List<Grade> gradeList;
+    private final List<Grade> gradeList;
     public GradeComparator(List<Grade> gradeList) {
         this.gradeList = gradeList;
-        this.gradeList.add(new Grade(""));
+        this.gradeList.add(new Grade(NOT_GRADED));
     }
     @Override
     public int compare(Student s1, Student s2) {

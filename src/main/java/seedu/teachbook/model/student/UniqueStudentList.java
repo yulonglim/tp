@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.teachbook.commons.util.JsonUtil;
 import seedu.teachbook.model.student.exceptions.DuplicateStudentException;
 import seedu.teachbook.model.student.exceptions.StudentNotFoundException;
 
@@ -42,10 +41,7 @@ public class UniqueStudentList implements Iterable<Student> {
 
     public void sort(Comparator<? super Student> comparator) {
         List<Student> sorted = internalList.stream().sorted(comparator).collect(Collectors.toList());
-        sorted.forEach(student -> {
-            System.out.println(student.toString());
-        });
-        setStudents(internalList.stream().sorted(comparator).collect(Collectors.toList()));
+        setStudents(sorted);
     }
 
     /**
