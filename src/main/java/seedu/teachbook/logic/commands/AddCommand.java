@@ -1,6 +1,7 @@
 package seedu.teachbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.teachbook.commons.core.Messages.MESSAGE_DUPLICATE_STUDENT;
 import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_GRADE;
 import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_LIST_ALL;
 import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_NO_CLASS;
@@ -38,7 +39,6 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the class";
     public static final String MESSAGE_NO_CLASS = "Add the first class before adding any student!";
     public static final String MESSAGE_LIST_ALL = "Select a class before adding any student!";
     public static final String MESSAGE_GRADING_SYSTEM_NOT_SET =

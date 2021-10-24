@@ -58,14 +58,14 @@ public class ParserUtil {
 
     public static ClassName parseClassName(String className) throws ParseException {
         requireNonNull(className);
-        String trimmedName = className.trim();
-        if (!Name.isValidName(trimmedName)) {
+        String trimmedClassName = className.trim();
+        if (!ClassName.isValidClassName(trimmedClassName)) {
             throw new ParseException(ClassName.MESSAGE_CONSTRAINTS);
         }
-        return new ClassName(trimmedName);
+        return new ClassName(trimmedClassName);
     }
 
-    public static ClassNameDescriptor parseClassNameForLocatingClass(String className) throws ParseException {
+    public static ClassNameDescriptor parseClassNameForLocatingClass(String className) {
         requireNonNull(className);
         String trimmedName = className.trim();
         return new ClassNameDescriptor(trimmedName);

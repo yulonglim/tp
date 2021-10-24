@@ -12,6 +12,7 @@ import seedu.teachbook.logic.commands.ClearCommand;
 import seedu.teachbook.logic.commands.Command;
 import seedu.teachbook.logic.commands.DeleteClassCommand;
 import seedu.teachbook.logic.commands.DeleteCommand;
+import seedu.teachbook.logic.commands.EditClassCommand;
 import seedu.teachbook.logic.commands.EditCommand;
 import seedu.teachbook.logic.commands.ExitCommand;
 import seedu.teachbook.logic.commands.FindCommand;
@@ -57,6 +58,8 @@ public class TeachBookParser {
         final String arguments = matcher.group("arguments");
 
         switch (commandWord) {
+        case EditClassCommand.COMMAND_WORD:
+            return new EditClassCommandParser().parse(arguments);
         case GradeCommand.COMMAND_WORD:
             return new GradeCommandParser().parse(arguments);
 
