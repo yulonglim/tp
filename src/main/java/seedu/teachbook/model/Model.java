@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.teachbook.commons.core.GuiSettings;
 import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.classobject.Class;
+import seedu.teachbook.model.classobject.ClassName;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.classobject.exceptions.NoClassWithNameException;
 import seedu.teachbook.model.gradeobject.Grade;
@@ -159,5 +160,5 @@ public interface Model {
 
     void resetGradingSystem();
 
-    void setClassname(Class newClass);
+    void setClassName(ClassName newClassName);
 }

@@ -1,6 +1,5 @@
 package seedu.teachbook.logic.parser;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_GRADE;
 
@@ -15,9 +14,7 @@ public class GradeCommandParser implements Parser<GradeCommand> {
 
     @Override
     public GradeCommand parse(String args) throws ParseException {
-        requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_GRADE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_GRADE);
         Index index;
 
         try {

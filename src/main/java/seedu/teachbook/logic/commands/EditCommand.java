@@ -1,6 +1,7 @@
 package seedu.teachbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.teachbook.commons.core.Messages.MESSAGE_DUPLICATE_STUDENT;
 import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_GRADE;
 import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -54,9 +55,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the class";
-    public static final String MESSAGE_GRADING_SYSTEM_NOT_SET =
-            "Set a grading system before editing any grade";
+    public static final String MESSAGE_GRADING_SYSTEM_NOT_SET = "Set a grading system before editing any grade";
 
     private final Index index;
     private final EditStudentDescriptor editStudentDescriptor;

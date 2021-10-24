@@ -1,6 +1,9 @@
 package seedu.teachbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.teachbook.commons.core.Messages.MESSAGE_DUPLICATE_CLASS;
+import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_LIST_ALL;
+import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_NO_CLASS;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.teachbook.logic.commands.exceptions.CommandException;
@@ -9,35 +12,38 @@ import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
 
 public class EditClassCommand extends Command {
+
     public static final String COMMAND_WORD = "editClass";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits class name of currently selected class. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits information of the currently selected class.\n"
             + "Parameters: "
             + PREFIX_NAME + "CLASSNAME "
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "ClassA ";
+            + PREFIX_NAME + "ClassA";
 
-    public static final String MESSAGE_SUCCESS = "Class name edited: %1$s";
-    public static final String MESSAGE_DUPLICATE_CLASS = "Class already exists in teachbook!";
-    public static final String EMPTY_CLASSNAME = "Class name cannot be an empty string";
+    public static final String MESSAGE_SUCCESS = "Edited Class: %1$s";
+    public static final String MESSAGE_NO_CLASS_SELECTED = "Select a class before editing class!";
 
-    private String newClassName;
+    private final ClassName updatedClassName;
 
-    public EditClassCommand(String newClassName) {
-        this.newClassName = newClassName;
-    }
-
-    public String getNewClassName() {
-        return newClassName;
+    public EditClassCommand(ClassName updatedClassName) {
+        this.updatedClassName = updatedClassName;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Class newClass = new Class(new ClassName(newClassName));
-        if (model.hasClass(newClass)) {
+
+        if (model.getCurrentlySelectedClassIndex().equals(INDEX_NO_CLASS)
+                || model.getCurrentlySelectedClassIndex().equals(INDEX_LIST_ALL)) {
+            throw new CommandException(MESSAGE_NO_CLASS_SELECTED);
+        }
+
+        Class newClass = new Class(updatedClassName);
+        if (model.hasClass(newClass)) { // simply comparing class name
             throw new CommandException(MESSAGE_DUPLICATE_CLASS);
         }
-        model.setClassname(newClass);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, newClassName));
+
+        model.setClassName(updatedClassName);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, updatedClassName));
     }
 }
