@@ -145,17 +145,17 @@ public interface Model {
     /**
      * Restores the model's address book to its previous state.
      */
-    void undoAddressBook();
+    void undoTeachBook();
 
     /**
      * Restores the model's address book to its previously undone state.
      */
-    void redoAddressBook();
+    void redoTeachBook();
 
     /**
      * Saves the current address book state for undo/redo.
      */
-    void commitAddressBook();
+    void commitTeachBook();
 
     void resetGradingSystem();
 }

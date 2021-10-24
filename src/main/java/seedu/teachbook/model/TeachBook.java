@@ -78,20 +78,18 @@ public class TeachBook implements ReadOnlyTeachBook {
      */
     public void resetData(ReadOnlyTeachBook newData) {
         requireNonNull(newData);
-        ObservableList<Class> toCopy = FXCollections.observableArrayList();
+        ObservableList<Class> copy = FXCollections.observableArrayList();
         for (Class c : newData.getClassList()) {
-            Class toAdd = new Class(c.getClassName());
+            Class newClass = new Class(c.getClassName());
             for (Student s : c.getStudentsOfThisClass()) {
-                Student studentToAdd = new Student(s.getName(), s.getPhone(), s.getEmail(), s.getAddress(),
-                        s.getRemark(), s.getTags(), s.getAttendance(), s.getGrade());
-                studentToAdd.setStudentClass(toAdd);
-                toAdd.addStudent(studentToAdd);
-
+                Student studentToAdd = new Student(s.getName(), s.getPhone(), newClass, s.getEmail(),
+                        s.getAddress(), s.getRemark(), s.getTags(), s.getAttendance(), s.getGrade());
+                newClass.addStudent(studentToAdd);
             }
-            toCopy.add(toAdd);
+            copy.add(newClass);
         }
+        setClasses(copy);
         setGradingSystem(newData.getGradingSystem());
-        setClasses(toCopy);
     }
 
     //// student-level operations
