@@ -3,7 +3,7 @@ package seedu.teachbook.logic.commands;
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
 
-public class ResetGradeCommand extends Command{
+public class ResetGradeCommand extends Command {
 
     public static final String COMMAND_WORD = "resetGrade";
 
