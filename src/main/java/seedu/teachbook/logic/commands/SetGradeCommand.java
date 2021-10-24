@@ -16,8 +16,8 @@ public class SetGradeCommand extends Command {
             + "Parameters: Grade1>Grade2>Grade3... "
             + "Example: " + COMMAND_WORD + " A>B>C>D>E";
     public static final String MESSAGE_SUCCESS = "New grading system set: %1$s";
-    public static final String MESSAGE_GRADING_SYSTEM_EXISTS =
-            "A grading system is currently in use. Delete the grading system before setting again";
+    public static final String MESSAGE_GRADING_SYSTEM_EXISTS = "A grading system is currently in use. "
+            + "You can reset grading system using " + ResetGradeCommand.COMMAND_WORD + " command.";
 
     public final List<Grade> gradeList;
 

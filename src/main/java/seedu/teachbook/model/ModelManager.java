@@ -225,8 +225,7 @@ public class ModelManager implements Model {
     }
 
     public void resetGradingSystem() {
-        teachBook.resetGradingSystem();
-        teachBook.getClassList().forEach(Class::resetGrade);
+        teachBook.resetGradingSystem(currentlySelectedClassIndex);
     }
 
     @Override
