@@ -22,8 +22,8 @@ public class MarkCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks the student, identified by the index number used in the displayed student list, as present.\n"
-            + "Parameters: INDEX1 [INDEX2]... (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1, " + COMMAND_WORD + " 2, 4, 5";
+            + "Parameters: [INDEX1] [INDEX2]... [all] (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1, " + COMMAND_WORD + " 2 4 5, " + COMMAND_WORD + " all";
 
     public static final String MESSAGE_MARK_STUDENT_SUCCESS = "Marked Student(s): %1$s";
 
