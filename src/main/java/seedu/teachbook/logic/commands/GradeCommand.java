@@ -56,7 +56,6 @@ public class GradeCommand extends Command {
                                             studentToEdit.getTags(), grade);
         editedStudent.setStudentClass(studentToEdit.getStudentClass());
         model.setStudent(studentToEdit, editedStudent);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         model.commitTeachBook();
         return new CommandResult(String.format(MESSAGE_GRADE_PERSON_SUCCESS, editedStudent));
     }

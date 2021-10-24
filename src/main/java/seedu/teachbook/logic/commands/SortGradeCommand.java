@@ -17,6 +17,7 @@ public class SortGradeCommand extends Command {
             throw new CommandException(MESSAGE_GRADING_SYSTEM_NOT_SET);
         }
         model.reorderStudents(new GradeComparator(model.getGradingSystem().getGradeList()));
+        model.commitTeachBook();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
