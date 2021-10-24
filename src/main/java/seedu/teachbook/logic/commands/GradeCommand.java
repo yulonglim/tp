@@ -51,10 +51,13 @@ public class GradeCommand extends Command{
         if (!model.isValidGrade(grade)) {
             throw new CommandException(String.format(MESSAGE_INVALID_GRADE, model.getGradingSystem()));
         }
-
-        studentToEdit.setGrade(grade);
+        Student editedStudent = new Student(studentToEdit.getName(), studentToEdit.getPhone(), studentToEdit.getEmail(),
+                                            studentToEdit.getAddress(), studentToEdit.getRemark(),
+                                            studentToEdit.getTags(), grade);
+        editedStudent.setStudentClass(studentToEdit.getStudentClass());
+        model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_GRADE_PERSON_SUCCESS, studentToEdit));
+        return new CommandResult(String.format(MESSAGE_GRADE_PERSON_SUCCESS, editedStudent));
     }
 }
