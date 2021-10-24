@@ -11,15 +11,10 @@ public class GradeComparator implements Comparator<Student> {
     List<Grade> gradeList;
     public GradeComparator(List<Grade> gradeList) {
         this.gradeList = gradeList;
+        this.gradeList.add(new Grade(""));
     }
     @Override
     public int compare(Student s1, Student s2) {
-        if (s1.getGrade().value.equals(NOT_GRADED)) {
-            return s2.getGrade().value.equals(NOT_GRADED) ? 1 : 0;
-        }
-        if (s2.getGrade().value.equals(NOT_GRADED)) {
-            return 0;
-        }
-        return gradeList.indexOf(s1.getGrade()) > gradeList.indexOf(s2.getGrade()) ? 1 : 0;
+        return Integer.compare(gradeList.indexOf(s1.getGrade()), gradeList.indexOf(s2.getGrade()));
     }
 }

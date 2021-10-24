@@ -7,6 +7,7 @@ import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_NO_CLASS;
 import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -241,7 +242,8 @@ public class ModelManager implements Model {
 
     @Override
     public void reorderFilteredStudentList(Comparator<? super Student> comparator) {
-        filteredStudents.sort(comparator);
+        teachBook.getClassAtIndex(currentlySelectedClassIndex).sort(comparator);
+        updateSourceOfFilteredStudentList();
     }
 
     //=========== Undo/Redo =================================================================================

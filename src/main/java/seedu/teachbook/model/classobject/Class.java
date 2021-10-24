@@ -4,6 +4,8 @@ import javafx.collections.ObservableList;
 import seedu.teachbook.model.student.Student;
 import seedu.teachbook.model.student.UniqueStudentList;
 
+import java.util.Comparator;
+
 public class Class {
 
     private final ClassName className;
@@ -12,6 +14,10 @@ public class Class {
     public Class(ClassName className) {
         this.className = className;
         this.studentsOfThisClass = new UniqueStudentList();
+    }
+
+    public void sort(Comparator<? super Student> comparator) {
+        studentsOfThisClass.sort(comparator);
     }
 
     public ObservableList<Student> getStudentsOfThisClass() {
