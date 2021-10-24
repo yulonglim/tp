@@ -41,6 +41,16 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    public static List<Index> parseIndices(String oneBasedIndicesSpaceSeparated) throws ParseException {
+        String trimmedIndices = oneBasedIndicesSpaceSeparated.trim();
+        String[] rawIndices = trimmedIndices.split("\\s+");
+        List<Index> oneBasedIndices = new ArrayList<>();
+        for (String rawIndex : rawIndices) {
+            oneBasedIndices.add(parseIndex(rawIndex));
+        }
+        return oneBasedIndices;
+    }
+
     /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
