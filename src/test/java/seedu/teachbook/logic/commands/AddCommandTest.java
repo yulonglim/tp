@@ -230,17 +230,17 @@ public class AddCommandTest {
         }
 
         @Override
-        public void undoAddressBook() {
+        public void undoTeachBook() {
 
         }
 
         @Override
-        public void redoAddressBook() {
+        public void redoTeachBook() {
 
         }
 
         @Override
-        public void commitAddressBook() {
+        public void commitTeachBook() {
 
         }
 

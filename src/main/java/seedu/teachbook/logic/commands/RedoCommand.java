@@ -22,7 +22,7 @@ public class RedoCommand extends Command {
             throw new CommandException(MESSAGE_FAILURE);
         }
 
-        model.redoAddressBook();
+        model.redoTeachBook();
         model.updateCurrentlySelectedClass(model.getCurrentlySelectedClassIndex());
         return new CommandResult(MESSAGE_SUCCESS, false, false,
                 true, true);
