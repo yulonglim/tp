@@ -16,7 +16,7 @@ public class Class {
         this.studentsOfThisClass = new UniqueStudentList();
     }
 
-    public void sort(Comparator<? super Student> comparator) {
+    public void reorderStudents(Comparator<? super Student> comparator) {
         studentsOfThisClass.sort(comparator);
     }
 

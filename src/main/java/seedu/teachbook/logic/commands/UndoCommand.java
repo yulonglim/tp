@@ -24,8 +24,7 @@ public class UndoCommand extends Command {
 
         model.undoAddressBook();
         model.updateCurrentlySelectedClass(model.getCurrentlySelectedClassIndex());
-        return new CommandResult(MESSAGE_SUCCESS, false, false,
-                true, true);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, true, true);
     }
 
 }

@@ -17,7 +17,7 @@ public class SortGradeCommand extends Command {
         if (!model.hasExistingGradingSystem()) {
             throw new CommandException(MESSAGE_GRADING_SYSTEM_NOT_SET);
         }
-        model.reorderFilteredStudentList(new GradeComparator(model.getGradingSystem().getGradeList()));
+        model.reorderStudents(new GradeComparator(model.getGradingSystem().getGradeList()));
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
