@@ -39,7 +39,7 @@ public class SetGradeCommand extends Command {
 
         GradingSystem gradingSystem = new GradingSystem(gradeList);
         model.setGradingSystem(gradingSystem);
-        model.commitAddressBook();
+        model.commitTeachBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, gradingSystem));
     }
 

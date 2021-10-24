@@ -47,11 +47,7 @@ public class ModelManager implements Model {
         this.teachBook = new VersionedTeachBook(teachBook);
         this.userPrefs = new UserPrefs(userPrefs);
 
-        this.currentlySelectedClassIndex = INDEX_NO_CLASS;
-        this.filteredStudents = new FilteredList<>(FXCollections.observableArrayList());
-        if (this.teachBook.getNumOfClasses() >= 1) {
-            updateCurrentlySelectedClass(INDEX_DEFAULT_INITIAL_CLASS);
-        }
+        initialiseCurrentlySelectedClassIndex();
     }
 
     public ModelManager() {
@@ -98,7 +94,7 @@ public class ModelManager implements Model {
     @Override
     public void setTeachBook(ReadOnlyTeachBook teachBook) {
         this.teachBook.resetData(teachBook);
-        this.filteredStudents = new FilteredList<>(FXCollections.observableArrayList());
+        initialiseCurrentlySelectedClassIndex();
     }
 
     @Override
@@ -224,6 +220,14 @@ public class ModelManager implements Model {
         updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
+    private void initialiseCurrentlySelectedClassIndex() {
+        updateCurrentlySelectedClass(INDEX_NO_CLASS);
+        if (this.teachBook.getNumOfClasses() >= 1) {
+            updateCurrentlySelectedClass(INDEX_DEFAULT_INITIAL_CLASS);
+        }
+    }
+
+    @Override
     public void resetGradingSystem() {
         teachBook.resetGradingSystem(currentlySelectedClassIndex);
     }
@@ -264,17 +268,17 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void undoAddressBook() {
-        this.teachBook.undo();
+    public void undoTeachBook() {
+        this.teachBook.undo(); // TODO: fix undo after clear
     }
 
     @Override
-    public void redoAddressBook() {
+    public void redoTeachBook() {
         this.teachBook.redo();
     }
 
     @Override
-    public void commitAddressBook() {
+    public void commitTeachBook() {
         this.teachBook.commit();
     }
 

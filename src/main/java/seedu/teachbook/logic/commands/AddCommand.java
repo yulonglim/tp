@@ -80,7 +80,7 @@ public class AddCommand extends Command {
         }
 
         model.addStudent(toAdd);
-        model.commitAddressBook();
+        model.commitTeachBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, false,
                 true, false);
     }
