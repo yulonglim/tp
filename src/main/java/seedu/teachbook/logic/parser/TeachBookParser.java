@@ -22,6 +22,7 @@ import seedu.teachbook.logic.commands.RedoCommand;
 import seedu.teachbook.logic.commands.RemarkCommand;
 import seedu.teachbook.logic.commands.SelectClassCommand;
 import seedu.teachbook.logic.commands.SetGradeCommand;
+import seedu.teachbook.logic.commands.SortGradeCommand;
 import seedu.teachbook.logic.commands.UndoCommand;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
 
@@ -56,6 +57,9 @@ public class TeachBookParser {
 
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
+
+        case SortGradeCommand.COMMAND_WORD:
+            return new SortGradeCommand();
 
         case RedoCommand.COMMAND_WORD:
             return new RedoCommand();

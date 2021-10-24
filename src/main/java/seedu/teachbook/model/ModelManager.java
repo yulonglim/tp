@@ -241,7 +241,7 @@ public class ModelManager implements Model {
 
     @Override
     public void reorderFilteredStudentList(Comparator<? super Student> comparator) {
-        filteredStudents.sort(comparator);
+        teachBook.getClassAtIndex(currentlySelectedClassIndex).sort(comparator);
     }
 
     //=========== Undo/Redo =================================================================================
