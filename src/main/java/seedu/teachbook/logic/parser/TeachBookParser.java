@@ -21,6 +21,7 @@ import seedu.teachbook.logic.commands.MarkCommand;
 import seedu.teachbook.logic.commands.PrintCommand;
 import seedu.teachbook.logic.commands.RedoCommand;
 import seedu.teachbook.logic.commands.RemarkCommand;
+import seedu.teachbook.logic.commands.ResetGradeCommand;
 import seedu.teachbook.logic.commands.SelectClassCommand;
 import seedu.teachbook.logic.commands.SetGradeCommand;
 import seedu.teachbook.logic.commands.SortGradeCommand;
@@ -55,6 +56,10 @@ public class TeachBookParser {
         final String arguments = matcher.group("arguments");
 
         switch (commandWord) {
+
+        case ResetGradeCommand.COMMAND_WORD:
+            return new ResetGradeCommand();
+
         case PrintCommand.COMMAND_WORD:
             return new PrintCommandParser().parse(arguments);
 

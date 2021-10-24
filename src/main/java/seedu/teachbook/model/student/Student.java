@@ -1,6 +1,7 @@
 package seedu.teachbook.model.student;
 
 import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.teachbook.model.gradeobject.GradingSystem.NOT_GRADED;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -28,8 +29,8 @@ public class Student {
     private final Address address;
     private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
-    private Attendance attendance;
-    private final Grade grade;
+    private final Attendance attendance;
+    private Grade grade;
 
     /**
      * Every field must be present and not null.
@@ -77,24 +78,28 @@ public class Student {
         return remark;
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Grade getGrade() {
+        return grade;
     }
 
     public Attendance getAttendance() {
         return attendance;
     }
 
-    public Grade getGrade() {
-        return grade;
-    }
-
     public void setStudentClass(Class studentClass) {
         this.studentClass = studentClass;
+    }
+
+    public void resetGrade() {
+        this.grade = new Grade(NOT_GRADED);
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -111,8 +116,6 @@ public class Student {
                 && otherStudent.getName().equals(getName())
                 && otherStudent.getStudentClass().equals(getStudentClass());
     }
-
-
 
     /**
      * Returns true if both students have the same identity and data fields.
@@ -172,5 +175,4 @@ public class Student {
         }
         return builder.toString();
     }
-
 }

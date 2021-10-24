@@ -157,4 +157,5 @@ public interface Model {
      */
     void commitAddressBook();
 
+    void resetGradingSystem();
 }
