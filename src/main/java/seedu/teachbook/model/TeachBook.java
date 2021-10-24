@@ -62,6 +62,11 @@ public class TeachBook implements ReadOnlyTeachBook {
         this.students.setStudents(students);
     }
 
+    public void resetGradingSystem() {
+        this.gradingSystem = new GradingSystem();
+        students.resetGrade();
+    }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */

@@ -20,6 +20,10 @@ public class Class {
         studentsOfThisClass.sort(comparator);
     }
 
+    public void resetGrade() {
+        studentsOfThisClass.resetGrade();
+    }
+
     public ObservableList<Student> getStudentsOfThisClass() {
         return studentsOfThisClass.asUnmodifiableObservableList();
     }

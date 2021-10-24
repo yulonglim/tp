@@ -1,6 +1,7 @@
 package seedu.teachbook.model.student;
 
 import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.teachbook.model.gradeobject.GradingSystem.NOT_GRADED;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -28,7 +29,7 @@ public class Student {
     private final Address address;
     private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
-    private final Grade grade;
+    private Grade grade;
 
     /**
      * Every field must be present and not null.
@@ -80,6 +81,10 @@ public class Student {
 
     public void setStudentClass(Class studentClass) {
         this.studentClass = studentClass;
+    }
+
+    public void resetGrade() {
+        this.grade = new Grade(NOT_GRADED);
     }
 
 
