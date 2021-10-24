@@ -224,6 +224,11 @@ public class ModelManager implements Model {
         updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
+    public void resetGradingSystem() {
+        teachBook.resetGradingSystem();
+        teachBook.getClassAtIndex(currentlySelectedClassIndex).resetGrade();
+    }
+
     @Override
     public void setGradingSystem(GradingSystem gradingSystem) {
         teachBook.setGradingSystem(gradingSystem);
