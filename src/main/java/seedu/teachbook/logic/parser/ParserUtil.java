@@ -149,10 +149,9 @@ public class ParserUtil {
         if (trimmedGrade.contains("g/")) {
             trimmedGrade = trimmedGrade.replace("g/", "");
         }
-        // TODO: validate grade format
-//        if (!Grade.isValidGrade(trimmedGrade)) {
-//            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
-//        }
+        if (!Grade.isValidGrade(trimmedGrade)) {
+            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
+        }
         return new Grade(trimmedGrade);
     }
 

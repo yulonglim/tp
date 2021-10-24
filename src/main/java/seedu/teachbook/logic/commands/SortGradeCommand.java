@@ -7,7 +7,7 @@ import seedu.teachbook.model.gradeobject.GradeComparator;
 public class SortGradeCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_SUCCESS = "Sorted according to grade, HIGH -> LOW";
+    public static final String MESSAGE_SUCCESS = "Sorted according to grade, HIGH → LOW";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the teachbook according to grade.";
     public static final String MESSAGE_GRADING_SYSTEM_NOT_SET = "Set a grading system before sorting";
 

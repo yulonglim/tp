@@ -63,4 +63,13 @@ public class GradeCommand extends Command {
         model.commitTeachBook();
         return new CommandResult(String.format(MESSAGE_GRADE_SUCCESS, editedStudent));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof GradeCommand // instanceof handles nulls
+                && index.equals(((GradeCommand) other).index)
+                && grade.equals(((GradeCommand) other).grade));
+    }
+
 }
