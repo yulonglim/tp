@@ -7,6 +7,7 @@ import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.teachbook.model.gradeobject.GradingSystem.NOT_GRADED;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -33,9 +34,8 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                                                PREFIX_ADDRESS, PREFIX_TAG, PREFIX_GRADE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                PREFIX_ADDRESS, PREFIX_TAG, PREFIX_GRADE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -48,9 +48,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Remark remark = new Remark(""); // add command does not allow adding remarks straight away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+
         Grade grade;
         if (argMultimap.getValue(PREFIX_GRADE).isEmpty()) {
-            grade = new Grade(AddCommand.NOT_GRADED);
+            grade = new Grade(NOT_GRADED);
         } else {
             grade = ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get());
         }

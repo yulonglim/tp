@@ -1,6 +1,7 @@
 package seedu.teachbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_GRADE;
 import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_LIST_ALL;
 import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_NO_CLASS;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -8,6 +9,7 @@ import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.teachbook.model.gradeobject.GradingSystem.NOT_GRADED;
 
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
@@ -39,13 +41,13 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the class";
     public static final String MESSAGE_NO_CLASS = "Add the first class before adding any student!";
     public static final String MESSAGE_LIST_ALL = "Select a class before adding any student!";
-    public static final String GRADE_NOT_SET = "Set grade before adding/editing any grades.";
-    public static final String NOT_GRADED = "Not graded";
-    public static final String INVALID_GRADE = "Invalid grade";
+    public static final String MESSAGE_GRADING_SYSTEM_NOT_SET =
+            "Set a grading system before adding any grade";
+
     private final Student toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Student}
      */
     public AddCommand(Student student) {
         requireNonNull(student);
@@ -69,12 +71,12 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
-        if (model.getGradeList().size() == 0 && !toAdd.getGrade().value.equals(AddCommand.NOT_GRADED)) {
-            throw new CommandException(GRADE_NOT_SET);
+        if (!model.hasExistingGradingSystem() && !toAdd.getGrade().value.equals(NOT_GRADED)) { // TODO: refine
+            throw new CommandException(MESSAGE_GRADING_SYSTEM_NOT_SET);
         }
 
         if (!model.isValidGrade(toAdd.getGrade())) {
-            throw new CommandException(AddCommand.INVALID_GRADE);
+            throw new CommandException(String.format(MESSAGE_INVALID_GRADE, model.getGradingSystem()));
         }
 
         model.addStudent(toAdd);

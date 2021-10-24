@@ -9,6 +9,7 @@ import static seedu.teachbook.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -24,6 +25,7 @@ import seedu.teachbook.model.TeachBook;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.gradeobject.Grade;
+import seedu.teachbook.model.gradeobject.GradingSystem;
 import seedu.teachbook.model.student.Student;
 import seedu.teachbook.testutil.StudentBuilder;
 
@@ -183,12 +185,17 @@ public class AddCommandTest {
         }
 
         @Override
-        public ArrayList<Grade> getGradeList() {
+        public GradingSystem getGradingSystem() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setGradeList(ArrayList<Grade> grades) {
+        public void setGradingSystem(GradingSystem gradingSystem) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasExistingGradingSystem() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -199,6 +206,11 @@ public class AddCommandTest {
 
         @Override
         public void updateCurrentlySelectedClass(GeneralIndex newClassIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void reorderFilteredStudentList(Comparator<? super Student> comparator) {
             throw new AssertionError("This method should not be called.");
         }
 

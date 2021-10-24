@@ -13,6 +13,8 @@ import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.classobject.UniqueClassList;
 import seedu.teachbook.model.classobject.exceptions.NoClassWithNameException;
+import seedu.teachbook.model.gradeobject.Grade;
+import seedu.teachbook.model.gradeobject.GradingSystem;
 import seedu.teachbook.model.student.Student;
 import seedu.teachbook.model.student.UniqueStudentList;
 
@@ -25,6 +27,8 @@ public class TeachBook implements ReadOnlyTeachBook {
     private UniqueStudentList students; // different from AB3: this variable is for "list all" command only!
     private final UniqueClassList classes;
 
+    private GradingSystem gradingSystem;
+
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -35,6 +39,7 @@ public class TeachBook implements ReadOnlyTeachBook {
     {
         students = new UniqueStudentList();
         classes = new UniqueClassList();
+        gradingSystem = new GradingSystem();
     }
 
     public TeachBook() {}
@@ -169,6 +174,22 @@ public class TeachBook implements ReadOnlyTeachBook {
 
     public Class getClassAtIndex(GeneralIndex classIndex) {
         return classes.getClassAtIndex(classIndex); // TODO: get class or let unique class list do things?
+    }
+
+    public GradingSystem getGradingSystem() {
+        return gradingSystem;
+    }
+
+    public void setGradingSystem(GradingSystem newGradingSystem) {
+        gradingSystem = newGradingSystem;
+    }
+
+    public boolean hasExistingGradingSystem() {
+        return gradingSystem.isInUse();
+    }
+
+    public boolean isValidGrade(Grade grade) {
+        return gradingSystem.isValidGrade(grade);
     }
 
     @Override

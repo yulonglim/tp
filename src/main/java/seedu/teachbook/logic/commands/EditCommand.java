@@ -1,14 +1,16 @@
 package seedu.teachbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_GRADE;
 import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.teachbook.logic.commands.AddCommand.GRADE_NOT_SET;
+import static seedu.teachbook.logic.commands.AddCommand.MESSAGE_GRADING_SYSTEM_NOT_SET;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.teachbook.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
+import static seedu.teachbook.model.gradeobject.GradingSystem.NOT_GRADED;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -54,6 +56,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the class";
+    public static final String MESSAGE_GRADING_SYSTEM_NOT_SET =
+            "Set a grading system before editing any grade";
 
     private final Index index;
     private final EditStudentDescriptor editStudentDescriptor;
@@ -84,13 +88,14 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
-        if (model.getGradeList().size() == 0 && !editedStudent.getGrade().value.equals(AddCommand.NOT_GRADED)) {
-            throw new CommandException(GRADE_NOT_SET);
+        if (!model.hasExistingGradingSystem() && !editedStudent.getGrade().value.equals(NOT_GRADED)) {
+            throw new CommandException(MESSAGE_GRADING_SYSTEM_NOT_SET);
         }
 
         if (!model.isValidGrade(editedStudent.getGrade())) {
-            throw new CommandException(AddCommand.INVALID_GRADE);
+            throw new CommandException(String.format(MESSAGE_INVALID_GRADE, model.getGradingSystem()));
         }
+
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         model.commitAddressBook();

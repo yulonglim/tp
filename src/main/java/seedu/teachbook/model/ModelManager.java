@@ -7,7 +7,7 @@ import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_NO_CLASS;
 import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -21,6 +21,7 @@ import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.classobject.exceptions.NoClassWithNameException;
 import seedu.teachbook.model.gradeobject.Grade;
+import seedu.teachbook.model.gradeobject.GradingSystem;
 import seedu.teachbook.model.student.Student;
 
 /**
@@ -33,7 +34,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private FilteredList<Student> filteredStudents;
     private GeneralIndex currentlySelectedClassIndex;
-    private ArrayList<Grade> gradeList = new ArrayList<>();
 
     /**
      * Initializes a ModelManager with the given teachBook and userPrefs.
@@ -202,6 +202,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public GradingSystem getGradingSystem() {
+        return teachBook.getGradingSystem();
+    }
+
+    @Override
     public void updateCurrentlySelectedClass(GeneralIndex newClassIndex) {
         requireNonNull(newClassIndex);
         currentlySelectedClassIndex = newClassIndex;
@@ -219,16 +224,24 @@ public class ModelManager implements Model {
         updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
-    public ArrayList<Grade> getGradeList() {
-        return gradeList;
+    @Override
+    public void setGradingSystem(GradingSystem gradingSystem) {
+        teachBook.setGradingSystem(gradingSystem);
     }
 
-    public void setGradeList(ArrayList<Grade> grades) {
-        gradeList = grades;
+    @Override
+    public boolean hasExistingGradingSystem() {
+        return teachBook.hasExistingGradingSystem();
     }
 
+    @Override
     public boolean isValidGrade(Grade grade) {
-        return this.gradeList.contains(grade);
+        return teachBook.isValidGrade(grade);
+    }
+
+    @Override
+    public void reorderFilteredStudentList(Comparator<? super Student> comparator) {
+        filteredStudents.sort(comparator);
     }
 
     //=========== Undo/Redo =================================================================================
