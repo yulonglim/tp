@@ -8,7 +8,7 @@ import seedu.teachbook.model.student.UniqueStudentList;
 
 public class Class {
 
-    private final ClassName className;
+    private ClassName className;
     private UniqueStudentList studentsOfThisClass;
 
     public Class(ClassName className) {
@@ -22,6 +22,10 @@ public class Class {
 
     public ObservableList<Student> getStudentsOfThisClass() {
         return studentsOfThisClass.asUnmodifiableObservableList();
+    }
+
+    public UniqueStudentList getUniqueStudentListOfThisClass() {
+        return studentsOfThisClass;
     }
 
     public ClassName getClassName() {
@@ -42,6 +46,14 @@ public class Class {
 
     public boolean containsStudent(Student student) {
         return studentsOfThisClass.contains(student);
+    }
+
+    public void setStudentsOfThisClass(UniqueStudentList studentsOfThisClass) {
+        this.studentsOfThisClass = studentsOfThisClass;
+    }
+
+    public void setClassName(String newClassName) {
+        this.className = new ClassName(newClassName);
     }
 
     public boolean isSameClass(Class otherClass) {

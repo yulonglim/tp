@@ -145,6 +145,12 @@ public class ModelManager implements Model {
         }
     }
 
+    public void setClassname(Class newClass) {
+        Class target = teachBook.getClassAtIndex(currentlySelectedClassIndex);
+        newClass.setStudentsOfThisClass(target.getUniqueStudentListOfThisClass());
+        teachBook.setClass(target, newClass);
+    }
+
     @Override
     public void deleteStudent(Student target) {
         teachBook.removeStudent(currentlySelectedClassIndex, target);

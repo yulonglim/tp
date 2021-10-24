@@ -3,7 +3,6 @@ package seedu.teachbook.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_GRADE;
 import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.teachbook.logic.commands.AddCommand.MESSAGE_GRADING_SYSTEM_NOT_SET;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_NAME;

@@ -158,4 +158,6 @@ public interface Model {
     void commitAddressBook();
 
     void resetGradingSystem();
+
+    void setClassname(Class newClass);
 }
