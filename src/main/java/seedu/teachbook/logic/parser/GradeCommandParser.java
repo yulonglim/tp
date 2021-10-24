@@ -1,19 +1,17 @@
 package seedu.teachbook.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_GRADE;
+
+import java.util.stream.Stream;
+
 import seedu.teachbook.commons.core.index.Index;
-import seedu.teachbook.logic.commands.AddCommand;
 import seedu.teachbook.logic.commands.EditCommand;
 import seedu.teachbook.logic.commands.GradeCommand;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
 
-import java.util.stream.Stream;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.teachbook.logic.parser.CliSyntax.*;
-import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_GRADE;
-
-public class GradeCommandParser implements Parser<GradeCommand>{
+public class GradeCommandParser implements Parser<GradeCommand> {
 
     @Override
     public GradeCommand parse(String args) throws ParseException {

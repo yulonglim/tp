@@ -1,5 +1,13 @@
 package seedu.teachbook.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_GRADE;
+import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_GRADE;
+import static seedu.teachbook.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
+import static seedu.teachbook.model.gradeobject.GradingSystem.NOT_GRADED;
+
+import java.util.List;
+
 import seedu.teachbook.commons.core.Messages;
 import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.logic.commands.exceptions.CommandException;
@@ -7,18 +15,7 @@ import seedu.teachbook.model.Model;
 import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.student.Student;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_GRADE;
-import static seedu.teachbook.logic.parser.CliSyntax.*;
-import static seedu.teachbook.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
-import static seedu.teachbook.model.gradeobject.GradingSystem.NOT_GRADED;
-
-public class GradeCommand extends Command{
-
-    private final Grade grade;
-    private final Index index;
+public class GradeCommand extends Command {
 
     public static final String COMMAND_WORD = "grade";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the grade of the student identified "
@@ -28,6 +25,9 @@ public class GradeCommand extends Command{
     public static final String MESSAGE_GRADING_SYSTEM_NOT_SET =
             "Set a grading system before editing any grade";
     public static final String MESSAGE_GRADE_PERSON_SUCCESS = "Graded Student: %1$s";
+
+    private final Grade grade;
+    private final Index index;
 
     public GradeCommand(Index index, Grade grade) {
         this.grade = grade;
