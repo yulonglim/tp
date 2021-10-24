@@ -21,8 +21,8 @@ import seedu.teachbook.logic.commands.PrintClassCommand;
 import seedu.teachbook.logic.commands.RedoCommand;
 import seedu.teachbook.logic.commands.RemarkCommand;
 import seedu.teachbook.logic.commands.SelectClassCommand;
-import seedu.teachbook.logic.commands.UndoCommand;
 import seedu.teachbook.logic.commands.SetGradeCommand;
+import seedu.teachbook.logic.commands.UndoCommand;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
 
 /**

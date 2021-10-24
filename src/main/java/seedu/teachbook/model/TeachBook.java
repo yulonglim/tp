@@ -24,9 +24,8 @@ import seedu.teachbook.model.student.UniqueStudentList;
  */
 public class TeachBook implements ReadOnlyTeachBook {
 
-    private UniqueStudentList students; // different from AB3: this variable is for "list all" command only!
     private final UniqueClassList classes;
-
+    private UniqueStudentList students; // different from AB3: this variable is for "list all" command only!
     private GradingSystem gradingSystem;
 
     /*
@@ -35,14 +34,14 @@ public class TeachBook implements ReadOnlyTeachBook {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */
-    {
+     */ {
         students = new UniqueStudentList();
         classes = new UniqueClassList();
         gradingSystem = new GradingSystem();
     }
 
-    public TeachBook() {}
+    public TeachBook() {
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -72,16 +71,15 @@ public class TeachBook implements ReadOnlyTeachBook {
             Class toAdd = new Class(c.getClassName());
             for (Student s : c.getStudentsOfThisClass()) {
                 Student studentToAdd = new Student(s.getName(), s.getPhone(),
-                        s.getEmail(), s.getAddress(), s.getTags());
+                        s.getEmail(), s.getAddress(), s.getRemark(), s.getTags(), s.getGrade());
                 studentToAdd.setStudentClass(toAdd);
                 toAdd.addStudent(studentToAdd);
 
             }
             toCopy.add(toAdd);
         }
-
+        setGradingSystem(newData.getGradingSystem());
         setClasses(toCopy);
-//        setStudents(newData.getStudentList());
     }
 
     //// student-level operations
@@ -151,8 +149,8 @@ public class TeachBook implements ReadOnlyTeachBook {
     @Override
     public ObservableList<Student> getStudentList() {
         students = new UniqueStudentList();
-        for (Class studentClass: classes) {
-            for (Student student: studentClass.getStudentsOfThisClass()) {
+        for (Class studentClass : classes) {
+            for (Student student : studentClass.getStudentsOfThisClass()) {
                 students.add(student);
             }
         }
