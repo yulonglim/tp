@@ -7,7 +7,6 @@ import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_NAME;
 import java.util.stream.Stream;
 
 import seedu.teachbook.logic.commands.EditClassCommand;
-import seedu.teachbook.logic.commands.EditCommand;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
 import seedu.teachbook.model.classobject.ClassName;
 
