@@ -11,13 +11,13 @@ import seedu.teachbook.model.TeachBook;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "teachbook has been cleared!";
-
+    public static final String MESSAGE_SUCCESS = "Teachbook has been cleared!";
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.setTeachBook(new TeachBook());
+        model.commitTeachBook();
         return new CommandResult(MESSAGE_SUCCESS, false, false, true, true);
     }
 }
