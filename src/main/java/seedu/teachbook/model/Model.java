@@ -158,4 +158,6 @@ public interface Model {
     void commitTeachBook();
 
     void resetGradingSystem();
+
+    void setClassname(Class newClass);
 }
