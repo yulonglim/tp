@@ -3,8 +3,10 @@ package seedu.teachbook.model.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,6 +37,11 @@ public class UniqueStudentList implements Iterable<Student> {
     public boolean contains(Student toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameStudent);
+    }
+
+    public void sort(Comparator<? super Student> comparator) {
+        List<Student> sorted = internalList.stream().sorted(comparator).collect(Collectors.toList());
+        setStudents(sorted);
     }
 
     /**
@@ -98,6 +105,12 @@ public class UniqueStudentList implements Iterable<Student> {
         internalList.setAll(students);
     }
 
+    public void print() {
+        internalList.forEach(item -> {
+            System.out.println(item.toString());
+        });
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
@@ -124,6 +137,7 @@ public class UniqueStudentList implements Iterable<Student> {
                 || (other instanceof UniqueStudentList // instanceof handles nulls
                         && internalList.equals(((UniqueStudentList) other).internalList));
     }
+
 
     @Override
     public int hashCode() {

@@ -1,5 +1,7 @@
 package seedu.teachbook.model.classobject;
 
+import java.util.Comparator;
+
 import javafx.collections.ObservableList;
 import seedu.teachbook.model.student.Student;
 import seedu.teachbook.model.student.UniqueStudentList;
@@ -12,6 +14,10 @@ public class Class {
     public Class(ClassName className) {
         this.className = className;
         this.studentsOfThisClass = new UniqueStudentList();
+    }
+
+    public void reorderStudents(Comparator<? super Student> comparator) {
+        studentsOfThisClass.sort(comparator);
     }
 
     public ObservableList<Student> getStudentsOfThisClass() {

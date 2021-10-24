@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_LIST_ALL;
 import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
@@ -188,6 +189,14 @@ public class TeachBook implements ReadOnlyTeachBook {
 
     public boolean isValidGrade(Grade grade) {
         return gradingSystem.isValidGrade(grade);
+    }
+
+    public void reorderStudents(GeneralIndex classIndex, Comparator<? super Student> comparator) {
+        if (classIndex.equals(INDEX_LIST_ALL)) {
+            students.sort(comparator);
+        } else {
+            getClassAtIndex(classIndex).reorderStudents(comparator);
+        }
     }
 
     @Override

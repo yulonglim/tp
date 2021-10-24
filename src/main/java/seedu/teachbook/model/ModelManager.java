@@ -240,8 +240,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void reorderFilteredStudentList(Comparator<? super Student> comparator) {
-        filteredStudents.sort(comparator);
+    public void reorderStudents(Comparator<? super Student> comparator) {
+        assert(!currentlySelectedClassIndex.equals(INDEX_NO_CLASS));
+
+        teachBook.reorderStudents(currentlySelectedClassIndex, comparator);
     }
 
     //=========== Undo/Redo =================================================================================
