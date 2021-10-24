@@ -210,7 +210,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void reorderFilteredStudentList(Comparator<? super Student> comparator) {
+        public void reorderStudents(Comparator<? super Student> comparator) {
             throw new AssertionError("This method should not be called.");
         }
 

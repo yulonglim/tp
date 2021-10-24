@@ -15,7 +15,7 @@ import seedu.teachbook.model.tag.Tag;
 /**
  * Switches to another class identified using its name.
  */
-public class PrintClassCommand extends Command {
+public class PrintCommand extends Command {
 
     public static final String COMMAND_WORD = "print";
 
@@ -34,7 +34,7 @@ public class PrintClassCommand extends Command {
     private final List<String> columnList;
 
 
-    public PrintClassCommand(List<String> columnList) {
+    public PrintCommand(List<String> columnList) {
         this.columnList = columnList;
     }
 
@@ -71,23 +71,25 @@ public class PrintClassCommand extends Command {
             }
             break;
 
-        case "grades":
+        case "grade":
             for (Student student : studentList) {
                 result.add(student.getGrade().value);
             }
             break;
 
-        case "remarks":
+        case "remark":
             for (Student student : studentList) {
                 result.add(student.getRemark().value);
             }
             break;
+
         default:
             for (int i = 0; i < studentList.size(); i++) {
                 result.add("");
             }
             break;
         }
+
         return result;
     }
 
@@ -116,6 +118,6 @@ public class PrintClassCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof PrintClassCommand);
+                || (other instanceof PrintCommand);
     }
 }
