@@ -5,14 +5,12 @@ import static seedu.teachbook.testutil.Assert.assertThrows;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.teachbook.model.classobject.Class;
-import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.gradeobject.GradingSystem;
 import seedu.teachbook.model.student.Student;
 
@@ -101,6 +99,10 @@ public class TeachBookTest {
         }
 
         @Override
-        public GradingSystem getGradingSystem() {return null;}
+        public GradingSystem getGradingSystem() {
+            return null;
+        }
     }
+
 }
+
