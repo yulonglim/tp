@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.teachbook.commons.core.Messages.MESSAGE_DUPLICATE_CLASS;
 import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_LIST_ALL;
 import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_NO_CLASS;
-import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
@@ -14,11 +13,9 @@ import seedu.teachbook.model.classobject.ClassName;
 public class EditClassCommand extends Command {
 
     public static final String COMMAND_WORD = "editClass";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits information of the currently selected class.\n"
-            + "Parameters: "
-            + PREFIX_NAME + "CLASSNAME "
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "ClassA";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the name of the currently selected class.\n"
+            + "Parameters: CLASSNAME "
+            + "Example: " + COMMAND_WORD + " ClassA";
 
     public static final String MESSAGE_SUCCESS = "Edited Class: %1$s";
     public static final String MESSAGE_NO_CLASS_SELECTED = "Select a class before editing class!";
