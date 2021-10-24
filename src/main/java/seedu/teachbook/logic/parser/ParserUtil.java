@@ -30,6 +30,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -145,6 +146,9 @@ public class ParserUtil {
     public static Grade parseGrade(String grade) throws ParseException {
         requireNonNull(grade);
         String trimmedGrade = grade.trim();
+        if (trimmedGrade.contains("g/")) {
+            trimmedGrade = trimmedGrade.replace("g/", "");
+        }
         // TODO: validate grade format
 //        if (!Grade.isValidGrade(trimmedGrade)) {
 //            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);

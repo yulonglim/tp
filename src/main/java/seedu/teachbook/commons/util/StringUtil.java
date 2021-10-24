@@ -65,4 +65,21 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Returns camel-case format of provided string
+     *
+     * @param string to be converted
+     * @return String in camel case
+     */
+    public static String toCamelCase(String string) {
+        StringBuilder builder = new StringBuilder();
+        String[] words = string.split(" ");
+        for (int i = 0; i < words.length; i++) {
+            String word = words[i];
+            word = word.isEmpty() ? word : Character.toUpperCase(word.charAt(0)) + word.substring(1).toLowerCase();
+            builder.append(word);
+        }
+        return builder.toString();
+    }
 }
