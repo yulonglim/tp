@@ -14,11 +14,10 @@ public class SetGradeCommandParser implements Parser<SetGradeCommand> {
         String trimmedArgs = args.trim();
 
         if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetGradeCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetGradeCommand.MESSAGE_USAGE));
         }
 
-        List<Grade> gradeList = ParserUtil.parseGrades(trimmedArgs);;
+        List<Grade> gradeList = ParserUtil.parseGrades(trimmedArgs);
 
         return new SetGradeCommand(gradeList);
     }

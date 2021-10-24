@@ -23,6 +23,7 @@ public class ResetGradeCommand extends Command {
         }
 
         model.resetGradingSystem();
+        model.commitTeachBook();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

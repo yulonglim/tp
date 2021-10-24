@@ -62,8 +62,7 @@ public class RemarkCommand extends Command {
                 studentToEdit.getTags(), studentToEdit.getAttendance(), studentToEdit.getGrade());
 
         model.setStudent(studentToEdit, editedStudent);
-//        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-
+        model.commitTeachBook();
         return new CommandResult(generateSuccessMessage(editedStudent));
     }
 

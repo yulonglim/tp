@@ -3,11 +3,9 @@ package seedu.teachbook.logic.parser;
 import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.teachbook.model.gradeobject.GradingSystem.NOT_GRADED;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -37,7 +35,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_ADDRESS, PREFIX_TAG, PREFIX_GRADE);
+                PREFIX_ADDRESS, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -48,16 +46,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Remark remark = new Remark(""); // add command does not allow adding remarks straight away
+        Remark remark = new Remark(""); // add command does not allow adding remark straight away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Attendance attendance = new Attendance(false, LocalDate.now());
-
-        Grade grade;
-        if (argMultimap.getValue(PREFIX_GRADE).isEmpty()) {
-            grade = new Grade(NOT_GRADED);
-        } else {
-            grade = ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get());
-        }
+        Grade grade = new Grade(""); // add command does not allow adding grade straight away
 
         Student student = new Student(name, phone, email, address, remark, tagList, attendance, grade);
 

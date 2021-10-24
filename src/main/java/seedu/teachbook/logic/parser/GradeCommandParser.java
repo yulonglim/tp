@@ -6,7 +6,6 @@ import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_GRADE;
 import java.util.stream.Stream;
 
 import seedu.teachbook.commons.core.index.Index;
-import seedu.teachbook.logic.commands.EditCommand;
 import seedu.teachbook.logic.commands.GradeCommand;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
 
@@ -20,12 +19,13 @@ public class GradeCommandParser implements Parser<GradeCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GradeCommand.MESSAGE_USAGE), pe);
         }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_GRADE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GradeCommand.MESSAGE_USAGE));
         }
+
         return new GradeCommand(index, ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get()));
     }
 
