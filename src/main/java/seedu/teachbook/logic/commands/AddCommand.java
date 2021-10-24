@@ -2,7 +2,6 @@ package seedu.teachbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.teachbook.commons.core.Messages.MESSAGE_DUPLICATE_STUDENT;
-import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_GRADE;
 import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_LIST_ALL;
 import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_NO_CLASS;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -10,7 +9,6 @@ import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.teachbook.model.gradeobject.GradingSystem.NOT_GRADED;
 
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
@@ -41,8 +39,6 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_NO_CLASS = "Add the first class before adding any student!";
     public static final String MESSAGE_LIST_ALL = "Select a class before adding any student!";
-    public static final String MESSAGE_GRADING_SYSTEM_NOT_SET =
-            "Set a grading system before adding any grade";
 
     private final Student toAdd;
 
@@ -69,14 +65,6 @@ public class AddCommand extends Command {
         model.setClassForStudent(toAdd);
         if (model.hasStudent(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
-        }
-
-        if (!model.hasExistingGradingSystem() && !toAdd.getGrade().value.equals(NOT_GRADED)) { // TODO: refine
-            throw new CommandException(MESSAGE_GRADING_SYSTEM_NOT_SET);
-        }
-
-        if (!model.isValidGrade(toAdd.getGrade())) {
-            throw new CommandException(String.format(MESSAGE_INVALID_GRADE, model.getGradingSystem()));
         }
 
         model.addStudent(toAdd);
