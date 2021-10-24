@@ -6,14 +6,14 @@ import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_COLUMN;
 import java.util.List;
 import java.util.stream.Stream;
 
-import seedu.teachbook.logic.commands.PrintClassCommand;
+import seedu.teachbook.logic.commands.PrintCommand;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
 
 
 /**
  * Parses input arguments and creates a new PrintClassCommand object
  */
-public class PrintClassCommandParser implements Parser<PrintClassCommand> {
+public class PrintCommandParser implements Parser<PrintCommand> {
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
@@ -25,7 +25,7 @@ public class PrintClassCommandParser implements Parser<PrintClassCommand> {
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public PrintClassCommand parse(String args) throws ParseException {
+    public PrintCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_COLUMN);
 
@@ -33,10 +33,10 @@ public class PrintClassCommandParser implements Parser<PrintClassCommand> {
 
         if (!arePrefixesPresent(argMultimap)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PrintClassCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PrintCommand.MESSAGE_USAGE));
         }
 
-        return new PrintClassCommand(columnList); // TODO: better write how to parse "select" command
+        return new PrintCommand(columnList); // TODO: better write how to parse "select" command
     }
 
 }
