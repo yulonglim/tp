@@ -1,6 +1,7 @@
 package seedu.teachbook.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -9,6 +10,8 @@ import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.classobject.exceptions.NoClassWithNameException;
+import seedu.teachbook.model.gradeobject.Grade;
+import seedu.teachbook.model.gradeobject.GradingSystem;
 import seedu.teachbook.model.student.Student;
 
 /**
@@ -55,6 +58,9 @@ public interface Model {
 
     /** Returns the teachbook */
     ReadOnlyTeachBook getTeachBook();
+
+    /** Returns the index of the currently selected class on ui */
+    GeneralIndex getCurrentlySelectedClassIndex();
 
     /**
      * Returns true if a student with the same identity as {@code student} exists in the teachbook.
@@ -114,8 +120,41 @@ public interface Model {
 
     GeneralIndex getIndexOfClass(ClassNameDescriptor className) throws NoClassWithNameException;
 
+    GradingSystem getGradingSystem();
+
+    void setGradingSystem(GradingSystem gradingSystem);
+
+    boolean hasExistingGradingSystem();
+
+    boolean isValidGrade(Grade grade);
+
     void updateCurrentlySelectedClass(GeneralIndex newClassIndex);
 
-    GeneralIndex getCurrentlySelectedClassIndex();
+    void reorderFilteredStudentList(Comparator<? super Student> comparator);
+
+    /**
+     * Returns true if the model has previous address book states to restore.
+     */
+    boolean canUndoAddressBook();
+
+    /**
+     * Returns true if the model has undone address book states to restore.
+     */
+    boolean canRedoAddressBook();
+
+    /**
+     * Restores the model's address book to its previous state.
+     */
+    void undoAddressBook();
+
+    /**
+     * Restores the model's address book to its previously undone state.
+     */
+    void redoAddressBook();
+
+    /**
+     * Saves the current address book state for undo/redo.
+     */
+    void commitAddressBook();
 
 }

@@ -132,6 +132,18 @@
     -fx-text-fill: #010504;
 }
 
+.cell_remark_label {
+    -fx-font-family: "Open Sans Italic";
+    -fx-font-size: 13px;
+    -fx-text-fill: #FFD966 !important;
+}
+
+.cell_grade_label {
+    -fx-font-family: "Open Sans Regular";
+    -fx-font-size: 13px;
+    -fx-text-fill: #69ff66 !important;
+}
+
 .stack-pane {
      -fx-background-color: derive(#1d1d1d, 20%);
 }

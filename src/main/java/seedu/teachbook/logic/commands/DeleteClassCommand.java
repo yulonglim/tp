@@ -46,6 +46,7 @@ public class DeleteClassCommand extends Command {
 
         Class classToDelete = classes.get(classIndex.getZeroBased());
         model.deleteClass(classToDelete);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_DELETE_CLASS_SUCCESS, classToDelete),
                 false, false, true, true);
     }

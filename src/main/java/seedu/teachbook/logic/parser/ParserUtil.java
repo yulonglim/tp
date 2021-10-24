@@ -2,8 +2,10 @@ package seedu.teachbook.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.teachbook.commons.core.index.Index;
@@ -11,6 +13,7 @@ import seedu.teachbook.commons.util.StringUtil;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
 import seedu.teachbook.model.classobject.ClassName;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
+import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.student.Address;
 import seedu.teachbook.model.student.Email;
 import seedu.teachbook.model.student.Name;
@@ -27,6 +30,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -138,4 +142,28 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    public static Grade parseGrade(String grade) throws ParseException {
+        requireNonNull(grade);
+        String trimmedGrade = grade.trim();
+        if (trimmedGrade.contains("g/")) {
+            trimmedGrade = trimmedGrade.replace("g/", "");
+        }
+        // TODO: validate grade format
+//        if (!Grade.isValidGrade(trimmedGrade)) {
+//            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
+//        }
+        return new Grade(trimmedGrade);
+    }
+
+    public static List<Grade> parseGrades(String grades) throws ParseException {
+        requireNonNull(grades);
+        final List<Grade> gradeList = new ArrayList<>();
+        String[] stringGradeList = grades.split(">");
+        for (String grade : stringGradeList) {
+            gradeList.add(parseGrade(grade));
+        }
+        return gradeList;
+    }
+
 }

@@ -12,6 +12,8 @@ import seedu.teachbook.commons.exceptions.IllegalValueException;
 import seedu.teachbook.model.ReadOnlyTeachBook;
 import seedu.teachbook.model.TeachBook;
 import seedu.teachbook.model.classobject.Class;
+import seedu.teachbook.model.gradeobject.Grade;
+import seedu.teachbook.model.gradeobject.GradingSystem;
 
 /**
  * An Immutable TeachBook that is serializable to JSON format.
@@ -22,14 +24,17 @@ class JsonSerializableTeachBook {
     public static final String MESSAGE_DUPLICATE_CLASS = "TeachBook contains duplicate classes.";
 
     private final List<JsonAdaptedClass> classes = new ArrayList<>();
+    private final List<JsonAdaptedGrade> gradeList = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableTeachBook} with the given students
      * .
      */
     @JsonCreator
-    public JsonSerializableTeachBook(@JsonProperty("classes") List<JsonAdaptedClass> classes) {
+    public JsonSerializableTeachBook(@JsonProperty("classes") List<JsonAdaptedClass> classes,
+                                     @JsonProperty("gradeList") List<JsonAdaptedGrade> grades) {
         this.classes.addAll(classes);
+        this.gradeList.addAll(grades);
     }
 
     /**
@@ -39,6 +44,8 @@ class JsonSerializableTeachBook {
      */
     public JsonSerializableTeachBook(ReadOnlyTeachBook source) {
         classes.addAll(source.getClassList().stream().map(JsonAdaptedClass::new).collect(Collectors.toList()));
+        gradeList.addAll(source.getGradingSystem().getGradeList().stream()
+                .map(JsonAdaptedGrade::new).collect(Collectors.toList()));
     }
 
     /**
@@ -56,6 +63,13 @@ class JsonSerializableTeachBook {
             }
             teachBook.addClass(classObj);
         }
+
+        List<Grade> storedGrades = new ArrayList<>();
+        for (JsonAdaptedGrade jsonAdaptedGrade : gradeList) {
+            storedGrades.add(jsonAdaptedGrade.toModelType());
+        }
+        GradingSystem grades = new GradingSystem(storedGrades);
+        teachBook.setGradingSystem(grades);
         return teachBook;
     }
 

@@ -43,15 +43,16 @@ public class LogicManager implements Logic {
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
+
         CommandResult commandResult;
         Command command = teachBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
-
         try {
             storage.saveTeachBook(model.getTeachBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
+
 
         return commandResult;
     }

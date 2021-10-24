@@ -6,12 +6,15 @@ import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.classobject.UniqueClassList;
 import seedu.teachbook.model.classobject.exceptions.NoClassWithNameException;
+import seedu.teachbook.model.gradeobject.Grade;
+import seedu.teachbook.model.gradeobject.GradingSystem;
 import seedu.teachbook.model.student.Student;
 import seedu.teachbook.model.student.UniqueStudentList;
 
@@ -21,8 +24,9 @@ import seedu.teachbook.model.student.UniqueStudentList;
  */
 public class TeachBook implements ReadOnlyTeachBook {
 
-    private UniqueStudentList students; // different from AB3: this variable is for "list all" command only!
     private final UniqueClassList classes;
+    private UniqueStudentList students; // different from AB3: this variable is for "list all" command only!
+    private GradingSystem gradingSystem;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -30,13 +34,14 @@ public class TeachBook implements ReadOnlyTeachBook {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */
-    {
+     */ {
         students = new UniqueStudentList();
         classes = new UniqueClassList();
+        gradingSystem = new GradingSystem();
     }
 
-    public TeachBook() {}
+    public TeachBook() {
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -61,7 +66,20 @@ public class TeachBook implements ReadOnlyTeachBook {
      */
     public void resetData(ReadOnlyTeachBook newData) {
         requireNonNull(newData);
-        setClasses(newData.getClassList());
+        ObservableList<Class> toCopy = FXCollections.observableArrayList();
+        for (Class c : newData.getClassList()) {
+            Class toAdd = new Class(c.getClassName());
+            for (Student s : c.getStudentsOfThisClass()) {
+                Student studentToAdd = new Student(s.getName(), s.getPhone(),
+                        s.getEmail(), s.getAddress(), s.getRemark(), s.getTags(), s.getGrade());
+                studentToAdd.setStudentClass(toAdd);
+                toAdd.addStudent(studentToAdd);
+
+            }
+            toCopy.add(toAdd);
+        }
+        setGradingSystem(newData.getGradingSystem());
+        setClasses(toCopy);
     }
 
     //// student-level operations
@@ -131,8 +149,8 @@ public class TeachBook implements ReadOnlyTeachBook {
     @Override
     public ObservableList<Student> getStudentList() {
         students = new UniqueStudentList();
-        for (Class studentClass: classes) {
-            for (Student student: studentClass.getStudentsOfThisClass()) {
+        for (Class studentClass : classes) {
+            for (Student student : studentClass.getStudentsOfThisClass()) {
                 students.add(student);
             }
         }
@@ -144,7 +162,7 @@ public class TeachBook implements ReadOnlyTeachBook {
     }
 
     public ObservableList<Student> getStudentListOfClass(GeneralIndex classIndex) {
-        return classes.getClassAtIndex(classIndex).getStudentsOfThisClass().asUnmodifiableObservableList();
+        return classes.getClassAtIndex(classIndex).getStudentsOfThisClass();
     }
 
     public GeneralIndex getIndexOfClass(ClassNameDescriptor className) throws NoClassWithNameException {
@@ -154,6 +172,22 @@ public class TeachBook implements ReadOnlyTeachBook {
 
     public Class getClassAtIndex(GeneralIndex classIndex) {
         return classes.getClassAtIndex(classIndex); // TODO: get class or let unique class list do things?
+    }
+
+    public GradingSystem getGradingSystem() {
+        return gradingSystem;
+    }
+
+    public void setGradingSystem(GradingSystem newGradingSystem) {
+        gradingSystem = newGradingSystem;
+    }
+
+    public boolean hasExistingGradingSystem() {
+        return gradingSystem.isInUse();
+    }
+
+    public boolean isValidGrade(Grade grade) {
+        return gradingSystem.isValidGrade(grade);
     }
 
     @Override

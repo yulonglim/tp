@@ -7,6 +7,7 @@ import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_NO_CLASS;
 import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -19,6 +20,8 @@ import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.classobject.exceptions.NoClassWithNameException;
+import seedu.teachbook.model.gradeobject.Grade;
+import seedu.teachbook.model.gradeobject.GradingSystem;
 import seedu.teachbook.model.student.Student;
 
 /**
@@ -27,7 +30,7 @@ import seedu.teachbook.model.student.Student;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final TeachBook teachBook;
+    private final VersionedTeachBook teachBook;
     private final UserPrefs userPrefs;
     private FilteredList<Student> filteredStudents;
     private GeneralIndex currentlySelectedClassIndex;
@@ -41,7 +44,7 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with teachbook: " + teachBook + " and user prefs " + userPrefs);
 
-        this.teachBook = new TeachBook(teachBook);
+        this.teachBook = new VersionedTeachBook(teachBook);
         this.userPrefs = new UserPrefs(userPrefs);
 
         this.currentlySelectedClassIndex = INDEX_NO_CLASS;
@@ -199,6 +202,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public GradingSystem getGradingSystem() {
+        return teachBook.getGradingSystem();
+    }
+
+    @Override
     public void updateCurrentlySelectedClass(GeneralIndex newClassIndex) {
         requireNonNull(newClassIndex);
         currentlySelectedClassIndex = newClassIndex;
@@ -218,6 +226,54 @@ public class ModelManager implements Model {
 
     private void setNewEmptyFilteredList() {
         this.filteredStudents = new FilteredList<>(FXCollections.observableArrayList());
+    }
+
+    @Override
+    public void setGradingSystem(GradingSystem gradingSystem) {
+        teachBook.setGradingSystem(gradingSystem);
+    }
+
+    @Override
+    public boolean hasExistingGradingSystem() {
+        return teachBook.hasExistingGradingSystem();
+    }
+
+    @Override
+    public boolean isValidGrade(Grade grade) {
+        return teachBook.isValidGrade(grade);
+    }
+
+    @Override
+    public void reorderFilteredStudentList(Comparator<? super Student> comparator) {
+        filteredStudents.sort(comparator);
+    }
+
+    //=========== Undo/Redo =================================================================================
+
+
+    @Override
+    public boolean canUndoAddressBook() {
+        return this.teachBook.canUndo();
+    }
+
+    @Override
+    public boolean canRedoAddressBook() {
+        return this.teachBook.canRedo();
+    }
+
+    @Override
+    public void undoAddressBook() {
+        this.teachBook.undo();
+    }
+
+    @Override
+    public void redoAddressBook() {
+        this.teachBook.redo();
+    }
+
+    @Override
+    public void commitAddressBook() {
+        this.teachBook.commit();
     }
 
     @Override
