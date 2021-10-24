@@ -1,8 +1,7 @@
 package seedu.teachbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_GRADE;
-import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_GRADE;
+import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.teachbook.model.gradeobject.GradingSystem.NOT_GRADED;
 
 import java.util.List;
@@ -17,13 +16,18 @@ import seedu.teachbook.model.student.Student;
 public class GradeCommand extends Command {
 
     public static final String COMMAND_WORD = "grade";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the grade of the student identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Edits the grade of the student identified "
+            + "by the index number used in the displayed student list. "
+            + "Existing grade will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_GRADE + "Grade] "
-            + "Example: " + COMMAND_WORD + " 1 " + "g/A";
-    public static final String MESSAGE_GRADING_SYSTEM_NOT_SET =
-            "Set a grading system before editing any grade";
-    public static final String MESSAGE_GRADE_PERSON_SUCCESS = "Graded Student: %1$s";
+            + PREFIX_REMARK + "[GRADE]\n"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_REMARK + "A";
+
+    public static final String MESSAGE_GRADE_SUCCESS = "Graded Student: %1$s";
+    public static final String MESSAGE_GRADING_SYSTEM_NOT_SET = "Set a grading system before editing any grade";
+    public static final String MESSAGE_INVALID_GRADE = "Invalid grade\nCurrent grading system: %1$s";
 
     private final Grade grade;
     private final Index index;
@@ -50,12 +54,13 @@ public class GradeCommand extends Command {
         if (!model.isValidGrade(grade)) {
             throw new CommandException(String.format(MESSAGE_INVALID_GRADE, model.getGradingSystem()));
         }
-        Student editedStudent = new Student(studentToEdit.getName(), studentToEdit.getPhone(), studentToEdit.getEmail(),
-                                            studentToEdit.getAddress(), studentToEdit.getRemark(),
-                                            studentToEdit.getTags(), grade);
-        editedStudent.setStudentClass(studentToEdit.getStudentClass());
+
+        Student editedStudent = new Student(studentToEdit.getName(), studentToEdit.getPhone(),
+                studentToEdit.getStudentClass(), studentToEdit.getEmail(), studentToEdit.getAddress(),
+                studentToEdit.getRemark(), studentToEdit.getTags(), grade);
+
         model.setStudent(studentToEdit, editedStudent);
         model.commitTeachBook();
-        return new CommandResult(String.format(MESSAGE_GRADE_PERSON_SUCCESS, editedStudent));
+        return new CommandResult(String.format(MESSAGE_GRADE_SUCCESS, editedStudent));
     }
 }

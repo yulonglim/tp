@@ -12,9 +12,11 @@ import seedu.teachbook.model.gradeobject.GradingSystem;
 public class SetGradeCommand extends Command {
 
     public static final String COMMAND_WORD = "setGrade";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets a grading system\n"
-            + "Parameters: Grade1>Grade2>Grade3... "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Sets a grading system.\n"
+            + "Parameters: GRADE1>GRADE2>GRADE3..."
             + "Example: " + COMMAND_WORD + " A>B>C>D>E";
+
     public static final String MESSAGE_SUCCESS = "New grading system set: %1$s";
     public static final String MESSAGE_GRADING_SYSTEM_EXISTS = "A grading system is currently in use. "
             + "You can reset grading system using " + ResetGradeCommand.COMMAND_WORD + " command.";
