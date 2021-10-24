@@ -15,9 +15,7 @@ public class GradeCommandParser implements Parser<GradeCommand> {
 
     @Override
     public GradeCommand parse(String args) throws ParseException {
-        requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_GRADE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_GRADE);
         Index index;
 
         try {

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.teachbook.commons.core.Messages.MESSAGE_DUPLICATE_STUDENT;
 import static seedu.teachbook.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -23,6 +24,7 @@ import seedu.teachbook.model.ReadOnlyTeachBook;
 import seedu.teachbook.model.ReadOnlyUserPrefs;
 import seedu.teachbook.model.TeachBook;
 import seedu.teachbook.model.classobject.Class;
+import seedu.teachbook.model.classobject.ClassName;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.gradeobject.GradingSystem;
@@ -53,7 +55,7 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validStudent);
         ModelStub modelStub = new ModelStubWithPerson(validStudent);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_STUDENT, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, MESSAGE_DUPLICATE_STUDENT, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -250,7 +252,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setClassname(Class newClass) {
+        public void setClassName(ClassName updatedClassName) {
             throw new AssertionError("This method should not be called.");
         }
 

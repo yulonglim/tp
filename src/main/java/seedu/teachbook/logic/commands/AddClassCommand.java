@@ -1,6 +1,7 @@
 package seedu.teachbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.teachbook.commons.core.Messages.MESSAGE_DUPLICATE_CLASS;
 
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
@@ -19,8 +20,6 @@ public class AddClassCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + "Class A";
 
     public static final String MESSAGE_SUCCESS = "New class added: %1$s";
-
-    public static final String MESSAGE_DUPLICATE_CLASS = "This class already exists in the teachbook";
 
     private final Class toAdd;
 

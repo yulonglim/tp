@@ -11,5 +11,7 @@ public class Messages {
     public static final String MESSAGE_CLASS_DOES_NOT_EXIST = "The class does not exist";
     public static final String MESSAGE_STUDENTS_LISTED_OVERVIEW = "%1$d students listed!";
     public static final String MESSAGE_INVALID_GRADE = "Invalid grade\nCurrent grading system: %1$s";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "The student already exists in the class";
+    public static final String MESSAGE_DUPLICATE_CLASS = "The class already exists in the teachbook!";
 
 }

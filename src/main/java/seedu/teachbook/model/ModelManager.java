@@ -18,6 +18,7 @@ import seedu.teachbook.commons.core.GuiSettings;
 import seedu.teachbook.commons.core.LogsCenter;
 import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.classobject.Class;
+import seedu.teachbook.model.classobject.ClassName;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.classobject.exceptions.NoClassWithNameException;
 import seedu.teachbook.model.gradeobject.Grade;
@@ -141,10 +142,9 @@ public class ModelManager implements Model {
         }
     }
 
-    public void setClassname(Class newClass) {
-        Class target = teachBook.getClassAtIndex(currentlySelectedClassIndex);
-        newClass.setStudentsOfThisClass(target.getUniqueStudentListOfThisClass());
-        teachBook.setClass(target, newClass);
+    @Override
+    public void setClassName(ClassName updatedClassName) {
+        teachBook.setClassName(currentlySelectedClassIndex, updatedClassName);
     }
 
     @Override
