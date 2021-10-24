@@ -3,6 +3,7 @@ package seedu.teachbook.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_LIST_ALL;
 import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.teachbook.model.gradeobject.GradingSystem.NOT_GRADED;
 
 import java.util.Comparator;
 import java.util.List;
@@ -62,9 +63,14 @@ public class TeachBook implements ReadOnlyTeachBook {
         this.students.setStudents(students);
     }
 
-    public void resetGradingSystem() {
+    public void resetGradingSystem(GeneralIndex classIndex) {
         this.gradingSystem = new GradingSystem();
-        students.resetGrade();
+        getClassList().forEach(studentClass -> studentClass.getStudentsOfThisClass().forEach(student -> {
+            Student editedStudent = new Student(student.getName(), student.getPhone(),
+                    student.getStudentClass(), student.getEmail(), student.getAddress(),
+                    student.getRemark(), student.getTags(), new Grade(NOT_GRADED));
+            setStudent(classIndex, student, editedStudent);
+        }));
     }
 
     /**
@@ -122,8 +128,6 @@ public class TeachBook implements ReadOnlyTeachBook {
         requireAllNonNull(classIndex, target, editedStudent);
         if (classIndex.equals(INDEX_LIST_ALL)) {
             students.setStudent(target, editedStudent); // edit twice
-        } else {
-            assert getClassAtIndex(classIndex).equals(target.getStudentClass());
         }
         target.getStudentClass().setStudent(target, editedStudent);
     }

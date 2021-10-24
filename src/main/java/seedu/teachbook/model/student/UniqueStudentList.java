@@ -3,11 +3,9 @@ package seedu.teachbook.model.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -41,18 +39,17 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     public void sort(Comparator<? super Student> comparator) {
-        List<Student> sorted = internalList.stream().sorted(comparator).collect(Collectors.toList());
-        setStudents(sorted);
+        internalList.sort(comparator);
     }
 
-    public void resetGrade() {
-        List<Student> reset = new ArrayList<>();
-        internalList.forEach(student -> {
-            student.resetGrade();
-            reset.add(student);
-        });
-        setStudents(reset);
-    }
+//    public void resetGrade() {
+//        List<Student> replacementList = new ArrayList<>();
+//        internalList.forEach(student -> {
+//            student.resetGrade();
+//            replacementList.add(student);
+//        });
+//        setStudents(replacementList);
+//    }
 
     /**
      * Adds a student to the list.
@@ -113,12 +110,6 @@ public class UniqueStudentList implements Iterable<Student> {
         }
 
         internalList.setAll(students);
-    }
-
-    public void print() {
-        internalList.forEach(item -> {
-            System.out.println(item.toString());
-        });
     }
 
     /**
