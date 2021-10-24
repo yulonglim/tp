@@ -130,7 +130,7 @@ public interface Model {
 
     void updateCurrentlySelectedClass(GeneralIndex newClassIndex);
 
-    void reorderFilteredStudentList(Comparator<? super Student> comparator);
+    void reorderStudents(Comparator<? super Student> comparator);
 
     /**
      * Returns true if the model has previous address book states to restore.
