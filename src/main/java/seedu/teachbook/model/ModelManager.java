@@ -226,10 +226,6 @@ public class ModelManager implements Model {
         updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
-<<<<<<< HEAD
-    private void setNewEmptyFilteredList() {
-        this.filteredStudents = new FilteredList<>(FXCollections.observableArrayList());
-=======
     private void initialiseCurrentlySelectedClassIndex() {
         updateCurrentlySelectedClass(INDEX_NO_CLASS);
         if (this.teachBook.getNumOfClasses() >= 1) {
@@ -240,7 +236,6 @@ public class ModelManager implements Model {
     @Override
     public void resetGradingSystem() {
         teachBook.resetGradingSystem(currentlySelectedClassIndex);
->>>>>>> master
     }
 
     @Override
