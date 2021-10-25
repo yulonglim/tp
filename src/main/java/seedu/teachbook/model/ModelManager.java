@@ -275,17 +275,17 @@ public class ModelManager implements Model {
 
     @Override
     public void undoTeachBook() {
-        this.teachBook.undo(); // TODO: fix undo after clear
+        updateCurrentlySelectedClass(this.teachBook.undo()); // TODO: fix undo after clear
     }
 
     @Override
     public void redoTeachBook() {
-        this.teachBook.redo();
+        updateCurrentlySelectedClass(this.teachBook.redo());
     }
 
     @Override
     public void commitTeachBook() {
-        this.teachBook.commit();
+        this.teachBook.commit(currentlySelectedClassIndex);
     }
 
     @Override
