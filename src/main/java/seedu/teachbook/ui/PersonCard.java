@@ -64,7 +64,7 @@ public class PersonCard extends UiPart<Region> {
         checkBox.setSelected(false);
 
         if (student.isPresent()) {
-            checkBox.setSelected(true);
+            markCheckbox();
         }
 
         String remarkContent = student.getRemark().value;
@@ -108,9 +108,5 @@ public class PersonCard extends UiPart<Region> {
 
     public void markCheckbox() {
         checkBox.setSelected(true);
-    }
-
-    public void unmarkCheckbox() {
-        checkBox.setSelected(false);
     }
 }
