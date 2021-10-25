@@ -63,6 +63,10 @@ public class PersonCard extends UiPart<Region> {
         checkBox.setDisable(true);
         checkBox.setSelected(false);
 
+        if (student.isPresent()) {
+            checkBox.setSelected(true);
+        }
+
         String remarkContent = student.getRemark().value;
         if (remarkContent.equals("")) {
             remark.setMinHeight(0.0);
