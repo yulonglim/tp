@@ -49,6 +49,9 @@ public class UnmarkCommand extends Command {
         List<Student> lastShownList = model.getFilteredStudentList();
 
         if (isAll) {
+            if (lastShownList.size() == 0) {
+                throw new CommandException(Messages.MESSAGE_NOTHING_TO_UNMARK);
+            }
             for (int i = lastShownList.size() - 1; i >= 0; i--) {
                 targetIndices.add(Index.fromZeroBased(i));
             }
