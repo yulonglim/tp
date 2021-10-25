@@ -252,6 +252,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean isEmpty() {
+            return false;
+        }
+
+        @Override
         public void setClassName(ClassName updatedClassName) {
             throw new AssertionError("This method should not be called.");
         }
