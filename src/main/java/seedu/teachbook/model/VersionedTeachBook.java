@@ -3,15 +3,26 @@ package seedu.teachbook.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.util.Pair;
+import seedu.teachbook.commons.core.index.DefaultIndices;
+import seedu.teachbook.commons.core.index.GeneralIndex;
+
 public class VersionedTeachBook extends TeachBook {
-    private final List<ReadOnlyTeachBook> teachBookStateList;
+    //private final List<ReadOnlyTeachBook> teachBookStateList;
+    private final List<Pair<ReadOnlyTeachBook, GeneralIndex>> teachBookStateList;
     private int currentStatePointer;
 
     public VersionedTeachBook(ReadOnlyTeachBook initialState) {
         super(initialState);
 
         teachBookStateList = new ArrayList<>();
-        teachBookStateList.add(new TeachBook(initialState));
+        Pair<ReadOnlyTeachBook, GeneralIndex> toAdd;
+        if (initialState.getClassList().size() >= 1) {
+            toAdd = new Pair<>(new TeachBook(initialState), DefaultIndices.INDEX_DEFAULT_INITIAL_CLASS);
+        } else {
+            toAdd = new Pair<>(new TeachBook(initialState), DefaultIndices.INDEX_NO_CLASS);
+        }
+        teachBookStateList.add(toAdd);
         currentStatePointer = 0;
     }
 
@@ -19,9 +30,10 @@ public class VersionedTeachBook extends TeachBook {
      * Saves a copy of the current {@code AddressBook} state at the end of the state list.
      * Undone states are removed from the state list.
      */
-    public void commit() {
+    public void commit(GeneralIndex index) {
         removeStatesAfterCurrentPointer();
-        teachBookStateList.add(new TeachBook(this));
+        Pair<ReadOnlyTeachBook, GeneralIndex> toAdd = new Pair<>(new TeachBook(this), index);
+        teachBookStateList.add(toAdd);
         currentStatePointer++;
     }
 
@@ -32,23 +44,25 @@ public class VersionedTeachBook extends TeachBook {
     /**
      * Restores the address book to its previous state.
      */
-    public void undo() {
+    public GeneralIndex undo() {
         if (!canUndo()) {
             throw new NoUndoableStateException();
         }
         currentStatePointer--;
-        resetData(teachBookStateList.get(currentStatePointer));
+        resetData(teachBookStateList.get(currentStatePointer).getKey());
+        return teachBookStateList.get(currentStatePointer).getValue();
     }
 
     /**
      * Restores the address book to its previously undone state.
      */
-    public void redo() {
+    public GeneralIndex redo() {
         if (!canRedo()) {
             throw new NoRedoableStateException();
         }
         currentStatePointer++;
-        resetData(teachBookStateList.get(currentStatePointer));
+        resetData(teachBookStateList.get(currentStatePointer).getKey());
+        return teachBookStateList.get(currentStatePointer).getValue();
     }
 
     /**
