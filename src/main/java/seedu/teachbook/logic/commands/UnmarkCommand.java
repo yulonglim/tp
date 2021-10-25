@@ -2,7 +2,8 @@ package seedu.teachbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,27 +11,27 @@ import seedu.teachbook.commons.core.Messages;
 import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
-import seedu.teachbook.model.attendance.Attendance;
+import seedu.teachbook.model.student.Attendance;
 import seedu.teachbook.model.student.Student;
 
 /**
- * Unmarks a student identified using it's displayed index from the teachbook.
+ * Marks a student, identified using its displayed index from the teachbook, as absent.
  */
 public class UnmarkCommand extends Command {
 
     public static final String COMMAND_WORD = "unmark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Unmarks the student, identified by the index number used in the displayed student list, as present.\n"
-            + "Parameters: [INDEX1] [INDEX2]... [all] (must be a positive integer)\n"
+            + ": Marks the student, identified by the index number used in the displayed student list, as absent.\n"
+            + "Parameters: INDEX1 [INDEX2]... [all] (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1, " + COMMAND_WORD + " 2 4 5, " + COMMAND_WORD + " all";
 
-    public static final String MESSAGE_UNMARK_STUDENT_SUCCESS = "Unmarked Student(s): %1$s";
+    public static final String MESSAGE_UNMARK_STUDENT_SUCCESS = "Marked %1$s absent at %2$s";
 
-    private final ArrayList<Index> targetIndices;
+    private final List<Index> targetIndices;
     private final boolean isAll;
 
-    public UnmarkCommand(ArrayList<Index> targetIndices) {
+    public UnmarkCommand(List<Index> targetIndices) {
         this.targetIndices = targetIndices;
         isAll = false;
     }
@@ -58,20 +59,22 @@ public class UnmarkCommand extends Command {
             }
         }
 
-        List<Student> studentsToUnmark = new ArrayList<>();
+        List<String> studentToUnmarkNames = new ArrayList<>();
         for (Index targetIndex : targetIndices) {
             Student studentToUnmark = lastShownList.get(targetIndex.getZeroBased());
-            studentsToUnmark.add(studentToUnmark);
+            studentToUnmarkNames.add(studentToUnmark.getName().toString());
             Student editedStudent = new Student(studentToUnmark.getName(), studentToUnmark.getPhone(),
                     studentToUnmark.getStudentClass(), studentToUnmark.getEmail(),
                     studentToUnmark.getAddress(), studentToUnmark.getRemark(), studentToUnmark.getTags(),
-                    new Attendance(false, LocalDate.now()), studentToUnmark.getGrade());
+                    new Attendance(false, LocalDateTime.now()), studentToUnmark.getGrade());
             model.setStudent(studentToUnmark, editedStudent);
         }
 
         model.commitTeachBook();
-        return new CommandResult(String.format(MESSAGE_UNMARK_STUDENT_SUCCESS, studentsToUnmark), false,
-                false, true, false);
+        return new CommandResult(String.format(MESSAGE_UNMARK_STUDENT_SUCCESS,
+                String.join(", ", studentToUnmarkNames),
+                LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a"))),
+                false, false, true, false);
     }
 
     @Override

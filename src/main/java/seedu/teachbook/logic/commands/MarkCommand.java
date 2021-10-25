@@ -2,7 +2,8 @@ package seedu.teachbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,11 +11,11 @@ import seedu.teachbook.commons.core.Messages;
 import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
-import seedu.teachbook.model.attendance.Attendance;
+import seedu.teachbook.model.student.Attendance;
 import seedu.teachbook.model.student.Student;
 
 /**
- * Marks a student identified using it's displayed index from the teachbook.
+ * Marks a student, identified using its displayed index from the teachbook, as present.
  */
 public class MarkCommand extends Command {
 
@@ -22,10 +23,10 @@ public class MarkCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks the student, identified by the index number used in the displayed student list, as present.\n"
-            + "Parameters: [INDEX1] [INDEX2]... [all] (must be a positive integer)\n"
+            + "Parameters: INDEX1 [INDEX2]... [all] (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1, " + COMMAND_WORD + " 2 4 5, " + COMMAND_WORD + " all";
 
-    public static final String MESSAGE_MARK_STUDENT_SUCCESS = "Marked Student(s): %1$s";
+    public static final String MESSAGE_MARK_STUDENT_SUCCESS = "Marked %1$s present at %2$s";
 
     private final List<Index> targetIndices;
     private final boolean isAll;
@@ -58,20 +59,22 @@ public class MarkCommand extends Command {
             }
         }
 
-        List<Student> studentsToMark = new ArrayList<>();
+        List<String> studentToMarkNames = new ArrayList<>();
         for (Index targetIndex : targetIndices) {
             Student studentToMark = lastShownList.get(targetIndex.getZeroBased());
-            studentsToMark.add(studentToMark);
+            studentToMarkNames.add(studentToMark.getName().toString());
             Student editedStudent = new Student(studentToMark.getName(), studentToMark.getPhone(),
                     studentToMark.getStudentClass(), studentToMark.getEmail(),
                     studentToMark.getAddress(), studentToMark.getRemark(), studentToMark.getTags(),
-                    new Attendance(true, LocalDate.now()), studentToMark.getGrade());
+                    new Attendance(true, LocalDateTime.now()), studentToMark.getGrade());
             model.setStudent(studentToMark, editedStudent);
         }
 
         model.commitTeachBook();
-        return new CommandResult(String.format(MESSAGE_MARK_STUDENT_SUCCESS, studentsToMark), false,
-                false, true, false);
+        return new CommandResult(String.format(MESSAGE_MARK_STUDENT_SUCCESS,
+                String.join(", ", studentToMarkNames),
+                LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a"))),
+                false, false, true, false);
     }
 
     @Override
