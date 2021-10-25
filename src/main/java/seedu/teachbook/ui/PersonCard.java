@@ -60,9 +60,8 @@ public class PersonCard extends UiPart<Region> {
         address.setText(student.getAddress().value);
         email.setText(student.getEmail().value);
 
-//        checkBox.setStyle("selected-box-color: lime; box-color: red; mark-color: blue;");
-//        checkBox.setSelected(true);
-//        checkBox.setDisable(true);
+        checkBox.setDisable(true);
+        checkBox.setSelected(false);
 
         String remarkContent = student.getRemark().value;
         if (remarkContent.equals("")) {
@@ -101,5 +100,13 @@ public class PersonCard extends UiPart<Region> {
         PersonCard card = (PersonCard) other;
         return id.getText().equals(card.id.getText())
                 && student.equals(card.student);
+    }
+
+    public void markCheckbox() {
+        checkBox.setSelected(true);
+    }
+
+    public void unmarkCheckbox() {
+        checkBox.setSelected(false);
     }
 }
