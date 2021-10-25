@@ -41,6 +41,7 @@ public class ListCommand extends Command {
 
         if (isAll) {
             model.updateCurrentlySelectedClass(INDEX_LIST_ALL);
+            model.commitTeachBook();
             return new CommandResult(MESSAGE_SUCCESS, false, false, true, true);
         }
 
