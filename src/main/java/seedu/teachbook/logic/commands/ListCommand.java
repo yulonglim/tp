@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_LIST_ALL;
 import static seedu.teachbook.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
+import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
 import seedu.teachbook.model.student.StudentIsAbsentPredicate;
 
@@ -22,6 +23,8 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all students";
     public static final String MESSAGE_SUCCESS_ABSENTEE = "Listed all absent students";
+    public static final String MESSAGE_ALREADY_LIST_ALL = "Already displaying students from all classes\n"
+            + "Use \"list\" to display the full list.";
 
     private final boolean isAll;
     private final boolean isAbsentee;
@@ -36,10 +39,13 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
         if (isAll) {
+            if (model.isListAll()) {
+                throw new CommandException(MESSAGE_ALREADY_LIST_ALL);
+            }
             model.updateCurrentlySelectedClass(INDEX_LIST_ALL);
             model.commitTeachBook();
             return new CommandResult(MESSAGE_SUCCESS, false, false, true, true);

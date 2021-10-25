@@ -125,6 +125,10 @@ public class UniqueClassList implements Iterable<Class> {
         return internalList.size();
     }
 
+    public boolean isEmpty() {
+        return internalList.isEmpty();
+    }
+
     @Override
     public Iterator<Class> iterator() {
         return internalList.iterator();
