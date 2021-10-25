@@ -12,5 +12,7 @@ public class Messages {
     public static final String MESSAGE_STUDENTS_LISTED_OVERVIEW = "%1$d students listed!";
     public static final String MESSAGE_DUPLICATE_STUDENT = "The student already exists in the class";
     public static final String MESSAGE_DUPLICATE_CLASS = "The class already exists in the teachbook!";
+    public static final String MESSAGE_NOTHING_TO_MARK = "There is nothing to mark as there are no students.";
+    public static final String MESSAGE_NOTHING_TO_UNMARK = "There is nothing to unmark as there are no students.";
 
 }

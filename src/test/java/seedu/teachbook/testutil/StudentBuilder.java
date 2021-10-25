@@ -1,5 +1,6 @@
 package seedu.teachbook.testutil;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -7,6 +8,7 @@ import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
 import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.student.Address;
+import seedu.teachbook.model.student.Attendance;
 import seedu.teachbook.model.student.Email;
 import seedu.teachbook.model.student.Name;
 import seedu.teachbook.model.student.Phone;
@@ -26,6 +28,7 @@ public class StudentBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_REMARK = "Allergic to seafood.";
+    public static final String DEFAULT_ATTENDANCE = "Absent " + LocalDateTime.now();
     public static final String DEFAULT_GRADE = "";
 
     private Name name;
@@ -35,6 +38,7 @@ public class StudentBuilder {
     private Address address;
     private Remark remark;
     private Set<Tag> tags;
+    private Attendance attendance;
     private Grade grade;
 
     /**
@@ -48,6 +52,10 @@ public class StudentBuilder {
         address = new Address(DEFAULT_ADDRESS);
         remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
+        String[] attendanceComponents = DEFAULT_ATTENDANCE.split(" ");
+        boolean isPresent = attendanceComponents[0].equals("Present");
+        LocalDateTime lastModified = LocalDateTime.parse(attendanceComponents[1]);
+        attendance = new Attendance(isPresent, lastModified);
         grade = new Grade(DEFAULT_GRADE);
     }
 
@@ -62,6 +70,7 @@ public class StudentBuilder {
         address = studentToCopy.getAddress();
         remark = studentToCopy.getRemark();
         tags = new HashSet<>(studentToCopy.getTags());
+        attendance = studentToCopy.getAttendance();
         grade = studentToCopy.getGrade();
     }
 
@@ -116,8 +125,19 @@ public class StudentBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Student} that we are building.
      */
-    public StudentBuilder withTags(String ... tags) {
+    public StudentBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Attendance} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withAttendance(String attendance) {
+        String[] attendanceComponents = attendance.split("");
+        boolean isPresent = attendanceComponents[0].equals("Present");
+        LocalDateTime lastModified = LocalDateTime.parse(attendanceComponents[1]);
+        this.attendance = new Attendance(isPresent, lastModified);
         return this;
     }
 
@@ -127,7 +147,7 @@ public class StudentBuilder {
     }
 
     public Student build() {
-        return new Student(name, phone, studentClass, email, address, remark, tags, grade);
+        return new Student(name, phone, studentClass, email, address, remark, tags, attendance, grade);
     }
 
 }
