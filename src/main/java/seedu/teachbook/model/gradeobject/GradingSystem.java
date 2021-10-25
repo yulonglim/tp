@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import seedu.teachbook.model.tag.Tag;
-
 public class GradingSystem {
 
     public static final Grade NOT_GRADED = new Grade("");
