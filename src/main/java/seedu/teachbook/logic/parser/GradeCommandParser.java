@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.logic.commands.GradeCommand;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
+import seedu.teachbook.model.gradeobject.Grade;
 
 public class GradeCommandParser implements Parser<GradeCommand> {
 
@@ -26,7 +27,8 @@ public class GradeCommandParser implements Parser<GradeCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GradeCommand.MESSAGE_USAGE));
         }
 
-        return new GradeCommand(index, ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get()));
+        Grade grade = ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get());
+        return new GradeCommand(index, grade);
     }
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

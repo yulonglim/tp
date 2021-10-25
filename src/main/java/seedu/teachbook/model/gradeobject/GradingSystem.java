@@ -5,7 +5,7 @@ import java.util.List;
 
 public class GradingSystem {
 
-    public static final String NOT_GRADED = "";
+    public static final Grade NOT_GRADED = new Grade("");
 
     private List<Grade> gradeList;
 
@@ -38,15 +38,20 @@ public class GradingSystem {
         StringBuilder result = new StringBuilder();
         result.append("[ ");
         for (Grade grade : gradeList) {
-            result.append(grade.toString()).append(", ");
+            result.append(grade.toString()).append(" > ");
         }
         if (gradeList.size() > 0) {
-            result.setLength(result.length() - 2);
+            result.setLength(result.length() - 3);
         }
         result.append(" ]");
         return result.toString();
     }
 
-    // TODO: override equals()
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof GradingSystem // instanceof handles nulls
+                && gradeList.equals(((GradingSystem) other).gradeList)); // state check
+    }
 
 }

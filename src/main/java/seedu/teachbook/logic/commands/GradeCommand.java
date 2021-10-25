@@ -2,7 +2,6 @@ package seedu.teachbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_GRADE;
-import static seedu.teachbook.model.gradeobject.GradingSystem.NOT_GRADED;
 
 import java.util.List;
 
@@ -47,7 +46,7 @@ public class GradeCommand extends Command {
         }
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
-        if (!model.hasExistingGradingSystem() && !grade.value.equals(NOT_GRADED)) {
+        if (!model.hasExistingGradingSystem()) {
             throw new CommandException(MESSAGE_GRADING_SYSTEM_NOT_SET);
         }
 
