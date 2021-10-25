@@ -160,5 +160,7 @@ public interface Model {
 
     void resetGradingSystem();
 
+    boolean isEmpty();
+
     void setClassName(ClassName newClassName);
 }

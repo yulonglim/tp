@@ -8,7 +8,6 @@ import seedu.teachbook.commons.core.index.DefaultIndices;
 import seedu.teachbook.commons.core.index.GeneralIndex;
 
 public class VersionedTeachBook extends TeachBook {
-    //private final List<ReadOnlyTeachBook> teachBookStateList;
     private final List<Pair<ReadOnlyTeachBook, GeneralIndex>> teachBookStateList;
     private int currentStatePointer;
 
@@ -104,7 +103,7 @@ public class VersionedTeachBook extends TeachBook {
      */
     public static class NoUndoableStateException extends RuntimeException {
         private NoUndoableStateException() {
-            super("Current state pointer at start of addressBookState list, unable to undo.");
+            super("Current state pointer at start of TeachBookState list, unable to undo.");
         }
     }
 
@@ -113,7 +112,7 @@ public class VersionedTeachBook extends TeachBook {
      */
     public static class NoRedoableStateException extends RuntimeException {
         private NoRedoableStateException() {
-            super("Current state pointer at end of addressBookState list, unable to redo.");
+            super("Current state pointer at end of TeachBookState list, unable to redo.");
         }
     }
 }

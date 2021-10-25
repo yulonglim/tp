@@ -65,7 +65,7 @@ public class PrintCommand extends Command {
             for (Student student : studentList) {
                 StringBuilder remarks = new StringBuilder();
                 for (Tag t : student.getTags()) {
-                    remarks.append(t.tagName + "; ");
+                    remarks.append(t.tagName).append("; ");
                 }
                 result.add(remarks.toString());
             }
@@ -80,6 +80,12 @@ public class PrintCommand extends Command {
         case "remark":
             for (Student student : studentList) {
                 result.add(student.getRemark().value);
+            }
+            break;
+
+        case "attendance":
+            for (Student student : studentList) {
+                result.add(student.getAttendance().isPresent ? "Present" : "Absent");
             }
             break;
 
