@@ -1,6 +1,8 @@
 package seedu.teachbook.model.student;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.Objects;
 
 /**
@@ -39,6 +41,9 @@ public class Attendance {
 
     @Override
     public String toString() {
-        return (isPresent ? "Present " : "Absent ") + lastModified.toString();
+        return isPresent
+                ? "Present "
+                + lastModified.format(DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a", Locale.ENGLISH))
+                : "Absent" ;
     }
 }
