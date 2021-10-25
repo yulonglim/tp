@@ -1,7 +1,7 @@
 package seedu.teachbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.teachbook.model.gradeobject.GradingSystem.NOT_GRADED;
 
 import java.util.List;
@@ -21,9 +21,9 @@ public class GradeCommand extends Command {
             + "by the index number used in the displayed student list. "
             + "Existing grade will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_REMARK + "[GRADE]\n"
+            + PREFIX_GRADE + "[GRADE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_REMARK + "A";
+            + PREFIX_GRADE + "A";
 
     public static final String MESSAGE_GRADE_SUCCESS = "Graded Student: %1$s";
     public static final String MESSAGE_GRADING_SYSTEM_NOT_SET = "Set a grading system before editing any grade";
