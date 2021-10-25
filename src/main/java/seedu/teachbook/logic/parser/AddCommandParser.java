@@ -7,15 +7,15 @@ import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.teachbook.logic.commands.AddCommand;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
-import seedu.teachbook.model.attendance.Attendance;
 import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.student.Address;
+import seedu.teachbook.model.student.Attendance;
 import seedu.teachbook.model.student.Email;
 import seedu.teachbook.model.student.Name;
 import seedu.teachbook.model.student.Phone;
@@ -48,7 +48,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Remark remark = new Remark(""); // add command does not allow adding remark straight away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Attendance attendance = new Attendance(false, LocalDate.now());
+        Attendance attendance = new Attendance(false, LocalDateTime.now());
         Grade grade = new Grade(""); // add command does not allow adding grade straight away
 
         Student student = new Student(name, phone, email, address, remark, tagList, attendance, grade);

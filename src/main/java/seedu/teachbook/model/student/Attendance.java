@@ -1,6 +1,6 @@
-package seedu.teachbook.model.attendance;
+package seedu.teachbook.model.student;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -9,12 +9,12 @@ import java.util.Objects;
 public class Attendance {
 
     public final boolean isPresent;
-    public final LocalDate lastModified;
+    public final LocalDateTime lastModified;
 
     /**
      * Constructs an {@code Attendance}.
      */
-    public Attendance(boolean isPresent, LocalDate lastModified) {
+    public Attendance(boolean isPresent, LocalDateTime lastModified) {
         this.isPresent = isPresent;
         this.lastModified = lastModified;
     }

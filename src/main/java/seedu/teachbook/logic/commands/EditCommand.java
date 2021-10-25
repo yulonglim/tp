@@ -21,10 +21,10 @@ import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.commons.util.CollectionUtil;
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
-import seedu.teachbook.model.attendance.Attendance;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.student.Address;
+import seedu.teachbook.model.student.Attendance;
 import seedu.teachbook.model.student.Email;
 import seedu.teachbook.model.student.Name;
 import seedu.teachbook.model.student.Phone;
@@ -59,7 +59,7 @@ public class EditCommand extends Command {
     private final EditStudentDescriptor editStudentDescriptor;
 
     /**
-     * @param index of the student in the filtered student list to edit
+     * @param index                 of the student in the filtered student list to edit
      * @param editStudentDescriptor details to edit the student with
      */
     public EditCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
@@ -140,7 +140,8 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
 
-        public EditStudentDescriptor() {}
+        public EditStudentDescriptor() {
+        }
 
         /**
          * Copy constructor.

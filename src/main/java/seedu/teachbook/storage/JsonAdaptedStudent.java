@@ -1,6 +1,6 @@
 package seedu.teachbook.storage;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -11,9 +11,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.teachbook.commons.exceptions.IllegalValueException;
-import seedu.teachbook.model.attendance.Attendance;
 import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.student.Address;
+import seedu.teachbook.model.student.Attendance;
 import seedu.teachbook.model.student.Email;
 import seedu.teachbook.model.student.Name;
 import seedu.teachbook.model.student.Phone;
@@ -133,7 +133,7 @@ class JsonAdaptedStudent {
         String[] attendanceComponents = attendance.split(" ");
         assert attendanceComponents.length == 2;
         boolean isPresent = attendanceComponents[0].equals("Present");
-        LocalDate lastModified = LocalDate.parse(attendanceComponents[1]);
+        LocalDateTime lastModified = LocalDateTime.parse(attendanceComponents[1]);
         final Attendance modelAttendance = new Attendance(isPresent, lastModified);
 
         final Grade modelGrade = new Grade(grade);

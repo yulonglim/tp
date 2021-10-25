@@ -8,7 +8,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.teachbook.model.attendance.Attendance;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.tag.Tag;
