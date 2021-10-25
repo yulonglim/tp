@@ -3,13 +3,7 @@ package seedu.teachbook.model.gradeobject;
 public class Grade {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Grades can take any values but it should not contain \">\", and it should not be blank";
-
-    /*
-     * The first character of the grade must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+            "Grades should be unique, not blank, and it should not contain \">\"";
 
     public final String value;
 
@@ -21,7 +15,7 @@ public class Grade {
      * Returns true if a given string is a valid grade.
      */
     public static boolean isValidGrade(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return true;
     }
 
     @Override

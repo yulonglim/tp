@@ -1,6 +1,7 @@
 package seedu.teachbook.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.teachbook.model.gradeobject.GradingSystem.NOT_GRADED;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -167,9 +168,6 @@ public class ParserUtil {
     public static Grade parseGrade(String grade) throws ParseException {
         requireNonNull(grade);
         String trimmedGrade = grade.trim();
-        if (trimmedGrade.contains("g/")) {
-            trimmedGrade = trimmedGrade.replace("g/", "");
-        }
         if (!Grade.isValidGrade(trimmedGrade)) {
             throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
         }
@@ -178,13 +176,20 @@ public class ParserUtil {
 
     public static List<Grade> parseGrades(String grades) throws ParseException {
         requireNonNull(grades);
-        if (grades.endsWith(">")) {
-            throw new ParseException(Grade.MESSAGE_CONSTRAINTS); // TODO: deal with repeated values
+        if (grades.endsWith(">")) { // prohibit grades ending with '>'
+            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
         }
         final List<Grade> gradeList = new ArrayList<>();
         String[] stringGradeList = grades.split(">");
         for (String grade : stringGradeList) {
             gradeList.add(parseGrade(grade));
+        }
+        Set<Grade> gradeSet = new HashSet<>(gradeList);
+        if (gradeSet.size() < gradeList.size()) { // gradeList contains repeated grades
+            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
+        }
+        if (gradeList.stream().anyMatch(grade -> grade.equals(NOT_GRADED))) { // gradeList contains ""
+            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
         }
         return gradeList;
     }

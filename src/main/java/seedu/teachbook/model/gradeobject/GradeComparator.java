@@ -15,7 +15,7 @@ public class GradeComparator implements Comparator<Student> {
 
     public GradeComparator(List<Grade> gradeList) {
         this.gradeList = new ArrayList<>(gradeList);
-        this.gradeList.add(new Grade(NOT_GRADED));
+        this.gradeList.add(NOT_GRADED);
     }
 
     @Override

@@ -47,7 +47,7 @@ public class GradeCommand extends Command {
         }
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
-        if (!model.hasExistingGradingSystem() && !grade.value.equals(NOT_GRADED)) {
+        if (!model.hasExistingGradingSystem()) {
             throw new CommandException(MESSAGE_GRADING_SYSTEM_NOT_SET);
         }
 

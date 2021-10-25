@@ -69,7 +69,7 @@ public class TeachBook implements ReadOnlyTeachBook {
         getClassList().forEach(studentClass -> studentClass.getStudentsOfThisClass().forEach(student -> {
             Student editedStudent = new Student(student.getName(), student.getPhone(),
                     student.getStudentClass(), student.getEmail(), student.getAddress(),
-                    student.getRemark(), student.getTags(), student.getAttendance(), new Grade(NOT_GRADED));
+                    student.getRemark(), student.getTags(), student.getAttendance(), NOT_GRADED);
             setStudent(classIndex, student, editedStudent);
         }));
     }
