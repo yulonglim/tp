@@ -39,9 +39,9 @@ public class Attendance {
         return Objects.hash(isPresent, lastModified);
     }
 
-    public String getFormattedString() {
+    public String asFormattedString() {
         return isPresent
-                ? "Present "
+                ? "Present  "
                 + lastModified.format(DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a", Locale.ENGLISH))
                 : "Absent";
     }

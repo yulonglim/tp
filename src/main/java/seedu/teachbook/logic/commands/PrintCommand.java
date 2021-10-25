@@ -85,7 +85,7 @@ public class PrintCommand extends Command {
 
         case "attendance":
             for (Student student : studentList) {
-                result.add(student.getAttendance().isPresent ? "Present" : "Absent");
+                result.add(student.getAttendanceString());
             }
             break;
 

@@ -84,6 +84,10 @@ public class Student {
         return attendance;
     }
 
+    public String getAttendanceString() {
+        return attendance.asFormattedString();
+    }
+
     public boolean isPresent() {
         return attendance.isPresent();
     }
@@ -162,7 +166,7 @@ public class Student {
                 .append("; Remark: ")
                 .append(getRemark())
                 .append("; Attendance: ")
-                .append(getAttendance().getFormattedString())
+                .append(getAttendanceString())
                 .append("; Grade: ")
                 .append(getGrade());
 
