@@ -58,14 +58,14 @@ public class ParserUtil {
 
     public static ClassName parseClassName(String className) throws ParseException {
         requireNonNull(className);
-        String trimmedName = className.trim();
-        if (!Name.isValidName(trimmedName)) {
+        String trimmedClassName = className.trim();
+        if (!ClassName.isValidClassName(trimmedClassName)) {
             throw new ParseException(ClassName.MESSAGE_CONSTRAINTS);
         }
-        return new ClassName(trimmedName);
+        return new ClassName(trimmedClassName);
     }
 
-    public static ClassNameDescriptor parseClassNameForLocatingClass(String className) throws ParseException {
+    public static ClassNameDescriptor parseClassNameForLocatingClass(String className) {
         requireNonNull(className);
         String trimmedName = className.trim();
         return new ClassNameDescriptor(trimmedName);
@@ -149,15 +149,17 @@ public class ParserUtil {
         if (trimmedGrade.contains("g/")) {
             trimmedGrade = trimmedGrade.replace("g/", "");
         }
-        // TODO: validate grade format
-//        if (!Grade.isValidGrade(trimmedGrade)) {
-//            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
-//        }
+        if (!Grade.isValidGrade(trimmedGrade)) {
+            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
+        }
         return new Grade(trimmedGrade);
     }
 
     public static List<Grade> parseGrades(String grades) throws ParseException {
         requireNonNull(grades);
+        if (grades.endsWith(">")) {
+            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
+        }
         final List<Grade> gradeList = new ArrayList<>();
         String[] stringGradeList = grades.split(">");
         for (String grade : stringGradeList) {

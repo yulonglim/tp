@@ -3,13 +3,16 @@ package seedu.teachbook.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_LIST_ALL;
 import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.teachbook.model.gradeobject.GradingSystem.NOT_GRADED;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.classobject.Class;
+import seedu.teachbook.model.classobject.ClassName;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.classobject.UniqueClassList;
 import seedu.teachbook.model.classobject.exceptions.NoClassWithNameException;
@@ -61,25 +64,33 @@ public class TeachBook implements ReadOnlyTeachBook {
         this.students.setStudents(students);
     }
 
+    public void resetGradingSystem(GeneralIndex classIndex) {
+        this.gradingSystem = new GradingSystem();
+        getClassList().forEach(studentClass -> studentClass.getStudentsOfThisClass().forEach(student -> {
+            Student editedStudent = new Student(student.getName(), student.getPhone(),
+                    student.getStudentClass(), student.getEmail(), student.getAddress(),
+                    student.getRemark(), student.getTags(), new Grade(NOT_GRADED));
+            setStudent(classIndex, student, editedStudent);
+        }));
+    }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyTeachBook newData) {
         requireNonNull(newData);
-        ObservableList<Class> toCopy = FXCollections.observableArrayList();
+        ObservableList<Class> copy = FXCollections.observableArrayList();
         for (Class c : newData.getClassList()) {
-            Class toAdd = new Class(c.getClassName());
+            Class newClass = new Class(c.getClassName());
             for (Student s : c.getStudentsOfThisClass()) {
-                Student studentToAdd = new Student(s.getName(), s.getPhone(),
+                Student studentToAdd = new Student(s.getName(), s.getPhone(), newClass,
                         s.getEmail(), s.getAddress(), s.getRemark(), s.getTags(), s.getGrade());
-                studentToAdd.setStudentClass(toAdd);
-                toAdd.addStudent(studentToAdd);
-
+                newClass.addStudent(studentToAdd);
             }
-            toCopy.add(toAdd);
+            copy.add(newClass);
         }
+        setClasses(copy);
         setGradingSystem(newData.getGradingSystem());
-        setClasses(toCopy);
     }
 
     //// student-level operations
@@ -116,8 +127,6 @@ public class TeachBook implements ReadOnlyTeachBook {
         requireAllNonNull(classIndex, target, editedStudent);
         if (classIndex.equals(INDEX_LIST_ALL)) {
             students.setStudent(target, editedStudent); // edit twice
-        } else {
-            assert getClassAtIndex(classIndex).equals(target.getStudentClass());
         }
         target.getStudentClass().setStudent(target, editedStudent);
     }
@@ -190,6 +199,15 @@ public class TeachBook implements ReadOnlyTeachBook {
         return gradingSystem.isValidGrade(grade);
     }
 
+    public void reorderStudents(GeneralIndex classIndex, Comparator<? super Student> comparator) {
+        if (classIndex.equals(INDEX_LIST_ALL)) {
+            // TODO: reorder students in each class when sort when list all
+            students.sort(comparator);
+        } else {
+            getClassAtIndex(classIndex).reorderStudents(comparator);
+        }
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -222,6 +240,13 @@ public class TeachBook implements ReadOnlyTeachBook {
 
     public void setClasses(List<Class> classes) {
         this.classes.setClasses(classes);
+    }
+
+    public void setClassName(GeneralIndex classIndex, ClassName updatedClassName) {
+        Class target = getClassAtIndex(classIndex);
+        Class editedClass = new Class(updatedClassName);
+        editedClass.setStudentsOfThisClass(target.getUniqueStudentListOfThisClass());
+        setClass(target, editedClass);
     }
 
     @Override

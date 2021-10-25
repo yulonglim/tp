@@ -18,6 +18,7 @@ import seedu.teachbook.commons.core.GuiSettings;
 import seedu.teachbook.commons.core.LogsCenter;
 import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.classobject.Class;
+import seedu.teachbook.model.classobject.ClassName;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.classobject.exceptions.NoClassWithNameException;
 import seedu.teachbook.model.gradeobject.Grade;
@@ -47,11 +48,7 @@ public class ModelManager implements Model {
         this.teachBook = new VersionedTeachBook(teachBook);
         this.userPrefs = new UserPrefs(userPrefs);
 
-        this.currentlySelectedClassIndex = INDEX_NO_CLASS;
-        this.filteredStudents = new FilteredList<>(FXCollections.observableArrayList());
-        if (this.teachBook.getNumOfClasses() >= 1) {
-            updateCurrentlySelectedClass(INDEX_DEFAULT_INITIAL_CLASS);
-        }
+        initialiseCurrentlySelectedClassIndex();
     }
 
     public ModelManager() {
@@ -98,7 +95,7 @@ public class ModelManager implements Model {
     @Override
     public void setTeachBook(ReadOnlyTeachBook teachBook) {
         this.teachBook.resetData(teachBook);
-        setNewEmptyFilteredList();
+        initialiseCurrentlySelectedClassIndex();
     }
 
     @Override
@@ -143,6 +140,11 @@ public class ModelManager implements Model {
             // same index but different class
             updateCurrentlySelectedClass(currentlySelectedClassIndex);
         }
+    }
+
+    @Override
+    public void setClassName(ClassName updatedClassName) {
+        teachBook.setClassName(currentlySelectedClassIndex, updatedClassName);
     }
 
     @Override
@@ -224,8 +226,21 @@ public class ModelManager implements Model {
         updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
+<<<<<<< HEAD
     private void setNewEmptyFilteredList() {
         this.filteredStudents = new FilteredList<>(FXCollections.observableArrayList());
+=======
+    private void initialiseCurrentlySelectedClassIndex() {
+        updateCurrentlySelectedClass(INDEX_NO_CLASS);
+        if (this.teachBook.getNumOfClasses() >= 1) {
+            updateCurrentlySelectedClass(INDEX_DEFAULT_INITIAL_CLASS);
+        }
+    }
+
+    @Override
+    public void resetGradingSystem() {
+        teachBook.resetGradingSystem(currentlySelectedClassIndex);
+>>>>>>> master
     }
 
     @Override
@@ -244,8 +259,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void reorderFilteredStudentList(Comparator<? super Student> comparator) {
-        filteredStudents.sort(comparator);
+    public void reorderStudents(Comparator<? super Student> comparator) {
+        assert(!currentlySelectedClassIndex.equals(INDEX_NO_CLASS));
+
+        teachBook.reorderStudents(currentlySelectedClassIndex, comparator);
     }
 
     //=========== Undo/Redo =================================================================================
@@ -262,18 +279,18 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void undoAddressBook() {
-        this.teachBook.undo();
+    public void undoTeachBook() {
+        updateCurrentlySelectedClass(this.teachBook.undo()); // TODO: fix undo after clear
     }
 
     @Override
-    public void redoAddressBook() {
-        this.teachBook.redo();
+    public void redoTeachBook() {
+        updateCurrentlySelectedClass(this.teachBook.redo());
     }
 
     @Override
-    public void commitAddressBook() {
-        this.teachBook.commit();
+    public void commitTeachBook() {
+        this.teachBook.commit(currentlySelectedClassIndex);
     }
 
     @Override

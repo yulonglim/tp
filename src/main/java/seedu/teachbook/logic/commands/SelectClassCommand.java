@@ -21,8 +21,7 @@ public class SelectClassCommand extends Command {
             + "Parameters: CLASSNAME\n"
             + "Example: " + COMMAND_WORD + " Ace";
 
-    public static final String MESSAGE_SELECT_CLASS_SUCCESS =
-            "Currently displaying all the students from Class: %1$s";
+    public static final String MESSAGE_SELECT_CLASS_SUCCESS = "Currently displaying all the students from Class: %1$s";
 
     private final ClassNameDescriptor newClassName;
 
@@ -42,6 +41,7 @@ public class SelectClassCommand extends Command {
         }
 
         model.updateCurrentlySelectedClass(newClassIndex);
+        model.commitTeachBook();
         return new CommandResult(String.format(MESSAGE_SELECT_CLASS_SUCCESS, newClassName),
                 false, false, true, true);
     }

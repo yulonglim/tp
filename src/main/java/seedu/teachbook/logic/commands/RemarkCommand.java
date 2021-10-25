@@ -3,7 +3,6 @@ package seedu.teachbook.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_REMARK;
-import static seedu.teachbook.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
 
@@ -63,8 +62,7 @@ public class RemarkCommand extends Command {
                 studentToEdit.getAddress(), remark, studentToEdit.getTags(), studentToEdit.getGrade());
 
         model.setStudent(studentToEdit, editedStudent);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-
+        model.commitTeachBook();
         return new CommandResult(generateSuccessMessage(editedStudent));
     }
 

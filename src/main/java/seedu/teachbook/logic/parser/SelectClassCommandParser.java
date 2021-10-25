@@ -27,7 +27,6 @@ public class SelectClassCommandParser implements Parser<SelectClassCommand> {
         }
 
         ClassNameDescriptor className = ParserUtil.parseClassNameForLocatingClass(trimmedArgs);
-
         return new SelectClassCommand(className); // TODO: better write how to parse "select" command
     }
 

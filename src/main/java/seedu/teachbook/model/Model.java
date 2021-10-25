@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.teachbook.commons.core.GuiSettings;
 import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.classobject.Class;
+import seedu.teachbook.model.classobject.ClassName;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.classobject.exceptions.NoClassWithNameException;
 import seedu.teachbook.model.gradeobject.Grade;
@@ -130,7 +131,7 @@ public interface Model {
 
     void updateCurrentlySelectedClass(GeneralIndex newClassIndex);
 
-    void reorderFilteredStudentList(Comparator<? super Student> comparator);
+    void reorderStudents(Comparator<? super Student> comparator);
 
     /**
      * Returns true if the model has previous address book states to restore.
@@ -145,16 +146,19 @@ public interface Model {
     /**
      * Restores the model's address book to its previous state.
      */
-    void undoAddressBook();
+    void undoTeachBook();
 
     /**
      * Restores the model's address book to its previously undone state.
      */
-    void redoAddressBook();
+    void redoTeachBook();
 
     /**
      * Saves the current address book state for undo/redo.
      */
-    void commitAddressBook();
+    void commitTeachBook();
 
+    void resetGradingSystem();
+
+    void setClassName(ClassName newClassName);
 }

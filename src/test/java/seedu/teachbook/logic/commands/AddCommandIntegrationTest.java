@@ -1,5 +1,6 @@
 package seedu.teachbook.logic.commands;
 
+import static seedu.teachbook.commons.core.Messages.MESSAGE_DUPLICATE_STUDENT;
 import static seedu.teachbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.teachbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.teachbook.testutil.TypicalStudents.getTypicalTeachBook;
@@ -39,7 +40,7 @@ public class AddCommandIntegrationTest {
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Student studentInList = model.getTeachBook().getStudentList().get(0);
-        assertCommandFailure(new AddCommand(studentInList), model, AddCommand.MESSAGE_DUPLICATE_STUDENT);
+        assertCommandFailure(new AddCommand(studentInList), model, MESSAGE_DUPLICATE_STUDENT);
     }
 
 }

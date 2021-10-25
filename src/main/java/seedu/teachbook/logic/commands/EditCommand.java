@@ -1,16 +1,14 @@
 package seedu.teachbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_GRADE;
+import static seedu.teachbook.commons.core.Messages.MESSAGE_DUPLICATE_STUDENT;
 import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.teachbook.logic.commands.AddCommand.MESSAGE_GRADING_SYSTEM_NOT_SET;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.teachbook.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
-import static seedu.teachbook.model.gradeobject.GradingSystem.NOT_GRADED;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -55,9 +53,6 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the class";
-    public static final String MESSAGE_GRADING_SYSTEM_NOT_SET =
-            "Set a grading system before editing any grade";
 
     private final Index index;
     private final EditStudentDescriptor editStudentDescriptor;
@@ -88,17 +83,9 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
-        if (!model.hasExistingGradingSystem() && !editedStudent.getGrade().value.equals(NOT_GRADED)) {
-            throw new CommandException(MESSAGE_GRADING_SYSTEM_NOT_SET);
-        }
-
-        if (!model.isValidGrade(editedStudent.getGrade())) {
-            throw new CommandException(String.format(MESSAGE_INVALID_GRADE, model.getGradingSystem()));
-        }
-
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-        model.commitAddressBook();
+        model.commitTeachBook();
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
     }
 
@@ -114,9 +101,9 @@ public class EditCommand extends Command {
         Class updatedClass = studentToEdit.getStudentClass(); // edit command does not allow editing class
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
-        Remark updatedRemark = studentToEdit.getRemark(); // edit command does not allow editing remarks
+        Remark updatedRemark = studentToEdit.getRemark(); // edit command does not allow editing remark
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
-        Grade updatedGrade = editStudentDescriptor.getGrade().orElse(studentToEdit.getGrade());
+        Grade updatedGrade = studentToEdit.getGrade(); // edit command does not allow editing grade
 
         return new Student(updatedName, updatedPhone, updatedClass,
                 updatedEmail, updatedAddress, updatedRemark, updatedTags, updatedGrade);
@@ -150,7 +137,6 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
-        private Grade grade;
 
         public EditStudentDescriptor() {}
 
@@ -164,14 +150,13 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
-            setGrade(toCopy.grade);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, grade);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
         }
 
         public void setName(Name name) {
@@ -206,13 +191,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setGrade(Grade grade) {
-            this.grade = grade;
-        }
-
-        public Optional<Grade> getGrade() {
-            return Optional.ofNullable(grade);
-        }
 
         /**
          * Sets {@code tags} to this object's {@code tags}.
