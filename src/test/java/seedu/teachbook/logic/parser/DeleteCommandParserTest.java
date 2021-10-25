@@ -5,6 +5,8 @@ import static seedu.teachbook.logic.parser.CommandParserTestUtil.assertParseFail
 import static seedu.teachbook.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.teachbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.teachbook.logic.commands.DeleteCommand;
@@ -22,7 +24,7 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_PERSON));
+        assertParseSuccess(parser, "1", new DeleteCommand(List.of(INDEX_FIRST_PERSON)));
     }
 
     @Test
