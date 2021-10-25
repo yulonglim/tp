@@ -2,7 +2,6 @@ package seedu.teachbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_GRADE;
-import static seedu.teachbook.model.gradeobject.GradingSystem.NOT_GRADED;
 
 import java.util.List;
 

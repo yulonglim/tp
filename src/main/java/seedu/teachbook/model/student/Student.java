@@ -1,7 +1,6 @@
 package seedu.teachbook.model.student;
 
 import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.teachbook.model.gradeobject.GradingSystem.NOT_GRADED;
 
 import java.util.Collections;
 import java.util.HashSet;
