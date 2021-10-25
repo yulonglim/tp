@@ -19,7 +19,10 @@ public class ListCommandParser implements Parser<ListCommand> {
     public ListCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         if (trimmedArgs.equals("all")) {
-            return new ListCommand(true);
+            return new ListCommand(true, false);
+        }
+        if (trimmedArgs.equals("absent")) {
+            return new ListCommand(false, true);
         }
         if (trimmedArgs.isEmpty()) {
             return new ListCommand();

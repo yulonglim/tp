@@ -86,6 +86,10 @@ public class Student {
         return attendance;
     }
 
+    public boolean isPresent() {
+        return attendance.isPresent();
+    }
+
     public void setStudentClass(Class studentClass) {
         this.studentClass = studentClass;
     }

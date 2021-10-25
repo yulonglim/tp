@@ -19,6 +19,11 @@ public class Attendance {
         this.lastModified = lastModified;
     }
 
+
+    public boolean isPresent() {
+        return isPresent;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
