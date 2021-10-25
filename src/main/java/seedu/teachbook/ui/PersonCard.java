@@ -60,7 +60,7 @@ public class PersonCard extends UiPart<Region> {
         address.setText(student.getAddress().value);
         email.setText(student.getEmail().value);
 
-        checkBox.setDisable(true);
+        checkBox.setMouseTransparent(true);
         checkBox.setSelected(false);
 
         if (student.isPresent()) {

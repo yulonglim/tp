@@ -133,7 +133,7 @@
 }
 
 .cell_remark_label {
-    -fx-font-family: "Open Sans Italic";
+    -fx-font-family: "Open Sans Italic" !important;
     -fx-font-size: 13px;
     -fx-text-fill: #FFD966 !important;
 }
