@@ -5,7 +5,9 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import seedu.teachbook.commons.core.Messages;
 import seedu.teachbook.commons.core.index.Index;
@@ -47,7 +49,7 @@ public class MarkCommand extends Command {
         List<Student> lastShownList = model.getFilteredStudentList();
 
         if (isAll) {
-            for (int i = 0; i < lastShownList.size(); i++) {
+            for (int i = lastShownList.size() - 1; i >= 0; i--) {
                 targetIndices.add(Index.fromZeroBased(i));
             }
         } else {
@@ -69,11 +71,12 @@ public class MarkCommand extends Command {
                     new Attendance(true, LocalDateTime.now()), studentToMark.getGrade());
             model.setStudent(studentToMark, editedStudent);
         }
+        Collections.reverse(studentToMarkNames);
 
         model.commitTeachBook();
         return new CommandResult(String.format(MESSAGE_MARK_STUDENT_SUCCESS,
                 String.join(", ", studentToMarkNames),
-                LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a"))),
+                LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a", Locale.ENGLISH))),
                 false, false, true, false);
     }
 

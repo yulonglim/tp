@@ -7,7 +7,7 @@ public class IndexComparator implements Comparator<Index> {
 
     @Override
     public int compare(Index s1, Index s2) {
-        return Integer.compare(s1.getOneBased(), s2.getOneBased());
+        return Integer.compare(s2.getOneBased(), s1.getOneBased());
     }
 
 }
