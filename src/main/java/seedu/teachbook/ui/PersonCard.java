@@ -3,6 +3,7 @@ package seedu.teachbook.ui;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -44,6 +45,8 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label grade;
+    @FXML
+    private CheckBox checkBox;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -56,6 +59,13 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(student.getPhone().value);
         address.setText(student.getAddress().value);
         email.setText(student.getEmail().value);
+
+        checkBox.setDisable(true);
+        checkBox.setSelected(false);
+
+        if (student.isPresent()) {
+            markCheckbox();
+        }
 
         String remarkContent = student.getRemark().value;
         if (remarkContent.equals("")) {
@@ -94,5 +104,9 @@ public class PersonCard extends UiPart<Region> {
         PersonCard card = (PersonCard) other;
         return id.getText().equals(card.id.getText())
                 && student.equals(card.student);
+    }
+
+    public void markCheckbox() {
+        checkBox.setSelected(true);
     }
 }
