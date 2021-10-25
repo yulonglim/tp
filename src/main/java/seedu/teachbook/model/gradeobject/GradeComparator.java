@@ -2,6 +2,7 @@ package seedu.teachbook.model.gradeobject;
 
 import static seedu.teachbook.model.gradeobject.GradingSystem.NOT_GRADED;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class GradeComparator implements Comparator<Student> {
     private final List<Grade> gradeList;
 
     public GradeComparator(List<Grade> gradeList) {
-        this.gradeList = gradeList;
+        this.gradeList = new ArrayList<>(gradeList);
         this.gradeList.add(new Grade(NOT_GRADED));
     }
 

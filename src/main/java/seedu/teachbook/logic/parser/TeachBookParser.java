@@ -19,6 +19,7 @@ import seedu.teachbook.logic.commands.FindCommand;
 import seedu.teachbook.logic.commands.GradeCommand;
 import seedu.teachbook.logic.commands.HelpCommand;
 import seedu.teachbook.logic.commands.ListCommand;
+import seedu.teachbook.logic.commands.MarkCommand;
 import seedu.teachbook.logic.commands.PrintCommand;
 import seedu.teachbook.logic.commands.RedoCommand;
 import seedu.teachbook.logic.commands.RemarkCommand;
@@ -27,6 +28,7 @@ import seedu.teachbook.logic.commands.SelectClassCommand;
 import seedu.teachbook.logic.commands.SetGradeCommand;
 import seedu.teachbook.logic.commands.SortGradeCommand;
 import seedu.teachbook.logic.commands.UndoCommand;
+import seedu.teachbook.logic.commands.UnmarkCommand;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
 
 /**
@@ -54,6 +56,7 @@ public class TeachBookParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+
         switch (commandWord) {
         case EditClassCommand.COMMAND_WORD:
             return new EditClassCommandParser().parse(arguments);
@@ -77,6 +80,7 @@ public class TeachBookParser {
 
         case SetGradeCommand.COMMAND_WORD:
             return new SetGradeCommandParser().parse(arguments);
+
         case SelectClassCommand.COMMAND_WORD:
             return new SelectClassCommandParser().parse(arguments);
 
@@ -112,6 +116,12 @@ public class TeachBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case MarkCommand.COMMAND_WORD:
+            return new MarkCommandParser().parse(arguments);
+
+        case UnmarkCommand.COMMAND_WORD:
+            return new UnmarkCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

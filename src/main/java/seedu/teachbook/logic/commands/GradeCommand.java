@@ -57,7 +57,7 @@ public class GradeCommand extends Command {
 
         Student editedStudent = new Student(studentToEdit.getName(), studentToEdit.getPhone(),
                 studentToEdit.getStudentClass(), studentToEdit.getEmail(), studentToEdit.getAddress(),
-                studentToEdit.getRemark(), studentToEdit.getTags(), grade);
+                studentToEdit.getRemark(), studentToEdit.getTags(), studentToEdit.getAttendance(), grade);
 
         model.setStudent(studentToEdit, editedStudent);
         model.commitTeachBook();

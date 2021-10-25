@@ -41,6 +41,7 @@ public class EditClassCommand extends Command {
         }
 
         model.setClassName(updatedClassName);
+        model.commitTeachBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, updatedClassName));
     }
 }

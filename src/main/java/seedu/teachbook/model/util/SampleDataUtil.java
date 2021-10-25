@@ -1,6 +1,8 @@
 package seedu.teachbook.model.util;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -9,7 +11,9 @@ import seedu.teachbook.model.TeachBook;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
 import seedu.teachbook.model.gradeobject.Grade;
+import seedu.teachbook.model.gradeobject.GradingSystem;
 import seedu.teachbook.model.student.Address;
+import seedu.teachbook.model.student.Attendance;
 import seedu.teachbook.model.student.Email;
 import seedu.teachbook.model.student.Name;
 import seedu.teachbook.model.student.Phone;
@@ -33,23 +37,27 @@ public class SampleDataUtil {
         return new Student[] {
             new Student(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"), new Remark("Allergic to seafood."),
-                getTagSet("classMonitor"), new Grade("")),
+                getTagSet("classMonitor"), new Attendance(false, LocalDateTime.now()), new Grade("A")),
             new Student(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new Remark(""),
-                getTagSet(), new Grade("")),
+                getTagSet(), new Attendance(false, LocalDateTime.now()), new Grade("A")),
             new Student(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new Remark(""),
-                getTagSet(), new Grade("")),
+                getTagSet(), new Attendance(false, LocalDateTime.now()), new Grade("B")),
             new Student(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new Remark("Needs to improve on maths."),
-                getTagSet("viceMonitor"), new Grade("")),
+                getTagSet("viceMonitor"), new Attendance(false, LocalDateTime.now()), new Grade("F")),
             new Student(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"), new Remark(""),
-                getTagSet(), new Grade("")),
+                getTagSet(), new Attendance(false, LocalDateTime.now()), new Grade("")),
             new Student(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"), new Remark(""),
-                getTagSet(), new Grade(""))
+                getTagSet(), new Attendance(false, LocalDateTime.now()), new Grade(""))
         };
+    }
+
+    public static List<Grade> getSampleGrades() {
+        return List.of(new Grade("A"), new Grade("B"), new Grade("C"), new Grade("F"));
     }
 
     public static ReadOnlyTeachBook getSampleTeachBook() {
@@ -67,6 +75,10 @@ public class SampleDataUtil {
             sampleStudent.setStudentClass(classOfSampleStudent);
             classOfSampleStudent.addStudent(sampleStudent);
         }
+
+        List<Grade> sampleGrades = getSampleGrades();
+        GradingSystem sampleGradingSystem = new GradingSystem(sampleGrades);
+        sampleTeachBook.setGradingSystem(sampleGradingSystem);
 
         return sampleTeachBook;
     }

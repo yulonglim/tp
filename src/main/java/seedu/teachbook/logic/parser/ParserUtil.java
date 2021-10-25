@@ -3,12 +3,14 @@ package seedu.teachbook.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import seedu.teachbook.commons.core.index.Index;
+import seedu.teachbook.commons.core.index.IndexComparator;
 import seedu.teachbook.commons.util.StringUtil;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
 import seedu.teachbook.model.classobject.ClassName;
@@ -39,6 +41,25 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    public static List<Index> parseIndices(String oneBasedIndicesSpaceSeparated) throws ParseException {
+        String trimmedIndices = oneBasedIndicesSpaceSeparated.trim();
+        String[] indexArray = trimmedIndices.split("\\s+");
+
+        // remove duplicate indices
+        Set<String> indexSet = new HashSet<>(Arrays.asList(indexArray));
+        String[] rawIndices = indexSet.toArray(new String[0]);
+
+        List<Index> oneBasedIndices = new ArrayList<>();
+        for (String rawIndex : rawIndices) {
+            oneBasedIndices.add(parseIndex(rawIndex));
+        }
+
+        // sort indices
+        oneBasedIndices.sort(new IndexComparator());
+
+        return oneBasedIndices;
     }
 
     /**
@@ -158,7 +179,7 @@ public class ParserUtil {
     public static List<Grade> parseGrades(String grades) throws ParseException {
         requireNonNull(grades);
         if (grades.endsWith(">")) {
-            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Grade.MESSAGE_CONSTRAINTS); // TODO: deal with repeated values
         }
         final List<Grade> gradeList = new ArrayList<>();
         String[] stringGradeList = grades.split(">");

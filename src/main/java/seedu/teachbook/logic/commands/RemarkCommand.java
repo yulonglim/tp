@@ -58,8 +58,8 @@ public class RemarkCommand extends Command {
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedStudent = new Student(studentToEdit.getName(), studentToEdit.getPhone(),
-                studentToEdit.getStudentClass(), studentToEdit.getEmail(),
-                studentToEdit.getAddress(), remark, studentToEdit.getTags(), studentToEdit.getGrade());
+                studentToEdit.getStudentClass(), studentToEdit.getEmail(), studentToEdit.getAddress(), remark,
+                studentToEdit.getTags(), studentToEdit.getAttendance(), studentToEdit.getGrade());
 
         model.setStudent(studentToEdit, editedStudent);
         model.commitTeachBook();

@@ -24,6 +24,7 @@ import seedu.teachbook.model.Model;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.student.Address;
+import seedu.teachbook.model.student.Attendance;
 import seedu.teachbook.model.student.Email;
 import seedu.teachbook.model.student.Name;
 import seedu.teachbook.model.student.Phone;
@@ -58,7 +59,7 @@ public class EditCommand extends Command {
     private final EditStudentDescriptor editStudentDescriptor;
 
     /**
-     * @param index of the student in the filtered student list to edit
+     * @param index                 of the student in the filtered student list to edit
      * @param editStudentDescriptor details to edit the student with
      */
     public EditCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
@@ -103,10 +104,11 @@ public class EditCommand extends Command {
         Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
         Remark updatedRemark = studentToEdit.getRemark(); // edit command does not allow editing remark
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
+        Attendance updatedAttendance = studentToEdit.getAttendance(); // edit command does not allow editing attendance
         Grade updatedGrade = studentToEdit.getGrade(); // edit command does not allow editing grade
 
-        return new Student(updatedName, updatedPhone, updatedClass,
-                updatedEmail, updatedAddress, updatedRemark, updatedTags, updatedGrade);
+        return new Student(updatedName, updatedPhone, updatedClass, updatedEmail, updatedAddress, updatedRemark,
+                updatedTags, updatedAttendance, updatedGrade);
     }
 
     @Override
@@ -138,7 +140,8 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
 
-        public EditStudentDescriptor() {}
+        public EditStudentDescriptor() {
+        }
 
         /**
          * Copy constructor.

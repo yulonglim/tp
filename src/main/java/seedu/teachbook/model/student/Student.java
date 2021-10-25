@@ -12,7 +12,6 @@ import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.tag.Tag;
 
-
 /**
  * Represents a Student in the teachbook.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -29,17 +28,19 @@ public class Student {
     private final Address address;
     private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
+    private final Attendance attendance;
     private Grade grade;
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags, Grade grade) {
-        this(name, phone, null, email, address, remark, tags, grade);
+    public Student(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags,
+                   Attendance attendance, Grade grade) {
+        this(name, phone, null, email, address, remark, tags, attendance, grade);
     }
 
     public Student(Name name, Phone phone, Class studentClass, Email email,
-                   Address address, Remark remark, Set<Tag> tags, Grade grade) {
+                   Address address, Remark remark, Set<Tag> tags, Attendance attendance, Grade grade) {
         requireAllNonNull(name, phone, email, address, tags, grade);
         this.name = name;
         this.phone = phone;
@@ -48,6 +49,7 @@ public class Student {
         this.address = address;
         this.remark = remark;
         this.tags.addAll(tags);
+        this.attendance = attendance;
         this.grade = grade;
     }
 
@@ -79,6 +81,14 @@ public class Student {
         return grade;
     }
 
+    public Attendance getAttendance() {
+        return attendance;
+    }
+
+    public boolean isPresent() {
+        return attendance.isPresent();
+    }
+
     public void setStudentClass(Class studentClass) {
         this.studentClass = studentClass;
     }
@@ -90,7 +100,6 @@ public class Student {
     public void setGrade(Grade grade) {
         this.grade = grade;
     }
-
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -115,8 +124,6 @@ public class Student {
                 && otherStudent.getStudentClass().equals(getStudentClass());
     }
 
-
-
     /**
      * Returns true if both students have the same identity and data fields.
      * This defines a stronger notion of equality between two students.
@@ -138,13 +145,15 @@ public class Student {
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getAddress().equals(getAddress())
                 && otherStudent.getRemark().equals(getRemark())
-                && otherStudent.getTags().equals(getTags());
+                && otherStudent.getTags().equals(getTags())
+                && otherStudent.getAttendance().equals(getAttendance())
+                && otherStudent.getGrade().equals(getGrade());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, studentClass, email, address, tags);
+        return Objects.hash(name, phone, studentClass, email, address, remark, tags, attendance, grade);
     }
 
     @Override
@@ -161,6 +170,8 @@ public class Student {
                 .append(getAddress())
                 .append("; Remark: ")
                 .append(getRemark())
+                .append("; Attendance: ")
+                .append(getAttendance().getFormattedString())
                 .append("; Grade: ")
                 .append(getGrade());
 
@@ -171,5 +182,4 @@ public class Student {
         }
         return builder.toString();
     }
-
 }
