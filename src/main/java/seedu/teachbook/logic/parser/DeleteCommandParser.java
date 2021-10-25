@@ -6,7 +6,6 @@ import java.util.List;
 
 import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.logic.commands.DeleteCommand;
-import seedu.teachbook.logic.commands.MarkCommand;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
 
 /**

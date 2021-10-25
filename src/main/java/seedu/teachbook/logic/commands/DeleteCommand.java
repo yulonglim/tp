@@ -2,7 +2,6 @@ package seedu.teachbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,7 +10,6 @@ import seedu.teachbook.commons.core.Messages;
 import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
-import seedu.teachbook.model.student.Attendance;
 import seedu.teachbook.model.student.Student;
 
 /**
