@@ -39,11 +39,15 @@ public class Attendance {
         return Objects.hash(isPresent, lastModified);
     }
 
-    @Override
-    public String toString() {
+    public String getFormattedString() {
         return isPresent
                 ? "Present "
                 + lastModified.format(DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a", Locale.ENGLISH))
-                : "Absent" ;
+                : "Absent";
+    }
+
+    @Override
+    public String toString() {
+        return (isPresent ? "Present " : "Absent ") + lastModified.toString();
     }
 }

@@ -171,7 +171,7 @@ public class Student {
                 .append("; Remark: ")
                 .append(getRemark())
                 .append("; Attendance: ")
-                .append(getAttendance())
+                .append(getAttendance().getFormattedString())
                 .append("; Grade: ")
                 .append(getGrade());
 
