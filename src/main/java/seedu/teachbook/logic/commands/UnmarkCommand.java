@@ -17,18 +17,20 @@ import seedu.teachbook.model.student.Attendance;
 import seedu.teachbook.model.student.Student;
 
 /**
- * Marks a student, identified using its displayed index from the teachbook, as absent.
+ * Marks students, identified using the displayed indices from the teachbook, as absent.
  */
 public class UnmarkCommand extends Command {
 
     public static final String COMMAND_WORD = "unmark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the student, identified by the index number used in the displayed student list, as absent.\n"
+            + ": Marks one or students, identified by the index number "
+            + "used in the displayed student list, as absent.\n"
             + "Parameters: INDEX1 [INDEX2]... [all] (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1, " + COMMAND_WORD + " 2 4 5, " + COMMAND_WORD + " all";
 
     public static final String MESSAGE_UNMARK_STUDENT_SUCCESS = "Marked %1$s absent at %2$s";
+    public static final String MESSAGE_NOTHING_TO_UNMARK = "There is nothing to unmark as there are no students.";
 
     private final List<Index> targetIndices;
     private final boolean isAll;
@@ -50,7 +52,7 @@ public class UnmarkCommand extends Command {
 
         if (isAll) {
             if (lastShownList.size() == 0) {
-                throw new CommandException(Messages.MESSAGE_NOTHING_TO_UNMARK);
+                throw new CommandException(MESSAGE_NOTHING_TO_UNMARK);
             }
             for (int i = lastShownList.size() - 1; i >= 0; i--) {
                 targetIndices.add(Index.fromZeroBased(i));

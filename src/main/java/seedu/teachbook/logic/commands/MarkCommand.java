@@ -17,18 +17,21 @@ import seedu.teachbook.model.student.Attendance;
 import seedu.teachbook.model.student.Student;
 
 /**
- * Marks a student, identified using its displayed index from the teachbook, as present.
+ * Marks students, identified using the displayed indices from the teachbook, as present.
  */
 public class MarkCommand extends Command {
 
     public static final String COMMAND_WORD = "mark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the student, identified by the index number used in the displayed student list, as present.\n"
+            + ": Marks one or more students, identified by the index number "
+            + "used in the displayed student list, as present.\n"
             + "Parameters: INDEX1 [INDEX2]... [all] (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1, " + COMMAND_WORD + " 2 4 5, " + COMMAND_WORD + " all";
 
     public static final String MESSAGE_MARK_STUDENT_SUCCESS = "Marked %1$s present at %2$s";
+    public static final String MESSAGE_NOTHING_TO_MARK = "There is nothing to mark as there are no students.";
+
 
     private final List<Index> targetIndices;
     private final boolean isAll;
@@ -50,7 +53,7 @@ public class MarkCommand extends Command {
 
         if (isAll) {
             if (lastShownList.size() == 0) {
-                throw new CommandException(Messages.MESSAGE_NOTHING_TO_MARK);
+                throw new CommandException(MESSAGE_NOTHING_TO_MARK);
             }
             for (int i = lastShownList.size() - 1; i >= 0; i--) {
                 targetIndices.add(Index.fromZeroBased(i));
