@@ -11,6 +11,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -46,7 +47,7 @@ public class AddCommandTest {
         CommandResult commandResult = new AddCommand(validStudent).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validStudent), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validStudent), modelStub.personsAdded);
+        assertEquals(List.of(validStudent), modelStub.personsAdded);
     }
 
     @Test
@@ -252,8 +253,13 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean isEmpty() {
-            return false;
+        public boolean isTeachBookEmpty() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isListAll() {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override

@@ -160,7 +160,9 @@ public interface Model {
 
     void resetGradingSystem();
 
-    boolean isEmpty();
+    boolean isTeachBookEmpty();
+
+    boolean isListAll();
 
     void setClassName(ClassName newClassName);
 }

@@ -16,7 +16,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        if (!model.isEmpty()) {
+        if (!model.isTeachBookEmpty()) {
             model.setTeachBook(new TeachBook());
             model.commitTeachBook();
         }

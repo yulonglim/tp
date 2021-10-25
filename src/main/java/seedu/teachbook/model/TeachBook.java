@@ -208,6 +208,10 @@ public class TeachBook implements ReadOnlyTeachBook {
         }
     }
 
+    public boolean isEmpty() {
+        return classes.isEmpty() && !gradingSystem.isInUse();
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

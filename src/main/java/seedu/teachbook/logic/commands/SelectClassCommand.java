@@ -22,6 +22,8 @@ public class SelectClassCommand extends Command {
             + "Example: " + COMMAND_WORD + " Ace";
 
     public static final String MESSAGE_SELECT_CLASS_SUCCESS = "Currently displaying all the students from Class: %1$s";
+    public static final String MESSAGE_CLASS_ALREADY_SELECTED = "Already displaying students from Class: %1$s\n"
+            + "Use \"list\" to display the full list.";
 
     private final ClassNameDescriptor newClassName;
 
@@ -40,6 +42,9 @@ public class SelectClassCommand extends Command {
             throw new CommandException(Messages.MESSAGE_CLASS_DOES_NOT_EXIST);
         }
 
+        if (model.getIndexOfClass(newClassName).equals(model.getCurrentlySelectedClassIndex())) {
+            throw new CommandException(String.format(MESSAGE_CLASS_ALREADY_SELECTED, newClassName));
+        }
         model.updateCurrentlySelectedClass(newClassIndex);
         model.commitTeachBook();
         return new CommandResult(String.format(MESSAGE_SELECT_CLASS_SUCCESS, newClassName),

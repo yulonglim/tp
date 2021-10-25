@@ -289,8 +289,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean isEmpty() {
-        return this.teachBook.getClassList().isEmpty();
+    public boolean isTeachBookEmpty() {
+        return this.teachBook.isEmpty();
+    }
+
+    @Override
+    public boolean isListAll() {
+        return currentlySelectedClassIndex.equals(INDEX_LIST_ALL);
     }
 
     @Override
