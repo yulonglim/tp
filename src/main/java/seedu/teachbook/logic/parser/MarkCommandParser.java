@@ -20,19 +20,14 @@ public class MarkCommandParser implements Parser<MarkCommand> {
      */
     public MarkCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-
         if (trimmedArgs.equals("all")) {
             return new MarkCommand();
         }
-
-        List<Index> indices;
-
         try {
-            indices = ParserUtil.parseIndices(trimmedArgs);
+            List<Index> indices = ParserUtil.parseIndices(trimmedArgs);
+            return new MarkCommand(indices);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE), pe);
         }
-
-        return new MarkCommand(indices);
     }
 }
