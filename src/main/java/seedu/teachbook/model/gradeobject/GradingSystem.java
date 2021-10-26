@@ -27,7 +27,7 @@ public class GradingSystem {
     }
 
     public boolean isValidGrade(Grade grade) {
-        return gradeList.contains(grade) || grade.value.equals("");
+        return gradeList.contains(grade) || grade.equals(NOT_GRADED);
     }
 
     public boolean isInUse() {

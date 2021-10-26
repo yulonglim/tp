@@ -30,7 +30,7 @@ public class ClassListPanel extends UiPart<Region> {
         super(FXML);
         classListView.setItems(classList);
         classListView.setCellFactory(listView -> new ClassListViewCell());
-        classListView.addEventFilter(MouseEvent.MOUSE_PRESSED, Event::consume); // TODO: do it in another way
+        classListView.addEventFilter(MouseEvent.MOUSE_PRESSED, Event::consume);
     }
 
     /**
