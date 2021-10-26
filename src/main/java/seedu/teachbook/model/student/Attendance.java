@@ -6,8 +6,6 @@ import java.time.format.DateTimeParseException;
 import java.util.Locale;
 import java.util.Objects;
 
-import seedu.teachbook.commons.exceptions.IllegalValueException;
-
 /**
  * Represents a Student's attendance in the teachbook.
  */
