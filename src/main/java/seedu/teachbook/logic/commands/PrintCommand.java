@@ -1,7 +1,6 @@
 package seedu.teachbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.teachbook.commons.core.Messages.MESSAGE_EXCEL_OPEN;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_COLUMN;
 
 import java.util.ArrayList;
@@ -43,6 +42,8 @@ public class PrintCommand extends Command {
             + PREFIX_COLUMN + "Sign Here";
 
     public static final String MESSAGE_SUCCESS = "Excel file generated!";
+    public static final String MESSAGE_EXCEL_OPEN = "Print failed! An Excel file with conflicting name is opened, "
+            + "please close it before using print command!";
 
     private final List<String> columnList;
 
@@ -137,10 +138,11 @@ public class PrintCommand extends Command {
             toPrint.add(generateColumn(columnName, studentList));
         }
 
-        if (ExcelUtil.isOpen()) {
+        try {
+            ExcelUtil.toExcel(toPrint);
+        } catch (RuntimeException ex) {
             throw new CommandException(MESSAGE_EXCEL_OPEN);
         }
-        ExcelUtil.toExcel(toPrint);
 
         return new CommandResult(MESSAGE_SUCCESS, false, false, false, false);
     }
