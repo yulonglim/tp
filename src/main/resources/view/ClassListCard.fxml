@@ -34,7 +34,7 @@
   </GridPane>
     <VBox alignment="CENTER">
         <padding>
-            <Insets left="25.0" right="80.0" />
+            <Insets left="35.0" right="80.0" />
         </padding>
         <Label minWidth="0.0" prefHeight="17.0" text="NUMBER OF STUDENTS"/>
         <Label fx:id="numberOfStudents" styleClass="cell_big_label" text="\$number" textAlignment="CENTER" />

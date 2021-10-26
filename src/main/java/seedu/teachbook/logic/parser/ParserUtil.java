@@ -89,8 +89,8 @@ public class ParserUtil {
 
     public static ClassNameDescriptor parseClassNameForLocatingClass(String className) {
         requireNonNull(className);
-        String trimmedName = className.trim();
-        return new ClassNameDescriptor(trimmedName);
+        String trimmedClassName = className.trim();
+        return new ClassNameDescriptor(trimmedClassName);
     }
 
     /**
