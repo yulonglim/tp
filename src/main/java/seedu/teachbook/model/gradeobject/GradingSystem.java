@@ -22,8 +22,13 @@ public class GradingSystem {
         return gradeList;
     }
 
-    public void setGradeList(List<Grade> gradeList) {
-        this.gradeList = gradeList;
+    public boolean hasGrade(Grade grade) {
+        return gradeList.contains(grade);
+    }
+
+    public void addGrade(Grade grade) {
+        assert !hasGrade(grade);
+        gradeList.add(grade);
     }
 
     public boolean isValidGrade(Grade grade) {

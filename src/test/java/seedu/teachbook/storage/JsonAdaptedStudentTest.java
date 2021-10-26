@@ -1,7 +1,7 @@
 package seedu.teachbook.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.teachbook.storage.JsonAdaptedStudent.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.teachbook.storage.JsonAdaptedStudent.ILLEGAL_FIELD_MESSAGE_FORMAT;
 import static seedu.teachbook.testutil.Assert.assertThrows;
 import static seedu.teachbook.testutil.TypicalStudents.BENSON;
 
@@ -54,7 +54,7 @@ public class JsonAdaptedStudentTest {
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedStudent person = new JsonAdaptedStudent(null, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS, VALID_REMARK, VALID_TAGS, VALID_ATTENDANCE, VALID_GRADE);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
+        String expectedMessage = String.format(ILLEGAL_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -70,7 +70,7 @@ public class JsonAdaptedStudentTest {
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedStudent person = new JsonAdaptedStudent(VALID_NAME, null, VALID_EMAIL,
                 VALID_ADDRESS, VALID_REMARK, VALID_TAGS, VALID_ATTENDANCE, VALID_GRADE);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
+        String expectedMessage = String.format(ILLEGAL_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -86,7 +86,7 @@ public class JsonAdaptedStudentTest {
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedStudent person = new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, null,
                 VALID_ADDRESS, VALID_REMARK, VALID_TAGS, VALID_ATTENDANCE, VALID_GRADE);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
+        String expectedMessage = String.format(ILLEGAL_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -102,7 +102,7 @@ public class JsonAdaptedStudentTest {
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedStudent person = new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 null, VALID_REMARK, VALID_TAGS, VALID_ATTENDANCE, VALID_GRADE);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
+        String expectedMessage = String.format(ILLEGAL_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -110,7 +110,7 @@ public class JsonAdaptedStudentTest {
     public void toModelType_nullRemark_throwsIllegalValueException() {
         JsonAdaptedStudent person = new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS, null, VALID_TAGS, VALID_ATTENDANCE, VALID_GRADE);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName());
+        String expectedMessage = String.format(ILLEGAL_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -127,7 +127,7 @@ public class JsonAdaptedStudentTest {
     public void toModelType_nullAttendance_throwsIllegalValueException() {
         JsonAdaptedStudent person = new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS, VALID_REMARK, VALID_TAGS, null, VALID_GRADE);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName());
+        String expectedMessage = String.format(ILLEGAL_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 }
