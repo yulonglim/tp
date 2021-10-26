@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.teachbook.commons.core.index.Index;
@@ -99,11 +100,14 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
+    public static Phone parsePhone(Optional<String> phone) throws ParseException {
         requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        String trimmedPhone = "";
+        if (phone.isPresent()) {
+            trimmedPhone = phone.get().trim();
+            if (trimmedPhone.equals("") || !Phone.isValidPhone(trimmedPhone)) {
+                throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+            }
         }
         return new Phone(trimmedPhone);
     }
@@ -114,11 +118,14 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code teachbook} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
+    public static Address parseAddress(Optional<String> address) throws ParseException {
         requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+        String trimmedAddress = "";
+        if (address.isPresent()) {
+            trimmedAddress = address.get().trim();
+            if (trimmedAddress.equals("") | !Address.isValidAddress(trimmedAddress)) {
+                throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+            }
         }
         return new Address(trimmedAddress);
     }
@@ -129,11 +136,14 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
+    public static Email parseEmail(Optional<String> email) throws ParseException {
         requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        String trimmedEmail = "";
+        if (email.isPresent()) {
+            trimmedEmail = email.get().trim();
+            if (trimmedEmail.equals("") || !Email.isValidEmail(trimmedEmail)) {
+                throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            }
         }
         return new Email(trimmedEmail);
     }

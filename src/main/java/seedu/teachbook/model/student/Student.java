@@ -17,18 +17,15 @@ import seedu.teachbook.model.tag.Tag;
  */
 public class Student {
 
-    // Compulsory fields
     private final Name name;
     private final Phone phone;
     private Class studentClass;
-
-    // Optional fields
     private final Email email;
     private final Address address;
     private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
     private final Attendance attendance;
-    private Grade grade;
+    private final Grade grade;
 
     /**
      * Every field must be present and not null.
@@ -38,9 +35,9 @@ public class Student {
         this(name, phone, null, email, address, remark, tags, attendance, grade);
     }
 
-    public Student(Name name, Phone phone, Class studentClass, Email email,
-                   Address address, Remark remark, Set<Tag> tags, Attendance attendance, Grade grade) {
-        requireAllNonNull(name, phone, email, address, tags, grade);
+    public Student(Name name, Phone phone, Class studentClass, Email email, Address address, Remark remark,
+                   Set<Tag> tags, Attendance attendance, Grade grade) {
+        requireAllNonNull(name, phone, email, address, remark, tags, attendance, grade);
         this.name = name;
         this.phone = phone;
         this.studentClass = studentClass;
@@ -76,8 +73,12 @@ public class Student {
         return remark;
     }
 
-    public Grade getGrade() {
-        return grade;
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     public Attendance getAttendance() {
@@ -88,20 +89,16 @@ public class Student {
         return attendance.asFormattedString();
     }
 
-    public boolean isPresent() {
-        return attendance.isPresent();
+    public Grade getGrade() {
+        return grade;
     }
 
     public void setStudentClass(Class studentClass) {
         this.studentClass = studentClass;
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public boolean isPresent() {
+        return attendance.isPresent();
     }
 
     /**
@@ -155,21 +152,23 @@ public class Student {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
                 .append("; Class: ")
-                .append(getStudentClass())
-                .append("; Email: ") // TODO: when email, address, or remark are empty, follow tags
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress())
-                .append("; Remark: ")
-                .append(getRemark())
-                .append("; Attendance: ")
-                .append(getAttendanceString())
-                .append("; Grade: ")
-                .append(getGrade());
-
+                .append(getStudentClass());
+        if (!phone.value.equals("")) {
+            builder.append("; Phone: ").append(getPhone());
+        }
+        if (!email.value.equals("")) {
+            builder.append("; Email: ").append(getEmail());
+        }
+        if (!address.value.equals("")) {
+            builder.append("; Address: ").append(getAddress());
+        }
+        if (!remark.value.equals("")) {
+            builder.append("; Remark: ").append(getRemark());
+        }
+        if (!grade.value.equals("")) {
+            builder.append("; Grade: ").append(getGrade());
+        }
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
