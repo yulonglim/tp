@@ -9,8 +9,9 @@ import static seedu.teachbook.commons.util.AppUtil.checkArgument;
  */
 public class ClassName {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Class names should only contain alphanumeric characters and spaces, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Class names should only "
+            + "contain less than 20 alphanumeric characters and spaces, "
+            + "and it should not be blank";
 
     /*
      * The first character of the teachbook must not be a whitespace,
@@ -35,7 +36,7 @@ public class ClassName {
      * Returns true if a given string is a valid class name.
      */
     public static boolean isValidClassName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && test.length() < 20;
     }
 
 

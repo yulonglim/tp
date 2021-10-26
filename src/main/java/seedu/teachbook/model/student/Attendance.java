@@ -2,6 +2,7 @@ package seedu.teachbook.model.student;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -21,6 +22,20 @@ public class Attendance {
         this.lastModified = lastModified;
     }
 
+    public static boolean isValidAttendance(String test) {
+        String[] components = test.split("\\s+");
+        if (components.length != 2
+                || (!components[0].equalsIgnoreCase("present")
+                && !components[0].equalsIgnoreCase("absent"))) {
+            return false;
+        }
+        try {
+            LocalDateTime.parse(components[1]);
+        } catch (DateTimeParseException exception) {
+            return false;
+        }
+        return true;
+    }
 
     public boolean isPresent() {
         return isPresent;
@@ -44,6 +59,14 @@ public class Attendance {
                 ? "Present  "
                 + lastModified.format(DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a", Locale.ENGLISH))
                 : "Absent";
+    }
+
+    public static Attendance fromString(String attendanceString) {
+        assert isValidAttendance(attendanceString);
+        String[] components = attendanceString.split(" ");
+        boolean isPresent = components[0].equalsIgnoreCase("present");
+        LocalDateTime lastModified = LocalDateTime.parse(components[1]);
+        return new Attendance(isPresent, lastModified);
     }
 
     @Override

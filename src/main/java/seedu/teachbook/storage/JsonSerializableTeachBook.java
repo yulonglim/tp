@@ -1,5 +1,7 @@
 package seedu.teachbook.storage;
 
+import static seedu.teachbook.model.gradeobject.GradingSystem.NOT_GRADED;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,6 +16,7 @@ import seedu.teachbook.model.TeachBook;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.gradeobject.GradingSystem;
+import seedu.teachbook.model.student.Student;
 
 /**
  * An Immutable TeachBook that is serializable to JSON format.
@@ -22,6 +25,8 @@ import seedu.teachbook.model.gradeobject.GradingSystem;
 class JsonSerializableTeachBook {
 
     public static final String MESSAGE_DUPLICATE_CLASS = "TeachBook contains duplicate classes.";
+    public static final String MESSAGE_DUPLICATE_GRADE = "TeachBook grading system contains duplicate grades.";
+    public static final String MESSAGE_INVALID_GRADE = "Grade is not valid.";
 
     private final List<JsonAdaptedClass> classes = new ArrayList<>();
     private final List<JsonAdaptedGrade> gradeList = new ArrayList<>();
@@ -56,20 +61,32 @@ class JsonSerializableTeachBook {
     public TeachBook toModelType() throws IllegalValueException {
         TeachBook teachBook = new TeachBook();
 
+        GradingSystem modelGradingSystem = new GradingSystem();
+        for (JsonAdaptedGrade jsonAdaptedGrade : gradeList) {
+            Grade grade = jsonAdaptedGrade.toModelType();
+            if (grade.equals(NOT_GRADED)) {
+                continue;
+            }
+            if (modelGradingSystem.hasGrade(grade)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_GRADE);
+            }
+            modelGradingSystem.addGrade(grade);
+        }
+        teachBook.setGradingSystem(modelGradingSystem);
+
         for (JsonAdaptedClass jsonAdaptedClass : classes) {
             Class classObj = jsonAdaptedClass.toModelType();
             if (teachBook.hasClass(classObj)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CLASS);
             }
+            for (Student student : classObj.getStudentsOfThisClass()) {
+                if (!modelGradingSystem.isValidGrade(student.getGrade())) {
+                    throw new IllegalValueException(MESSAGE_INVALID_GRADE);
+                }
+            }
             teachBook.addClass(classObj);
         }
 
-        List<Grade> storedGrades = new ArrayList<>();
-        for (JsonAdaptedGrade jsonAdaptedGrade : gradeList) {
-            storedGrades.add(jsonAdaptedGrade.toModelType());
-        }
-        GradingSystem grades = new GradingSystem(storedGrades);
-        teachBook.setGradingSystem(grades);
         return teachBook;
     }
 

@@ -1,6 +1,5 @@
 package seedu.teachbook.storage;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -26,7 +25,7 @@ import seedu.teachbook.model.tag.Tag;
  */
 class JsonAdaptedStudent {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String ILLEGAL_FIELD_MESSAGE_FORMAT = "Student's %s field is missing or corrupted!";
 
     private final String name;
     private final String phone;
@@ -35,7 +34,7 @@ class JsonAdaptedStudent {
     private final String remark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String attendance;
-    private String grade = null;
+    private final String grade;
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
@@ -56,9 +55,7 @@ class JsonAdaptedStudent {
             this.tagged.addAll(tagged);
         }
         this.attendance = attendance;
-        if (grade != null) {
-            this.grade = grade;
-        }
+        this.grade = grade;
     }
 
     /**
@@ -89,7 +86,7 @@ class JsonAdaptedStudent {
         }
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(ILLEGAL_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
@@ -97,7 +94,7 @@ class JsonAdaptedStudent {
         final Name modelName = new Name(name);
 
         if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+            throw new IllegalValueException(String.format(ILLEGAL_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
         if (!Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
@@ -105,7 +102,7 @@ class JsonAdaptedStudent {
         final Phone modelPhone = new Phone(phone);
 
         if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+            throw new IllegalValueException(String.format(ILLEGAL_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
         if (!Email.isValidEmail(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
@@ -113,7 +110,7 @@ class JsonAdaptedStudent {
         final Email modelEmail = new Email(email);
 
         if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            throw new IllegalValueException(String.format(ILLEGAL_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
@@ -121,25 +118,32 @@ class JsonAdaptedStudent {
         final Address modelAddress = new Address(address);
 
         if (remark == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
+            throw new IllegalValueException(String.format(ILLEGAL_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
         }
         final Remark modelRemark = new Remark(remark);
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
 
         if (attendance == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
+            throw new IllegalValueException(String.format(ILLEGAL_FIELD_MESSAGE_FORMAT,
+                    Attendance.class.getSimpleName()));
         }
-        String[] attendanceComponents = attendance.split(" ");
-        assert attendanceComponents.length == 2;
-        boolean isPresent = attendanceComponents[0].equals("Present");
-        LocalDateTime lastModified = LocalDateTime.parse(attendanceComponents[1]);
-        final Attendance modelAttendance = new Attendance(isPresent, lastModified);
+        if (!Attendance.isValidAttendance(attendance)) {
+            throw new IllegalValueException(String.format(ILLEGAL_FIELD_MESSAGE_FORMAT,
+                    Attendance.class.getSimpleName()));
+        }
+        final Attendance modelAttendance = Attendance.fromString(attendance);
 
+        if (grade == null) {
+            throw new IllegalValueException(String.format(ILLEGAL_FIELD_MESSAGE_FORMAT, Grade.class.getSimpleName()));
+        }
+        if (!Grade.isValidGrade(grade)) {
+            throw new IllegalValueException(Grade.MESSAGE_CONSTRAINTS);
+        }
         final Grade modelGrade = new Grade(grade);
 
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags, modelAttendance,
-                modelGrade);
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelRemark,
+                modelTags, modelAttendance, modelGrade);
     }
 
 }

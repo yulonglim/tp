@@ -275,7 +275,7 @@ public class ModelManager implements Model {
 
     @Override
     public void undoTeachBook() {
-        updateCurrentlySelectedClass(this.teachBook.undo()); // TODO: fix undo after clear
+        updateCurrentlySelectedClass(this.teachBook.undo());
     }
 
     @Override
