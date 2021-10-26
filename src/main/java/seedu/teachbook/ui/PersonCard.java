@@ -47,6 +47,8 @@ public class PersonCard extends UiPart<Region> {
     private Label grade;
     @FXML
     private CheckBox checkBox;
+    @FXML
+    private Label className;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -59,6 +61,8 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(student.getPhone().value);
         address.setText(student.getAddress().value);
         email.setText(student.getEmail().value);
+
+        className.setText(student.getStudentClass().toString());
 
         checkBox.setMouseTransparent(true);
         checkBox.setSelected(false);
