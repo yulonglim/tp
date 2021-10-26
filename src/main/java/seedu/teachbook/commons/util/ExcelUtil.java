@@ -1,6 +1,8 @@
 package seedu.teachbook.commons.util;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -62,6 +64,17 @@ public class ExcelUtil {
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public static boolean isOpen() {
+        try {
+            String home = System.getProperty("user.home");
+            FileOutputStream fileOut = new FileOutputStream(home + "/Downloads/Student List.xls");
+            fileOut.close();
+            return false;
+        } catch (IOException e) {
+            return true;
         }
     }
 }
