@@ -29,7 +29,6 @@ public class ExcelUtil {
             String[] columnHeadings = new String[listOfColumns.size() + 1];
 
             for (int i = 0; i < listOfColumns.size(); i++) {
-//                columnHeadings[i] = StringUtil.toCamelCase(listOfColumns.get(i).get(0));
                 columnHeadings[i] = listOfColumns.get(i).get(0);
             }
 
@@ -57,7 +56,6 @@ public class ExcelUtil {
 
             String home = System.getProperty("user.home");
             FileOutputStream fileOut = new FileOutputStream(home + "/Downloads/" + sh.getSheetName() + ".xls");
-            // TODO: catch exception when file is open
             workbook.write(fileOut);
             fileOut.close();
 
