@@ -1,6 +1,5 @@
 package seedu.teachbook.commons.util;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
