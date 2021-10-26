@@ -136,6 +136,7 @@ public class PrintCommand extends Command {
         for (String columnName : columnList) {
             toPrint.add(generateColumn(columnName, studentList));
         }
+
         if (ExcelUtil.isOpen()) {
             throw new CommandException(MESSAGE_EXCEL_OPEN);
         }

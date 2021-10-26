@@ -2,6 +2,8 @@ package seedu.teachbook.commons.util;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -55,7 +57,10 @@ public class ExcelUtil {
             }
 
             String home = System.getProperty("user.home");
-            FileOutputStream fileOut = new FileOutputStream(home + "/Downloads/" + sh.getSheetName() + ".xls");
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd MMM hhmmss");
+            FileOutputStream fileOut = new FileOutputStream(String.format("%s/Downloads/%s%s.xls",
+                    home, sh.getSheetName(), LocalDateTime.now().format(format)));
+
             workbook.write(fileOut);
             fileOut.close();
 
@@ -67,7 +72,9 @@ public class ExcelUtil {
     public static boolean isOpen() {
         try {
             String home = System.getProperty("user.home");
-            FileOutputStream fileOut = new FileOutputStream(home + "/Downloads/Student List.xls");
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd MMM hhmmss");
+            FileOutputStream fileOut = new FileOutputStream(String.format("%s/Downloads/Student List%s.xls",
+                    home, LocalDateTime.now().format(format)));
             fileOut.close();
             return false;
         } catch (IOException e) {
