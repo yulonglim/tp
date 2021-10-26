@@ -48,6 +48,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private CheckBox checkBox;
     @FXML
+    private Label classLabel;
+    @FXML
     private Label className;
 
     /**
@@ -61,8 +63,6 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(student.getPhone().value);
         address.setText(student.getAddress().value);
         email.setText(student.getEmail().value);
-
-        className.setText(student.getStudentClass().toString());
 
         checkBox.setMouseTransparent(true);
         checkBox.setSelected(false);
@@ -89,6 +89,16 @@ public class PersonCard extends UiPart<Region> {
             grade.setPrefHeight(0.0);
         } else {
             grade.setText(gradeContent);
+        }
+
+        // TODO: Set the condition to check if it is a list command
+        if (false) {
+            className.setMinHeight(0.0);
+            className.setPrefHeight(0.0);
+            classLabel.setMinHeight(0.0);
+            classLabel.setPrefHeight(0.0);
+        } else {
+            className.setText(student.getStudentClass().toString());
         }
     }
 

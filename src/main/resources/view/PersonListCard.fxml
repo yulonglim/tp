@@ -42,8 +42,8 @@
   </GridPane>
    <VBox alignment="CENTER">
       <children>
-         <Label text="Class:" />
-         <Label fx:id="className" styleClass="cell_grade_label" text="\$class" wrapText="true" />
+         <Label fx:id="classLabel" styleClass="cell_big_label" text="Class:" wrapText="true" />
+         <Label fx:id="className" styleClass="cell_big_label" text="\$class" wrapText="true" />
       </children>
    </VBox>
     <VBox alignment="CENTER" prefHeight="112.0" prefWidth="150.0">
