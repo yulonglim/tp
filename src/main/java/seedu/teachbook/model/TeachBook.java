@@ -151,8 +151,7 @@ public class TeachBook implements ReadOnlyTeachBook {
     //// util methods
     @Override
     public String toString() {
-        return students.asUnmodifiableObservableList().size() + " persons";
-        // TODO: refine later
+        return classes.asUnmodifiableObservableList().size() + " classes";
     }
 
     @Override
@@ -180,7 +179,7 @@ public class TeachBook implements ReadOnlyTeachBook {
     }
 
     public Class getClassAtIndex(GeneralIndex classIndex) {
-        return classes.getClassAtIndex(classIndex); // TODO: get class or let unique class list do things?
+        return classes.getClassAtIndex(classIndex);
     }
 
     public GradingSystem getGradingSystem() {
@@ -201,7 +200,6 @@ public class TeachBook implements ReadOnlyTeachBook {
 
     public void reorderStudents(GeneralIndex classIndex, Comparator<? super Student> comparator) {
         if (classIndex.equals(INDEX_LIST_ALL)) {
-            // TODO: reorder students in each class when sort when list all
             students.sort(comparator);
         } else {
             getClassAtIndex(classIndex).reorderStudents(comparator);
@@ -216,7 +214,9 @@ public class TeachBook implements ReadOnlyTeachBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TeachBook // instanceof handles nulls
-                && students.equals(((TeachBook) other).students) && classes.equals(((TeachBook) other).classes));
+                && classes.equals(((TeachBook) other).classes)
+                && students.equals(((TeachBook) other).students)
+                && gradingSystem.equals(((TeachBook) other).gradingSystem));
     }
 
     @Override
