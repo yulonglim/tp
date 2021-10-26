@@ -54,7 +54,7 @@
               <padding>
                   <Insets bottom="5" left="10" right="10" top="5" />
               </padding>
-              <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+              <SplitPane dividerPositions="0.3" prefHeight="160.0" prefWidth="200.0">
                   <AnchorPane>
                       <Pane layoutX="1.0" layoutY="-47.0" prefHeight="86.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                       <VBox fx:id="classList" layoutX="10.0" layoutY="10.0" minWidth="200.0" prefHeight="86.0" styleClass="pane-with-border" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">

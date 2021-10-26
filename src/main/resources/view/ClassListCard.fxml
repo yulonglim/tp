@@ -32,15 +32,11 @@
          <RowConstraints />
       </rowConstraints>
   </GridPane>
-    <VBox alignment="CENTER_RIGHT">
-        <HBox alignment="CENTER">
-            <Label alignment="CENTER" minWidth="0.0" prefHeight="17.0" text="NUMBER OF STUDENTS:">
-            <padding>
-               <Insets left="25.0" right="25.0" />
-            </padding></Label>
-        </HBox>
-        <HBox alignment="CENTER">
-            <Label fx:id="numberOfStudents" alignment="CENTER" styleClass="cell_big_label" text="\$number" textAlignment="CENTER" />
-        </HBox>
+    <VBox alignment="CENTER">
+        <padding>
+            <Insets left="25.0" right="80.0" />
+        </padding>
+        <Label minWidth="0.0" prefHeight="17.0" text="NUMBER OF STUDENTS"/>
+        <Label fx:id="numberOfStudents" styleClass="cell_big_label" text="\$number" textAlignment="CENTER" />
     </VBox>
 </HBox>
