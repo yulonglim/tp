@@ -2,6 +2,7 @@ package seedu.teachbook.model.gradeobject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GradingSystem {
 
@@ -26,7 +27,7 @@ public class GradingSystem {
     }
 
     public boolean isValidGrade(Grade grade) {
-        return gradeList.contains(grade) || grade.value.equals("");
+        return gradeList.contains(grade) || grade.equals(NOT_GRADED);
     }
 
     public boolean isInUse() {
@@ -37,12 +38,7 @@ public class GradingSystem {
     public String toString() {
         StringBuilder result = new StringBuilder();
         result.append("[ ");
-        for (Grade grade : gradeList) {
-            result.append(grade.toString()).append(" > ");
-        }
-        if (gradeList.size() > 0) {
-            result.setLength(result.length() - 3);
-        }
+        result.append(gradeList.stream().map(Grade::toString).collect(Collectors.joining(" > ")));
         result.append(" ]");
         return result.toString();
     }

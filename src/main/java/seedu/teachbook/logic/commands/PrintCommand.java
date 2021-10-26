@@ -5,6 +5,7 @@ import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_COLUMN;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.teachbook.commons.util.ExcelUtil;
 import seedu.teachbook.logic.commands.exceptions.CommandException;
@@ -19,20 +20,30 @@ public class PrintCommand extends Command {
 
     public static final String COMMAND_WORD = "print";
 
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Prints the current selected class "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Prints the currently displayed student list as an Excel file.\n"
             + "Parameters: "
-            + "[" + PREFIX_COLUMN + "COL]...\n"
+            + "[" + PREFIX_COLUMN + "class] "
+            + "[" + PREFIX_COLUMN + "phone] "
+            + "[" + PREFIX_COLUMN + "email] "
+            + "[" + PREFIX_COLUMN + "address] "
+            + "[" + PREFIX_COLUMN + "tags] "
+            + "[" + PREFIX_COLUMN + "remark] "
+            + "[" + PREFIX_COLUMN + "attendance] "
+            + "[" + PREFIX_COLUMN + "grade] "
+            + "[" + PREFIX_COLUMN + "COLUMN_TITLE_1] "
+            + "[" + PREFIX_COLUMN + "COLUMN_TITLE_2]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_COLUMN + "Grades "
-            + PREFIX_COLUMN + "Sign Here"
-            + PREFIX_COLUMN + "Phone";
+            + PREFIX_COLUMN + "class "
+            + PREFIX_COLUMN + "phone "
+            + PREFIX_COLUMN + "address "
+            + PREFIX_COLUMN + "attendance "
+            + PREFIX_COLUMN + "grade "
+            + PREFIX_COLUMN + "Sign Here";
 
-    public static final String PRINT_SUCCESS =
-            "Excel file created!";
+    public static final String MESSAGE_SUCCESS = "Excel file generated!";
 
     private final List<String> columnList;
-
 
     public PrintCommand(List<String> columnList) {
         this.columnList = columnList;
@@ -40,56 +51,66 @@ public class PrintCommand extends Command {
 
     private static List<String> generateColumn(String columnName, List<Student> studentList) {
         List<String> result = new ArrayList<>();
-        result.add(columnName);
 
         switch (columnName.toLowerCase()) {
         case "class":
+            result.add("Class");
             for (Student student : studentList) {
                 result.add(student.getStudentClass().getClassName().nameOfClass);
             }
             break;
 
         case "phone":
+            result.add("Phone Number");
             for (Student student : studentList) {
                 result.add(student.getPhone().value);
             }
             break;
 
         case "email":
+            result.add("Email");
             for (Student student : studentList) {
                 result.add(student.getEmail().value);
             }
             break;
 
-        case "tags":
+        case "address":
+            result.add("Address");
             for (Student student : studentList) {
-                StringBuilder remarks = new StringBuilder();
-                for (Tag t : student.getTags()) {
-                    remarks.append(t.tagName).append("; ");
-                }
-                result.add(remarks.toString());
+                result.add(student.getAddress().value);
             }
             break;
 
-        case "grade":
+        case "tags":
+            result.add("Tags");
             for (Student student : studentList) {
-                result.add(student.getGrade().value);
+                result.add(student.getTags().stream().map(Tag::toString).collect(Collectors.joining(" ")));
             }
             break;
 
         case "remark":
+            result.add("Remark");
             for (Student student : studentList) {
                 result.add(student.getRemark().value);
             }
             break;
 
         case "attendance":
+            result.add("Attendance");
             for (Student student : studentList) {
-                result.add(student.getAttendance().isPresent ? "Present" : "Absent");
+                result.add(student.getAttendanceString());
+            }
+            break;
+
+        case "grade":
+            result.add("Grade");
+            for (Student student : studentList) {
+                result.add(student.getGrade().value);
             }
             break;
 
         default:
+            result.add(columnName);
             for (int i = 0; i < studentList.size(); i++) {
                 result.add("");
             }
@@ -117,8 +138,7 @@ public class PrintCommand extends Command {
 
         ExcelUtil.toExcel(toPrint);
 
-        return new CommandResult(PRINT_SUCCESS,
-                false, false, false, false);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, false, false);
     }
 
     @Override

@@ -36,7 +36,7 @@ public class PrintCommandParser implements Parser<PrintCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PrintCommand.MESSAGE_USAGE));
         }
 
-        return new PrintCommand(columnList); // TODO: better write how to parse "select" command
+        return new PrintCommand(columnList);
     }
 
 }

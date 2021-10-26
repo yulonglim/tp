@@ -9,51 +9,34 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" alignment="CENTER" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+      <ColumnConstraints hgrow="SOMETIMES" prefWidth="150" />
     </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+    <VBox alignment="CENTER" minHeight="105" GridPane.columnIndex="0">
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
-      <HBox alignment="CENTER_LEFT" spacing="5">
-            <VBox>
-               <children>
-                  <HBox prefHeight="14.0" prefWidth="8.0" />
-                  <HBox alignment="CENTER_LEFT">
-                     <children>
-                    <Label fx:id="id" styleClass="cell_big_label">
-                      <minWidth>
-                        <!-- Ensures that the label text is never truncated -->
-                        <Region fx:constant="USE_PREF_SIZE" />
-                      </minWidth>
-                    </Label>
-                    <Label fx:id="name" alignment="CENTER_LEFT" prefHeight="17.0" prefWidth="500.0" styleClass="cell_big_label" text="\$first" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="14.0" prefWidth="8.0" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER_RIGHT">
-               <children>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="0.0" prefWidth="200.0">
-                     <children>
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="500.0" text="NUMBER OF STUDENTS:" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_RIGHT">
-                     <children>
-                    <Label fx:id="numberOfStudents" alignment="CENTER" prefHeight="17.0" prefWidth="500.0" styleClass="cell_big_label" text="\$number" textAlignment="RIGHT" />
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-      </HBox>
+        <HBox alignment="TOP_LEFT" spacing="5">
+            <Label fx:id="id" styleClass="cell_big_label">
+                <minWidth>
+                    <!-- Ensures that the label text is never truncated -->
+                    <Region fx:constant="USE_PREF_SIZE" />
+                </minWidth>
+            </Label>
+            <Label fx:id="name" minWidth="50.0" styleClass="cell_big_label" text="\$first" wrapText="true" />
+        </HBox>
     </VBox>
       <rowConstraints>
          <RowConstraints />
       </rowConstraints>
   </GridPane>
+    <VBox alignment="CENTER">
+        <padding>
+            <Insets left="25.0" right="80.0" />
+        </padding>
+        <Label minWidth="0.0" prefHeight="17.0" text="NUMBER OF STUDENTS"/>
+        <Label fx:id="numberOfStudents" styleClass="cell_big_label" text="\$number" textAlignment="CENTER" />
+    </VBox>
 </HBox>

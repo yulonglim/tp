@@ -67,6 +67,7 @@ public class MarkCommand extends Command {
             }
         }
 
+        LocalDateTime now = LocalDateTime.now();
         List<String> studentToMarkNames = new ArrayList<>();
         for (Index targetIndex : targetIndices) {
             Student studentToMark = lastShownList.get(targetIndex.getZeroBased());
@@ -74,7 +75,7 @@ public class MarkCommand extends Command {
             Student editedStudent = new Student(studentToMark.getName(), studentToMark.getPhone(),
                     studentToMark.getStudentClass(), studentToMark.getEmail(),
                     studentToMark.getAddress(), studentToMark.getRemark(), studentToMark.getTags(),
-                    new Attendance(true, LocalDateTime.now()), studentToMark.getGrade());
+                    new Attendance(true, now), studentToMark.getGrade());
             model.setStudent(studentToMark, editedStudent);
         }
         Collections.reverse(studentToMarkNames);
@@ -82,7 +83,7 @@ public class MarkCommand extends Command {
         model.commitTeachBook();
         return new CommandResult(String.format(MESSAGE_MARK_STUDENT_SUCCESS,
                 String.join(", ", studentToMarkNames),
-                LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a", Locale.ENGLISH))),
+                now.format(DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a", Locale.ENGLISH))),
                 false, false, true, false);
     }
 

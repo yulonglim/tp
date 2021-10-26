@@ -66,6 +66,7 @@ public class UnmarkCommand extends Command {
             }
         }
 
+        LocalDateTime now = LocalDateTime.now();
         List<String> studentToUnmarkNames = new ArrayList<>();
         for (Index targetIndex : targetIndices) {
             Student studentToUnmark = lastShownList.get(targetIndex.getZeroBased());
@@ -73,7 +74,7 @@ public class UnmarkCommand extends Command {
             Student editedStudent = new Student(studentToUnmark.getName(), studentToUnmark.getPhone(),
                     studentToUnmark.getStudentClass(), studentToUnmark.getEmail(),
                     studentToUnmark.getAddress(), studentToUnmark.getRemark(), studentToUnmark.getTags(),
-                    new Attendance(false, LocalDateTime.now()), studentToUnmark.getGrade());
+                    new Attendance(false, now), studentToUnmark.getGrade());
             model.setStudent(studentToUnmark, editedStudent);
         }
         Collections.reverse(studentToUnmarkNames);
@@ -81,7 +82,7 @@ public class UnmarkCommand extends Command {
         model.commitTeachBook();
         return new CommandResult(String.format(MESSAGE_UNMARK_STUDENT_SUCCESS,
                 String.join(", ", studentToUnmarkNames),
-                LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a", Locale.ENGLISH))),
+                now.format(DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a", Locale.ENGLISH))),
                 false, false, true, false);
     }
 
