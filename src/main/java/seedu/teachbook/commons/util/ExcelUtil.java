@@ -1,6 +1,7 @@
 package seedu.teachbook.commons.util;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -65,6 +66,19 @@ public class ExcelUtil {
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public static boolean isOpen() {
+        try {
+            String home = System.getProperty("user.home");
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd MMM hhmmss");
+            FileOutputStream fileOut = new FileOutputStream(String.format("%s/Downloads/Student List%s.xls",
+                    home, LocalDateTime.now().format(format)));
+            fileOut.close();
+            return false;
+        } catch (IOException e) {
+            return true;
         }
     }
 }

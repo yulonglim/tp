@@ -1,6 +1,7 @@
 package seedu.teachbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.teachbook.commons.core.Messages.MESSAGE_EXCEL_OPEN;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_COLUMN;
 
 import java.util.ArrayList;
@@ -136,6 +137,9 @@ public class PrintCommand extends Command {
             toPrint.add(generateColumn(columnName, studentList));
         }
 
+        if (ExcelUtil.isOpen()) {
+            throw new CommandException(MESSAGE_EXCEL_OPEN);
+        }
         ExcelUtil.toExcel(toPrint);
 
         return new CommandResult(MESSAGE_SUCCESS, false, false, false, false);
