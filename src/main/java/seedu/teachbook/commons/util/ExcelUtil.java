@@ -1,7 +1,6 @@
 package seedu.teachbook.commons.util;
 
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
