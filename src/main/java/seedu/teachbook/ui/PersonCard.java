@@ -58,35 +58,16 @@ public class PersonCard extends UiPart<Region> {
         name.setText(student.getName().fullName);
 
         String phoneContent = student.getPhone().value;
-        if (phoneContent.equals("")) {
-            phone.setMinHeight(0.0);
-            phone.setPrefHeight(0.0);
-        } else {
-            phone.setText("Phone:     " + phoneContent); // TODO: use aesthetic separate labels
-        }
+        phone.setText("Phone:     " + phoneContent); // TODO: use aesthetic separate labels
 
         String addressContent = student.getAddress().value;
-        if (addressContent.equals("")) {
-            address.setMinHeight(0.0);
-            address.setPrefHeight(0.0);
-        } else {
-            address.setText("Address:  " + addressContent);
-        }
+        address.setText("Address:  " + addressContent);
 
         String emailContent = student.getEmail().value;
-        if (emailContent.equals("")) {
-            email.setMinHeight(0.0);
-            email.setPrefHeight(0.0);
-        } else {
-            email.setText("Email:       " + emailContent);
-        }
+        email.setText("Email:       " + emailContent);
 
         checkBox.setMouseTransparent(true);
-        checkBox.setSelected(false);
-
-        if (student.isPresent()) {
-            markCheckbox();
-        }
+        checkBox.setSelected(student.isPresent());
 
         String remarkContent = student.getRemark().value;
         if (remarkContent.equals("")) {
@@ -127,7 +108,4 @@ public class PersonCard extends UiPart<Region> {
                 && student.equals(card.student);
     }
 
-    public void markCheckbox() {
-        checkBox.setSelected(true);
-    }
 }
