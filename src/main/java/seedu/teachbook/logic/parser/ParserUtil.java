@@ -47,7 +47,7 @@ public class ParserUtil {
 
     public static List<Index> parseIndices(String oneBasedIndicesSpaceSeparated) throws ParseException {
         String trimmedIndices = oneBasedIndicesSpaceSeparated.trim();
-        String[] indexArray = trimmedIndices.split("\\s+");
+        String[] indexArray = trimmedIndices.split("\\s+"); // "" will become String[1] { "" } after split
 
         // remove duplicate indices
         Set<String> indexSet = new HashSet<>(Arrays.asList(indexArray));
@@ -253,6 +253,10 @@ public class ParserUtil {
             throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
         }
         return gradeList;
+    }
+
+    public static boolean parseAll(String preamble) {
+        return preamble.trim().equalsIgnoreCase("all");
     }
 
 }
