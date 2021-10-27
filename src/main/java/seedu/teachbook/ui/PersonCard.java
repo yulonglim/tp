@@ -49,8 +49,6 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private CheckBox checkBox;
     @FXML
-    private Label classLabel;
-    @FXML
     private Label className;
 
     /**
@@ -99,8 +97,6 @@ public class PersonCard extends UiPart<Region> {
         } else {
             className.setMinHeight(0.0);
             className.setPrefHeight(0.0);
-            classLabel.setMinHeight(0.0);
-            classLabel.setPrefHeight(0.0);
         }
     }
 

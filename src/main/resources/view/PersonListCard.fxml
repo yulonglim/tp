@@ -40,17 +40,21 @@
          <RowConstraints />
       </rowConstraints>
   </GridPane>
-   <VBox alignment="CENTER">
-      <children>
-         <Label fx:id="classLabel" styleClass="cell_big_label" text="Class:" wrapText="true" />
-         <Label fx:id="className" styleClass="cell_big_label" text="\$class" wrapText="true" />
-      </children>
-   </VBox>
-    <VBox alignment="CENTER" prefHeight="112.0" prefWidth="150.0">
-        <Label text="Present">
-            <VBox.margin>
-                <Insets bottom="5.0" />
-            </VBox.margin></Label>
-        <CheckBox fx:id="checkBox" alignment="CENTER" mnemonicParsing="false" />
+    <VBox alignment="TOP_CENTER" prefHeight="112.0" prefWidth="129.0">
+      <VBox alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="150.0">
+         <children>
+           <Label fx:id="className" styleClass="cell_class_label" text="\$class" wrapText="true" />
+         </children>
+      </VBox>
+      <VBox alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER" prefHeight="80.0" prefWidth="130.0">
+               <children>
+                    <Label styleClass="cell_present_label" text="Present" />
+                    <CheckBox fx:id="checkBox" alignment="CENTER" mnemonicParsing="false" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
     </VBox>
 </HBox>
