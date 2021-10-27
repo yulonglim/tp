@@ -97,6 +97,23 @@ public class ParserUtil {
     /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
+     * An empty string is valid for the edit command.
+     *
+     * @throws ParseException if the given {@code phone} is invalid.
+     */
+    public static Phone parsePhoneForEdit(String phone) throws ParseException {
+        requireNonNull(phone);
+        String trimmedPhone = phone.trim();
+        if (!Phone.isValidPhone(trimmedPhone)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        return new Phone(trimmedPhone);
+    }
+
+    /**
+     * Parses a {@code String phone} into a {@code Phone}.
+     * Leading and trailing whitespaces will be trimmed.
+     * An empty string is INVALID for the add command.
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
@@ -115,6 +132,23 @@ public class ParserUtil {
     /**
      * Parses a {@code String teachbook} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
+     * An empty string is valid for the edit command.
+     *
+     * @throws ParseException if the given {@code teachbook} is invalid.
+     */
+    public static Address parseAddressForEdit(String address) throws ParseException {
+        requireNonNull(address);
+        String trimmedAddress = address.trim();
+        if (!Address.isValidAddress(trimmedAddress)) {
+            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+        }
+        return new Address(trimmedAddress);
+    }
+
+    /**
+     * Parses a {@code Optional<String> teachbook} into an {@code Address}.
+     * Leading and trailing whitespaces will be trimmed.
+     * An empty string is INVALID for the add command.
      *
      * @throws ParseException if the given {@code teachbook} is invalid.
      */
@@ -133,6 +167,23 @@ public class ParserUtil {
     /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
+     * An empty string is valid for the edit command.
+     *
+     * @throws ParseException if the given {@code email} is invalid.
+     */
+    public static Email parseEmailForEdit(String email) throws ParseException {
+        requireNonNull(email);
+        String trimmedEmail = email.trim();
+        if (!Email.isValidEmail(trimmedEmail)) {
+            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        }
+        return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code Optional<String> email} into an {@code Email}.
+     * Leading and trailing whitespaces will be trimmed.
+     * An empty string is INVALID for the add command.
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
