@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.teachbook.model.student.Student;
 
 /**
@@ -50,6 +51,8 @@ public class PersonCard extends UiPart<Region> {
     private CheckBox checkBox;
     @FXML
     private Label className;
+    @FXML
+    private VBox classNameBox;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -97,6 +100,8 @@ public class PersonCard extends UiPart<Region> {
         } else {
             className.setMinHeight(0.0);
             className.setPrefHeight(0.0);
+            classNameBox.setMinHeight(0.0);
+            classNameBox.setPrefHeight(0.0);
         }
     }
 

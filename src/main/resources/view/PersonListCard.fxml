@@ -41,16 +41,16 @@
       </rowConstraints>
   </GridPane>
     <VBox alignment="TOP_CENTER" prefHeight="112.0" prefWidth="300.0">
-      <VBox alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="300">
+      <VBox fx:id="classNameBox" alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="300">
          <children>
            <Label fx:id="className" styleClass="cell_class_label" text="\$class" wrapText="true" />
          </children>
       </VBox>
-      <VBox alignment="CENTER" prefWidth="300">
+      <VBox alignment="CENTER" prefHeight="112.0" prefWidth="300">
          <children>
             <HBox alignment="CENTER_RIGHT">
                <children>
-                  <VBox alignment="CENTER" prefHeight="80.0" prefWidth="180.0">
+                  <VBox alignment="CENTER" prefHeight="34.0" prefWidth="100.0">
                      <children>
                           <Label styleClass="cell_present_label" text="Present" />
                           <CheckBox fx:id="checkBox" alignment="CENTER" mnemonicParsing="false" />
