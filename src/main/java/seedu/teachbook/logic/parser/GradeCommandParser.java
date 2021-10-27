@@ -3,6 +3,8 @@ package seedu.teachbook.logic.parser;
 import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_GRADE;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.teachbook.commons.core.index.Index;
@@ -15,12 +17,18 @@ public class GradeCommandParser implements Parser<GradeCommand> {
     @Override
     public GradeCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_GRADE);
-        Index index;
+        List<Index> indices = new ArrayList<>();
+        boolean isAll;
 
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GradeCommand.MESSAGE_USAGE), pe);
+        String preamble = argMultimap.getPreamble();
+
+        isAll = ParserUtil.parseAll(preamble);
+        if (!isAll) {
+            try {
+                indices = ParserUtil.parseIndices(preamble);
+            } catch (ParseException pe) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GradeCommand.MESSAGE_USAGE), pe);
+            }
         }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_GRADE)) {
@@ -28,7 +36,12 @@ public class GradeCommandParser implements Parser<GradeCommand> {
         }
 
         Grade grade = ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get());
-        return new GradeCommand(index, grade);
+
+        if (isAll) {
+            return new GradeCommand(grade);
+        } else {
+            return new GradeCommand(indices, grade);
+        }
     }
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
