@@ -133,7 +133,12 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     void updateStudentListPanel() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        GeneralIndex newSelectedClassIndex = logic.getCurrentlySelectedClassIndex();
+        if (newSelectedClassIndex.equals(INDEX_LIST_ALL)) {
+            personListPanel = new PersonListPanel(logic.getFilteredPersonList(), true);
+        } else {
+            personListPanel = new PersonListPanel(logic.getFilteredPersonList(), false);
+        }
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
     }
 
@@ -141,11 +146,19 @@ public class MainWindow extends UiPart<Stage> {
         classListPanel = new ClassListPanel(logic.getUniqueClassList());
         classListPanelPlaceholder.getChildren().add(classListPanel.getRoot());
 
+        // TODO: CHECK HERE
         GeneralIndex newSelectedClassIndex = logic.getCurrentlySelectedClassIndex();
         if (!newSelectedClassIndex.equals(INDEX_NO_CLASS)
                 && !newSelectedClassIndex.equals(INDEX_LIST_ALL)) {
             classListPanel.select(newSelectedClassIndex.getZeroBased());
         }
+
+//        if (newSelectedClassIndex.equals(INDEX_LIST_ALL)) {
+//            classListPanel.select(newSelectedClassIndex.getZeroBased());
+//            personListPanel.setShowClass();
+//            System.out.println("class is shown");
+//            System.out.println(newSelectedClassIndex.equals(INDEX_LIST_ALL));
+//        }
     }
 
     /**
