@@ -42,9 +42,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE));
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL));
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS));
+        Phone phone = ParserUtil.parsePhoneForAdd(argMultimap.getValue(PREFIX_PHONE));
+        Email email = ParserUtil.parseEmailForAdd(argMultimap.getValue(PREFIX_EMAIL));
+        Address address = ParserUtil.parseAddressForAdd(argMultimap.getValue(PREFIX_ADDRESS));
         Remark remark = new Remark(""); // add command does not allow adding remark straight away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Attendance attendance = new Attendance(false, LocalDateTime.now());
