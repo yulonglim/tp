@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.teachbook.commons.core.index.Index;
@@ -96,6 +97,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
+     * An empty string is valid.
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
@@ -109,8 +111,28 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code Optional<String> phone} into a {@code Phone}.
+     * Leading and trailing whitespaces will be trimmed.
+     * An empty string is invalid.
+     *
+     * @throws ParseException if the given {@code phone} is invalid.
+     */
+    public static Phone parsePhoneForAdd(Optional<String> phone) throws ParseException {
+        requireNonNull(phone);
+        if (phone.isPresent() && phone.get().equals("")) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        String trimmedPhone = "";
+        if (phone.isPresent()) {
+            trimmedPhone = phone.get().trim();
+        }
+        return parsePhone(trimmedPhone);
+    }
+
+    /**
      * Parses a {@code String teachbook} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
+     * An empty string is valid.
      *
      * @throws ParseException if the given {@code teachbook} is invalid.
      */
@@ -124,8 +146,28 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code Optional<String> teachbook} into an {@code Address}.
+     * Leading and trailing whitespaces will be trimmed.
+     * An empty string is invalid.
+     *
+     * @throws ParseException if the given {@code teachbook} is invalid.
+     */
+    public static Address parseAddressForAdd(Optional<String> address) throws ParseException {
+        requireNonNull(address);
+        if (address.isPresent() && address.get().equals("")) {
+            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+        }
+        String trimmedAddress = "";
+        if (address.isPresent()) {
+            trimmedAddress = address.get().trim();
+        }
+        return parseAddress(trimmedAddress);
+    }
+
+    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
+     * An empty string is valid.
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
@@ -136,6 +178,25 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code Optional<String> email} into an {@code Email}.
+     * Leading and trailing whitespaces will be trimmed.
+     * An empty string is invalid.
+     *
+     * @throws ParseException if the given {@code email} is invalid.
+     */
+    public static Email parseEmailForAdd(Optional<String> email) throws ParseException {
+        requireNonNull(email);
+        if (email.isPresent() && email.get().equals("")) {
+            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        }
+        String trimmedEmail = "";
+        if (email.isPresent()) {
+            trimmedEmail = email.get().trim();
+        }
+        return parseEmail(trimmedEmail);
     }
 
     /**
