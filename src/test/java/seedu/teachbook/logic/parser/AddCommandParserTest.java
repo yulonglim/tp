@@ -31,7 +31,6 @@ import static seedu.teachbook.testutil.TypicalStudents.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.teachbook.logic.commands.AddCommand;
-import seedu.teachbook.model.student.Address;
 import seedu.teachbook.model.student.Email;
 import seedu.teachbook.model.student.Name;
 import seedu.teachbook.model.student.Phone;

@@ -35,7 +35,6 @@ import org.junit.jupiter.api.Test;
 import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.logic.commands.EditCommand;
 import seedu.teachbook.logic.commands.EditCommand.EditStudentDescriptor;
-import seedu.teachbook.model.student.Address;
 import seedu.teachbook.model.student.Email;
 import seedu.teachbook.model.student.Name;
 import seedu.teachbook.model.student.Phone;
