@@ -56,9 +56,30 @@ public class PersonCard extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        phone.setText(student.getPhone().value);
-        address.setText(student.getAddress().value);
-        email.setText(student.getEmail().value);
+
+        String phoneContent = student.getPhone().value;
+        if (phoneContent.equals("")) {
+            phone.setMinHeight(0.0);
+            phone.setPrefHeight(0.0);
+        } else {
+            phone.setText(phoneContent);
+        }
+
+        String addressContent = student.getAddress().value;
+        if (addressContent.equals("")) {
+            address.setMinHeight(0.0);
+            address.setPrefHeight(0.0);
+        } else {
+            address.setText(addressContent);
+        }
+
+        String emailContent = student.getEmail().value;
+        if (emailContent.equals("")) {
+            email.setMinHeight(0.0);
+            email.setPrefHeight(0.0);
+        } else {
+            email.setText(emailContent);
+        }
 
         checkBox.setMouseTransparent(true);
         checkBox.setSelected(false);
