@@ -62,7 +62,7 @@ public class PersonCard extends UiPart<Region> {
             phone.setMinHeight(0.0);
             phone.setPrefHeight(0.0);
         } else {
-            phone.setText(phoneContent);
+            phone.setText("Phone:     " + phoneContent); // TODO: use aesthetic separate labels
         }
 
         String addressContent = student.getAddress().value;
@@ -70,7 +70,7 @@ public class PersonCard extends UiPart<Region> {
             address.setMinHeight(0.0);
             address.setPrefHeight(0.0);
         } else {
-            address.setText(addressContent);
+            address.setText("Address:  " + addressContent);
         }
 
         String emailContent = student.getEmail().value;
@@ -78,7 +78,7 @@ public class PersonCard extends UiPart<Region> {
             email.setMinHeight(0.0);
             email.setPrefHeight(0.0);
         } else {
-            email.setText(emailContent);
+            email.setText("Email:       " + emailContent);
         }
 
         checkBox.setMouseTransparent(true);
