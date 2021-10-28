@@ -3,7 +3,6 @@ package seedu.teachbook.ui;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -70,16 +69,22 @@ public class PersonCard extends UiPart<Region> {
         this.showClass = showClass;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        phone.setText(student.getPhone().value);
-        address.setText(student.getAddress().value);
-        email.setText(student.getEmail().value);
+
+        String phoneContent = student.getPhone().value;
+        phone.setText("Phone:     " + phoneContent);
+
+        String addressContent = student.getAddress().value;
+        address.setText("Address:  " + addressContent);
+
+        String emailContent = student.getEmail().value;
+        email.setText("Email:       " + emailContent);
 
         stackPane.getChildren().add(presentBox);
         stackPane.getChildren().add(className);
         stackPane.setAlignment(className, Pos.TOP_RIGHT);
 
         checkBox.setMouseTransparent(true);
-        checkBox.setSelected(false);
+        checkBox.setSelected(student.isPresent());
 
         if (student.isPresent()) {
             markCheckbox();
