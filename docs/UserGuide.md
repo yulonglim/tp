@@ -180,7 +180,6 @@ Format: `editClass INDEX n/CLASS_NAME`
 Examples:
 * `edit 1 n/Ace` edits the class name of the 1st class to be `Ace`.
 
-<<<<<<< HEAD
 ### Selecting a class : `select`
 
 Selects the class to be shown by TeachBook.
@@ -203,8 +202,9 @@ Grades are set in descending order, from the highest grade, Grade1 to the lowest
 
 Format: `setGrade [Grade1]>[Grade2]>[Grade3]>...>[Grade'N']`
 
-* Takes in a list of grades separated by >.
-* Grades are entered in descending order.
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+This command takes in a list of grades separated by ">" and they are entered in decreasing order!
+</div>
 
 ### Resetting a grading system : `resetGrade`
 
@@ -218,13 +218,23 @@ Format: `resetGrade`
 
 You can use this to set a grade for a particular student.
 
-### Sorting the teachbook : `sort`
+Format: `grade INDEX g/GRADE`
 
-Unorganised lists are a pain to see. Therefore, Teachbook provides the functionality to sort the students either
+Example:
+* `grade 3 g/A` grades the student at index 3 an A grade.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+You cannot grade a student without having first add grading system. So, remember to do that first!
+</div>
+
+### Sorting the students : `sort`
+
+Unorganised lists are a pain to see. Therefore, TeachBook provides the functionality for you to sort your students either
 according to name or grade.
 
 Format: `sort grade` `sort name`
 
+Examples:
 * `sort grade` sorts the list of students according to their grade in descending order.
 * 'sort name' sorts the list of students according to their name in alphabetical order.
 
@@ -232,9 +242,31 @@ Format: `sort grade` `sort name`
 
 You can use this to mark your student as present.
 
+Format: `mark INDEX1 [INDEX2] ...`
+
+Examples:
+* `mark 1` marks the student at index 1 as present.
+* `mark 2 3 4` marks the students at index 2, 3 and 4 as present all at once.
+
+<div markdown="block" class="alert alert-info">:information_source: **Info**
+This command allows you to mark multiple indexes at once. Which can save you lots of time! The check box will turn green
+once the attendance of the student is marked! 
+</div>
+
 ### Unmarking the attendance of a student : `unmark`
 
 You can use this to mark your student as absent.
+
+Format: `unmark INDEX1 [INDEX2] ...`
+
+Examples:
+* `unmark 1` marks the student at index 1 as absent.
+* `Unmark 2 3 4` marks the students at index 2, 3 and 4 as absent all at once.
+
+<div markdown="block" class="alert alert-info">:information_source: **Info**
+This command allows you to mark multiple indexes at once. Which can save you lots of time! The check box will turn red
+once the attendance of the student is unmarked! 
+</div>
 
 ### Listing all students : `list`
 
