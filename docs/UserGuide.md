@@ -18,13 +18,11 @@ its features. Did we also mention that TeachBook is free?
 ## How to use this guide?
 
 This user guide is divided in different section, so feel free to navigate to the portion of interest using our handy 
-Table of Contents provided below.
-
-If you are a new user who is using TeachBook for the first time, you can follow the [Quick Start](#quick-start) on how to get TeachBook 
-running on your system for the first time.
-
-If you are a user who faced some issues with TeachBook, you can go to the [FAQs](#faqs) section to see if your issues have
-already been addressed. If not, feel free to reach out to us, and we will respond promptly. 
+Table of Contents provided below. It is made for new user or experience user alike. If you are a new user who is using 
+TeachBook for the first time, you can follow the [Quick Start](#quick-start) on how to get TeachBook running on your 
+system for the first time. If you are a user who faced some issues with TeachBook, you can go to the [FAQs](#faqs) 
+section to see if your issues have already been addressed. If not, feel free to reach out to us, and we will respond 
+promptly. 
 
 If you are an experienced user who can't remember the extensive list of features that TeachBook provide, you can jump
 to the [Command Summary](#command-summary) section or the [Features](#features) section if you want to find out more.
@@ -48,8 +46,6 @@ TeachBook is a **desktop app for primary and secondary school teachers to manage
 a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). It is targeted 
 towards teachers who can type fast. It allows teachers to store and organise contacts related to their students into 
 different classes. On top of that, teachers can tag the class role of the student.
-
-
 
 * Table of Contents
 {:toc}
@@ -102,7 +98,7 @@ Format: `help`
 
 ### Adding a student : `add`
 
-Adds a student to the TeachBook.
+You can use this command to add a student to the TeachBook.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BLOOD_TYPE] [pc/PARENTS_CONTACT] [t/TAG1] [t/TAG2]...`
 
@@ -134,8 +130,6 @@ Examples:
 * `list all` followed by `delete 2` deletes the 2nd student in the TeachBook.
 * `find John` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-![delete](images/deleteStudent.png)
-
 ### Editing a student : `edit`
 
 Edits an existing student in the TeachBook. You can also use this command to add previously not-added information.
@@ -146,8 +140,6 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG1] [t/
 * The index refers to the index number shown in the displayed student list.
 * The index must be a positive integer 1, 2, 3, ...
 * Existing values will be updated to the input values.
-
-![edit](images/editStudent.png)
 
 Examples:
 * `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
@@ -175,8 +167,6 @@ Format: `deleteClass CLASS_NAME`
 Examples:
 * `deleteClass A` Deletes the class named `A` from the TeachBook.
 
-![delete class](images/deleteClass.png)
-
 ### Editing a class : `editClass`
 
 Edits an existing class in the TeachBook.
@@ -193,7 +183,7 @@ Examples:
 
 ### Selecting a class : `select`
 
-Selects the **class** to be shown by TeachBook.
+Selects the class to be shown by TeachBook.
 
 Format: `select CLASSNAME`
 
@@ -207,11 +197,27 @@ Example:
 
 ### Setting a grading system : `setGrade`
 
+You can use this command to set the grading system that your school uses (e.g. A, B, C, D and E).
+
+### Resetting a grading system : `resetGrade`
+
+You can use this clear the pre-existing grading system that is configured for TeachBook.
+
 ### Keying the grade of a student : `grade`
 
-### Marking the attendance of a student : `mark`
+You can use this to set a grade for a particular student.
+
+### Sorting students by their grade : `sort`
+
+You can use this to sort your students by their grades
+
+### Marking the attendance of a student : `mark`.
+
+You can use this to mark your student as present.
 
 ### Unmarking the attendance of a student : `unmark`
+
+You can use this to mark your student as absent.
 
 
 ### Listing all students : `list`
@@ -290,7 +296,10 @@ If your changes to the data file makes its format invalid, TeachBook will discar
 
 ## FAQs
 
-**Q**: ...<br>
+**Q**: Where does the Excel file save to after using the print command? <br>
+**A**: It will be saved to your computer's download folder.
+
+**Q**: ... <br>
 **A**: ...
 
 --------------------------------------------------------------------------------------------------------------------
