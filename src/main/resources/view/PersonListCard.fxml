@@ -50,5 +50,6 @@
                   <CheckBox fx:id="checkBox" mnemonicParsing="false" />
               </VBox>
           </VBox>
-      </children></StackPane>
+      </children>
+   </StackPane>
 </HBox>
