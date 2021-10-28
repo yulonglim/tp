@@ -19,12 +19,11 @@ public class UnmarkCommandParser implements Parser<UnmarkCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public UnmarkCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.equals("all")) {
+        if (ParserUtil.parseAll(args)) {
             return new UnmarkCommand();
         }
         try {
-            List<Index> indices = ParserUtil.parseIndices(trimmedArgs);
+            List<Index> indices = ParserUtil.parseIndices(args);
             return new UnmarkCommand(indices);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnmarkCommand.MESSAGE_USAGE), pe);

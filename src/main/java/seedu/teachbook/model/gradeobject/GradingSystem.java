@@ -8,7 +8,7 @@ public class GradingSystem {
 
     public static final Grade NOT_GRADED = new Grade("");
 
-    private List<Grade> gradeList;
+    private final List<Grade> gradeList;
 
     public GradingSystem(List<Grade> gradeList) {
         this.gradeList = gradeList;

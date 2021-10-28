@@ -1,6 +1,7 @@
 package seedu.teachbook.commons.util;
 
 import java.io.FileOutputStream;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -24,7 +25,7 @@ public class ExcelUtil {
         return headerFont;
     }
 
-    public static void toExcel(List<List<String>> listOfColumns) throws RuntimeException {
+    public static String toExcel(List<List<String>> listOfColumns) throws RuntimeException {
         try {
             Workbook workbook = new HSSFWorkbook();
             Sheet sh = workbook.createSheet("Student List");
@@ -57,6 +58,7 @@ public class ExcelUtil {
             }
 
             String home = System.getProperty("user.home");
+            String filePath = Paths.get(home, "Downloads").toString();
             DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy kk.mm.ss", Locale.ENGLISH);
             FileOutputStream fileOut = new FileOutputStream(String.format("%s/Downloads/%s %s.xls",
                     home, sh.getSheetName(), LocalDateTime.now().format(format)));
@@ -64,6 +66,7 @@ public class ExcelUtil {
             workbook.write(fileOut);
             fileOut.close();
 
+            return filePath;
         } catch (Exception e) {
             throw new RuntimeException();
         }
