@@ -133,7 +133,12 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     void updateStudentListPanel() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        GeneralIndex newSelectedClassIndex = logic.getCurrentlySelectedClassIndex();
+        if (newSelectedClassIndex.equals(INDEX_LIST_ALL)) {
+            personListPanel = new PersonListPanel(logic.getFilteredPersonList(), true);
+        } else {
+            personListPanel = new PersonListPanel(logic.getFilteredPersonList(), false);
+        }
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
     }
 
