@@ -41,9 +41,9 @@
          <RowConstraints />
       </rowConstraints>
     </GridPane>
-   <StackPane fx:id="stackPane" prefHeight="150.0" prefWidth="200.0">
+   <StackPane fx:id="stackPane" prefHeight="150.0" >
       <children>
-          <VBox fx:id="bigBox" alignment="TOP_RIGHT" minWidth="300.0" prefWidth="541.0">
+          <VBox fx:id="bigBox" alignment="TOP_RIGHT" minWidth="220.0" >
               <Label fx:id="className" styleClass="cell_class_label" text="\$class" wrapText="true" />
               <VBox fx:id="presentBox" alignment="CENTER">
                   <Label styleClass="cell_present_label" text="Present" />
