@@ -3,8 +3,6 @@ layout: page
 title: User Guide
 ---
 
-# TeachBook User Guide
-
 ## Introduction
 
 Welcome to the TeachBook User Guide! 
@@ -47,6 +45,7 @@ towards teachers who can type fast. It allows teachers to store and organise con
 different classes. On top of that, teachers can tag the class role of the student.
 
 ## Table of Contents
+
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
