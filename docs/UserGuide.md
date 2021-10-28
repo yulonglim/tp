@@ -53,7 +53,7 @@ different classes. On top of that, teachers can tag the class role of the studen
 
 1. Ensure you have Java `11` or above installed in your computer.
 
-2. Download the latest `teachbook.jar` from [here](https://github.com/AY2122S1-CS2103T-W10-2/tp/releases/tag/v1.3).
+2. Download the latest `teachbook-v1.3.1.jar` from [here](https://github.com/AY2122S1-CS2103T-W10-2/tp/releases/download/v1.3.1/teachbook-v1.3.1.jar).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your TeachBook.
 
