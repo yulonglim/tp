@@ -31,12 +31,12 @@ if you want to find out more.
 There are 3 symbols that you need know in order to use this user guide effectively, and they are :information_source:, 
 :bulb: and :exclamation:
 
-If you see a :information_source: symbol, it means that it is additional information that we feel that you ought to know.
+* If you see a :information_source: symbol, it means that it is additional information that we feel that you ought to know.
 
-If you see a :bulb: symbol, it means that it is a tip (e.g. shortcut or hidden features) which you can follow to enhance
+* If you see a :bulb: symbol, it means that it is a tip (e.g. shortcut or hidden features) which you can follow to enhance
 your experience. 
 
-If you see a :exclamation: symbol, take extra caution because if you don't follow the instruction list, it might cause 
+* If you see a :exclamation: symbol, take extra caution because if you don't follow the instruction list, it might cause 
 the program to not run the way you intended it to and return unwanted results.
 
 ## What is TeachBook?
