@@ -256,7 +256,7 @@ public class ParserUtil {
     }
 
     public static boolean parseAll(String preamble) {
-        return preamble.trim().equalsIgnoreCase("all");
+        return preamble.trim().equals("all");
     }
 
 }

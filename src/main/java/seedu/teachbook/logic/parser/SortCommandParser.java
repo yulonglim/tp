@@ -9,10 +9,11 @@ public class SortCommandParser implements Parser<SortCommand> {
 
     public SortCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
+
         if (trimmedArgs.equals("name")) {
-            return new SortCommand(true);
+            return new SortCommand(true, false);
         } else if (trimmedArgs.equals("grade")) {
-            return new SortCommand(false);
+            return new SortCommand(false, true);
         }
 
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
