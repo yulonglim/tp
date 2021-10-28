@@ -3,7 +3,7 @@ package seedu.teachbook.logic.commands;
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
 
-public class SortCommand extends Command{
+public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": sorts students according to name/grade.\n"

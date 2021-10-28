@@ -1,11 +1,9 @@
 package seedu.teachbook.logic.parser;
 
-import seedu.teachbook.logic.commands.ListCommand;
-import seedu.teachbook.logic.commands.SortCommand;
-import seedu.teachbook.logic.commands.SortNameCommand;
-import seedu.teachbook.logic.parser.exceptions.ParseException;
-
 import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+import seedu.teachbook.logic.commands.SortCommand;
+import seedu.teachbook.logic.parser.exceptions.ParseException;
 
 public class SortCommandParser implements Parser<SortCommand> {
 
