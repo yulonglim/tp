@@ -37,7 +37,8 @@ public class SampleDataUtil {
         return new Student[] {
             new Student(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"), new Remark("Allergic to seafood."),
-                getTagSet("classMonitor"), new Attendance(false, LocalDateTime.now()), new Grade("A")),
+                getTagSet("class monitor"), new Attendance(false, LocalDateTime.now()),
+                new Grade("A")),
             new Student(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new Remark(""),
                 getTagSet(), new Attendance(false, LocalDateTime.now()), new Grade("A")),
@@ -46,7 +47,7 @@ public class SampleDataUtil {
                 getTagSet(), new Attendance(false, LocalDateTime.now()), new Grade("B")),
             new Student(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new Remark("Needs to improve on maths."),
-                getTagSet("viceMonitor"), new Attendance(false, LocalDateTime.now()), new Grade("F")),
+                getTagSet("vice monitor"), new Attendance(false, LocalDateTime.now()), new Grade("F")),
             new Student(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"), new Remark(""),
                 getTagSet(), new Attendance(false, LocalDateTime.now()), new Grade("")),

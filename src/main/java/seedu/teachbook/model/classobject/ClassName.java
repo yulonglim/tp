@@ -10,7 +10,7 @@ import static seedu.teachbook.commons.util.AppUtil.checkArgument;
 public class ClassName {
 
     public static final String MESSAGE_CONSTRAINTS = "Class names should only "
-            + "contain less than 20 alphanumeric characters and spaces, "
+            + "contain alphanumeric characters and spaces, have less than 20 characters (including spaces), "
             + "and it should not be blank";
 
     /*
