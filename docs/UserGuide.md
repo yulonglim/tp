@@ -72,6 +72,8 @@ different classes. On top of that, teachers can tag the class role of the studen
 --------------------------------------------------------------------------------------------------------------------
 ## Graphical User Interface
 
+{add an image of the GUI with boxes to explain the different portions of the app}
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -150,10 +152,14 @@ Adds a class with the specified class name to the TeachBook.
 
 Format: `addClass CLASS_NAME`
 
-Examples:
-* `addClass example`
-
 ![add class](images/addClass.png)
+
+Examples:
+* `addClass 4E2` adds a class named 4E2 into teachbook
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+There is a limit of 20 characters for the class name! But I am sure your class name will not be longer that limit!
+</div>
 
 ### Deleting a class : `deleteClass`
 
@@ -193,6 +199,15 @@ Format: `select CLASSNAME`
 
 Example:
 * `select A` Selects the class named `A` from the list of classes.
+
+### Adding a remark : `remark`
+
+TeachBook allows you to add remarks for you to remind yourself about the student. 
+
+Format: `remark INDEX r/REMARK`
+
+Example:
+* `remark 1 r/Contracted COVID-19` add a remark to the student at index one that he has contracted COVID-19.
 
 ### Setting a grading system : `setGrade`
 
@@ -384,6 +399,7 @@ Action                         | Format, Examples
 **Delete class**               | `deleteClass CLASS_NAME` <br> e.g., `deleteClass A`
 **Edit class**                 | `editClass INDEX n/CLASS_NAME` <br> e.g., `editClass 1 n/Ace`
 **Select class**               | `select CLASS_NAME` <br> e.g., `select A`
+**Add a remark**               | `remark INDEX r/REMARK` <br> e.g., `remark 1 r/Contracted COVID-19`
 **Set grading system**         | `setGrade [Grade1]>[Grade2]>[Grade3]>...>[Grade'N']` <br> e.g., `setGrade A>B>C>D>E>F`
 **Reset grading system**       | `resetGrade`
 **Key in a grade**             | `grade INDEX g/GRADE` <br> e.g., `grade 3 g/A`
