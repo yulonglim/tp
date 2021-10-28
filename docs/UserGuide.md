@@ -63,7 +63,7 @@ different classes. On top of that, teachers can tag the class role of the studen
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * **`select Talent`** : Displays all the students from the class named Talent.
+    * **`select Talent`** : Displays all the students from the class named `Talent`.
    
     * **`delete`**`2` : Deletes the 2nd student shown in the list on the right.
 
@@ -102,7 +102,7 @@ different classes. On top of that, teachers can tag the class role of the studen
 * Items **outside** square brackets with `…` after them can be used multiple times but at least once.<br>
   e.g. `INDEX…` can be used as `1`, `2 3`, `1 4 5 9` etc.
 
-* Items separated by `||` means only one of the partitioned items should be supplied.
+* Items separated by `||` means only one of the partitioned items should be supplied.<br>
   e.g. `sort name||grade` can be used as either `sort name` or `sort grade`, but not `sort name grade`.
 
 * If a command accepts more than one parameter (i.e. word in `UPPER_CASE`), parameters can be in any order. However, this does not apply to parameter `INDEX`, which should always be specified before others.<br>
