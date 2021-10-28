@@ -36,7 +36,7 @@ There are 3 symbols that you need know in order to use this user guide effective
 * If you see a :bulb: symbol, it means that it is a tip (e.g. shortcut or hidden features) which you can follow to enhance
 your experience. 
 
-* If you see a :exclamation: symbol, take extra caution because if you don't follow the instruction list, it might cause 
+* If you see a :exclamation: symbol, take extra caution because if you don't follow the instruction listed, it might cause 
 the program to not run the way you intended it to and return unwanted results.
 
 ## What is TeachBook?
@@ -202,6 +202,9 @@ Grades are set in descending order, from the highest grade, Grade1 to the lowest
 
 Format: `setGrade [Grade1]>[Grade2]>[Grade3]>...>[Grade'N']`
 
+Example:
+* `setGrade A>B>C>D>E>F` sets the grading system as A, B, C, D, E and F
+
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 This command takes in a list of grades separated by ">" and they are entered in decreasing order!
 </div>
@@ -264,7 +267,7 @@ Examples:
 * `Unmark 2 3 4` marks the students at index 2, 3 and 4 as absent all at once.
 
 <div markdown="block" class="alert alert-info">:information_source: **Info**
-This command allows you to mark multiple indexes at once. Which can save you lots of time! The check box will turn red
+This command allows you to unmark multiple indexes at once. Which can save you lots of time! The check box will turn red
 once the attendance of the student is unmarked! 
 </div>
 
@@ -317,23 +320,35 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all classes and students from the TeachBook.
+Clears all classes and students from the TeachBook. In other words, it makes TeachBook clear all its stored data
 
 Format: `clear`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Don't forget that TeachBook provides an undo feature just incase you accidentally clear TeachBook of all its data!
+</div>
+
 ### Undoing a command : `undo`.
 
-Allows you undo a command if you have made a mistake
+Allows you to undo a command that you have entered. You most likely will be using this command if you have made a mistakes.
 
-### Redoing a command: `mark`.
+Format: `undo`
 
-Allows you to redo a command
+### Redoing a command: `redo`.
+
+Allows you to redo a command after using an undo command.
+
+Format: `redo`
 
 ### Exiting the program : `exit`
 
-Exits the app.
+Exits TeachBook.
 
 Format: `exit`
+
+<div markdown="block" class="alert alert-info">:information_source: **Info**
+TeachBook will automatically save you progress if you exit the app so that you can continue working on it at a later time!
+</div>
 
 ### Saving the data
 
@@ -355,25 +370,30 @@ If your changes to the data file makes its format invalid, TeachBook will discar
 **Q**: Where does the Excel file save to after using the print command? <br>
 **A**: It will be saved to your computer's download folder.
 
-**Q**: ... <br>
-**A**: ...
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Summary
 
-Action             | Format, Examples
--------------------|------------------
-**Help**           | `help`
-**Add student**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BLOOD_TYPE] [pc/PARENTS_CONTACT] [t/TAG1] [t/TAG2]...` <br> e.g., `add n/John Doe p/91234567 e/johndoe@example.com a/21 Lower Kent Ridge Road, Singapore 119077 b/AB+ pc/92039923 t/class treasurer`
-**Delete student** | `delete INDEX` <br> e.g., `delete 1`
-**Edit student**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG1] [t/TAG2]...` <br> e.g.,`edit 2 n/Joseph Chan t/`
-**Add class**      | `addClass CLASS_NAME` <br> e.g., `addClass A`
-**Delete class**   | `deleteClass CLASS_NAME` <br> e.g., `deleteClass A`
-**Edit class**     | `editClass INDEX n/CLASS_NAME` <br> e.g., `editClass 1 n/Ace`
-**Select class**   | `select CLASS_NAME` <br> e.g., `select A`
-**List**           | `list `  `list all`  `list absentee`
-**Find**           | `find KEYWORD1 [KEYWORD2]...`<br> e.g., `find James Jake`
-**Print**          | `print c/COLUMN1 [c/COLUMN2]...` <br> e.g. , `print c/Signature`
-**Clear**          | `clear`
-**Exit**           | `exit`
+Action                         | Format, Examples
+-------------------------------|------------------
+**Help**                       | `help`
+**Add student**                | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BLOOD_TYPE] [pc/PARENTS_CONTACT] [t/TAG1] [t/TAG2]...` <br> e.g., `add n/John Doe p/91234567 e/johndoe@example.com a/21 Lower Kent Ridge Road, Singapore 119077 b/AB+ pc/92039923 t/class treasurer`
+**Delete student**             | `delete INDEX` <br> e.g., `delete 1`
+**Edit student**               | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG1] [t/TAG2]...` <br> e.g.,`edit 2 n/Joseph Chan t/`
+**Add class**                  | `addClass CLASS_NAME` <br> e.g., `addClass A`
+**Delete class**               | `deleteClass CLASS_NAME` <br> e.g., `deleteClass A`
+**Edit class**                 | `editClass INDEX n/CLASS_NAME` <br> e.g., `editClass 1 n/Ace`
+**Select class**               | `select CLASS_NAME` <br> e.g., `select A`
+**Set grading system**         | `setGrade [Grade1]>[Grade2]>[Grade3]>...>[Grade'N']` <br> e.g., `setGrade A>B>C>D>E>F`
+**Reset grading system**       | `resetGrade`
+**Key in a grade**             | `grade INDEX g/GRADE` <br> e.g., `grade 3 g/A`
+**Sort students**              | `sort name`  `sort grade`
+**Mark student attendance**    | `mark INDEX1 [INDEX2] ...` <br> e.g., `mark 1 2 3`
+**Unmark student attendance**  | `unmark INDEX1 [INDEX2] ...` <br> e.g., `unmark 1 2 3`
+**List students**              | `list `  `list all`  `list absentee`
+**Find a particular student**  | `find KEYWORD1 [KEYWORD2]...`<br> e.g., `find James Jake`
+**Print data as Excel File**   | `print c/COLUMN1 [c/COLUMN2]...` <br> e.g. , `print c/Signature`
+**Clear TeachBook**            | `clear`
+**Undo previous command**      | `undo`
+**Redo previous command**      | `redo`
+**Exit TeachBook**             | `exit`
