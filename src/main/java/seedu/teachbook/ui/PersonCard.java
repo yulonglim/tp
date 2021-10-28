@@ -3,11 +3,14 @@ package seedu.teachbook.ui;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import seedu.teachbook.model.student.Student;
 
@@ -52,7 +55,11 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label className;
     @FXML
-    private VBox classNameBox;
+    private VBox bigBox;
+    @FXML
+    private VBox presentBox;
+    @FXML
+    private StackPane stackPane;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -63,18 +70,20 @@ public class PersonCard extends UiPart<Region> {
         this.showClass = showClass;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
+        phone.setText(student.getPhone().value);
+        address.setText(student.getAddress().value);
+        email.setText(student.getEmail().value);
 
-        String phoneContent = student.getPhone().value;
-        phone.setText("Phone:     " + phoneContent); // TODO: use aesthetic separate labels
-
-        String addressContent = student.getAddress().value;
-        address.setText("Address:  " + addressContent);
-
-        String emailContent = student.getEmail().value;
-        email.setText("Email:       " + emailContent);
+        stackPane.getChildren().add(presentBox);
+        stackPane.getChildren().add(className);
+        stackPane.setAlignment(className, Pos.TOP_RIGHT);
 
         checkBox.setMouseTransparent(true);
-        checkBox.setSelected(student.isPresent());
+        checkBox.setSelected(false);
+
+        if (student.isPresent()) {
+            markCheckbox();
+        }
 
         String remarkContent = student.getRemark().value;
         if (remarkContent.equals("")) {
@@ -100,10 +109,7 @@ public class PersonCard extends UiPart<Region> {
         if (showClass) {
             className.setText(student.getStudentClass().toString());
         } else {
-            className.setMinHeight(0.0);
-            className.setPrefHeight(0.0);
-            classNameBox.setMinHeight(0.0);
-            classNameBox.setPrefHeight(0.0);
+            stackPane.getChildren().remove(className);
         }
     }
 
@@ -125,4 +131,7 @@ public class PersonCard extends UiPart<Region> {
                 && student.equals(card.student);
     }
 
+    public void markCheckbox() {
+        checkBox.setSelected(true);
+    }
 }
