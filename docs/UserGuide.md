@@ -180,6 +180,7 @@ Format: `editClass INDEX n/CLASS_NAME`
 Examples:
 * `edit 1 n/Ace` edits the class name of the 1st class to be `Ace`.
 
+<<<<<<< HEAD
 ### Selecting a class : `select`
 
 Selects the class to be shown by TeachBook.
@@ -196,19 +197,36 @@ Example:
 
 ### Setting a grading system : `setGrade`
 
-You can use this command to set the grading system that your school uses (e.g. A, B, C, D and E).
+Allows for setting of personalised grading system. You may implement your own grading system
+which may differ from semester to semester and subject to subject in order to grade your students accordingly.
+Grades are set in descending order, from the highest grade, Grade1 to the lowest grade, grade Grade'N'.
+
+Format: `setGrade [Grade1]>[Grade2]>[Grade3]>...>[Grade'N']`
+
+* Takes in a list of grades separated by >.
+* Grades are entered in descending order.
 
 ### Resetting a grading system : `resetGrade`
 
-You can use this clear the pre-existing grading system that is configured for TeachBook.
+Teachbook can only incorporate at most 1 grading system at any time. Therefore, you have to wipe out an existing
+grading system before implementing a new one. This command not only resets the grading system, but also wipes out
+all the grades which were previously given to the students.
+
+Format: `resetGrade`
 
 ### Keying the grade of a student : `grade`
 
 You can use this to set a grade for a particular student.
 
-### Sorting students by their grade : `sort`
+### Sorting the teachbook : `sort`
 
-You can use this to sort your students by their grades
+Unorganised lists are a pain to see. Therefore, Teachbook provides the functionality to sort the students either
+according to name or grade.
+
+Format: `sort grade` `sort name`
+
+* `sort grade` sorts the list of students according to their grade in descending order.
+* 'sort name' sorts the list of students according to their name in alphabetical order.
 
 ### Marking the attendance of a student : `mark`.
 
@@ -217,7 +235,6 @@ You can use this to mark your student as present.
 ### Unmarking the attendance of a student : `unmark`
 
 You can use this to mark your student as absent.
-
 
 ### Listing all students : `list`
 
