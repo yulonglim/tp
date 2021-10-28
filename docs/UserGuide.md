@@ -156,6 +156,35 @@ Format: `editClass INDEX n/CLASS_NAME`
 Examples:
 * `edit 1 n/Ace` edits the class name of the 1st class to be `Ace`.
 
+### Setting a grading system : `setGrade`
+
+Allows for setting of personalised grading system. You may implement your own grading system
+which may differ from semester to semester and subject to subject in order to grade your students accordingly.
+Grades are set in descending order, from the highest grade, Grade1 to the lowest grade, grade Grade'N'.
+
+Format: `setGrade [Grade1]>[Grade2]>[Grade3]>...>[Grade'N']`
+
+* Takes in a list of grades separated by >.
+* Grades are entered in descending order.
+
+### Resetting a grading system : `resetGrade`
+
+Teachbook can only incorporate at most 1 grading system at any time. Therefore, you have to wipe out an existing
+grading system before implementing a new one. This command not only resets the grading system, but also wipes out 
+all the grades which were previously given to the students.
+
+Format: `resetGrade`
+
+### Sorting the teachbook : `sort`
+
+Unorganised lists are a pain to see. Therefore, Teachbook provides the functionality to sort the students either 
+according to name or grade.
+
+Format: `sort grade` `sort name`
+
+* `sort grade` sorts the list of students according to their grade in descending order.
+* 'sort name' sorts the list of students according to their name in alphabetical order.
+
 ### Listing all students : `list`
 
 Shows the list of all students from the currently selected class or the entire TeachBook.
