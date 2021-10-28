@@ -63,16 +63,18 @@ public class PersonCard extends UiPart<Region> {
         this.showClass = showClass;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        phone.setText(student.getPhone().value);
-        address.setText(student.getAddress().value);
-        email.setText(student.getEmail().value);
+
+        String phoneContent = student.getPhone().value;
+        phone.setText("Phone:     " + phoneContent); // TODO: use aesthetic separate labels
+
+        String addressContent = student.getAddress().value;
+        address.setText("Address:  " + addressContent);
+
+        String emailContent = student.getEmail().value;
+        email.setText("Email:       " + emailContent);
 
         checkBox.setMouseTransparent(true);
-        checkBox.setSelected(false);
-
-        if (student.isPresent()) {
-            markCheckbox();
-        }
+        checkBox.setSelected(student.isPresent());
 
         String remarkContent = student.getRemark().value;
         if (remarkContent.equals("")) {
@@ -123,7 +125,4 @@ public class PersonCard extends UiPart<Region> {
                 && student.equals(card.student);
     }
 
-    public void markCheckbox() {
-        checkBox.setSelected(true);
-    }
 }

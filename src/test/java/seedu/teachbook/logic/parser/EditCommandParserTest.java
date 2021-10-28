@@ -5,7 +5,6 @@ import static seedu.teachbook.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.teachbook.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.teachbook.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.teachbook.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.teachbook.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.teachbook.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.teachbook.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.teachbook.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
@@ -36,7 +35,6 @@ import org.junit.jupiter.api.Test;
 import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.logic.commands.EditCommand;
 import seedu.teachbook.logic.commands.EditCommand.EditStudentDescriptor;
-import seedu.teachbook.model.student.Address;
 import seedu.teachbook.model.student.Email;
 import seedu.teachbook.model.student.Name;
 import seedu.teachbook.model.student.Phone;
@@ -84,7 +82,6 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid teachbook
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid email

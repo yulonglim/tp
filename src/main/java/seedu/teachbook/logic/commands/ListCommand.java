@@ -22,7 +22,8 @@ public class ListCommand extends Command {
             + "Example: " + COMMAND_WORD + ", " + COMMAND_WORD + " all" + ", " + COMMAND_WORD + " absent";
 
     public static final String MESSAGE_SUCCESS = "Listed all students";
-    public static final String MESSAGE_SUCCESS_ABSENTEE = "Listed all absent students";
+    public static final String MESSAGE_SUCCESS_LIST_ALL = "Currently displaying all students from all classes";
+    public static final String MESSAGE_SUCCESS_LIST_ABSENT = "Listed all absent students";
     public static final String MESSAGE_ALREADY_LIST_ALL = "Already displaying students from all classes\n"
             + "Use \"list\" to display the full list.";
 
@@ -48,12 +49,12 @@ public class ListCommand extends Command {
             }
             model.updateCurrentlySelectedClass(INDEX_LIST_ALL);
             model.commitTeachBook();
-            return new CommandResult(MESSAGE_SUCCESS, false, false, true, true);
+            return new CommandResult(MESSAGE_SUCCESS_LIST_ALL, false, false, true, true);
         }
 
         if (isAbsentee) {
             model.updateFilteredStudentList(new StudentIsAbsentPredicate());
-            return new CommandResult(MESSAGE_SUCCESS_ABSENTEE);
+            return new CommandResult(MESSAGE_SUCCESS_LIST_ABSENT);
         }
 
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);

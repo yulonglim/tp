@@ -41,7 +41,7 @@ public class PrintCommand extends Command {
             + PREFIX_COLUMN + "grade "
             + PREFIX_COLUMN + "Sign Here";
 
-    public static final String MESSAGE_SUCCESS = "Excel file generated!";
+    public static final String MESSAGE_SUCCESS = "Excel file generated under directory %1$s";
     public static final String MESSAGE_EXCEL_OPEN = "Print failed! An Excel file with conflicting name is opened, "
             + "please close it before using print command!";
 
@@ -138,13 +138,14 @@ public class PrintCommand extends Command {
             toPrint.add(generateColumn(columnName, studentList));
         }
 
+        String filePath;
         try {
-            ExcelUtil.toExcel(toPrint);
+            filePath = ExcelUtil.toExcel(toPrint);
         } catch (RuntimeException ex) {
             throw new CommandException(MESSAGE_EXCEL_OPEN);
         }
 
-        return new CommandResult(MESSAGE_SUCCESS, false, false, false, false);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, filePath), false, false, false, false);
     }
 
     @Override

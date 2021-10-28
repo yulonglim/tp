@@ -21,7 +21,7 @@ public class SelectClassCommand extends Command {
             + "Parameters: CLASSNAME\n"
             + "Example: " + COMMAND_WORD + " Ace";
 
-    public static final String MESSAGE_SELECT_CLASS_SUCCESS = "Currently displaying all the students from Class: %1$s";
+    public static final String MESSAGE_SELECT_CLASS_SUCCESS = "Currently displaying all students from Class: %1$s";
     public static final String MESSAGE_CLASS_ALREADY_SELECTED = "Already displaying students from Class: %1$s\n"
             + "Use \"list\" to display the full list.";
 

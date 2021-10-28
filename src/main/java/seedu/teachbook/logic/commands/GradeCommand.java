@@ -2,7 +2,10 @@ package seedu.teachbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_GRADE;
+import static seedu.teachbook.model.gradeobject.GradingSystem.NOT_GRADED;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import seedu.teachbook.commons.core.Messages;
@@ -16,24 +19,35 @@ public class GradeCommand extends Command {
 
     public static final String COMMAND_WORD = "grade";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the grade of the student identified "
-            + "by the index number used in the displayed student list. "
-            + "Existing grade will be overwritten by the input.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + ": Edits the grade of one or more students identified "
+            + "by the index number used in the displayed student list.\n"
+            + "Parameters: INDEX1 [INDEX2]... [all] "
             + PREFIX_GRADE + "[GRADE]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_GRADE + "A";
+            + "Example: "
+            + COMMAND_WORD + " 1 " + PREFIX_GRADE + "F, "
+            + COMMAND_WORD + " 2 4 5 " + PREFIX_GRADE + "B, "
+            + COMMAND_WORD + " all " + PREFIX_GRADE + "A";
 
-    public static final String MESSAGE_GRADE_SUCCESS = "Graded Student: %1$s";
+    public static final String MESSAGE_ADD_GRADE_SUCCESS = "Given Grade %1$s to Student(s): %2$s";
+    public static final String MESSAGE_CLEAR_GRADE_SUCCESS = "Cleared grade(s) of Student(s): %2$s";
     public static final String MESSAGE_GRADING_SYSTEM_NOT_SET = "Set a grading system before editing any grade";
     public static final String MESSAGE_INVALID_GRADE = "Invalid grade\nCurrent grading system: %1$s";
+    public static final String MESSAGE_NOTHING_TO_GRADE = "There is nothing to grade as there are no students.";
 
     private final Grade grade;
-    private final Index index;
+    private final List<Index> targetIndices;
+    private final boolean isAll;
 
-    public GradeCommand(Index index, Grade grade) {
+    public GradeCommand(List<Index> targetIndices, Grade grade) {
         this.grade = grade;
-        this.index = index;
+        this.targetIndices = targetIndices;
+        this.isAll = false;
+    }
+
+    public GradeCommand(Grade grade) {
+        this.grade = grade;
+        targetIndices = new ArrayList<>();
+        this.isAll = true;
     }
 
     @Override
@@ -41,11 +55,22 @@ public class GradeCommand extends Command {
         requireNonNull(model);
         List<Student> lastShownList = model.getFilteredStudentList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        if (isAll) {
+            if (lastShownList.size() == 0) {
+                throw new CommandException(MESSAGE_NOTHING_TO_GRADE);
+            }
+            for (int i = lastShownList.size() - 1; i >= 0; i--) {
+                targetIndices.add(Index.fromZeroBased(i));
+            }
+        } else {
+            // Ensures all indices are valid before executing the command
+            for (Index targetIndex : targetIndices) {
+                if (targetIndex.getZeroBased() >= lastShownList.size()) {
+                    throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+                }
+            }
         }
 
-        Student studentToEdit = lastShownList.get(index.getZeroBased());
         if (!model.hasExistingGradingSystem()) {
             throw new CommandException(MESSAGE_GRADING_SYSTEM_NOT_SET);
         }
@@ -54,20 +79,35 @@ public class GradeCommand extends Command {
             throw new CommandException(String.format(MESSAGE_INVALID_GRADE, model.getGradingSystem()));
         }
 
-        Student editedStudent = new Student(studentToEdit.getName(), studentToEdit.getPhone(),
-                studentToEdit.getStudentClass(), studentToEdit.getEmail(), studentToEdit.getAddress(),
-                studentToEdit.getRemark(), studentToEdit.getTags(), studentToEdit.getAttendance(), grade);
+        List<String> studentToGradeNames = new ArrayList<>();
+        for (Index targetIndex : targetIndices) {
+            Student studentToGrade = lastShownList.get(targetIndex.getZeroBased());
+            studentToGradeNames.add(studentToGrade.getName().toString());
+            Student editedStudent = new Student(studentToGrade.getName(), studentToGrade.getPhone(),
+                    studentToGrade.getStudentClass(), studentToGrade.getEmail(),
+                    studentToGrade.getAddress(), studentToGrade.getRemark(), studentToGrade.getTags(),
+                    studentToGrade.getAttendance(), grade);
+            model.setStudent(studentToGrade, editedStudent);
+        }
+        Collections.reverse(studentToGradeNames);
 
-        model.setStudent(studentToEdit, editedStudent);
         model.commitTeachBook();
-        return new CommandResult(String.format(MESSAGE_GRADE_SUCCESS, editedStudent));
+        return new CommandResult(generateSuccessMessage(studentToGradeNames));
+    }
+
+    /**
+     * Generates a command execution success message based on whether grades are added to or removed from students.
+     */
+    private String generateSuccessMessage(List<String> studentToGradeNames) {
+        String message = !grade.equals(NOT_GRADED) ? MESSAGE_ADD_GRADE_SUCCESS : MESSAGE_CLEAR_GRADE_SUCCESS;
+        return String.format(message, grade, String.join(", ", studentToGradeNames));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof GradeCommand // instanceof handles nulls
-                && index.equals(((GradeCommand) other).index)
+                && targetIndices.equals(((GradeCommand) other).targetIndices)
                 && grade.equals(((GradeCommand) other).grade));
     }
 
