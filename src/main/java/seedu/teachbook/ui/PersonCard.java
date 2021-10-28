@@ -3,11 +3,14 @@ package seedu.teachbook.ui;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import seedu.teachbook.model.student.Student;
 
 /**
@@ -26,6 +29,7 @@ public class PersonCard extends UiPart<Region> {
      */
 
     public final Student student;
+    private boolean showClass;
 
     @FXML
     private HBox cardPane;
@@ -47,18 +51,27 @@ public class PersonCard extends UiPart<Region> {
     private Label grade;
     @FXML
     private CheckBox checkBox;
+    @FXML
+    private Label className;
+    @FXML
+    private VBox bigBox;
+    @FXML
+    private VBox presentBox;
+    @FXML
+    private StackPane stackPane;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Student student, int displayedIndex) {
+    public PersonCard(Student student, int displayedIndex, boolean showClass) {
         super(FXML);
         this.student = student;
+        this.showClass = showClass;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
 
         String phoneContent = student.getPhone().value;
-        phone.setText("Phone:     " + phoneContent); // TODO: use aesthetic separate labels
+        phone.setText("Phone:     " + phoneContent);
 
         String addressContent = student.getAddress().value;
         address.setText("Address:  " + addressContent);
@@ -66,8 +79,16 @@ public class PersonCard extends UiPart<Region> {
         String emailContent = student.getEmail().value;
         email.setText("Email:       " + emailContent);
 
+        stackPane.getChildren().add(presentBox);
+        stackPane.getChildren().add(className);
+        stackPane.setAlignment(className, Pos.TOP_RIGHT);
+
         checkBox.setMouseTransparent(true);
         checkBox.setSelected(student.isPresent());
+
+        if (student.isPresent()) {
+            markCheckbox();
+        }
 
         String remarkContent = student.getRemark().value;
         if (remarkContent.equals("")) {
@@ -87,6 +108,13 @@ public class PersonCard extends UiPart<Region> {
             grade.setPrefHeight(0.0);
         } else {
             grade.setText(gradeContent);
+        }
+
+        // TODO: Set the condition to check if it is a list command
+        if (showClass) {
+            className.setText(student.getStudentClass().toString());
+        } else {
+            stackPane.getChildren().remove(className);
         }
     }
 
@@ -108,4 +136,7 @@ public class PersonCard extends UiPart<Region> {
                 && student.equals(card.student);
     }
 
+    public void markCheckbox() {
+        checkBox.setSelected(true);
+    }
 }
