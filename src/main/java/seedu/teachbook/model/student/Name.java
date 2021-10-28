@@ -9,8 +9,9 @@ import static seedu.teachbook.commons.util.AppUtil.checkArgument;
  */
 public class Name {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Names should only "
+            + "contain alphanumeric characters and spaces, have less than 70 characters (including spaces), "
+            + "and it should not be blank";
 
     /*
      * The first character of the teachbook must not be a whitespace,
@@ -35,7 +36,7 @@ public class Name {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && test.length() < 70;
     }
 
 
