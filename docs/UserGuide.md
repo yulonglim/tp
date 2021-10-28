@@ -3,7 +3,53 @@ layout: page
 title: User Guide
 ---
 
-TeachBook is a **desktop app for teachers to manage student contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). It is targeted towards teachers who can type fast. It allows teachers to store and organise contacts related to their students into different classes. On top of that, teachers can tag the class role of the student.
+# TeachBook User Guide
+
+Welcome to the TeachBook User Guide! 
+
+If you are a primary or secondary school teacher who is using TeachBook, or just someone who wants to find out more 
+about what TeachBook can do, you are at the right place!
+
+In this user guide, you will find step-by-step instructions on how you can install TeachBook and guide on how to use all
+its features. Did we also mention that TeachBook is free?
+
+## How to use this guide?
+
+This user guide is divided in different section, so feel free to navigate to the portion of interest using our handy 
+Table of Contents provided below.
+
+If you are a new user who is using TeachBook for the first time, you can follow the `Quick Start` on how to get TeachBook 
+running on your system for the first time.
+
+If you are a user who faced some issues with TeachBook, you can go to the `FAQs` section to see if your issues have
+already been addressed. If not, feel free to reach out to us, and we will respond promptly. 
+
+If you are an experienced user who can't remember the extensive list of features that TeachBook provide, you can jump
+to the `Command Summary` section or the `Features` section if you want to find out more.
+
+There are 3 symbols that you need know in order to use this user guide effectively, and they are:
+* :information_source:
+* :bulb:
+* :exclamation:
+
+<div markdown="block" class="alert alert-info">
+If you see a :information_source: symbol, it means that it is additional information that we feel that you ought to know.
+
+If you see a :bulb: symbol, it means that it is a tip (e.g. shortcut or hidden features) which you can follow to enhance
+your experience.
+
+If you see a :exclamation symbol, take extra caution because if you don't follow the instruction list, it might cause 
+the program to not run the way you intended it to and return unwanted results.
+</div>
+
+## What is TeachBook?
+
+TeachBook is a **desktop app for primary and secondary school teachers to manage student contacts, optimized for use via
+a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). It is targeted 
+towards teachers who can type fast. It allows teachers to store and organise contacts related to their students into 
+different classes. On top of that, teachers can tag the class role of the student.
+
+
 
 * Table of Contents
 {:toc}
@@ -12,21 +58,24 @@ TeachBook is a **desktop app for teachers to manage student contacts, optimized 
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your computer.
 
-1. Download the latest `teachbook.jar` from here (available soon).
+2. Download the latest `teachbook.jar` from [here](https://github.com/AY2122S1-CS2103T-W10-2/tp/releases/tag/v1.3).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your TeachBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your TeachBook.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    {update or delete this point}
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+## Graphical User Interface
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -104,20 +153,6 @@ Examples:
 * `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
 * `edit 2 n/Joseph Chan t/` edits the name of the 2nd student to be `Joseph Chan` and clears all existing tags.
 
-### Selecting a class : `select`
-
-Selects the **class** to be shown by TeachBook.
-
-Format: `select CLASSNAME`
-
-* The `CLASSNAME` to be selected is case-sensitive and must be already inside the list. If not TeachBook will return `The class does not exist`.
-* The currently selected class will be highlighted in blue as seen in the image below where class named `B` is selected.
-
-![select_example](images/select_example.png)
-
-Example:
-* `select A` Selects the class named `A` from the list of classes.
-
 ### Adding a class : `addClass`
 
 Adds a class with the specified class name to the TeachBook.
@@ -155,6 +190,29 @@ Format: `editClass INDEX n/CLASS_NAME`
 
 Examples:
 * `edit 1 n/Ace` edits the class name of the 1st class to be `Ace`.
+
+### Selecting a class : `select`
+
+Selects the **class** to be shown by TeachBook.
+
+Format: `select CLASSNAME`
+
+* The `CLASSNAME` to be selected is case-sensitive and must be already inside the list. If not TeachBook will return `The class does not exist`.
+* The currently selected class will be highlighted in blue as seen in the image below where class named `B` is selected.
+
+![select_example](images/select_example.png)
+
+Example:
+* `select A` Selects the class named `A` from the list of classes.
+
+### Setting a grading system : `setGrade`
+
+### Keying the grade of a student : `grade`
+
+### Marking the attendance of a student : `mark`
+
+### Unmarking the attendance of a student : `unmark`
+
 
 ### Listing all students : `list`
 
@@ -209,8 +267,6 @@ Clears all classes and students from the TeachBook.
 
 Format: `clear`
 
-![clear](images/clear.png)
-
 ### Exiting the program : `exit`
 
 Exits the app.
@@ -232,14 +288,14 @@ If your changes to the data file makes its format invalid, TeachBook will discar
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## FAQs
 
 **Q**: ...<br>
 **A**: ...
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
 Action             | Format, Examples
 -------------------|------------------
@@ -247,10 +303,10 @@ Action             | Format, Examples
 **Add student**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BLOOD_TYPE] [pc/PARENTS_CONTACT] [t/TAG1] [t/TAG2]...` <br> e.g., `add n/John Doe p/91234567 e/johndoe@example.com a/21 Lower Kent Ridge Road, Singapore 119077 b/AB+ pc/92039923 t/class treasurer`
 **Delete student** | `delete INDEX` <br> e.g., `delete 1`
 **Edit student**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG1] [t/TAG2]...` <br> e.g.,`edit 2 n/Joseph Chan t/`
-**Select class**   | `select CLASS_NAME` <br> e.g., `select A`
 **Add class**      | `addClass CLASS_NAME` <br> e.g., `addClass A`
 **Delete class**   | `deleteClass CLASS_NAME` <br> e.g., `deleteClass A`
 **Edit class**     | `editClass INDEX n/CLASS_NAME` <br> e.g., `editClass 1 n/Ace`
+**Select class**   | `select CLASS_NAME` <br> e.g., `select A`
 **List**           | `list `  `list all`  `list absentee`
 **Find**           | `find KEYWORD1 [KEYWORD2]...`<br> e.g., `find James Jake`
 **Print**          | `print c/COLUMN1 [c/COLUMN2]...` <br> e.g. , `print c/Signature`
