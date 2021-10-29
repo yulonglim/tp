@@ -7,6 +7,8 @@ title: User Guide
 
 ## Introduction
 
+<p style='text-align: justify;'>
+
 Welcome to the TeachBook User Guide! 
 
 If you are a primary or secondary school teacher who is using TeachBook, or just someone who wants to find out more 
@@ -15,9 +17,13 @@ about what TeachBook can do, you are at the right place!
 In this user guide, you will find step-by-step instructions on how you can install TeachBook and guide on how to use all 
 of its features.
 
+</p>
+
 [comment]: <> (its features. Did we also mention that TeachBook is free?)
 
 ## How to use this guide?
+
+<p style='text-align: justify;'>
 
 As this user guide is created for users with varying levels of experience using our app, it is divided in different 
 sections, so feel free to navigate to the portion of interest using our handy Table of Contents provided below. If you 
@@ -38,6 +44,8 @@ your experience.
 
 * If you see a :exclamation: symbol, take extra caution because if you don't follow the instruction listed, it might cause 
 the program to not run the way you intended it to and return unwanted results.
+
+</p>
 
 ## What is TeachBook?
 
