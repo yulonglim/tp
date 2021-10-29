@@ -13,6 +13,7 @@ Welcome to the TeachBook User Guide!
 If you are a primary or secondary school teacher who is using TeachBook, or just someone who wants to find out more 
 about what TeachBook can do, you are at the right place!
 
+
 In this user guide, you will find step-by-step instructions on how you can install TeachBook and guide on how to use all 
 of its features.
 
@@ -21,7 +22,7 @@ of its features.
 ## How to use this guide?
 
 As this user guide is created for users with varying levels of experience using our app, it is divided in different 
-sections, so feel free to navigate to the portion of interest using our handy Table of Contents provided below. If you 
+sections, so feel free to navigate to the portion of interest using our handy Table of Contents provided above. If you 
 are a new user who is using TeachBook for the first time, you can follow the [Quick Start](#quick-start) on how to get 
 TeachBook running on your system for the first time. If you are a user who faced some issues with TeachBook, you can go 
 to the [FAQs](#faqs) section to see if your issues have already been addressed. If not, feel free to reach out to us, 
@@ -39,6 +40,7 @@ your experience.
 
 * If you see a :exclamation: symbol, take extra caution because if you don't follow the instruction listed, it might cause 
 the program to not run the way you intended it to and return unwanted results.
+
 
 ## What is TeachBook?
 
@@ -58,6 +60,7 @@ different classes. On top of that, teachers can tag the class role of the studen
 3. Copy the file to the folder you want to use as the _home folder_ for your TeachBook.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+
    ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -78,7 +81,15 @@ different classes. On top of that, teachers can tag the class role of the studen
 --------------------------------------------------------------------------------------------------------------------
 ## Graphical User Interface
 
-{add an image of the GUI with boxes to explain the different portions of the app}
+In this section, we will be guiding you through the different sections of TeachBook's Graphical User Interface (GUI). 
+There are a total of 5 different sections according to the image of out GUI below (highlighted in red) and they are the:
+* Menu Bar (Place to access more features)
+* Command Box (Place for you to type in the command)
+* Result Display (Place that displays the result of the command. It shows error messages too)
+* Class List (Place where you can see the list of classes that you have added)
+* Student List (Place where you can see the list of students that you have added)
+
+![](images/GUI.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
