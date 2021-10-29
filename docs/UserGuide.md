@@ -8,7 +8,7 @@ title: User Guide
 
 ## Introduction
 
-<p style='text-align: justify;'>
+<p align="center">
 
 Welcome to the TeachBook User Guide! 
 
@@ -24,7 +24,7 @@ of its features.
 
 ## How to use this guide?
 
-<p style='text-align: justify;'>
+<p align="center">
 
 As this user guide is created for users with varying levels of experience using our app, it is divided in different 
 sections, so feel free to navigate to the portion of interest using our handy Table of Contents provided below. If you 
