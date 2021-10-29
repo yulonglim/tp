@@ -298,7 +298,7 @@ Examples:
 * `sort name` sorts the list of students according to their name in alphabetical order.
 * `sort grade` sorts the list of students according to their grade in descending order.
 
-### Marking the attendance of a student : `mark`.
+### Marking the attendance of a student : `mark`
 
 You can use this to mark your student as present.
 
