@@ -8,7 +8,7 @@ title: User Guide
 
 ## Introduction
 
-<p align="center">
+<p align="justify">
 
 Welcome to the TeachBook User Guide! 
 
@@ -24,7 +24,7 @@ of its features.
 
 ## How to use this guide?
 
-<p align="center">
+<p align="justify">
 
 As this user guide is created for users with varying levels of experience using our app, it is divided in different 
 sections, so feel free to navigate to the portion of interest using our handy Table of Contents provided below. If you 
