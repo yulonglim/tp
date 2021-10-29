@@ -10,21 +10,17 @@ title: User Guide
 
 Welcome to the TeachBook User Guide! 
 
-<p align="justify">
 If you are a primary or secondary school teacher who is using TeachBook, or just someone who wants to find out more 
 about what TeachBook can do, you are at the right place!
-</p>
 
-<p align="justify">
+
 In this user guide, you will find step-by-step instructions on how you can install TeachBook and guide on how to use all 
 of its features.
-</p>
 
 [comment]: <> (its features. Did we also mention that TeachBook is free?)
 
 ## How to use this guide?
 
-<p align="justify">
 As this user guide is created for users with varying levels of experience using our app, it is divided in different 
 sections, so feel free to navigate to the portion of interest using our handy Table of Contents provided below. If you 
 are a new user who is using TeachBook for the first time, you can follow the [Quick Start](#quick-start) on how to get 
@@ -33,7 +29,6 @@ to the [FAQs](#faqs) section to see if your issues have already been addressed. 
 and we will respond promptly. If you are an experienced user who can't remember the extensive list of features that 
 TeachBook provide, you can jump to the [Command Summary](#command-summary) section or the [Features](#features) section 
 if you want to find out more.
-</p>
 
 There are 3 symbols that you need know in order to use this user guide effectively, and they are :information_source:, 
 :bulb: and :exclamation:
@@ -263,11 +258,9 @@ Example:
 
 ### Setting a grading system : `setGrade`
 
-<p align="justify">
 TeachBook allows for setting of personalised grading system. You may implement your own grading system
 which may differ from semester to semester and subject to subject in order to grade your students accordingly.
 Grades are set in descending order, from the highest to the lowest grade.
-</p>
 
 Format: `setGrade GRADE_1[>GRADE_2]…`
 
@@ -295,11 +288,9 @@ You cannot grade a student without having first add grading system. So, remember
 
 ### Resetting the grading system : `resetGrade`
 
-<p align="justify">
 Teachbook can only incorporate at most 1 grading system at any time. Therefore, you have to wipe out an existing
 grading system before implementing a new one. This command not only resets the grading system, but also wipes out
 all the grades which were previously given to the students.
-</p>
 
 Format: `resetGrade`
 
