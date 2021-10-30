@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.TeachBook;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
@@ -26,24 +25,60 @@ import seedu.teachbook.model.student.Student;
  */
 public class TypicalStudents {
 
-    public static final Student ALICE = new StudentBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253").withRemark("Allergic to seafood.")
-            .withTags("friends").build();
-    public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
-            .withAddress("311, Clementi Ave 2, #02-25").withEmail("johnd@example.com")
-            .withPhone("98765432").withRemark("Needs to improve on maths.")
-            .withTags("owesMoney", "friends").build();
-    public static final Student CARL = new StudentBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").build();
-    public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();
-    public static final Student ELLE = new StudentBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave").build();
-    public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withAddress("little tokyo").build();
-    public static final Student GEORGE = new StudentBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street").build();
+    public static final Student ALICE = new StudentBuilder()
+            .withName("Alice Pauline")
+            .withPhone("94351253")
+//            .withClass("A")
+            .withEmail("alice@example.com")
+            .withAddress("123, Jurong West Ave 6, #08-111")
+            .withRemark("Allergic to seafood.")
+            .withTags("friends")
+            .build();
+    public static final Student BENSON = new StudentBuilder()
+            .withName("Benson Meier")
+            .withPhone("98765432")
+//            .withClass("A")
+            .withEmail("johnd@example.com")
+            .withAddress("311, Clementi Ave 2, #02-25")
+            .withRemark("Needs to improve on maths.")
+            .withTags("owesMoney", "friends")
+            .build();
+    public static final Student CARL = new StudentBuilder()
+            .withName("Carl Kurz")
+            .withPhone("95352563")
+//            .withClass("A")
+            .withEmail("heinz@example.com")
+            .withAddress("wall street")
+            .build();
+    public static final Student DANIEL = new StudentBuilder()
+            .withName("Daniel Meier")
+            .withPhone("87652533")
+//            .withClass("A")
+            .withEmail("cornelia@example.com")
+            .withAddress("10th street")
+            .withTags("friends")
+            .build();
+    public static final Student ELLE = new StudentBuilder()
+            .withName("Elle Meyer")
+            .withPhone("9482224")
+//            .withClass("A")
+            .withEmail("werner@example.com")
+            .withAddress("michegan ave")
+            .build();
+    public static final Student FIONA = new StudentBuilder()
+            .withName("Fiona Kunz")
+            .withPhone("9482427")
+//            .withClass("A")
+            .withEmail("lydia@example.com")
+            .withAddress("little tokyo")
+            .build();
+    public static final Student GEORGE = new StudentBuilder()
+            .withName("George Best")
+            .withPhone("9482442")
+//            .withClass("A")
+            .withEmail("anna@example.com")
+            .withAddress("4th street")
+            .build();
 
     // Manually added
     public static final Student HOON = new StudentBuilder().withName("Hoon Meier").withPhone("8482424")
@@ -66,12 +101,14 @@ public class TypicalStudents {
      * Returns an {@code TeachBook} with all the typical students.
      */
     public static TeachBook getTypicalTeachBook() {
-        TeachBook ab = new TeachBook();
-        ab.addClass(new Class(new ClassName("A")));
+        TeachBook tb = new TeachBook();
+        Class studentClass = new Class(new ClassName("A"));
+        tb.addClass(studentClass);
         for (Student student : getTypicalPersons()) {
-            ab.addStudent(GeneralIndex.fromOneBased(1), student);
+            student.setStudentClass(studentClass);
+            studentClass.addStudent(student);
         }
-        return ab;
+        return tb;
     }
 
     public static List<Student> getTypicalPersons() {

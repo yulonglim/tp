@@ -1,5 +1,7 @@
 package seedu.teachbook.model.student;
 
+import static seedu.teachbook.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -62,8 +64,8 @@ public class Attendance {
     }
 
     public static Attendance fromString(String attendanceString) {
-        assert isValidAttendance(attendanceString);
-        String[] components = attendanceString.split(" ");
+        checkArgument(isValidAttendance(attendanceString));
+        String[] components = attendanceString.split("\\s+");
         boolean isPresent = components[0].equalsIgnoreCase("present");
         LocalDateTime lastModified = LocalDateTime.parse(components[1]);
         return new Attendance(isPresent, lastModified);

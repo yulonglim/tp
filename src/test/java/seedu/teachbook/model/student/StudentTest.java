@@ -3,6 +3,7 @@ package seedu.teachbook.model.student;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.teachbook.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.teachbook.logic.commands.CommandTestUtil.VALID_CLASS_NAME_BOB;
 import static seedu.teachbook.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.teachbook.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.teachbook.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -24,7 +25,7 @@ public class StudentTest {
     }
 
     @Test
-    public void isSamePerson() {
+    public void isSameStudent() {
         // same object -> returns true
         assertTrue(ALICE.isSameStudent(ALICE));
 
@@ -35,6 +36,10 @@ public class StudentTest {
         Student editedAlice = new StudentBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameStudent(editedAlice));
+
+        // same name, different class, all other attributes same -> returns false
+        editedAlice = new StudentBuilder(ALICE).withClass(VALID_CLASS_NAME_BOB).build();
+        assertFalse(ALICE.isSameStudent(editedAlice));
 
         // different name, all other attributes same -> returns false
         editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).build();
@@ -76,11 +81,15 @@ public class StudentTest {
         editedAlice = new StudentBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
+        // different class -> returns false
+        editedAlice = new StudentBuilder(ALICE).withClass(VALID_CLASS_NAME_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
         // different email -> returns false
         editedAlice = new StudentBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different teachbook -> returns false
+        // different address -> returns false
         editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 

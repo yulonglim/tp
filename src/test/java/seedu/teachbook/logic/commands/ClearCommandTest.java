@@ -16,8 +16,10 @@ public class ClearCommandTest {
     public void execute_emptyTeachBook_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
+        // clear empty teachbook will not make a new commit
+        CommandResult expectedCommandResult = new CommandResult(ClearCommand.MESSAGE_SUCCESS, false, false, true, true);
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, expectedCommandResult, expectedModel);
     }
 
     @Test
@@ -25,8 +27,10 @@ public class ClearCommandTest {
         Model model = new ModelManager(getTypicalTeachBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalTeachBook(), new UserPrefs());
         expectedModel.setTeachBook(new TeachBook());
+        expectedModel.commitTeachBook();
+        CommandResult expectedCommandResult = new CommandResult(ClearCommand.MESSAGE_SUCCESS, false, false, true, true);
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, expectedCommandResult, expectedModel);
     }
 
 }

@@ -134,10 +134,7 @@ public class StudentBuilder {
      * Sets the {@code Attendance} of the {@code Student} that we are building.
      */
     public StudentBuilder withAttendance(String attendance) {
-        String[] attendanceComponents = attendance.split("");
-        boolean isPresent = attendanceComponents[0].equals("Present");
-        LocalDateTime lastModified = LocalDateTime.parse(attendanceComponents[1]);
-        this.attendance = new Attendance(isPresent, lastModified);
+        this.attendance = Attendance.fromString(attendance);
         return this;
     }
 
@@ -147,7 +144,8 @@ public class StudentBuilder {
     }
 
     public Student build() {
-        return new Student(name, phone, studentClass, email, address, remark, tags, attendance, grade);
+        Student student = new Student(name, phone, studentClass, email, address, remark, tags, attendance, grade);
+        return student;
     }
 
 }
