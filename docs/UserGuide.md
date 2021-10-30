@@ -108,7 +108,7 @@ There are a total of 5 different sections according to the image of out GUI belo
   e.g. `n/NAME [t/TAG]` can be used as `n/Joseph Chan t/class monitor` or as `n/Joseph Chan`.
 
 * Items **in** square brackets with `…` after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…` can be used as `  ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…` can be used as <code>&nbsp;</code> (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Items **outside** square brackets with `…` after them can be used multiple times but at least once.<br>
   e.g. `INDEX…` can be used as `1`, `2 3`, `1 4 5 9` etc.
