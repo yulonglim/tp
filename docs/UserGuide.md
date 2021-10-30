@@ -338,7 +338,7 @@ Format: `list [all||absent]`
 
 * `list` lists all students from the currently selected class or the entire TeachBook.
 * `list all` lists all students in the TeachBook.
-* `list absentee` lists all students from the currently selected class or the entire TeachBook whose status is unmarked.
+* `list absent` lists all students from the currently selected class or the entire TeachBook whose status is unmarked.
 
 [comment]: <> (![list all]&#40;images/listAll.png&#41;)
 
