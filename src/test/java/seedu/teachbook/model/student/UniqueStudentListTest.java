@@ -3,6 +3,8 @@ package seedu.teachbook.model.student;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.teachbook.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.teachbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.teachbook.testutil.Assert.assertThrows;
 import static seedu.teachbook.testutil.TypicalStudents.ALICE;
 import static seedu.teachbook.testutil.TypicalStudents.BOB;
@@ -15,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.teachbook.model.student.exceptions.DuplicateStudentException;
 import seedu.teachbook.model.student.exceptions.StudentNotFoundException;
+import seedu.teachbook.testutil.StudentBuilder;
 
 public class UniqueStudentListTest {
 
@@ -36,13 +39,13 @@ public class UniqueStudentListTest {
         assertTrue(uniqueStudentList.contains(ALICE));
     }
 
-//    @Test
-//    public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
-//        uniqueStudentList.add(ALICE);
-//        Student editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-//                .build();
-//        assertTrue(uniqueStudentList.contains(editedAlice));
-//    }
+    @Test
+    public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
+        uniqueStudentList.add(ALICE);
+        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+                .build();
+        assertTrue(uniqueStudentList.contains(editedAlice));
+    }
 
     @Test
     public void add_nullPerson_throwsNullPointerException() {
