@@ -6,7 +6,7 @@ import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
 
 /**
- * Reverts the {@code model}'s address book to its previous state.
+ * Reverts the {@code model}'s teachbook to its previous state.
  */
 public class UndoCommand extends Command {
 
@@ -23,7 +23,6 @@ public class UndoCommand extends Command {
         }
 
         model.undoTeachBook();
-        model.updateCurrentlySelectedClass(model.getCurrentlySelectedClassIndex());
         return new CommandResult(MESSAGE_SUCCESS, false, false, true, true);
     }
 
