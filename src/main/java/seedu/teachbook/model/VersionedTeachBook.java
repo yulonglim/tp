@@ -46,7 +46,6 @@ public class VersionedTeachBook extends TeachBook {
         Pair<Pair<Predicate<Student>, GeneralIndex>, ReadOnlyTeachBook> teachBookState =
                 new Pair<>(displaySettings, new TeachBook(this));
         teachBookStateList.add(teachBookState);
-        System.out.println(teachBookState);
         currentStatePointer++;
     }
 
