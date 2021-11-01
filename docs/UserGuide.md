@@ -422,6 +422,9 @@ If your changes to the data file makes its format invalid, TeachBook will discar
 <br>
 **Q**: Where does the Excel file save to after using the print command? <br>
 **A**: It will be saved to your computer's download folder. <br>
+<br>
+**Q**: There seems to be a lag after some commands. What can I do? <br>
+**A**: Close any background programs or applications which are not in used to possibly reduce the lag. <br>
 
 [comment]: <> (file path is given in command result)
 
