@@ -6,32 +6,32 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-import javafx.util.Pair;
 import seedu.teachbook.commons.core.index.DefaultIndices;
 import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.student.Student;
 
 /**
  * @author yulonglim-reused
- *
+ * <p>
  * Code is adapted from AB4 which has implemented its own undo and redo function.
  */
 public class VersionedTeachBook extends TeachBook {
-    private final List<Pair<Pair<Predicate<Student>, GeneralIndex>, ReadOnlyTeachBook>> teachBookStateList;
+    private final List<TeachbookDataState> teachBookStateList;
     private int currentStatePointer;
 
     public VersionedTeachBook(ReadOnlyTeachBook initialState) {
         super(initialState);
 
         teachBookStateList = new ArrayList<>();
-        Pair<Predicate<Student>, GeneralIndex> displaySettings;
+        TeachbookDisplayState displaySettings;
         if (initialState.getClassList().size() >= 1) {
-            displaySettings = new Pair<>(PREDICATE_SHOW_ALL_STUDENTS, DefaultIndices.INDEX_DEFAULT_INITIAL_CLASS);
+            displaySettings =
+                    new TeachbookDisplayState(DefaultIndices.INDEX_DEFAULT_INITIAL_CLASS, PREDICATE_SHOW_ALL_STUDENTS);
         } else {
-            displaySettings = new Pair<>(PREDICATE_SHOW_ALL_STUDENTS, DefaultIndices.INDEX_NO_CLASS);
+            displaySettings = new TeachbookDisplayState(DefaultIndices.INDEX_NO_CLASS, PREDICATE_SHOW_ALL_STUDENTS);
         }
-        Pair<Pair<Predicate<Student>, GeneralIndex>, ReadOnlyTeachBook> teachBookState =
-                new Pair<>(displaySettings, new TeachBook(initialState));
+        TeachbookDataState teachBookState =
+                new TeachbookDataState(displaySettings, new TeachBook(initialState));
         teachBookStateList.add(teachBookState);
         currentStatePointer = 0;
     }
@@ -42,9 +42,9 @@ public class VersionedTeachBook extends TeachBook {
      */
     public void commit(GeneralIndex index, Predicate<Student> predicate) {
         removeStatesAfterCurrentPointer();
-        Pair<Predicate<Student>, GeneralIndex> displaySettings = new Pair<>(predicate, index);
-        Pair<Pair<Predicate<Student>, GeneralIndex>, ReadOnlyTeachBook> teachBookState =
-                new Pair<>(displaySettings, new TeachBook(this));
+        TeachbookDisplayState displaySettings = new TeachbookDisplayState(index, predicate);
+        TeachbookDataState teachBookState =
+                new TeachbookDataState(displaySettings, new TeachBook(this));
         teachBookStateList.add(teachBookState);
         currentStatePointer++;
     }
@@ -56,25 +56,25 @@ public class VersionedTeachBook extends TeachBook {
     /**
      * Restores the teachbook to its previous state.
      */
-    public Pair<Predicate<Student>, GeneralIndex> undo() {
+    public TeachbookDisplayState undo() {
         if (!canUndo()) {
             throw new NoUndoableStateException();
         }
         currentStatePointer--;
-        resetData(teachBookStateList.get(currentStatePointer).getValue());
-        return teachBookStateList.get(currentStatePointer).getKey();
+        resetData(teachBookStateList.get(currentStatePointer).getTeachBook());
+        return teachBookStateList.get(currentStatePointer).getDisplayState();
     }
 
     /**
      * Restores the teachbook to its previously undone state.
      */
-    public Pair<Predicate<Student>, GeneralIndex> redo() {
+    public TeachbookDisplayState redo() {
         if (!canRedo()) {
             throw new NoRedoableStateException();
         }
         currentStatePointer++;
-        resetData(teachBookStateList.get(currentStatePointer).getValue());
-        return teachBookStateList.get(currentStatePointer).getKey();
+        resetData(teachBookStateList.get(currentStatePointer).getTeachBook());
+        return teachBookStateList.get(currentStatePointer).getDisplayState();
     }
 
     /**

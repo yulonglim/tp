@@ -276,16 +276,16 @@ public class ModelManager implements Model {
 
     @Override
     public void undoTeachBook() {
-        Pair<Predicate<Student>, GeneralIndex> previousDisplay = this.teachBook.undo();
-        this.updateCurrentlySelectedClass(previousDisplay.getValue());
-        this.updateFilteredStudentList(previousDisplay.getKey());
+        TeachbookDisplayState previousDisplay = this.teachBook.undo();
+        this.updateCurrentlySelectedClass(previousDisplay.getIndex());
+        this.updateFilteredStudentList(previousDisplay.getPredicate());
     }
 
     @Override
     public void redoTeachBook() {
-        Pair<Predicate<Student>, GeneralIndex> previousDisplay = this.teachBook.redo();
-        this.updateCurrentlySelectedClass(previousDisplay.getValue());
-        this.updateFilteredStudentList(previousDisplay.getKey());
+        TeachbookDisplayState previousDisplay = this.teachBook.redo();
+        this.updateCurrentlySelectedClass(previousDisplay.getIndex());
+        this.updateFilteredStudentList(previousDisplay.getPredicate());
     }
 
     @Override
