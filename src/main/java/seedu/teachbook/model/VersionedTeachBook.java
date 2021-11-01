@@ -45,8 +45,10 @@ public class VersionedTeachBook extends TeachBook {
         TeachbookDisplayState displaySettings = new TeachbookDisplayState(index, predicate);
         TeachbookDataState teachBookState =
                 new TeachbookDataState(displaySettings, new TeachBook(this));
-        teachBookStateList.add(teachBookState);
-        currentStatePointer++;
+        if (!teachBookState.equals(teachBookStateList.get(currentStatePointer))) {
+            teachBookStateList.add(teachBookState);
+            currentStatePointer++;
+        }
     }
 
     private void removeStatesAfterCurrentPointer() {

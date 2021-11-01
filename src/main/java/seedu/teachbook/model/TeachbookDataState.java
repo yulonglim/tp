@@ -1,5 +1,7 @@
 package seedu.teachbook.model;
 
+import java.util.Objects;
+
 public class TeachbookDataState {
     private final TeachbookDisplayState displayState;
     private final TeachBook teachBook;
@@ -16,5 +18,22 @@ public class TeachbookDataState {
 
     public TeachBook getTeachBook() {
         return teachBook;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        TeachbookDataState that = (TeachbookDataState) o;
+        return Objects.equals(displayState, that.displayState) && Objects.equals(teachBook, that.teachBook);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(displayState.hashCode(), teachBook.hashCode());
     }
 }
