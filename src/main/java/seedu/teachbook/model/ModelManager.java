@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.util.Pair;
 import seedu.teachbook.commons.core.GuiSettings;
 import seedu.teachbook.commons.core.LogsCenter;
 import seedu.teachbook.commons.core.index.GeneralIndex;
@@ -58,14 +59,14 @@ public class ModelManager implements Model {
     //=========== UserPrefs ==================================================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
-        this.userPrefs.resetData(userPrefs);
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
     }
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
+    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        requireNonNull(userPrefs);
+        this.userPrefs.resetData(userPrefs);
     }
 
     @Override
@@ -93,14 +94,14 @@ public class ModelManager implements Model {
     //=========== TeachBook ================================================================================
 
     @Override
-    public void setTeachBook(ReadOnlyTeachBook teachBook) {
-        this.teachBook.resetData(teachBook);
-        initialiseCurrentlySelectedClassIndex();
+    public ReadOnlyTeachBook getTeachBook() {
+        return teachBook;
     }
 
     @Override
-    public ReadOnlyTeachBook getTeachBook() {
-        return teachBook;
+    public void setTeachBook(ReadOnlyTeachBook teachBook) {
+        this.teachBook.resetData(teachBook);
+        initialiseCurrentlySelectedClassIndex();
     }
 
     @Override
@@ -154,8 +155,8 @@ public class ModelManager implements Model {
 
     @Override
     public void addStudent(Student student) {
-        assert(!currentlySelectedClassIndex.equals(INDEX_NO_CLASS));
-        assert(!currentlySelectedClassIndex.equals(INDEX_LIST_ALL));
+        assert (!currentlySelectedClassIndex.equals(INDEX_NO_CLASS));
+        assert (!currentlySelectedClassIndex.equals(INDEX_LIST_ALL));
 
         teachBook.addStudent(currentlySelectedClassIndex, student);
 
@@ -170,8 +171,8 @@ public class ModelManager implements Model {
     @Override
     public void setClassForStudent(Student student) {
         requireNonNull(student);
-        assert(!currentlySelectedClassIndex.equals(INDEX_NO_CLASS));
-        assert(!currentlySelectedClassIndex.equals(INDEX_LIST_ALL));
+        assert (!currentlySelectedClassIndex.equals(INDEX_NO_CLASS));
+        assert (!currentlySelectedClassIndex.equals(INDEX_LIST_ALL));
 
         teachBook.setClassForStudent(currentlySelectedClassIndex, student);
     }
@@ -209,6 +210,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setGradingSystem(GradingSystem gradingSystem) {
+        teachBook.setGradingSystem(gradingSystem);
+    }
+
+    @Override
     public void updateCurrentlySelectedClass(GeneralIndex newClassIndex) {
         requireNonNull(newClassIndex);
         currentlySelectedClassIndex = newClassIndex;
@@ -239,11 +245,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setGradingSystem(GradingSystem gradingSystem) {
-        teachBook.setGradingSystem(gradingSystem);
-    }
-
-    @Override
     public boolean hasExistingGradingSystem() {
         return teachBook.hasExistingGradingSystem();
     }
@@ -255,7 +256,7 @@ public class ModelManager implements Model {
 
     @Override
     public void reorderStudents(Comparator<? super Student> comparator) {
-        assert(!currentlySelectedClassIndex.equals(INDEX_NO_CLASS));
+        assert (!currentlySelectedClassIndex.equals(INDEX_NO_CLASS));
 
         teachBook.reorderStudents(currentlySelectedClassIndex, comparator);
     }
@@ -275,17 +276,23 @@ public class ModelManager implements Model {
 
     @Override
     public void undoTeachBook() {
-        updateCurrentlySelectedClass(this.teachBook.undo());
+        Pair<Predicate<Student>, GeneralIndex> previousDisplay = this.teachBook.undo();
+        this.updateCurrentlySelectedClass(previousDisplay.getValue());
+        this.updateFilteredStudentList(previousDisplay.getKey());
     }
 
     @Override
     public void redoTeachBook() {
-        updateCurrentlySelectedClass(this.teachBook.redo());
+        Pair<Predicate<Student>, GeneralIndex> previousDisplay = this.teachBook.redo();
+        this.updateCurrentlySelectedClass(previousDisplay.getValue());
+        this.updateFilteredStudentList(previousDisplay.getKey());
     }
 
     @Override
     public void commitTeachBook() {
-        this.teachBook.commit(currentlySelectedClassIndex);
+        @SuppressWarnings("unchecked")
+        Predicate<Student> currentPredicate = (Predicate<Student>) filteredStudents.getPredicate();
+        this.teachBook.commit(currentlySelectedClassIndex, currentPredicate);
     }
 
     @Override

@@ -1,38 +1,52 @@
 package seedu.teachbook.model;
 
+import static seedu.teachbook.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import javafx.util.Pair;
 import seedu.teachbook.commons.core.index.DefaultIndices;
 import seedu.teachbook.commons.core.index.GeneralIndex;
+import seedu.teachbook.model.student.Student;
 
+/**
+ * @author yulonglim-reused
+ *
+ * Code is adapted from AB4 which has implemented its own undo and redo function.
+ */
 public class VersionedTeachBook extends TeachBook {
-    private final List<Pair<ReadOnlyTeachBook, GeneralIndex>> teachBookStateList;
+    private final List<Pair<Pair<Predicate<Student>, GeneralIndex>, ReadOnlyTeachBook>> teachBookStateList;
     private int currentStatePointer;
 
     public VersionedTeachBook(ReadOnlyTeachBook initialState) {
         super(initialState);
 
         teachBookStateList = new ArrayList<>();
-        Pair<ReadOnlyTeachBook, GeneralIndex> toAdd;
+        Pair<Predicate<Student>, GeneralIndex> displaySettings;
         if (initialState.getClassList().size() >= 1) {
-            toAdd = new Pair<>(new TeachBook(initialState), DefaultIndices.INDEX_DEFAULT_INITIAL_CLASS);
+            displaySettings = new Pair<>(PREDICATE_SHOW_ALL_STUDENTS, DefaultIndices.INDEX_DEFAULT_INITIAL_CLASS);
         } else {
-            toAdd = new Pair<>(new TeachBook(initialState), DefaultIndices.INDEX_NO_CLASS);
+            displaySettings = new Pair<>(PREDICATE_SHOW_ALL_STUDENTS, DefaultIndices.INDEX_NO_CLASS);
         }
-        teachBookStateList.add(toAdd);
+        Pair<Pair<Predicate<Student>, GeneralIndex>, ReadOnlyTeachBook> teachBookState =
+                new Pair<>(displaySettings, new TeachBook(initialState));
+        teachBookStateList.add(teachBookState);
         currentStatePointer = 0;
     }
 
     /**
-     * Saves a copy of the current {@code AddressBook} state at the end of the state list.
+     * Saves a copy of the current {@code TeachBook} state at the end of the state list.
      * Undone states are removed from the state list.
      */
-    public void commit(GeneralIndex index) {
+    public void commit(GeneralIndex index, Predicate<Student> predicate) {
         removeStatesAfterCurrentPointer();
-        Pair<ReadOnlyTeachBook, GeneralIndex> toAdd = new Pair<>(new TeachBook(this), index);
-        teachBookStateList.add(toAdd);
+        Pair<Predicate<Student>, GeneralIndex> displaySettings = new Pair<>(predicate, index);
+        Pair<Pair<Predicate<Student>, GeneralIndex>, ReadOnlyTeachBook> teachBookState =
+                new Pair<>(displaySettings, new TeachBook(this));
+        teachBookStateList.add(teachBookState);
+        System.out.println(teachBookState);
         currentStatePointer++;
     }
 
@@ -41,38 +55,38 @@ public class VersionedTeachBook extends TeachBook {
     }
 
     /**
-     * Restores the address book to its previous state.
+     * Restores the teachbook to its previous state.
      */
-    public GeneralIndex undo() {
+    public Pair<Predicate<Student>, GeneralIndex> undo() {
         if (!canUndo()) {
             throw new NoUndoableStateException();
         }
         currentStatePointer--;
-        resetData(teachBookStateList.get(currentStatePointer).getKey());
-        return teachBookStateList.get(currentStatePointer).getValue();
+        resetData(teachBookStateList.get(currentStatePointer).getValue());
+        return teachBookStateList.get(currentStatePointer).getKey();
     }
 
     /**
-     * Restores the address book to its previously undone state.
+     * Restores the teachbook to its previously undone state.
      */
-    public GeneralIndex redo() {
+    public Pair<Predicate<Student>, GeneralIndex> redo() {
         if (!canRedo()) {
             throw new NoRedoableStateException();
         }
         currentStatePointer++;
-        resetData(teachBookStateList.get(currentStatePointer).getKey());
-        return teachBookStateList.get(currentStatePointer).getValue();
+        resetData(teachBookStateList.get(currentStatePointer).getValue());
+        return teachBookStateList.get(currentStatePointer).getKey();
     }
 
     /**
-     * Returns true if {@code undo()} has address book states to undo.
+     * Returns true if {@code undo()} has teachbook states to undo.
      */
     public boolean canUndo() {
         return currentStatePointer > 0;
     }
 
     /**
-     * Returns true if {@code redo()} has address book states to redo.
+     * Returns true if {@code redo()} has teachbook states to redo.
      */
     public boolean canRedo() {
         return currentStatePointer < teachBookStateList.size() - 1;
