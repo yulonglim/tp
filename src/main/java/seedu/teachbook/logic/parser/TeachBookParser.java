@@ -60,8 +60,10 @@ public class TeachBookParser {
         switch (commandWord) {
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
+
         case EditClassCommand.COMMAND_WORD:
             return new EditClassCommandParser().parse(arguments);
+
         case GradeCommand.COMMAND_WORD:
             return new GradeCommandParser().parse(arguments);
 

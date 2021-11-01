@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -16,6 +17,9 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
+/**
+ * Utility methods related to Excel
+ */
 public class ExcelUtil {
 
     private static Font setHeaderFont(Font headerFont) {
@@ -25,6 +29,13 @@ public class ExcelUtil {
         return headerFont;
     }
 
+    /**
+     * Converts 2d list into an excelSheet
+     *
+     * @param listOfColumns list of Columns to be printed
+     * @return filepath of Excelsheet printec
+     * @throws RuntimeException when excel fails to generate
+     */
     public static String toExcel(List<List<String>> listOfColumns) throws RuntimeException {
         try {
             Workbook workbook = new HSSFWorkbook();
@@ -54,7 +65,9 @@ public class ExcelUtil {
             }
 
             for (int i = 0; i < columnHeadings.length; i++) {
-                sh.autoSizeColumn(i);
+                if (!Objects.equals(columnHeadings[i], "")) {
+                    sh.autoSizeColumn(i);
+                }
             }
 
             String home = System.getProperty("user.home");
