@@ -398,7 +398,7 @@ Allows you to redo a command after using an undo command.
 
 Format: `redo`
 
-### Exiting the program : `exit`
+#### Exiting the program : `exit`
 
 Exits TeachBook.
 
