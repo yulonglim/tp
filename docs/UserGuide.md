@@ -348,6 +348,7 @@ Example:
 * `setGrade A>B>C>D` sets the grading system where A is the highest grade and D is the lowest grade.
 
 ![setGrade](images/setGrade.png)
+
 Fig 10: New grading system added after `setGrade A>B>C>D` was executed.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
