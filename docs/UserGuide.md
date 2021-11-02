@@ -239,6 +239,19 @@ Examples:
 * `add n/John Doe` adds a student named John Doe into the currently selected class.
 * `add n/Jane Doe p/91234567 e/johndoe@example.com a/21 Lower Kent Ridge Road, Singapore 119077 t/Class Monitor` adds contact information of Jane Doe with all the optional information into the currently selected class.
 
+#### Deleting a student : `delete`
+
+Deletes the specified student from the TeachBook.
+
+Format: `delete INDEX…||all`
+
+* Deletes the student at the specified `INDEX`.
+
+Examples:
+* `list all` followed by `delete 2 3` deletes the 2nd and 3rd students in the TeachBook.
+* `find John` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+* `select A` followed by `delete all` deletes all the students in class `A`.
+
 #### Editing a student : `edit`
 
 Edits the basic information of an existing student in the TeachBook.
@@ -273,19 +286,6 @@ Examples:
 * `list all` followed by `find John Doe` returns two `John Doe`, assuming that there are two `John Doe` in the entire the TeachBook, one from class `A` and another one from class `B`.
 
 [comment]: <> (![find]&#40;images/findStudent.png&#41;)
-
-#### Deleting a student : `delete`
-
-Deletes the specified student from the TeachBook.
-
-Format: `delete INDEX…||all`
-
-* Deletes the student at the specified `INDEX`.
-
-Examples:
-* `list all` followed by `delete 2 3` deletes the 2nd and 3rd students in the TeachBook.
-* `find John` followed by `delete 1` deletes the 1st student in the results of the `find` command.
-* `select A` followed by `delete all` deletes all the students in class `A`.
 
 #### Adding a remark to a student : `remark`
 
@@ -409,6 +409,7 @@ Format: `list [all||absent]`
 `list all` clears any currently selected class. As a result, any command followed by `list all` will be operating on all students in the TeachBook.
 </div>
 
+### Others
 #### Saving the data
 
 TeachBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
