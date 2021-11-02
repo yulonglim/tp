@@ -134,7 +134,7 @@ There are a total of 5 different sections according to the image of out GUI belo
 ### Basic features
 #### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+This help command provides you with a link back to this user guide whenever you are in need of assistance.
 
 ![help message](images/helpMessage.png)
 
@@ -142,7 +142,7 @@ Format: `help`
 
 #### Clearing all entries : `clear`
 
-Deletes all classes and students, and resets the grading system of the TeachBook.
+This clear command deletes all classes and students, and resets the grading system of the TeachBook, giving you a fresh TeachBook to work with.
 
 Format: `clear`
 
@@ -152,19 +152,23 @@ Don't forget that TeachBook provides an undo feature just in case you accidental
 
 #### Undoing a command : `undo`
 
-Allows you to undo a command that you have entered. You most likely will be using this command if you have made a mistake.
+This undo command allows you to revert the TeachBook to the previous state. You most likely will be using this command if you have made a mistake.
+
+:information_source: Notes about undo:
+* If commands executed results in an error message, TeachBook does not store the outcome, hence you do not have to undo!
+* Commands that do not affect the information displayed or data of TeachBook is not stored (e.g. print, help, etc.), therefore they can't be undone!
 
 Format: `undo`
 
 #### Redoing a command: `redo`
 
-Allows you to redo a command after using an undo command.
+This redo command allows you to redo a command after using an undo command, just in case you did an undo accidentally!
 
 Format: `redo`
 
 #### Exiting the program : `exit`
 
-Exits TeachBook.
+This command helps you to exit TeachBook, while also saving all your data!
 
 Format: `exit`
 
@@ -182,10 +186,10 @@ Adds a class with the specified class name to the TeachBook.
 
 Format: `addClass CLASS_NAME`
 
-![add class](images/addClass.png)
-
 Examples:
-* `addClass 4E2` adds a class named `4E2` into the TeachBook.
+* `addClass 4E4` adds a class named `4E4` into the TeachBook.
+
+![add class](images/addClass.png)
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 There is a limit of 20 characters for the class name! But I am sure your class name will not be longer that limit!
@@ -200,7 +204,7 @@ Format: `deleteClass CLASS_NAME`
 * Deletes the class with the specified `CLASS_NAME`
 
 Examples:
-* `deleteClass A` Deletes the class named `A` from the TeachBook.
+* `deleteClass 4E4` Deletes the class named `4E4` from the TeachBook.
 
 #### Editing a class name : `editClass`
 
@@ -209,7 +213,7 @@ Edits the name of the currently selected class.
 Format: `editClass CLASS_NAME`
 
 Examples:
-* `editClass ClassA` edits the name of the currently selected class to be `ClassA`.
+* `editClass 4E5` edits the name of the currently selected class to be `4E5`.
 
 #### Selecting a class : `select`
 
@@ -218,12 +222,12 @@ Selects a class to be shown by the TeachBook.
 Format: `select CLASS_NAME`
 
 * The `CLASS_NAME` to be selected is case-sensitive and must be already inside the list. If not the TeachBook will return `The class does not exist`.
-* The currently selected class will be highlighted in blue as seen in the image below where the class named `B` is selected.
-
-[comment]: <> (![select_example]&#40;images/select_example.png&#41;)
+* The currently selected class will be highlighted in blue as seen in the image below where the class named `4E2` is selected.
 
 Example:
-* `select B` selects the class named `B` from the list of classes.
+* `select 4E2` selects the class named `4E2` from the list of classes.
+  
+![select_example](images/select_example.png)
 
 --------------------------------------------------------------------------------------------------------------------
 <a href="#" style="float: right;">[ Back to top ]</a>
@@ -235,8 +239,6 @@ You can use this command to add a student into the currently selected class.
 
 Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
-[comment]: <> (![add]&#40;images/addStudent.png&#41;)
-
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0)
 </div>
@@ -247,7 +249,9 @@ A student can have any number of tags (including 0)
 
 Examples:
 * `add n/John Doe` adds a student named John Doe into the currently selected class.
-* `add n/Jane Doe p/91234567 e/johndoe@example.com a/21 Lower Kent Ridge Road, Singapore 119077 t/Class Monitor` adds contact information of Jane Doe with all the optional information into the currently selected class.
+* `add n/Jane Doe p/91234567 e/janedoe@example.com a/21 Lower Kent Ridge Road, Singapore 119077 t/Class Monitor` adds contact information of Jane Doe with all the optional information into the currently selected class.
+
+![add](images/addStudent.png)
 
 #### Deleting a student : `delete`
 
@@ -260,7 +264,7 @@ Format: `delete INDEX…||all`
 Examples:
 * `list all` followed by `delete 2 3` deletes the 2nd and 3rd students in the TeachBook.
 * `find John` followed by `delete 1` deletes the 1st student in the results of the `find` command.
-* `select A` followed by `delete all` deletes all the students in class `A`.
+* `select 4E2` followed by `delete all` deletes all the students in class `4E2`.
 
 #### Editing a student : `edit`
 
@@ -289,7 +293,7 @@ Format: `find KEYWORD…`
 * The order of the keywords does not matter e.g. Doe John will match John Doe.
 * Only the name is searched.
 * Only full words will be matched e.g. John will not match Johnny.
-* Students matching at least one keyword will be returned (i.e. OR search). e.g. John Doe will return Jone Deer, Jane Doe.
+* Students matching at least one keyword will be returned (i.e. OR search). e.g. John Doe will return John Deer, Jane Doe.
 
 Examples:
 * `find John Doe` returns only one `John Doe` from the currently selected class, even though there is another `John Doe` from a different class.
@@ -336,6 +340,8 @@ Example:
 * `grade 2 4 5 g/A` gives the 2nd, 4th, and 5th students A grades.
 * `grade all g/A` gives all students A grades.
 
+![Grade](images/gradeAll.png)
+
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 You cannot grade a student without having first add grading system. So, remember to do that first!
 </div>
@@ -379,6 +385,8 @@ Examples:
 * `unmark 2 3 4` marks the students at index 2, 3 and 4 as absent.
 * `unmark all` marks all the students absent.
 
+![mark](images/markAttendance.png)
+
 <div markdown="block" class="alert alert-info">:information_source: **Info**
 This command allows you to unmark multiple indexes at once. Which can save you lots of time! The check box will turn red
 once the attendance of the student is unmarked!
@@ -394,13 +402,15 @@ Generates an Excel file containing students in the currently shown list.
 
 Format: `print [c/class] [c/phone] [c/email] [c/tags] [c/remark] [c/grade] [c/attendance] [c/COLUMN_TITLE]…`
 
-* First column is always the names of students in the currently shown list.
+* By default, the first columns consist of the names of students in the currently shown list.
 * You can add one or more empty columns with customized titles.
+* Columns with special names mentioned in format will be populated with the respective information from TeachBook.
 
 Examples:
 * `print c/class c/email c/Signature` creates an Excel (.xls) file with four columns, student name column, class column, email column, and an empty column with title `Signature`.
 
-[comment]: <> (Double check which feature should be in)
+![excel](images/excel.png)
+
 #### Sorting students : `sort`
 
 Unorganised lists are a pain to see. Therefore, TeachBook provides the functionality for you to sort your students either according to their name or grade.
