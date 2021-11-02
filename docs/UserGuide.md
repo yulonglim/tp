@@ -153,10 +153,11 @@ Don't forget that TeachBook provides an undo feature just in case you accidental
 #### Undoing a command : `undo`
 
 This command allows you to revert the TeachBook to the previous state. You most likely will be using this command if you have made a mistake.
-
-:information_source: Notes about undo:
+<div markdown="block" class="alert alert-info">:information_source: **Info**
+Notes about undo:
 * If commands executed results in an error message, TeachBook does not store the outcome, hence you do not have to undo!
 * Commands that do not affect the information displayed or data of TeachBook is not stored (e.g. print, help, etc.), therefore they can't be undone!
+</div>
 
 Format: `undo`
 
@@ -439,8 +440,9 @@ Format: `print [c/class] [c/phone] [c/email] [c/tags] [c/remark] [c/grade] [c/at
 * You can add one or more empty columns with customized titles.
 * Columns with special names mentioned in format will be populated with the respective information from TeachBook.
 
-:information_source: Information about print:
+<div markdown="block" class="alert alert-info">:information_source: **Info**
 * Putting an empty column heading (i.e. `c/ `) will give you an empty column! This can help you have larger separation between columns.
+</div>
 
 Examples:
 * `print c/class c/email c/Signature` creates an Excel (.xls) file with four columns, student name column, class column, email column, and an empty column with title `Signature`.
