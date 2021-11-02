@@ -381,18 +381,6 @@ Format: `print [c/class] [c/phone] [c/email] [c/tags] [c/remark] [c/grade] [c/at
 Examples:
 * `print c/class c/email c/Signature` creates an Excel (.xls) file with four columns, student name column, class column, email column, and an empty column with title `Signature`.
 
-#### Saving the data
-
-TeachBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-#### Editing the data file
-
-TeachBook data are saved as a JSON file `[JAR file location]/data/teachbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, TeachBook will discard all data and start with an empty data file at the next run.
-</div>
-
 [comment]: <> (Double check which feature should be in)
 #### Sorting students : `sort`
 
@@ -419,6 +407,18 @@ Format: `list [all||absent]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 `list all` clears any currently selected class. As a result, any command followed by `list all` will be operating on all students in the TeachBook.
+</div>
+
+#### Saving the data
+
+TeachBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+#### Editing the data file
+
+TeachBook data are saved as a JSON file `[JAR file location]/data/teachbook.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, TeachBook will discard all data and start with an empty data file at the next run.
 </div>
 --------------------------------------------------------------------------------------------------------------------
 
