@@ -2,7 +2,6 @@ package seedu.teachbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_LIST_ALL;
-import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.teachbook.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import seedu.teachbook.logic.commands.exceptions.CommandException;
