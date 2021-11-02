@@ -421,6 +421,10 @@ This command allows you to mark multiple indexes at once. Which can save you lot
 once the attendance of the student is marked! 
 </div>
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+After marking, you can retrieve the attendance list with the `print c/attendance` command. You might also want to check out the [print](#printing-to-excel--print) command for more special columns available to be added.
+</div>
+
 #### Unmarking the attendance of a student : `unmark`
 
 You can use this to mark your student as absent.
