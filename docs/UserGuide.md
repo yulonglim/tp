@@ -435,9 +435,12 @@ Generates an Excel file containing students in the currently shown list.
 
 Format: `print [c/class] [c/phone] [c/email] [c/tags] [c/remark] [c/grade] [c/attendance] [c/COLUMN_TITLE]…`
 
-* By default, the first columns consist of the names of students in the currently shown list.
+* By default, the first column consist of the names of students in the currently shown list.
 * You can add one or more empty columns with customized titles.
 * Columns with special names mentioned in format will be populated with the respective information from TeachBook.
+
+:information_source: Information about print:
+* Putting an empty column heading (i.e. `c/ `) will give you an empty column! This can help you have larger separation between columns.
 
 Examples:
 * `print c/class c/email c/Signature` creates an Excel (.xls) file with four columns, student name column, class column, email column, and an empty column with title `Signature`.
