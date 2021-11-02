@@ -54,10 +54,12 @@ public class ListCommand extends Command {
 
         if (isAbsentee) {
             model.updateFilteredStudentList(new StudentIsAbsentPredicate());
+            model.commitTeachBook();
             return new CommandResult(MESSAGE_SUCCESS_LIST_ABSENT);
         }
 
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        model.commitTeachBook();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

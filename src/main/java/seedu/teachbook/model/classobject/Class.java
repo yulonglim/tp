@@ -1,6 +1,7 @@
 package seedu.teachbook.model.classobject;
 
 import java.util.Comparator;
+import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.teachbook.model.student.Student;
@@ -80,7 +81,13 @@ public class Class {
         }
 
         Class otherClass = (Class) other;
-        return otherClass.getClassName().equals(getClassName());
+        return otherClass.getClassName().equals(this.className)
+                && otherClass.getUniqueStudentListOfThisClass().equals(this.getUniqueStudentListOfThisClass());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(className, studentsOfThisClass);
     }
 
     @Override
