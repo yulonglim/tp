@@ -50,6 +50,7 @@ towards teachers who can type fast. It allows teachers to store and organise con
 different classes. On top of that, teachers can tag the class role of the student.
 
 --------------------------------------------------------------------------------------------------------------------
+<a href="#" style="float: right;">[ Back to top ]</a>
 
 ## Quick start
 
@@ -79,6 +80,8 @@ different classes. On top of that, teachers can tag the class role of the studen
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<a href="#" style="float: right;">[ Back to top ]</a>
+
 ## Graphical User Interface
 
 In this section, we will be guiding you through the different sections of TeachBook's Graphical User Interface (GUI). 
@@ -92,6 +95,7 @@ There are a total of 5 different sections according to the image of out GUI belo
 ![](images/GUI.png)
 
 --------------------------------------------------------------------------------------------------------------------
+<a href="#" style="float: right;">[ Back to top ]</a>
 
 ## Features
 
@@ -127,7 +131,8 @@ There are a total of 5 different sections according to the image of out GUI belo
 
 </div>
 
-### Viewing help : `help`
+### Basic features
+#### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -135,7 +140,43 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Adding a class : `addClass`
+#### Clearing all entries : `clear`
+
+Deletes all classes and students, and resets the grading system of the TeachBook.
+
+Format: `clear`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Don't forget that TeachBook provides an undo feature just in case you accidentally clear TeachBook of all its data!
+</div>
+
+#### Undoing a command : `undo`
+
+Allows you to undo a command that you have entered. You most likely will be using this command if you have made a mistake.
+
+Format: `undo`
+
+#### Redoing a command: `redo`
+
+Allows you to redo a command after using an undo command.
+
+Format: `redo`
+
+#### Exiting the program : `exit`
+
+Exits TeachBook.
+
+Format: `exit`
+
+<div markdown="block" class="alert alert-info">:information_source: **Info**
+TeachBook will automatically save you progress if you exit the app so that you can continue working on it at a later time!
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
+<a href="#" style="float: right;">[ Back to top ]</a>
+
+### Class related features
+#### Adding a class : `addClass`
 
 Adds a class with the specified class name to the TeachBook.
 
@@ -150,7 +191,18 @@ Examples:
 There is a limit of 20 characters for the class name! But I am sure your class name will not be longer that limit!
 </div>
 
-### Editing a class name : `editClass`
+#### Deleting a class : `deleteClass`
+
+Deletes the specified class from the TeachBook.
+
+Format: `deleteClass CLASS_NAME`
+
+* Deletes the class with the specified `CLASS_NAME`
+
+Examples:
+* `deleteClass A` Deletes the class named `A` from the TeachBook.
+
+#### Editing a class name : `editClass`
 
 Edits the name of the currently selected class.
 
@@ -159,7 +211,7 @@ Format: `editClass CLASS_NAME`
 Examples:
 * `editClass ClassA` edits the name of the currently selected class to be `ClassA`.
 
-### Selecting a class : `select`
+#### Selecting a class : `select`
 
 Selects a class to be shown by the TeachBook.
 
@@ -173,18 +225,11 @@ Format: `select CLASS_NAME`
 Example:
 * `select B` selects the class named `B` from the list of classes.
 
-### Deleting a class : `deleteClass`
+--------------------------------------------------------------------------------------------------------------------
+<a href="#" style="float: right;">[ Back to top ]</a>
 
-Deletes the specified class from the TeachBook.
-
-Format: `deleteClass CLASS_NAME`
-
-* Deletes the class with the specified `CLASS_NAME`
-
-Examples:
-* `deleteClass A` Deletes the class named `A` from the TeachBook.
-
-### Adding a student : `add`
+### Student related features
+#### Adding a student : `add`
 
 You can use this command to add a student into the currently selected class.
 
@@ -204,7 +249,20 @@ Examples:
 * `add n/John Doe` adds a student named John Doe into the currently selected class.
 * `add n/Jane Doe p/91234567 e/johndoe@example.com a/21 Lower Kent Ridge Road, Singapore 119077 t/Class Monitor` adds contact information of Jane Doe with all the optional information into the currently selected class.
 
-### Editing a student : `edit`
+#### Deleting a student : `delete`
+
+Deletes the specified student from the TeachBook.
+
+Format: `delete INDEX…||all`
+
+* Deletes the student at the specified `INDEX`.
+
+Examples:
+* `list all` followed by `delete 2 3` deletes the 2nd and 3rd students in the TeachBook.
+* `find John` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+* `select A` followed by `delete all` deletes all the students in class `A`.
+
+#### Editing a student : `edit`
 
 Edits the basic information of an existing student in the TeachBook.
 
@@ -221,7 +279,7 @@ Examples:
 * `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st student shown in the list to be `91234567` and `johndoe@example.com` respectively.
 * `edit 2 n/Joseph Chan t/` edits the name of the 2nd student shown in the list to be `Joseph Chan` and clears all existing tags.
 
-### Locating students by name : `find`
+#### Locating students by name : `find`
 
 Finds students whose name contain any of the given keywords.
 
@@ -231,7 +289,7 @@ Format: `find KEYWORD…`
 * The order of the keywords does not matter e.g. Doe John will match John Doe.
 * Only the name is searched.
 * Only full words will be matched e.g. John will not match Johnny.
-* Students matching at least one keyword will be returned (i.e. OR search). e.g. John Doe will return Jone Deer, Jane Doe.
+* Students matching at least one keyword will be returned (i.e. OR search). e.g. John Doe will return John Deer, Jane Doe.
 
 Examples:
 * `find John Doe` returns only one `John Doe` from the currently selected class, even though there is another `John Doe` from a different class.
@@ -239,29 +297,21 @@ Examples:
 
 [comment]: <> (![find]&#40;images/findStudent.png&#41;)
 
-### Deleting a student : `delete`
-
-Deletes the specified student from the TeachBook.
-
-Format: `delete INDEX…||all`
-
-* Deletes the student at the specified `INDEX`.
-
-Examples:
-* `list all` followed by `delete 2 3` deletes the 2nd and 3rd students in the TeachBook.
-* `find John` followed by `delete 1` deletes the 1st student in the results of the `find` command.
-* `select A` followed by `delete all` deletes all the students in class `A`.
-
-### Adding a remark to a student : `remark`
+#### Adding a remark to a student : `remark`
 
 TeachBook allows you to add special remarks for students.
 
 Format: `remark INDEX r/[REMARK]`
 
 Example:
-* `remark 1 r/Contracted COVID-19` add a remark to the student at index 1 that he has contracted COVID-19.
+* `remark 1 r/Contracted COVID-19` adds a remark to the student at index 1 that he has contracted COVID-19.
+* `remark 1 r/` clears previously added remark of the student at index 1. 
 
-### Setting a grading system : `setGrade`
+--------------------------------------------------------------------------------------------------------------------
+<a href="#" style="float: right;">[ Back to top ]</a>
+
+### Grade related features
+#### Setting a grading system : `setGrade`
 
 TeachBook allows for setting of personalised grading system. You may implement your own grading system
 which may differ from semester to semester and subject to subject in order to grade your students accordingly.
@@ -276,7 +326,7 @@ Example:
 This command takes in a list of grades separated by ">" and they are entered in decreasing order!
 </div>
 
-### Giving grade to a student : `grade`
+#### Giving grade to a student : `grade`
 
 You can use this command to set a grade for a particular student.
 
@@ -286,12 +336,13 @@ Example:
 * `grade 1 g/B` gives the student at index 1 a B grade.
 * `grade 2 4 5 g/A` gives the 2nd, 4th, and 5th students A grades.
 * `grade all g/A` gives all students A grades.
+* `grade 1 r/` clears previously added grade of the student at index 1.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 You cannot grade a student without having first add grading system. So, remember to do that first!
 </div>
 
-### Resetting the grading system : `resetGrade`
+#### Resetting the grading system : `resetGrade`
 
 Teachbook can only incorporate at most 1 grading system at any time. Therefore, you have to wipe out an existing
 grading system before implementing a new one. This command not only resets the grading system, but also wipes out
@@ -299,17 +350,11 @@ all the grades which were previously given to the students.
 
 Format: `resetGrade`
 
-### Sorting students : `sort`
+--------------------------------------------------------------------------------------------------------------------
+<a href="#" style="float: right;">[ Back to top ]</a>
 
-Unorganised lists are a pain to see. Therefore, TeachBook provides the functionality for you to sort your students either according to their name or grade.
-
-Format: `sort name||grade`
-
-Examples:
-* `sort name` sorts the list of students according to their name in alphabetical order.
-* `sort grade` sorts the list of students according to their grade in descending order.
-
-### Marking the attendance of a student : `mark`
+### Attendance related features
+#### Marking the attendance of a student : `mark`
 
 You can use this to mark your student as present.
 
@@ -325,7 +370,7 @@ This command allows you to mark multiple indexes at once. Which can save you lot
 once the attendance of the student is marked! 
 </div>
 
-### Unmarking the attendance of a student : `unmark`
+#### Unmarking the attendance of a student : `unmark`
 
 You can use this to mark your student as absent.
 
@@ -341,7 +386,35 @@ This command allows you to unmark multiple indexes at once. Which can save you l
 once the attendance of the student is unmarked!
 </div>
 
-### Listing all students : `list`
+--------------------------------------------------------------------------------------------------------------------
+<a href="#" style="float: right;">[ Back to top ]</a>
+
+### Utility features
+#### Printing to Excel : `print`
+
+Generates an Excel file containing students in the currently shown list.
+
+Format: `print [c/class] [c/phone] [c/email] [c/tags] [c/remark] [c/grade] [c/attendance] [c/COLUMN_TITLE]…`
+
+* First column is always the names of students in the currently shown list.
+* You can add one or more empty columns with customized titles.
+
+Examples:
+* `print c/class c/email c/Signature` creates an Excel (.xls) file with four columns, student name column, class column, email column, and an empty column with title `Signature`.
+
+[comment]: <> (Double check which feature should be in)
+#### Sorting students : `sort`
+
+Unorganised lists are a pain to see. Therefore, TeachBook provides the functionality for you to sort your students either according to their name or grade.
+
+Format: `sort name||grade`
+
+Examples:
+* `sort name` sorts the list of students according to their name in alphabetical order.
+* `sort grade` sorts the list of students according to their grade in descending order.
+
+[comment]: <> (Double check which feature should be in)
+#### Listing all students : `list`
 
 Shows the list of all students from the currently selected class or the entire TeachBook.
 
@@ -357,55 +430,15 @@ Format: `list [all||absent]`
 `list all` clears any currently selected class. As a result, any command followed by `list all` will be operating on all students in the TeachBook.
 </div>
 
-### Printing to Excel : `print`
+--------------------------------------------------------------------------------------------------------------------
+<a href="#" style="float: right;">[ Back to top ]</a>
 
-Generates an Excel file containing students in the currently shown list.
-
-Format: `print [c/class] [c/phone] [c/email] [c/tags] [c/remark] [c/grade] [c/attendance] [c/COLUMN_TITLE]…`
-
-* First column is always the names of students in the currently shown list.
-* You can add one or more empty columns with customized titles.
-
-Examples:
-* `print c/class c/email c/Signature` creates an Excel (.xls) file with four columns, student name column, class column, email column, and an empty column with title `Signature`.
-
-### Clearing all entries : `clear`
-
-Deletes all classes and students, and resets the grading system of the TeachBook.
-
-Format: `clear`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Don't forget that TeachBook provides an undo feature just in case you accidentally clear TeachBook of all its data!
-</div>
-
-### Undoing a command : `undo`
-
-Allows you to undo a command that you have entered. You most likely will be using this command if you have made a mistake.
-
-Format: `undo`
-
-### Redoing a command: `redo`
-
-Allows you to redo a command after using an undo command.
-
-Format: `redo`
-
-### Exiting the program : `exit`
-
-Exits TeachBook.
-
-Format: `exit`
-
-<div markdown="block" class="alert alert-info">:information_source: **Info**
-TeachBook will automatically save you progress if you exit the app so that you can continue working on it at a later time!
-</div>
-
-### Saving the data
+### Others
+#### Saving the data
 
 TeachBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+#### Editing the data file
 
 TeachBook data are saved as a JSON file `[JAR file location]/data/teachbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -414,6 +447,7 @@ If your changes to the data file makes its format invalid, TeachBook will discar
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+<a href="#" style="float: right;">[ Back to top ]</a>
 
 ## FAQs
 
@@ -429,30 +463,34 @@ If your changes to the data file makes its format invalid, TeachBook will discar
 [comment]: <> (file path is given in command result)
 
 --------------------------------------------------------------------------------------------------------------------
+<a href="#" style="float: right;">[ Back to top ]</a>
 
 ## Command Summary
 
 Action                         | Format, Examples
 -------------------------------|------------------
 **Help**                       | `help`
-**Add class**                  | `addClass CLASS_NAME` <br> e.g., `addClass A`
-**Edit class**                 | `editClass CLASS_NAME` <br> e.g., `editClass 1 n/Ace`
-**Select class**               | `select CLASS_NAME` <br> e.g., `select A`
-**Delete class**               | `deleteClass CLASS_NAME` <br> e.g., `deleteClass A`
-**Add student**                | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g., `add n/John Doe p/91234567 e/johndoe@example.com a/21 Lower Kent Ridge Road, Singapore 119077 b/AB+ pc/92039923 t/class treasurer`
-**Edit student**               | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g.,`edit 2 n/Joseph Chan t/`
-**Find student**               | `find KEYWORD…` <br> e.g., `find James Jake`
-**Delete student**             | <code>delete INDEX…&#124;&#124;all</code> <br> e.g., `delete 1`
-**Add remark to student**      | `remark INDEX r/[REMARK]` <br> e.g., `remark 1 r/Contracted COVID-19`
-**Set grading system**         | `setGrade GRADE_1[>GRADE_2]…` <br> e.g., `setGrade A>B>C>D>E>F`
-**Give grade to student**      | <code>grade INDEX…&#124;&#124;all g/&#91;GRADE&#93;</code> <br> e.g., `grade 3 g/A`
-**Reset grading system**       | `resetGrade`
-**Sort students**              | <code>sort name&#124;&#124;grade</code>
-**Mark student attendance**    | <code>mark INDEX…&#124;&#124;all</code> <br> e.g., `mark 1 2 3`
-**Unmark student attendance**  | <code>unmark INDEX…&#124;&#124;all</code> <br> e.g., `unmark 1 2 3`
-**List students**              | <code>list &#91;all&#124;&#124;absent&#93;</code>
-**Print data as Excel file**   | `print [c/class] [c/phone] [c/email] [c/tags] [c/remark] [c/grade] [c/attendance] [c/COLUMN_TITLE]…` <br> e.g. , `print c/Signature`
 **Clear all data**             | `clear`
 **Undo previous command**      | `undo`
 **Redo previous command**      | `redo`
 **Exit**                       | `exit`
+**Add class**                  | `addClass CLASS_NAME` <br> e.g., `addClass A`
+**Delete class**               | `deleteClass CLASS_NAME` <br> e.g., `deleteClass A`
+**Edit class**                 | `editClass CLASS_NAME` <br> e.g., `editClass 1 n/Ace`
+**Select class**               | `select CLASS_NAME` <br> e.g., `select A`
+**Add student**                | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g., `add n/John Doe p/91234567 e/johndoe@example.com a/21 Lower Kent Ridge Road, Singapore 119077 b/AB+ pc/92039923 t/class treasurer`
+**Delete student**             | <code>delete INDEX…&#124;&#124;all</code> <br> e.g., `delete 1`
+**Edit student**               | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g.,`edit 2 n/Joseph Chan t/`
+**Find student**               | `find KEYWORD…` <br> e.g., `find James Jake`
+**Add remark to student**      | `remark INDEX r/[REMARK]` <br> e.g., `remark 1 r/Contracted COVID-19`
+**Set grading system**         | `setGrade GRADE_1[>GRADE_2]…` <br> e.g., `setGrade A>B>C>D>E>F`
+**Give grade to student**      | <code>grade INDEX…&#124;&#124;all g/&#91;GRADE&#93;</code> <br> e.g., `grade 3 g/A`
+**Reset grading system**       | `resetGrade`
+**Mark student attendance**    | <code>mark INDEX…&#124;&#124;all</code> <br> e.g., `mark 1 2 3`
+**Unmark student attendance**  | <code>unmark INDEX…&#124;&#124;all</code> <br> e.g., `unmark 1 2 3`
+**Print data as Excel file**   | `print [c/class] [c/phone] [c/email] [c/tags] [c/remark] [c/grade] [c/attendance] [c/COLUMN_TITLE]…` <br> e.g. , `print c/Signature`
+**Sort students**              | <code>sort name&#124;&#124;grade</code>
+**List students**              | <code>list &#91;all&#124;&#124;absent&#93;</code>
+
+<a href="#" style="float: right;">[ Back to top ]</a>
+

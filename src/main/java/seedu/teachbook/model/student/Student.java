@@ -133,7 +133,7 @@ public class Student {
         Student otherStudent = (Student) other;
         return otherStudent.getName().equals(getName())
                 && otherStudent.getPhone().equals(getPhone())
-                && otherStudent.getStudentClass().equals(getStudentClass())
+                && otherStudent.getStudentClass().getClassName().equals(getStudentClass().getClassName())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getAddress().equals(getAddress())
                 && otherStudent.getRemark().equals(getRemark())

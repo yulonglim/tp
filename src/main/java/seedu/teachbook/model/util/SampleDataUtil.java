@@ -27,9 +27,9 @@ import seedu.teachbook.model.tag.Tag;
 public class SampleDataUtil {
     public static Class[] getSampleClasses() {
         return new Class[] {
-            new Class(new ClassName("Ace")),
-            new Class(new ClassName("Cuddly Bears")),
-            new Class(new ClassName("Talent"))
+            new Class(new ClassName("4E1")),
+            new Class(new ClassName("4E2")),
+            new Class(new ClassName("4E3"))
         };
     }
 
