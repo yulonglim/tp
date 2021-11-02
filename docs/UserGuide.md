@@ -289,7 +289,7 @@ Format: `find KEYWORD…`
 * The order of the keywords does not matter e.g. Doe John will match John Doe.
 * Only the name is searched.
 * Only full words will be matched e.g. John will not match Johnny.
-* Students matching at least one keyword will be returned (i.e. OR search). e.g. John Doe will return Jone Deer, Jane Doe.
+* Students matching at least one keyword will be returned (i.e. OR search). e.g. John Doe will return John Deer, Jane Doe.
 
 Examples:
 * `find John Doe` returns only one `John Doe` from the currently selected class, even though there is another `John Doe` from a different class.
