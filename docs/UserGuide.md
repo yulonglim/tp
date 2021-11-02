@@ -418,7 +418,7 @@ Examples:
 * `unmark all` marks all the students absent.
 
 ![unmark](images/unmark.png)
-Fig 13: `Jane Doe` who was [marked present](#marking-the-attendance-of-a-student--mark), is displayed with a red box after `unmark 3` was executed.
+Fig 13: `Jane Doe` who was [marked present previously](#marking-the-attendance-of-a-student--mark), is now unmarked and is displayed with a red box after `unmark 3` was executed.
 
 <div markdown="block" class="alert alert-info">:information_source: **Info**
 This command allows you to unmark multiple indexes at once. Which can save you lots of time! The check box will turn red
