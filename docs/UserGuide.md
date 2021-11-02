@@ -192,6 +192,34 @@ TeachBook data are saved as a JSON file `[JAR file location]/data/teachbook.json
 If your changes to the data file makes its format invalid, TeachBook will discard all data and start with an empty data file at the next run.
 </div>
 
+[comment]: <> (Double check which feature should be in)
+#### Sorting students : `sort`
+
+Unorganised lists are a pain to see. Therefore, TeachBook provides the functionality for you to sort your students either according to their name or grade.
+
+Format: `sort name||grade`
+
+Examples:
+* `sort name` sorts the list of students according to their name in alphabetical order.
+* `sort grade` sorts the list of students according to their grade in descending order.
+
+[comment]: <> (Double check which feature should be in)
+#### Listing all students : `list`
+
+Shows the list of all students from the currently selected class or the entire TeachBook.
+
+Format: `list [all||absent]`
+
+* `list` lists all students from the currently selected class or the entire TeachBook.
+* `list all` lists all students in the TeachBook.
+* `list absent` lists all students from the currently selected class or the entire TeachBook whose status is unmarked.
+
+[comment]: <> (![list all]&#40;images/listAll.png&#41;)
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+`list all` clears any currently selected class. As a result, any command followed by `list all` will be operating on all students in the TeachBook.
+</div>
+
 ### Class related features
 #### Adding a class : `addClass`
 
@@ -359,17 +387,6 @@ all the grades which were previously given to the students.
 
 Format: `resetGrade`
 
-[comment]: <> (Double check which feature should be in)
-### Sorting students : `sort`
-
-Unorganised lists are a pain to see. Therefore, TeachBook provides the functionality for you to sort your students either according to their name or grade.
-
-Format: `sort name||grade`
-
-Examples:
-* `sort name` sorts the list of students according to their name in alphabetical order.
-* `sort grade` sorts the list of students according to their grade in descending order.
-
 ### Attendance related features
 #### Marking the attendance of a student : `mark`
 
@@ -402,24 +419,6 @@ Examples:
 This command allows you to unmark multiple indexes at once. Which can save you lots of time! The check box will turn red
 once the attendance of the student is unmarked!
 </div>
-
-[comment]: <> (Double check which feature should be in)
-#### Listing all students : `list`
-
-Shows the list of all students from the currently selected class or the entire TeachBook.
-
-Format: `list [all||absent]`
-
-* `list` lists all students from the currently selected class or the entire TeachBook.
-* `list all` lists all students in the TeachBook.
-* `list absent` lists all students from the currently selected class or the entire TeachBook whose status is unmarked.
-
-[comment]: <> (![list all]&#40;images/listAll.png&#41;)
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-`list all` clears any currently selected class. As a result, any command followed by `list all` will be operating on all students in the TeachBook.
-</div>
-
 
 --------------------------------------------------------------------------------------------------------------------
 
