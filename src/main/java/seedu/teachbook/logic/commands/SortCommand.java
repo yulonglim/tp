@@ -10,10 +10,11 @@ public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sorts students by their names or grades.\n"
-            + "Example: " + COMMAND_WORD + " name, " + COMMAND_WORD + " grade";
+            + "Parameters: name||grade\n"
+            + "Examples: " + COMMAND_WORD + " name, " + COMMAND_WORD + " grade";
 
-    public static final String MESSAGE_SUCCESS_SORT_NAME = "Sorted students by names";
-    public static final String MESSAGE_SUCCESS_SORT_GRADE = "Sorted students by grades (High -> Low)";
+    public static final String MESSAGE_SUCCESS_SORT_NAME = "Students sorted by names";
+    public static final String MESSAGE_SUCCESS_SORT_GRADE = "Students sorted by grades (High -> Low)";
     public static final String MESSAGE_GRADING_SYSTEM_NOT_SET = "Set a grading system before sorting";
 
 

@@ -21,7 +21,7 @@ public class DeleteClassCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the class identified by its name.\n"
-            + "Parameters: CLASSNAME (case-sensitive)\n"
+            + "Parameter: CLASS_NAME (case-sensitive)\n"
             + "Example: " + COMMAND_WORD + " A";
 
     public static final String MESSAGE_DELETE_CLASS_SUCCESS = "Deleted Class: %1$s";
@@ -45,10 +45,10 @@ public class DeleteClassCommand extends Command {
         }
 
         Class classToDelete = classes.get(classIndex.getZeroBased());
-        model.deleteClass(classToDelete);
+        boolean shouldUpdateStudentListPanel = model.deleteClass(classToDelete, classIndex);
         model.commitTeachBook();
         return new CommandResult(String.format(MESSAGE_DELETE_CLASS_SUCCESS, classToDelete),
-                false, false, true, true);
+                false, false, true, shouldUpdateStudentListPanel);
     }
 
     @Override

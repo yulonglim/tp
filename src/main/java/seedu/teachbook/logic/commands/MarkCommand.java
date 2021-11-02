@@ -27,8 +27,8 @@ public class MarkCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks one or more students, identified by the index number "
             + "used in the displayed student list, as present.\n"
-            + "Parameters: INDEX1 [INDEX2]... [all]\n"
-            + "Example: " + COMMAND_WORD + " 1, " + COMMAND_WORD + " 2 4 5, " + COMMAND_WORD + " all";
+            + "Parameters: INDEX...||all\n"
+            + "Examples: " + COMMAND_WORD + " 1, " + COMMAND_WORD + " 2 4 5, " + COMMAND_WORD + " all";
 
     public static final String MESSAGE_MARK_STUDENT_SUCCESS = "Marked %1$s present at %2$s";
     public static final String MESSAGE_NOTHING_TO_MARK = "There is nothing to mark as there are no students.";

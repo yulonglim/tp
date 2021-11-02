@@ -9,7 +9,9 @@ public class ResetGradeCommand extends Command {
 
     public static final String COMMAND_WORD = "resetGrade";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Resets grading system.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Resets the grading system. "
+            + "All existing grades will be deleted.";
 
     public static final String MESSAGE_GRADING_SYSTEM_NOT_SET = "No grading system is in use currently!";
     public static final String MESSAGE_SUCCESS = "Grading system successfully reset";

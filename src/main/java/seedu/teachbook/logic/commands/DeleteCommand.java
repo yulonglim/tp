@@ -21,8 +21,8 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes one or more students identified by the index number used in the displayed student list.\n"
-            + "Parameters: INDEX1 [INDEX2]... [all]\n"
-            + "Example: " + COMMAND_WORD + " 1, " + COMMAND_WORD + " 2 4 5, " + COMMAND_WORD + " all";
+            + "Parameters: INDEX...||all\n"
+            + "Examples: " + COMMAND_WORD + " 1, " + COMMAND_WORD + " 2 4 5, " + COMMAND_WORD + " all";
 
     public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted Student(s):\n%1$s";
     public static final String MESSAGE_NOTHING_TO_DELETE = "There is nothing to delete as there are no students.";

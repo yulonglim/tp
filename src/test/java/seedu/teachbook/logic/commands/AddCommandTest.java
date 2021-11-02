@@ -147,7 +147,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deleteClass(Class toAdd) {
+        public boolean deleteClass(Class target, GeneralIndex targetIndex) {
             throw new AssertionError("This method should not be called.");
         }
 
