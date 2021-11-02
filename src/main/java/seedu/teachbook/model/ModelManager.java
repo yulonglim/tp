@@ -14,7 +14,6 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.util.Pair;
 import seedu.teachbook.commons.core.GuiSettings;
 import seedu.teachbook.commons.core.LogsCenter;
 import seedu.teachbook.commons.core.index.GeneralIndex;
@@ -276,16 +275,16 @@ public class ModelManager implements Model {
 
     @Override
     public void undoTeachBook() {
-        Pair<Predicate<Student>, GeneralIndex> previousDisplay = this.teachBook.undo();
-        this.updateCurrentlySelectedClass(previousDisplay.getValue());
-        this.updateFilteredStudentList(previousDisplay.getKey());
+        TeachbookDisplayState previousDisplay = this.teachBook.undo();
+        this.updateCurrentlySelectedClass(previousDisplay.getIndex());
+        this.updateFilteredStudentList(previousDisplay.getPredicate());
     }
 
     @Override
     public void redoTeachBook() {
-        Pair<Predicate<Student>, GeneralIndex> previousDisplay = this.teachBook.redo();
-        this.updateCurrentlySelectedClass(previousDisplay.getValue());
-        this.updateFilteredStudentList(previousDisplay.getKey());
+        TeachbookDisplayState previousDisplay = this.teachBook.redo();
+        this.updateCurrentlySelectedClass(previousDisplay.getIndex());
+        this.updateFilteredStudentList(previousDisplay.getPredicate());
     }
 
     @Override

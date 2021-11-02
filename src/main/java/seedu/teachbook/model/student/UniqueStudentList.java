@@ -19,7 +19,7 @@ import seedu.teachbook.model.student.exceptions.StudentNotFoundException;
  * ensure that the student being added or updated is unique in terms of identity in the UniqueStudentList.
  * However, the removal of a student uses Student#equals(Object) to ensure that
  * the student with exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Student#isSameStudent(Student)
@@ -132,18 +132,20 @@ public class UniqueStudentList implements Iterable<Student> {
         return internalList.iterator();
     }
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof UniqueStudentList // instanceof handles nulls
-                        && internalList.equals(((UniqueStudentList) other).internalList));
-    }
-
 
     @Override
-    public int hashCode() {
-        return internalList.hashCode();
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        UniqueStudentList students = (UniqueStudentList) o;
+        return internalList.equals(students.internalList)
+                && internalUnmodifiableList.equals(students.internalUnmodifiableList);
     }
+
 
     /**
      * Returns true if {@code students} contains only unique students.

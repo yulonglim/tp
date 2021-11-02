@@ -14,7 +14,9 @@ import seedu.teachbook.model.student.Student;
 import seedu.teachbook.model.tag.Tag;
 
 /**
- * Switches to another class identified using its name.
+ * Print an Excel sheet according to current class.
+ *
+ * @author Lim Yu Long
  */
 public class PrintCommand extends Command {
 
@@ -47,6 +49,9 @@ public class PrintCommand extends Command {
 
     private final List<String> columnList;
 
+    /**
+     * Creates a PrintCommand to print the specified {@code ColumnList}
+     */
     public PrintCommand(List<String> columnList) {
         this.columnList = columnList;
     }
