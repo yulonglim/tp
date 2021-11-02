@@ -304,7 +304,8 @@ TeachBook allows you to add special remarks for students.
 Format: `remark INDEX r/[REMARK]`
 
 Example:
-* `remark 1 r/Contracted COVID-19` add a remark to the student at index 1 that he has contracted COVID-19.
+* `remark 1 r/Contracted COVID-19` adds a remark to the student at index 1 that he has contracted COVID-19.
+* `remark 1 r/` clears previously added remark of the student at index 1. 
 
 --------------------------------------------------------------------------------------------------------------------
 <a href="#" style="float: right;">[ Back to top ]</a>
@@ -335,6 +336,7 @@ Example:
 * `grade 1 g/B` gives the student at index 1 a B grade.
 * `grade 2 4 5 g/A` gives the 2nd, 4th, and 5th students A grades.
 * `grade all g/A` gives all students A grades.
+* `grade 1 r/` clears previously added grade of the student at index 1.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 You cannot grade a student without having first add grading system. So, remember to do that first!
