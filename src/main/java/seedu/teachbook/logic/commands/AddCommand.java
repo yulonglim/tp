@@ -33,7 +33,7 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "janedoe@example.com "
             + PREFIX_ADDRESS + "21 Lower Kent Ridge Road, Singapore 119077 "
-            + PREFIX_TAG + "Class Monitor ";
+            + PREFIX_TAG + "class monitor ";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_NO_CLASS = "Add the first class before adding any student!";

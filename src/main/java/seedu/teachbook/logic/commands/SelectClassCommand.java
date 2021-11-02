@@ -19,7 +19,7 @@ public class SelectClassCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Switches to the class with "
             + "the specified class name (case-sensitive).\n"
             + "Parameter: CLASS_NAME (case-sensitive)\n"
-            + "Example: " + COMMAND_WORD + " A";
+            + "Example: " + COMMAND_WORD + " 4E2";
 
     public static final String MESSAGE_SELECT_CLASS_SUCCESS = "Currently displaying all students from Class: %1$s";
     public static final String MESSAGE_CLASS_ALREADY_SELECTED = "Already displaying students from Class: %1$s\n"

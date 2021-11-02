@@ -19,7 +19,7 @@ public class SetGradeCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New grading system set: %1$s";
     public static final String MESSAGE_GRADING_SYSTEM_EXISTS = "A grading system is currently in use. "
-            + "You can reset grading system using \"" + ResetGradeCommand.COMMAND_WORD + "\" command.";
+            + "You can reset the grading system using \"" + ResetGradeCommand.COMMAND_WORD + "\".";
 
     public final List<Grade> gradeList;
 

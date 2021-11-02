@@ -56,7 +56,7 @@ different classes. On top of that, teachers can tag the class role of the studen
 
 1. Ensure you have Java `11` or above installed in your computer.
 
-2. Download the latest `teachbook-v1.3.1.jar` from [here](https://github.com/AY2122S1-CS2103T-W10-2/tp/releases/download/v1.3.1/teachbook-v1.3.1.jar).
+2. Download the latest `[CS2103T-W10-2][TeachBook].jar` from [here](unknown).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your TeachBook.
 
@@ -67,11 +67,11 @@ different classes. On top of that, teachers can tag the class role of the studen
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * **`select Talent`** : Displays all the students from the class named `Talent`.
+    * **`select 4E2`** : Displays all the students from the class named `4E2`.
    
     * **`delete`**`2` : Deletes the 2nd student shown in the list on the right.
 
-    * **`addClass`**`Class D` : Adds a new class named `Class D` to the TeachBook.
+    * **`addClass`**`4E4` : Adds a new class named `4E4` to the TeachBook.
     
     * **`clear`** : Clears all existing data in the TeachBook.
 
@@ -104,7 +104,7 @@ There are a total of 5 different sections according to the image of out GUI belo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Xin Yi`.
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Jane Doe`.
 
 * The parameter `INDEX` refers to the index number currently shown in the displayed student list, and it must be a positive integer 1, 2, 3, …
 
@@ -272,7 +272,7 @@ A student can have any number of tags (including 0)
 
 Examples:
 * `add n/John Doe` adds a student named John Doe into the currently selected class.
-* `add n/Jane Doe p/91234567 e/janedoe@example.com a/21 Lower Kent Ridge Road, Singapore 119077 t/Class Monitor` adds contact information of Jane Doe with all the optional information into the currently selected class.
+* `add n/Jane Doe p/91234567 e/janedoe@example.com a/21 Lower Kent Ridge Road, Singapore 119077 t/class monitor` adds contact information of Jane Doe with all the optional information into the currently selected class.
 
 ![add](images/addStudent.png)
 Fig 5: `Jane Doe` is added after second command under Examples was executed.
@@ -547,11 +547,11 @@ Action                         | Format, Examples
 **Undo previous command**      | `undo`
 **Redo previous command**      | `redo`
 **Exit**                       | `exit`
-**Add class**                  | `addClass CLASS_NAME` <br> e.g., `addClass A`
-**Delete class**               | `deleteClass CLASS_NAME` <br> e.g., `deleteClass A`
-**Edit class**                 | `editClass CLASS_NAME` <br> e.g., `editClass 1 n/ClassA`
-**Select class**               | `select CLASS_NAME` <br> e.g., `select A`
-**Add student**                | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g., `add n/Jane Doe p/91234567 e/janedoe@example.com a/21 Lower Kent Ridge Road, Singapore 119077 b/AB+ pc/92039923 t/class treasurer`
+**Add class**                  | `addClass CLASS_NAME` <br> e.g., `addClass 4E4`
+**Delete class**               | `deleteClass CLASS_NAME` <br> e.g., `deleteClass 4E5`
+**Edit class**                 | `editClass CLASS_NAME` <br> e.g., `editClass 1 ClassA`
+**Select class**               | `select CLASS_NAME` <br> e.g., `select 4E2`
+**Add student**                | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g., `add n/Jane Doe p/91234567 e/janedoe@example.com a/21 Lower Kent Ridge Road, Singapore 119077 t/class monitor`
 **Delete student**             | <code>delete INDEX…&#124;&#124;all</code> <br> e.g., `delete 1`
 **Edit student**               | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g.,`edit 2 n/Joseph Chan t/`
 **Find student**               | `find KEYWORD…` <br> e.g., `find James Jake`
