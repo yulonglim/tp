@@ -134,7 +134,7 @@ There are a total of 5 different sections according to the image of out GUI belo
 ### Basic features
 #### Viewing help : `help`
 
-This help command provides you with a link back to this user guide whenever you are in need of assistance.
+This command provides you with a link back to this user guide whenever you are in need of assistance.
 
 ![help message](images/helpMessage.png)
 
@@ -142,7 +142,7 @@ Format: `help`
 
 #### Clearing all entries : `clear`
 
-This clear command deletes all classes and students, and resets the grading system of the TeachBook, giving you a fresh TeachBook to work with.
+This command deletes all classes and students, and resets the grading system of the TeachBook, giving you a fresh TeachBook to work with.
 
 Format: `clear`
 
@@ -152,7 +152,7 @@ Don't forget that TeachBook provides an undo feature just in case you accidental
 
 #### Undoing a command : `undo`
 
-This undo command allows you to revert the TeachBook to the previous state. You most likely will be using this command if you have made a mistake.
+This command allows you to revert the TeachBook to the previous state. You most likely will be using this command if you have made a mistake.
 
 :information_source: Notes about undo:
 * If commands executed results in an error message, TeachBook does not store the outcome, hence you do not have to undo!
@@ -162,7 +162,7 @@ Format: `undo`
 
 #### Redoing a command: `redo`
 
-This redo command allows you to redo a command after using an undo command, just in case you did an undo accidentally!
+This command allows you to redo a command after using an undo command, just in case you did an undo accidentally!
 
 Format: `redo`
 
@@ -189,7 +189,8 @@ Format: `addClass CLASS_NAME`
 Examples:
 * `addClass 4E4` adds a class named `4E4` into the TeachBook.
 
-![add class](images/addClass.png)
+![addClass](images/addClass.png)
+Fig 1 :  `4E4` is added after `addClass 4E4` is executed
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 There is a limit of 20 characters for the class name! But I am sure your class name will not be longer that limit!
@@ -205,6 +206,9 @@ Format: `deleteClass CLASS_NAME`
 
 Examples:
 * `deleteClass 4E4` Deletes the class named `4E4` from the TeachBook.
+
+![deleteClass](images/deleteClass.png)
+Fig 2 :  `4E4` that was added in ![addClass](#adding-a-class--addclass) is deleted after `deleteClass 4E4` is executed, p
 
 #### Editing a class name : `editClass`
 
