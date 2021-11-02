@@ -15,7 +15,7 @@ public class SetGradeCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sets a grading system.\n"
             + "Parameters: GRADE_1[>GRADE_2]...\n"
-            + "Example: " + COMMAND_WORD + " A>B>C>D>E>F";
+            + "Example: " + COMMAND_WORD + " A>B>C>D";
 
     public static final String MESSAGE_SUCCESS = "New grading system set: %1$s";
     public static final String MESSAGE_GRADING_SYSTEM_EXISTS = "A grading system is currently in use. "

@@ -360,7 +360,7 @@ Grades are set in descending order, from the highest to the lowest grade.
 Format: `setGrade GRADE_1[>GRADE_2]…`
 
 Example:
-* `setGrade A>B>C>D` sets the grading system where A is the highest grade and D is the lowest grade.
+* `setGrade A>B>C>D` sets the grading system where A is the highest grade and F is the lowest grade.
 
 ![setGrade](images/setGrade.png)
 
@@ -380,7 +380,7 @@ Example:
 * `grade 1 g/B` gives the student at index 1 a B grade.
 * `grade 2 4 5 g/A` gives the 2nd, 4th, and 5th students A grades.
 * `grade all g/A` gives all students A grades.
-* `grade 1 r/` clears previously added grade of the student at index 1.
+* `grade 1 g/` clears previously added grade of the student at index 1.
 
 ![Grade](images/gradeAll.png)
 Fig 11: All students in `4E1` is given an A grade after `grade all g/A` was executed.
@@ -549,19 +549,19 @@ Action                         | Format, Examples
 **Exit**                       | `exit`
 **Add class**                  | `addClass CLASS_NAME` <br> e.g., `addClass 4E4`
 **Delete class**               | `deleteClass CLASS_NAME` <br> e.g., `deleteClass 4E4`
-**Edit class**                 | `editClass CLASS_NAME` <br> e.g., `editClass 1 4E5`
+**Edit class**                 | `editClass CLASS_NAME` <br> e.g., `editClass 4E5`
 **Select class**               | `select CLASS_NAME` <br> e.g., `select 4E2`
 **Add student**                | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g., `add n/Jane Doe p/91234567 e/janedoe@example.com a/21 Lower Kent Ridge Road, Singapore 119077 t/class monitor`
 **Delete student**             | <code>delete INDEX…&#124;&#124;all</code> <br> e.g., `delete 1`
 **Edit student**               | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g.,`edit 2 n/Joseph Chan t/`
 **Find student**               | `find KEYWORD…` <br> e.g., `find James Jake`
 **Add remark to student**      | `remark INDEX r/[REMARK]` <br> e.g., `remark 1 r/Contracted COVID-19`
-**Set grading system**         | `setGrade GRADE_1[>GRADE_2]…` <br> e.g., `setGrade A>B>C>D>E>F`
+**Set grading system**         | `setGrade GRADE_1[>GRADE_2]…` <br> e.g., `setGrade A>B>C>D`
 **Give grade to student**      | <code>grade INDEX…&#124;&#124;all g/&#91;GRADE&#93;</code> <br> e.g., `grade 3 g/A`
 **Reset grading system**       | `resetGrade`
 **Mark student attendance**    | <code>mark INDEX…&#124;&#124;all</code> <br> e.g., `mark 1 2 3`
 **Unmark student attendance**  | <code>unmark INDEX…&#124;&#124;all</code> <br> e.g., `unmark 1 2 3`
-**Print data as Excel file**   | `print [c/class] [c/phone] [c/email] [c/address] [c/tags] [c/remark] [c/attendance] [c/grade] [c/COLUMN_TITLE]…` <br> e.g. , `print c/Signature`
+**Print data as Excel file**   | `print [c/class] [c/phone] [c/email] [c/address] [c/tags] [c/remark] [c/attendance] [c/grade] [c/COLUMN_TITLE]…` <br> e.g. , `print c/class c/email c/Signature`
 **Sort students**              | <code>sort name&#124;&#124;grade</code>
 **List students**              | <code>list &#91;all&#124;&#124;absent&#93;</code>
 
