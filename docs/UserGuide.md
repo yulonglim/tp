@@ -190,7 +190,7 @@ Examples:
 * `addClass 4E4` adds a class named `4E4` into the TeachBook.
 
 ![addClass](images/addClass.png)
-Fig 1 :  `4E4` is added after `addClass 4E4` is executed
+######Fig 1:  `4E4` is added after `addClass 4E4` was executed
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 There is a limit of 20 characters for the class name! But I am sure your class name will not be longer that limit!
@@ -208,7 +208,7 @@ Examples:
 * `deleteClass 4E4` Deletes the class named `4E4` from the TeachBook.
 
 ![deleteClass](images/deleteClass.png)
-Fig 2 :  `4E4` that was added in [addClass](#adding-a-class--addclass) is deleted after `deleteClass 4E4` is executed, p
+######Fig 2: `4E4` that was added in [addClass](#adding-a-class--addclass) is deleted after `deleteClass 4E4` was executed.
 
 #### Editing a class name : `editClass`
 
@@ -219,6 +219,9 @@ Format: `editClass CLASS_NAME`
 Examples:
 * `editClass 4E5` edits the name of the currently selected class to be `4E5`.
 
+![editClass](images/editClass.png)
+######Fig 3: `4E4` that was added in [addClass](#adding-a-class--addclass) is now `4E5` after `editClass 4E5` was executed.
+
 #### Selecting a class : `select`
 
 Selects a class to be shown by the TeachBook.
@@ -226,12 +229,13 @@ Selects a class to be shown by the TeachBook.
 Format: `select CLASS_NAME`
 
 * The `CLASS_NAME` to be selected is case-sensitive and must be already inside the list. If not the TeachBook will return `The class does not exist`.
-* The currently selected class will be highlighted in blue as seen in the image below where the class named `4E2` is selected.
+* The currently selected class will be highlighted in blue and the list of student in the class will be displayed.
 
 Example:
 * `select 4E2` selects the class named `4E2` from the list of classes.
   
 ![select_example](images/select_example.png)
+######Fig 4: `4E2` is highlighted in blue with its students list after `select 4E2` was executed.
 
 --------------------------------------------------------------------------------------------------------------------
 <a href="#" style="float: right;">[ Back to top ]</a>
@@ -256,6 +260,7 @@ Examples:
 * `add n/Jane Doe p/91234567 e/janedoe@example.com a/21 Lower Kent Ridge Road, Singapore 119077 t/Class Monitor` adds contact information of Jane Doe with all the optional information into the currently selected class.
 
 ![add](images/addStudent.png)
+######Fig 5: `Jane Doe` is added after second command under Examples was executed.
 
 #### Deleting a student : `delete`
 
@@ -266,9 +271,13 @@ Format: `delete INDEX…||all`
 * Deletes the student at the specified `INDEX`.
 
 Examples:
+* `delete 3` deletes the 3rd student in the TeachBook.
 * `list all` followed by `delete 2 3` deletes the 2nd and 3rd students in the TeachBook.
 * `find John` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 * `select 4E2` followed by `delete all` deletes all the students in class `4E2`.
+
+![delete](images/deleteStudent.png)
+######Fig 6: `Jane Doe` who was added in [add](#adding-a-student--add), has been removed from the student list after `delete 3` was executed.
 
 #### Editing a student : `edit`
 
@@ -285,7 +294,10 @@ You can clear a field by omitting the value after the prefix.
 
 Examples:
 * `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st student shown in the list to be `91234567` and `johndoe@example.com` respectively.
-* `edit 2 n/Joseph Chan t/` edits the name of the 2nd student shown in the list to be `Joseph Chan` and clears all existing tags.
+* `edit 3 n/Joseph Chan t/` edits the name of the 3rd student shown in the list to be `Joseph Chan` and clears all existing tags.
+
+![edit](images/editStudent.png)
+######Fig 7: `Jane Doe` who was added in [add](#adding-a-student--add), has been renamed to `Joseph Chan` with no tags after `edit 3 n/Joseph Chan t/` was executed.
 
 #### Locating students by name : `find`
 
@@ -300,10 +312,11 @@ Format: `find KEYWORD…`
 * Students matching at least one keyword will be returned (i.e. OR search). e.g. John Doe will return John Deer, Jane Doe.
 
 Examples:
-* `find John Doe` returns only one `John Doe` from the currently selected class, even though there is another `John Doe` from a different class.
-* `list all` followed by `find John Doe` returns two `John Doe`, assuming that there are two `John Doe` in the entire the TeachBook, one from class `A` and another one from class `B`.
+* `find Jane Doe` returns only one `Jane Doe` from the currently selected class, even if there is another `Jane Doe` from a different class.
+* `list all` followed by `find John Doe` returns two `John Doe`, assuming that there are two `John Doe` in the entire the TeachBook, one from class `4E1` and another one from class `4E2`.
 
-[comment]: <> (![find]&#40;images/findStudent.png&#41;)
+![find](images/findStudent.png)
+######Fig 8: `Jane Doe` who was added in [add](#adding-a-student--add), is displayed in the student list after `find Jane Doe` was executed.
 
 #### Adding a remark to a student : `remark`
 
@@ -312,8 +325,12 @@ TeachBook allows you to add special remarks for students.
 Format: `remark INDEX r/[REMARK]`
 
 Example:
-* `remark 1 r/Contracted COVID-19` adds a remark to the student at index 1 that he has contracted COVID-19.
+* `remark 3 r/Contracted COVID-19` adds a remark to the student at index 3 that she has contracted COVID-19.
 * `remark 1 r/` clears previously added remark of the student at index 1. 
+
+![remark](images/remark.png)
+######Fig 9: `Jane Doe` who was added in [add](#adding-a-student--add), is displayed with remark `Contracted COVID-19` after `remark 3 r/Contracted COVID-19` was executed.
+
 
 --------------------------------------------------------------------------------------------------------------------
 <a href="#" style="float: right;">[ Back to top ]</a>
@@ -329,6 +346,9 @@ Format: `setGrade GRADE_1[>GRADE_2]…`
 
 Example:
 * `setGrade A>B>C>D` sets the grading system where A is the highest grade and D is the lowest grade.
+
+![setGrade](images/setGrade.png)
+######Fig 10: New grading system added after `setGrade A>B>C>D` was executed.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 This command takes in a list of grades separated by ">" and they are entered in decreasing order!
@@ -347,6 +367,7 @@ Example:
 * `grade 1 r/` clears previously added grade of the student at index 1.
 
 ![Grade](images/gradeAll.png)
+######Fig 11: All students in `4E1` is given an A grade after `grade all g/A` was executed.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 You cannot grade a student without having first add grading system. So, remember to do that first!
@@ -371,9 +392,13 @@ You can use this to mark your student as present.
 Format: `mark INDEX…||all`
 
 Examples:
-* `mark 1` marks the student at index 1 as present.
+* `mark 3` marks the student at index 3 as present.
 * `mark 2 3 4` marks the students at index 2, 3 and 4 as present.
 * `mark all` marks all the students present.
+  
+![mark](images/markAttendance.png) 
+######Fig 12: `Jane Doe` who was added in [add](#adding-a-student--add), is displayed with a green checkbox after `mark 3` was executed.
+
 
 <div markdown="block" class="alert alert-info">:information_source: **Info**
 This command allows you to mark multiple indexes at once. Which can save you lots of time! The check box will turn green
@@ -387,11 +412,12 @@ You can use this to mark your student as absent.
 Format: `unmark INDEX…||all`
 
 Examples:
-* `unmark 1` marks the student at index 1 as absent.
+* `unmark 3` marks the student at index 3 as absent.
 * `unmark 2 3 4` marks the students at index 2, 3 and 4 as absent.
 * `unmark all` marks all the students absent.
 
-![mark](images/markAttendance.png)
+![unmark](images/unmark.png)
+######Fig 13: `Jane Doe` who was [marked present](#marking-the-attendance-of-a-student--mark), is displayed with a red box after `unmark 3` was executed.
 
 <div markdown="block" class="alert alert-info">:information_source: **Info**
 This command allows you to unmark multiple indexes at once. Which can save you lots of time! The check box will turn red
@@ -416,6 +442,7 @@ Examples:
 * `print c/class c/email c/Signature` creates an Excel (.xls) file with four columns, student name column, class column, email column, and an empty column with title `Signature`.
 
 ![excel](images/excel.png)
+######Fig 14: Excel sheet generated from TeachBook after `print c/class c/email c/Signature` was executed.
 
 #### Sorting students : `sort`
 
@@ -430,7 +457,8 @@ Examples:
 [comment]: <> (Double check which feature should be in)
 #### Listing all students : `list`
 
-Shows the list of all students from the currently selected class or the entire TeachBook.
+Shows the list of all students from the currently selected class or the entire TeachBook. 
+The class name of the student is displayed in the top right corner of each student.
 
 Format: `list [all||absent]`
 
@@ -438,7 +466,8 @@ Format: `list [all||absent]`
 * `list all` lists all students in the TeachBook.
 * `list absent` lists all students from the currently selected class or the entire TeachBook whose status is unmarked.
 
-[comment]: <> (![list all]&#40;images/listAll.png&#41;)
+![list all](images/listAll.png)
+######Fig 15: TeachBook display after `list all` was executed.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 `list all` clears any currently selected class. As a result, any command followed by `list all` will be operating on all students in the TeachBook.
