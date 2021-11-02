@@ -208,7 +208,7 @@ Examples:
 * `deleteClass 4E4` Deletes the class named `4E4` from the TeachBook.
 
 ![deleteClass](images/deleteClass.png)
-Fig 2 :  `4E4` that was added in ![addClass](#adding-a-class--addclass) is deleted after `deleteClass 4E4` is executed, p
+Fig 2 :  `4E4` that was added in [addClass](#adding-a-class--addclass) is deleted after `deleteClass 4E4` is executed, p
 
 #### Editing a class name : `editClass`
 
