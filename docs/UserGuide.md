@@ -548,8 +548,8 @@ Action                         | Format, Examples
 **Redo previous command**      | `redo`
 **Exit**                       | `exit`
 **Add class**                  | `addClass CLASS_NAME` <br> e.g., `addClass 4E4`
-**Delete class**               | `deleteClass CLASS_NAME` <br> e.g., `deleteClass 4E5`
-**Edit class**                 | `editClass CLASS_NAME` <br> e.g., `editClass 1 ClassA`
+**Delete class**               | `deleteClass CLASS_NAME` <br> e.g., `deleteClass 4E4`
+**Edit class**                 | `editClass CLASS_NAME` <br> e.g., `editClass 1 4E5`
 **Select class**               | `select CLASS_NAME` <br> e.g., `select 4E2`
 **Add student**                | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g., `add n/Jane Doe p/91234567 e/janedoe@example.com a/21 Lower Kent Ridge Road, Singapore 119077 t/class monitor`
 **Delete student**             | <code>delete INDEX…&#124;&#124;all</code> <br> e.g., `delete 1`
