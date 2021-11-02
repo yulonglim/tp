@@ -74,10 +74,10 @@ public interface Model {
     boolean hasClass(Class aClass);
 
     /**
-     * Deletes the given class.
+     * Deletes the given class. Returns true if there is a need to update the student list panel.
      * The class must exist in the teachbook.
      */
-    void deleteClass(Class target);
+    boolean deleteClass(Class target, GeneralIndex targetIndex);
 
     /**
      * Adds the given class.
