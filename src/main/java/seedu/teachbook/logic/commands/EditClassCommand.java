@@ -14,8 +14,8 @@ public class EditClassCommand extends Command {
 
     public static final String COMMAND_WORD = "editClass";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the name of the currently selected class.\n"
-            + "Parameters: CLASSNAME\n"
-            + "Example: " + COMMAND_WORD + " Ace";
+            + "Parameter: CLASS_NAME (case-sensitive)\n"
+            + "Example: " + COMMAND_WORD + " ClassA";
 
     public static final String MESSAGE_SUCCESS = "Edited Class: %1$s";
     public static final String MESSAGE_NO_CLASS_SELECTED = "Select a class before editing class!";

@@ -452,7 +452,7 @@ once the attendance of the student is unmarked!
 
 Generates an Excel file containing students in the currently shown list.
 
-Format: `print [c/class] [c/phone] [c/email] [c/tags] [c/remark] [c/grade] [c/attendance] [c/COLUMN_TITLE]…`
+Format: `print [c/class] [c/phone] [c/email] [c/address] [c/tags] [c/remark] [c/attendance] [c/grade] [c/COLUMN_TITLE]…`
 
 * By default, the first column consist of the names of students in the currently shown list.
 * You can add one or more empty columns with customized titles.
@@ -549,9 +549,9 @@ Action                         | Format, Examples
 **Exit**                       | `exit`
 **Add class**                  | `addClass CLASS_NAME` <br> e.g., `addClass A`
 **Delete class**               | `deleteClass CLASS_NAME` <br> e.g., `deleteClass A`
-**Edit class**                 | `editClass CLASS_NAME` <br> e.g., `editClass 1 n/Ace`
+**Edit class**                 | `editClass CLASS_NAME` <br> e.g., `editClass 1 n/ClassA`
 **Select class**               | `select CLASS_NAME` <br> e.g., `select A`
-**Add student**                | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g., `add n/John Doe p/91234567 e/johndoe@example.com a/21 Lower Kent Ridge Road, Singapore 119077 b/AB+ pc/92039923 t/class treasurer`
+**Add student**                | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g., `add n/Jane Doe p/91234567 e/janedoe@example.com a/21 Lower Kent Ridge Road, Singapore 119077 b/AB+ pc/92039923 t/class treasurer`
 **Delete student**             | <code>delete INDEX…&#124;&#124;all</code> <br> e.g., `delete 1`
 **Edit student**               | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g.,`edit 2 n/Joseph Chan t/`
 **Find student**               | `find KEYWORD…` <br> e.g., `find James Jake`
@@ -561,7 +561,7 @@ Action                         | Format, Examples
 **Reset grading system**       | `resetGrade`
 **Mark student attendance**    | <code>mark INDEX…&#124;&#124;all</code> <br> e.g., `mark 1 2 3`
 **Unmark student attendance**  | <code>unmark INDEX…&#124;&#124;all</code> <br> e.g., `unmark 1 2 3`
-**Print data as Excel file**   | `print [c/class] [c/phone] [c/email] [c/tags] [c/remark] [c/grade] [c/attendance] [c/COLUMN_TITLE]…` <br> e.g. , `print c/Signature`
+**Print data as Excel file**   | `print [c/class] [c/phone] [c/email] [c/address] [c/tags] [c/remark] [c/attendance] [c/grade] [c/COLUMN_TITLE]…` <br> e.g. , `print c/Signature`
 **Sort students**              | <code>sort name&#124;&#124;grade</code>
 **List students**              | <code>list &#91;all&#124;&#124;absent&#93;</code>
 

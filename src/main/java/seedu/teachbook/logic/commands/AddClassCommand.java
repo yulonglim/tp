@@ -16,7 +16,7 @@ public class AddClassCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a class to the teachbook.\n"
-            + "Parameters: CLASSNAME\n"
+            + "Parameter: CLASS_NAME (case-sensitive)\n"
             + "Example: " + COMMAND_WORD + " A";
 
     public static final String MESSAGE_SUCCESS = "New class added: %1$s";
