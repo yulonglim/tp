@@ -50,6 +50,7 @@ towards teachers who can type fast. It allows teachers to store and organise con
 different classes. On top of that, teachers can tag the class role of the student.
 
 --------------------------------------------------------------------------------------------------------------------
+<a href="#" style="float: right;">[ Back to top ]</a>
 
 ## Quick start
 
@@ -79,6 +80,8 @@ different classes. On top of that, teachers can tag the class role of the studen
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<a href="#" style="float: right;">[ Back to top ]</a>
+
 ## Graphical User Interface
 
 In this section, we will be guiding you through the different sections of TeachBook's Graphical User Interface (GUI). 
@@ -92,6 +95,7 @@ There are a total of 5 different sections according to the image of out GUI belo
 ![](images/GUI.png)
 
 --------------------------------------------------------------------------------------------------------------------
+<a href="#" style="float: right;">[ Back to top ]</a>
 
 ## Features
 
@@ -168,6 +172,9 @@ Format: `exit`
 TeachBook will automatically save you progress if you exit the app so that you can continue working on it at a later time!
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
+<a href="#" style="float: right;">[ Back to top ]</a>
+
 ### Class related features
 #### Adding a class : `addClass`
 
@@ -217,6 +224,9 @@ Format: `select CLASS_NAME`
 
 Example:
 * `select B` selects the class named `B` from the list of classes.
+
+--------------------------------------------------------------------------------------------------------------------
+<a href="#" style="float: right;">[ Back to top ]</a>
 
 ### Student related features
 #### Adding a student : `add`
@@ -296,6 +306,9 @@ Format: `remark INDEX r/[REMARK]`
 Example:
 * `remark 1 r/Contracted COVID-19` add a remark to the student at index 1 that he has contracted COVID-19.
 
+--------------------------------------------------------------------------------------------------------------------
+<a href="#" style="float: right;">[ Back to top ]</a>
+
 ### Grade related features
 #### Setting a grading system : `setGrade`
 
@@ -335,6 +348,9 @@ all the grades which were previously given to the students.
 
 Format: `resetGrade`
 
+--------------------------------------------------------------------------------------------------------------------
+<a href="#" style="float: right;">[ Back to top ]</a>
+
 ### Attendance related features
 #### Marking the attendance of a student : `mark`
 
@@ -367,6 +383,9 @@ Examples:
 This command allows you to unmark multiple indexes at once. Which can save you lots of time! The check box will turn red
 once the attendance of the student is unmarked!
 </div>
+
+--------------------------------------------------------------------------------------------------------------------
+<a href="#" style="float: right;">[ Back to top ]</a>
 
 ### Utility features
 #### Printing to Excel : `print`
@@ -409,6 +428,9 @@ Format: `list [all||absent]`
 `list all` clears any currently selected class. As a result, any command followed by `list all` will be operating on all students in the TeachBook.
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
+<a href="#" style="float: right;">[ Back to top ]</a>
+
 ### Others
 #### Saving the data
 
@@ -421,7 +443,9 @@ TeachBook data are saved as a JSON file `[JAR file location]/data/teachbook.json
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, TeachBook will discard all data and start with an empty data file at the next run.
 </div>
+
 --------------------------------------------------------------------------------------------------------------------
+<a href="#" style="float: right;">[ Back to top ]</a>
 
 ## FAQs
 
@@ -434,6 +458,7 @@ If your changes to the data file makes its format invalid, TeachBook will discar
 [comment]: <> (file path is given in command result)
 
 --------------------------------------------------------------------------------------------------------------------
+<a href="#" style="float: right;">[ Back to top ]</a>
 
 ## Command Summary
 
