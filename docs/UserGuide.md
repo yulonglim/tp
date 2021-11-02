@@ -462,3 +462,5 @@ Action                         | Format, Examples
 **Sort students**              | <code>sort name&#124;&#124;grade</code>
 **List students**              | <code>list &#91;all&#124;&#124;absent&#93;</code>
 
+<a href="#">[ Back to top ]</a>
+
