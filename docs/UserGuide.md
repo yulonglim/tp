@@ -471,9 +471,14 @@ If your changes to the data file makes its format invalid, TeachBook will discar
 **Q**: Where does the Excel file save to after using the print command? <br>
 **A**: It will be saved to your computer's download folder. <br>
 <br>
+
+**Q**: There seems to be a lag after some commands. What can I do? <br>
+**A**: Close any background programs or applications which are not in used to possibly reduce the lag. <br>
+
 **Q**: When performing tasks on classes (e.g. deleting or selecting a class), I find it cumbersome to type the class name all the time. Can I select it by the index?
 **A**: Currently, it is still not possible. We have heard your feedback and are currently working on it to add this feature in. Do keep a look out for our next update!
 <br>
+
 
 [comment]: <> (file path is given in command result)
 
