@@ -197,6 +197,10 @@ Deletes the specified class from the TeachBook.
 
 Format: `deleteClass CLASS_NAME`
 
+<div markdown="block" class="alert alert-info">:information_source: **Info**
+We are currently working on a new feature that allows you to select a class by its index!
+</div>
+
 * Deletes the class with the specified `CLASS_NAME`
 
 Examples:
@@ -208,6 +212,11 @@ Edits the name of the currently selected class.
 
 Format: `editClass CLASS_NAME`
 
+<div markdown="block" class="alert alert-info">:information_source: **Info**
+We are currently working on a new feature that allows you to select a class by its index!
+</div>
+
+
 Examples:
 * `editClass ClassA` edits the name of the currently selected class to be `ClassA`.
 
@@ -216,6 +225,11 @@ Examples:
 Selects a class to be shown by the TeachBook.
 
 Format: `select CLASS_NAME`
+
+<div markdown="block" class="alert alert-info">:information_source: **Info**
+We are currently working on a new feature that allows you to select a class by its index!
+</div>
+
 
 * The `CLASS_NAME` to be selected is case-sensitive and must be already inside the list. If not the TeachBook will return `The class does not exist`.
 * The currently selected class will be highlighted in blue as seen in the image below where the class named `B` is selected.
@@ -457,8 +471,14 @@ If your changes to the data file makes its format invalid, TeachBook will discar
 **Q**: Where does the Excel file save to after using the print command? <br>
 **A**: It will be saved to your computer's download folder. <br>
 <br>
+
 **Q**: There seems to be a lag after some commands. What can I do? <br>
 **A**: Close any background programs or applications which are not in used to possibly reduce the lag. <br>
+
+**Q**: When performing tasks on classes (e.g. deleting or selecting a class), I find it cumbersome to type the class name all the time. Can I select it by the index?
+**A**: Currently, it is still not possible. We have heard your feedback and are currently working on it to add this feature in. Do keep a look out for our next update!
+<br>
+
 
 [comment]: <> (file path is given in command result)
 
