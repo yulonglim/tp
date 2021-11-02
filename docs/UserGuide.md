@@ -136,6 +136,62 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+#### Clearing all entries : `clear`
+
+Deletes all classes and students, and resets the grading system of the TeachBook.
+
+Format: `clear`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Don't forget that TeachBook provides an undo feature just in case you accidentally clear TeachBook of all its data!
+</div>
+
+#### Undoing a command : `undo`
+
+Allows you to undo a command that you have entered. You most likely will be using this command if you have made a mistake.
+
+Format: `undo`
+
+#### Redoing a command: `redo`
+
+Allows you to redo a command after using an undo command.
+
+Format: `redo`
+
+#### Exiting the program : `exit`
+
+Exits TeachBook.
+
+Format: `exit`
+
+<div markdown="block" class="alert alert-info">:information_source: **Info**
+TeachBook will automatically save you progress if you exit the app so that you can continue working on it at a later time!
+</div>
+
+#### Printing to Excel : `print`
+
+Generates an Excel file containing students in the currently shown list.
+
+Format: `print [c/class] [c/phone] [c/email] [c/tags] [c/remark] [c/grade] [c/attendance] [c/COLUMN_TITLE]…`
+
+* First column is always the names of students in the currently shown list.
+* You can add one or more empty columns with customized titles.
+
+Examples:
+* `print c/class c/email c/Signature` creates an Excel (.xls) file with four columns, student name column, class column, email column, and an empty column with title `Signature`.
+
+#### Saving the data
+
+TeachBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+#### Editing the data file
+
+TeachBook data are saved as a JSON file `[JAR file location]/data/teachbook.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, TeachBook will discard all data and start with an empty data file at the next run.
+</div>
+
 ### Class related features
 #### Adding a class : `addClass`
 
@@ -364,61 +420,6 @@ Format: `list [all||absent]`
 `list all` clears any currently selected class. As a result, any command followed by `list all` will be operating on all students in the TeachBook.
 </div>
 
-#### Printing to Excel : `print`
-
-Generates an Excel file containing students in the currently shown list.
-
-Format: `print [c/class] [c/phone] [c/email] [c/tags] [c/remark] [c/grade] [c/attendance] [c/COLUMN_TITLE]…`
-
-* First column is always the names of students in the currently shown list.
-* You can add one or more empty columns with customized titles.
-
-Examples:
-* `print c/class c/email c/Signature` creates an Excel (.xls) file with four columns, student name column, class column, email column, and an empty column with title `Signature`.
-
-#### Clearing all entries : `clear`
-
-Deletes all classes and students, and resets the grading system of the TeachBook.
-
-Format: `clear`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Don't forget that TeachBook provides an undo feature just in case you accidentally clear TeachBook of all its data!
-</div>
-
-#### Undoing a command : `undo`
-
-Allows you to undo a command that you have entered. You most likely will be using this command if you have made a mistake.
-
-Format: `undo`
-
-#### Redoing a command: `redo`
-
-Allows you to redo a command after using an undo command.
-
-Format: `redo`
-
-#### Exiting the program : `exit`
-
-Exits TeachBook.
-
-Format: `exit`
-
-<div markdown="block" class="alert alert-info">:information_source: **Info**
-TeachBook will automatically save you progress if you exit the app so that you can continue working on it at a later time!
-</div>
-
-#### Saving the data
-
-TeachBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-#### Editing the data file
-
-TeachBook data are saved as a JSON file `[JAR file location]/data/teachbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, TeachBook will discard all data and start with an empty data file at the next run.
-</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
