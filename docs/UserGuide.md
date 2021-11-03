@@ -129,7 +129,7 @@ There are a total of 5 different sections according to the image of out GUI belo
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+This command allows you to guide you to access the help page so that you can view the various commands available in the app.
 
 ![help message](images/helpMessage.png)
 
@@ -137,7 +137,7 @@ Format: `help`
 
 ### Adding a class : `addClass`
 
-Adds a class with the specified class name to the TeachBook.
+This command can be used to add a new class to the TeachBook so that you can manage students according to different classes.
 
 Format: `addClass CLASS_NAME`
 
@@ -152,7 +152,8 @@ There is a limit of 20 characters for the class name! But I am sure your class n
 
 ### Editing a class name : `editClass`
 
-Edits the name of the currently selected class.
+In the case where you have made misspelled your class name or are willing to change the class name, you can 
+use this command to edit the name of the currently selected class in the TeachBook.
 
 Format: `editClass CLASS_NAME`
 
@@ -161,7 +162,8 @@ Examples:
 
 ### Selecting a class : `select`
 
-Selects a class to be shown by the TeachBook.
+This command can be used to select any of the classes present in the TeachBook so that you can view the students in the 
+selected class.
 
 Format: `select CLASS_NAME`
 
@@ -175,7 +177,8 @@ Example:
 
 ### Deleting a class : `deleteClass`
 
-Deletes the specified class from the TeachBook.
+This command allows you to delete a class specified by the parameter of the command. All the students in the class will also
+be deleted so that with this command, you can delete a whole class with ease without having the need to delete individual students.
 
 Format: `deleteClass CLASS_NAME`
 
