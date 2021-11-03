@@ -5,8 +5,9 @@ title: Wilfred Wong Kang Chee's Project Portfolio Page
 
 ### Project: TeachBook
 
-TeachBook is a desktop app for teachers to manage student contacts. The user interacts with it using a CLI,
-and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC. (copied from Xin Yi's)
+TeachBook is a desktop app made for primary and secondary school teachers to manage student contacts. It is optimized for
+use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). It is 
+written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
@@ -28,7 +29,7 @@ Given below are my contributions to the project.
   * What it does: It shows the total number of students in each class and displays it on the class card.
   * Justification It is better for teachers to know the total number of students in each class with a glimpse
   * Highlight: It updates accordingly everytime a student is added or deleted.
-* Bug Fix: Fixed problem that the `clear` command does not clear the student list
+* Bug Fixed: Fixed problem that the `clear` command does not clear the student list
 * Code contributed: RepoSense link
 * Project management:
   * Created GitHub organisation for my team
@@ -37,6 +38,7 @@ Given below are my contributions to the project.
   * Designed UI mockup for the team
   * Did video recording for demo of our app (v1.3) and uploaded it onto YouTube
   * Create meeting minutes documents on Microsoft Teams for our weekly meetings
+  * Facilitated team's submissions to professors on Microsoft Teams
 * Documentation:
   * User Guide:
     * Added the introduction and the "how to use this guide"
