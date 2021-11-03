@@ -33,7 +33,8 @@ import seedu.teachbook.model.student.Student;
 import seedu.teachbook.model.tag.Tag;
 
 /**
- * Edits the details of an existing student in the teachbook.
+ * Edits the details of an existing student in the teachbook. Grade of a student cannot be changed
+ * using this command.
  */
 public class EditCommand extends Command {
 

@@ -15,6 +15,9 @@ import seedu.teachbook.model.Model;
 import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.student.Student;
 
+/**
+ * Edits a student's grade. A grading system must be present in order to edit the grades.
+ */
 public class GradeCommand extends Command {
 
     public static final String COMMAND_WORD = "grade";
@@ -38,12 +41,21 @@ public class GradeCommand extends Command {
     private final List<Index> targetIndices;
     private final boolean isAll;
 
+    /**
+     * Creates a new GradeCommand when the index of the student to grade is given along with the grade.
+     * @param targetIndices Index of the student to grade.
+     * @param grade Grade to be given to the student.
+     */
     public GradeCommand(List<Index> targetIndices, Grade grade) {
         this.grade = grade;
         this.targetIndices = targetIndices;
         this.isAll = false;
     }
 
+    /**
+     * Creates a new GradeCommand when there is no student to grade.
+     * @param grade Grade to be assigned to the specified student.
+     */
     public GradeCommand(Grade grade) {
         this.grade = grade;
         targetIndices = new ArrayList<>();

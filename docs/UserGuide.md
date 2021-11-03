@@ -183,7 +183,8 @@ TeachBook will automatically save you progress if you exit the app so that you c
 ### Class related features
 #### Adding a class : `addClass`
 
-Adds a class with the specified class name to the TeachBook.
+This command allows you to add a new class with the name CLASS_NAME specified in the command parameter. You can start
+organising the class by adding students to the added class.
 
 Format: `addClass CLASS_NAME`
 
@@ -199,7 +200,9 @@ There is a limit of 20 characters for the class name! But I am sure your class n
 
 #### Deleting a class : `deleteClass`
 
-Deletes the specified class from the TeachBook.
+This command deletes the class with the name CLASS_NAME specified in the command parameter. All the students
+in the class will also be deleted, so that with this command, you can easily delete a whole class without the need
+to delete individual students.
 
 Format: `deleteClass CLASS_NAME`
 
@@ -217,7 +220,8 @@ Fig 2: `4E4` that was added in [addClass](#adding-a-class--addclass) is deleted 
 
 #### Editing a class name : `editClass`
 
-Edits the name of the currently selected class.
+Just in case you made a spelling mistake in your class name or willing to change the name of the class, you can use
+this command to edit the name of the currently selected class to CLASS_NAME specified in the command parameter.
 
 Format: `editClass CLASS_NAME`
 
@@ -234,7 +238,8 @@ Fig 3: `4E4` that was added in [addClass](#adding-a-class--addclass) is now `4E5
 
 #### Selecting a class : `select`
 
-Selects a class to be shown by the TeachBook.
+This command allow you to navigate to the class with CLASS_NAME specified in the command parameter so that you can 
+view the students in the selected class.
 
 Format: `select CLASS_NAME`
 
@@ -258,7 +263,8 @@ Fig 4: `4E2` is highlighted in blue with its students list after `select 4E2` wa
 ### Student related features
 #### Adding a student : `add`
 
-You can use this command to add a student into the currently selected class.
+Start organising your classes by adding students! This command allows you to add a new student to the 
+currently selected class.
 
 Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
@@ -279,7 +285,7 @@ Fig 5: `Jane Doe` is added after second command under Examples was executed.
 
 #### Deleting a student : `delete`
 
-Deletes the specified student from the TeachBook.
+Just in case you have added a student to the wrong class, this command helps you to remove the student from the currently selected class!
 
 Format: `delete INDEX…||all`
 
@@ -296,7 +302,7 @@ Fig 6: `Jane Doe` who was added in [add](#adding-a-student--add), has been remov
 
 #### Editing a student : `edit`
 
-Edits the basic information of an existing student in the TeachBook.
+Any change in students' information can be reflected in the TeachBook using this command to edit students' information accordingly.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
@@ -316,7 +322,8 @@ Fig 7: `Jane Doe` who was added in [add](#adding-a-student--add), has been renam
 
 #### Locating students by name : `find`
 
-Finds students whose name contain any of the given keywords.
+Scrolling through the whole list of students to find a specific student is often time-consuming. You can use this command to navigate 
+directly to the student you are willing to find.
 
 Format: `find KEYWORD…`
 
@@ -335,7 +342,7 @@ Fig 8: `Jane Doe` who was added in [add](#adding-a-student--add), is displayed i
 
 #### Adding a remark to a student : `remark`
 
-TeachBook allows you to add special remarks for students.
+If there is comments you would like to leave for any students, you can do so with ease with this command.
 
 Format: `remark INDEX r/[REMARK]`
 
@@ -403,7 +410,7 @@ Format: `resetGrade`
 ### Attendance related features
 #### Marking the attendance of a student : `mark`
 
-You can use this to mark your student as present.
+You can use this to mark your student as present. The `present` checkbox will turn green with a tick indicating successful marking of attendance.
 
 Format: `mark INDEX…||all`
 
@@ -427,7 +434,8 @@ After marking, you can retrieve the attendance list with the `print c/attendance
 
 #### Unmarking the attendance of a student : `unmark`
 
-You can use this to mark your student as absent.
+Just in case you have accidentally marked your student present, you can always unmark them with this command. 
+This command also allows you to unmark all the attendance for the selected class so that you can clear your attendance with ease for a new day.
 
 Format: `unmark INDEX…||all`
 
@@ -450,7 +458,8 @@ once the attendance of the student is unmarked!
 ### Utility features
 #### Printing to Excel : `print`
 
-Generates an Excel file containing students in the currently shown list.
+This command generates an Excel file containing students in the currently shown list, with personalised columns as specified in the command parameter.
+You can use this command to obtain a physical copy of TeachBook so that you can submit this list to the management if required.
 
 Format: `print [c/class] [c/phone] [c/email] [c/address] [c/tags] [c/remark] [c/attendance] [c/grade] [c/COLUMN_TITLE]…`
 

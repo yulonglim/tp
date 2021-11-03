@@ -5,6 +5,10 @@ import static java.util.Objects.requireNonNull;
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
 
+/**
+ * Removes a currently used grading system. Existing grading system must be reset
+ * before setting a new grading system.
+ */
 public class ResetGradeCommand extends Command {
 
     public static final String COMMAND_WORD = "resetGrade";

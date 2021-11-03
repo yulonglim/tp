@@ -9,6 +9,11 @@ import seedu.teachbook.model.Model;
 import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.gradeobject.GradingSystem;
 
+/**
+ * Sets a grading system in the teachbook. A grading system is a set of grades the user specifies
+ * which the user will use to grade the students. Setting a grading system is compulsory before
+ * giving students their grades.
+ */
 public class SetGradeCommand extends Command {
 
     public static final String COMMAND_WORD = "setGrade";
