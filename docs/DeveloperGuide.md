@@ -639,7 +639,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List students in the currently selected class using `list` command or list all students in TeachBook using `list all` command.
 
     2. Test case: `edit 1 n/Jane p/1234`<br>
-       Expected: First student in the list is being edited. Name of the student is changed to `Jane` and phone number of the stuent is changed to `1234`
+       Expected: First student in the list is being edited. Name of the student is changed to `Jane` and phone number of the student is changed to `1234`
     3. Test case: `edit 1`<br>
        Expected: No student is edited. Error details shown in the status message that at least one field has to be specified for edit.
     4. Other incorrect edit commands to try: `edit`, `edit nothing` `edit /nJane /p1234`
