@@ -5,6 +5,10 @@ import seedu.teachbook.model.Model;
 import seedu.teachbook.model.gradeobject.GradeComparator;
 import seedu.teachbook.model.student.NameComparator;
 
+/**
+ * Sorts the students according to their grade in descending order,
+ * or according to their name in alphabetical order.
+ */
 public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
@@ -20,6 +24,11 @@ public class SortCommand extends Command {
     private final boolean isName;
     private final boolean isGrade;
 
+    /**
+     * Creates a new SortCommand according to the sort option, either name or grade.
+     * @param isName This parameter is True when the user is willing to sort the students according to their name
+     * @param isGrade This parameter is True when the user is willing to sort the students according to their grades.
+     */
     public SortCommand(boolean isName, boolean isGrade) {
         this.isName = isName;
         this.isGrade = isGrade;

@@ -10,6 +10,9 @@ import seedu.teachbook.model.Model;
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
 
+/**
+ * Edits the name of the curently selected class. Students present in the class remains unchanged.
+ */
 public class EditClassCommand extends Command {
 
     public static final String COMMAND_WORD = "editClass";
