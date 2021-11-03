@@ -14,7 +14,6 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.util.Pair;
 import seedu.teachbook.commons.core.GuiSettings;
 import seedu.teachbook.commons.core.LogsCenter;
 import seedu.teachbook.commons.core.index.GeneralIndex;
@@ -129,17 +128,37 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteClass(Class target) {
+    public boolean deleteClass(Class target, GeneralIndex targetIndex) {
+        assert !targetIndex.equals(INDEX_NO_CLASS);
+        assert teachBook.getClassAtIndex(targetIndex).equals(target);
         teachBook.removeClass(target);
+
+        if (currentlySelectedClassIndex.equals(INDEX_LIST_ALL)) {
+            updateCurrentlySelectedClass(INDEX_LIST_ALL);
+            return true;
+        }
 
         if (teachBook.getNumOfClasses() == 0) {
             updateCurrentlySelectedClass(INDEX_NO_CLASS);
-        } else if (currentlySelectedClassIndex.getOneBased() > teachBook.getNumOfClasses()) {
-            // set currently selected class to the last class in the list
-            updateCurrentlySelectedClass(GeneralIndex.fromOneBased(teachBook.getNumOfClasses()));
+            return true;
+        }
+
+        if (targetIndex.equals(currentlySelectedClassIndex)) { // currently selected class is deleted
+            if (currentlySelectedClassIndex.getOneBased() > teachBook.getNumOfClasses()) {
+                // currently selected class is the last class -> set currently selected class to the last class
+                updateCurrentlySelectedClass(GeneralIndex.fromOneBased(teachBook.getNumOfClasses()));
+            } else {
+                // remain same index
+                updateCurrentlySelectedClass(currentlySelectedClassIndex);
+            }
+            return true;
+        } else if (targetIndex.isSmallerThan(currentlySelectedClassIndex)) {
+            // minus currently selected class index by one, there is no need to update student list panel
+            currentlySelectedClassIndex = currentlySelectedClassIndex.minusOne();
+            return false;
         } else {
-            // same index but different class
-            updateCurrentlySelectedClass(currentlySelectedClassIndex);
+            // there is no need to update student list panel
+            return false;
         }
     }
 
@@ -276,16 +295,16 @@ public class ModelManager implements Model {
 
     @Override
     public void undoTeachBook() {
-        Pair<Predicate<Student>, GeneralIndex> previousDisplay = this.teachBook.undo();
-        this.updateCurrentlySelectedClass(previousDisplay.getValue());
-        this.updateFilteredStudentList(previousDisplay.getKey());
+        TeachbookDisplayState previousDisplay = this.teachBook.undo();
+        this.updateCurrentlySelectedClass(previousDisplay.getIndex());
+        this.updateFilteredStudentList(previousDisplay.getPredicate());
     }
 
     @Override
     public void redoTeachBook() {
-        Pair<Predicate<Student>, GeneralIndex> previousDisplay = this.teachBook.redo();
-        this.updateCurrentlySelectedClass(previousDisplay.getValue());
-        this.updateFilteredStudentList(previousDisplay.getKey());
+        TeachbookDisplayState previousDisplay = this.teachBook.redo();
+        this.updateCurrentlySelectedClass(previousDisplay.getIndex());
+        this.updateFilteredStudentList(previousDisplay.getPredicate());
     }
 
     @Override

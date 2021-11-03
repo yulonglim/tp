@@ -14,7 +14,9 @@ import seedu.teachbook.model.student.Student;
 import seedu.teachbook.model.tag.Tag;
 
 /**
- * Switches to another class identified using its name.
+ * Print an Excel sheet according to current class.
+ *
+ * @author Lim Yu Long
  */
 public class PrintCommand extends Command {
 
@@ -31,15 +33,14 @@ public class PrintCommand extends Command {
             + "[" + PREFIX_COLUMN + "remark] "
             + "[" + PREFIX_COLUMN + "attendance] "
             + "[" + PREFIX_COLUMN + "grade] "
-            + "[" + PREFIX_COLUMN + "COLUMN_TITLE_1] "
-            + "[" + PREFIX_COLUMN + "COLUMN_TITLE_2]...\n"
+            + "[" + PREFIX_COLUMN + "COLUMN_TITLE]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_COLUMN + "class "
             + PREFIX_COLUMN + "phone "
             + PREFIX_COLUMN + "address "
             + PREFIX_COLUMN + "attendance "
             + PREFIX_COLUMN + "grade "
-            + PREFIX_COLUMN + "Sign Here";
+            + PREFIX_COLUMN + "Signature";
 
     public static final String MESSAGE_SUCCESS = "Excel file generated under directory %1$s";
     public static final String MESSAGE_EXCEL_OPEN = "Print failed! An Excel file with conflicting name is opened, "
@@ -47,6 +48,9 @@ public class PrintCommand extends Command {
 
     private final List<String> columnList;
 
+    /**
+     * Creates a PrintCommand to print the specified {@code ColumnList}
+     */
     public PrintCommand(List<String> columnList) {
         this.columnList = columnList;
     }

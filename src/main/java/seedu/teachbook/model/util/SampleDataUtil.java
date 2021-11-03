@@ -47,7 +47,7 @@ public class SampleDataUtil {
                 getTagSet(), new Attendance(false, LocalDateTime.now()), new Grade("B")),
             new Student(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new Remark("Needs to improve on maths."),
-                getTagSet("vice monitor"), new Attendance(false, LocalDateTime.now()), new Grade("F")),
+                getTagSet("vice monitor"), new Attendance(false, LocalDateTime.now()), new Grade("D")),
             new Student(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"), new Remark(""),
                 getTagSet(), new Attendance(false, LocalDateTime.now()), new Grade("")),
@@ -58,7 +58,7 @@ public class SampleDataUtil {
     }
 
     public static List<Grade> getSampleGrades() {
-        return List.of(new Grade("A"), new Grade("B"), new Grade("C"), new Grade("F"));
+        return List.of(new Grade("A"), new Grade("B"), new Grade("C"), new Grade("D"));
     }
 
     public static ReadOnlyTeachBook getSampleTeachBook() {

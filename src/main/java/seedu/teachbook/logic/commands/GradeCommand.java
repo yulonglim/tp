@@ -24,10 +24,10 @@ public class GradeCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the grade of one or more students identified "
             + "by the index number used in the displayed student list.\n"
-            + "Parameters: INDEX1 [INDEX2]... [all] "
+            + "Parameters: INDEX...||all "
             + PREFIX_GRADE + "[GRADE]\n"
-            + "Example: "
-            + COMMAND_WORD + " 1 " + PREFIX_GRADE + "F, "
+            + "Examples: "
+            + COMMAND_WORD + " 1 " + PREFIX_GRADE + "C, "
             + COMMAND_WORD + " 2 4 5 " + PREFIX_GRADE + "B, "
             + COMMAND_WORD + " all " + PREFIX_GRADE + "A";
 
