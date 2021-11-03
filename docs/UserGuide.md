@@ -272,6 +272,10 @@ Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 A student can have any number of tags (including 0)
 </div>
 
+<div markdown="block" class="alert alert-info">:information_source: **Info**
+For now you won't be able to students with the exact same name (although highly unlikely). This feature will be available in future updates.
+</div>
+
 * A class must be selected before adding a student.
 * Everything is optional except for name of the student.
 * You can add multiple tags by adding more `t/` flags.
