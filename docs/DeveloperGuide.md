@@ -623,16 +623,117 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `delete 0`<br>
       Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+   
+### Editing a student
 
-1. _{ more test cases ... }_
+1. Editing a student from list of students
+
+    1. Prerequisites: List students in the currently selected class using `list` command or list all students in TeachBook using `list all` command.
+
+    2. Test case: `edit 1 n/Jane p/1234`<br>
+       Expected: First student in the list is being edited. Name of the student is changed to `Jane` and phone number of the stuent is changed to `1234`
+    3. Test case: `edit 1`<br>
+       Expected: No student is edited. Error details shown in the status message that at least one field has to be specified for edit.
+    4. Other incorrect edit commands to try: `edit`, `edit nothing` `edit /nJane /p1234`
+       Expected: Similar to previous test case.
+
+### Editing name of the class
+
+1. Editing the name of the currently selected class.
+
+    1. Prerequisites: A class has to be selected using the `select` command.
+    2. Test case: `editClass 4E1`<br>
+       Expected: Name of the currently selected class will change to `4E1`. No changes will be made to existing students in the class.
+    3. Test case: `editClass 4E1` followed by `editClass 4E1`<br>
+       Expected: Error details are shown in the status message that the class already exists in the TeachBook.
+    4. Test case: `editClass`<br>
+       Expected: Error details are shown in the status message that the CLASS_NAME parameter is missing.
+
+### Setting a grading system in TeachBook
+
+1. Setting a grading system in TeachBook when there is no grading system present.
+
+    1. Prerequisites: There has to be no existing grading system present in TeachBook.
+    2. Test case: `setGrade A>B>C>D>E`<br>
+       Expected: Grading system is set for TeachBook in descending order from the highest grade `A` to the lowest grade `E`.
+    3. Test case: `setGrade A`<br>
+       Expected: Grading system is set for TeachBook with a single grade `A`
+    4. Test case: `setGrade`<br>
+       Expected: Error details are shown in the status message that the grade parameter is missing.
+
+
+2. Setting a grading system in TeachBook when there is an existing grading system.
+
+    1. Prerequisites: There is an existing grading system in TeachBook.
+    2. Test case: `setGrade A>B>C>D>E`<br>
+       Expected: Error details are shown in the status message that there is already an existing grading system.
+    3. Test case: `setGrade`<br>
+       Expected: Error details are shown in the status message that the grade parameter is missing.
+
+### Resetting a grading system in TeachBook
+
+1. Resetting a grading system in TeachBook when there is an existing grading system.
+    
+    1. Prerequisites: There is an existing grading system in TeachBook
+    2. Test case: `resetGrade`<br>
+       Expected: Message indicating successful resetting of grade is shown.
+
+2. Resetting a grading system in TeachBook when there is no grading system present.
+
+   1. Prerequisites: There is no grading system present in TeachBook.
+   2. Test case: `resetGrade`<br>
+      Expected: Error details are shown in the status message that there is no grading system to reset.
+
+### Grading a student
+
+Prerequisites: Students are listed using `list` command or `list all` command.
+
+1. Giving grades to students when there is an existing grading system.
+
+    1. Prerequisites: There is an existing grading system in TeachBook with grades `A>B>C>D>E`
+    2. Test case: `grade 1 g/A`<br>
+       Expected: First student in the list is graded with an `A`.
+    3. Test case: `grade 1 g/F`<br>
+       Expected: Error details are shown in the status message that the given grade is invalid.
+
+2. Giving grades to students when there is no grading system present.
+
+    1. Prerequisites: There is no grading system present in TeachBook.
+    2. Test case: `grade 2 g/C`<br>
+       Expected: Error details are shown in the status message that a grading system has to be set before grading students.
+
+### Sorting students
+
+Prerequisites: Students are listed using `list` command or `list all` command.
+
+1. Sorting students according to grade when there is an existing grading system in TeachBook.
+
+    1. Prerequisites: There is an existing grading system in TeachBook.
+    2. Test case: `sort grade`<br>
+       Expected: Students are sorted according to their grades in descending order as specified by the grading system.
+
+2. Sorting students according to grade when there is no grading system present in TeachBook.
+
+    1. Prerequisites: There is no grading system present in TeachBook.
+    2. Test case: `sort grade`<br>
+       Expected: Error details are shown in the status message that a grading system has to be set before sorting according to grade.
+
+3. Sorting students according to name in alphabetical order
+
+    1. Test case: `sort name`<br>
+       Expected: Students are sorted according to their name in alphabetical order.
+
+
+
+2. _{ more test cases ... }_
 
 ### Saving data
 
