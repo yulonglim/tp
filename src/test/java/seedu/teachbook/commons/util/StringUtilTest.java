@@ -39,7 +39,7 @@ public class StringUtilTest {
 
         // EP: number larger than Integer.MAX_VALUE
         assertTrue(StringUtil.isInteger(Long.toString(Integer.MAX_VALUE + 1)));
-        assertTrue(StringUtil.isInteger("99999999999999999999999999999999999999999999999999"));
+        assertTrue(StringUtil.isInteger("999999999999999999999999999999999999999999"));
 
         // EP: valid numbers, should return true
         assertTrue(StringUtil.isInteger("1")); // Boundary value
