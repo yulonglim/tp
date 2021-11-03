@@ -1,9 +1,13 @@
 package seedu.teachbook.logic.parser;
 
 import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_REMARK;
 
+import java.util.stream.Stream;
+
 import seedu.teachbook.commons.core.index.Index;
+import seedu.teachbook.logic.commands.GradeCommand;
 import seedu.teachbook.logic.commands.RemarkCommand;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
 import seedu.teachbook.model.student.Remark;
@@ -28,9 +32,17 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE), pe);
         }
 
+        if (!arePrefixesPresent(argMultimap, PREFIX_REMARK)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE));
+        }
+
         String remark = argMultimap.getValue(PREFIX_REMARK).orElse("");
 
         return new RemarkCommand(index, new Remark(remark));
+    }
+
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }
