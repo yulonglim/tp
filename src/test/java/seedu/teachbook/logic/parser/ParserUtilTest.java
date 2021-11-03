@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.teachbook.testutil.Assert.assertThrows;
 import static seedu.teachbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.teachbook.testutil.TypicalIndexes.INDEX_MAX_INTEGER;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -40,11 +41,11 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseIndex("10 a"));
     }
 
-//    @Test
-//    public void parseIndex_outOfRangeInput_throwsParseException() {
-//        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-//            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
-//    }
+    @Test
+    public void parseIndex_outOfIntegerRangeInput_returnsMaxInteger() throws ParseException {
+        assertEquals(INDEX_MAX_INTEGER, ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+        assertEquals(INDEX_MAX_INTEGER, ParserUtil.parseIndex("999999999999999999999999999999999999999999"));
+    }
 
     @Test
     public void parseIndex_validInput_success() throws Exception {
