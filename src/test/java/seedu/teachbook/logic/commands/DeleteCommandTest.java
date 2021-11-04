@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.teachbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.teachbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.teachbook.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.teachbook.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static seedu.teachbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.teachbook.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.teachbook.testutil.TypicalStudents.getTypicalTeachBook;
@@ -18,6 +18,7 @@ import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.model.Model;
 import seedu.teachbook.model.ModelManager;
 import seedu.teachbook.model.UserPrefs;
+import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.student.Student;
 
 /**
@@ -30,15 +31,18 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(List.of(INDEX_FIRST_PERSON));
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
-
         ModelManager expectedModel = new ModelManager(model.getTeachBook(), new UserPrefs());
-        expectedModel.deleteStudent(studentToDelete);
+        Student studentToDelete = expectedModel.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        expectedModel.deleteStudent(studentToDelete);
+        expectedModel.commitTeachBook();
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false, true, false);
+
+        assertCommandSuccess(deleteCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
@@ -51,27 +55,32 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showStudentAtIndex(model, INDEX_FIRST_PERSON);
 
-        Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(List.of(INDEX_FIRST_PERSON));
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
-
         Model expectedModel = new ModelManager(model.getTeachBook(), new UserPrefs());
+        showStudentAtIndex(expectedModel, INDEX_FIRST_PERSON); // add a predicate for versioned teachbook
+        Student studentToDelete = expectedModel.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         expectedModel.deleteStudent(studentToDelete);
-        showNoPerson(expectedModel);
+        expectedModel.commitTeachBook();
+        showNoStudent(expectedModel); // empty filtered student list
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false, true, false);
+
+        assertCommandSuccess(deleteCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showStudentAtIndex(model, INDEX_FIRST_PERSON);
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of teachbook book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getTeachBook().getStudentList().size());
+        // ensures that outOfBoundIndex is still in bounds of the student list of the currently selected class
+        Class currentlySelectedClass = model.getTeachBook().getClassList()
+                .get(model.getCurrentlySelectedClassIndex().getZeroBased());
+        assertTrue(outOfBoundIndex.getZeroBased() < currentlySelectedClass.getClassSize());
 
         DeleteCommand deleteCommand = new DeleteCommand(List.of(outOfBoundIndex));
 
@@ -103,7 +112,7 @@ public class DeleteCommandTest {
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoPerson(Model model) {
+    private void showNoStudent(Model model) {
         model.updateFilteredStudentList(p -> false);
 
         assertTrue(model.getFilteredStudentList().isEmpty());

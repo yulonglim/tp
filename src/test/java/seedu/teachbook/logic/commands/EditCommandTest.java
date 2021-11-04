@@ -10,7 +10,7 @@ import static seedu.teachbook.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.teachbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.teachbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.teachbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.teachbook.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.teachbook.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static seedu.teachbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.teachbook.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.teachbook.testutil.TypicalStudents.getTypicalTeachBook;
@@ -84,7 +84,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showStudentAtIndex(model, INDEX_FIRST_PERSON);
 
         Student studentInFilteredList = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student editedStudent = new StudentBuilder(studentInFilteredList).withName(VALID_NAME_BOB).build();
@@ -110,7 +110,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_duplicatePersonFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showStudentAtIndex(model, INDEX_FIRST_PERSON);
 
         // edit student in filtered list into a duplicate in teachbook book
         Student studentInList = model.getTeachBook().getStudentList().get(INDEX_SECOND_PERSON.getZeroBased());
@@ -135,7 +135,7 @@ public class EditCommandTest {
      */
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showStudentAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of teachbook book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getTeachBook().getStudentList().size());
