@@ -69,7 +69,7 @@ public class ExcelUtilTest {
             filePath = ExcelUtil.toExcel(toPrint);
             assertFalse(filePath == null);
         } catch (IOException e) {
-            assertThrows(FileNotFoundException.class  , () -> ExcelUtil.toExcel(toPrint));
+            assertThrows(FileNotFoundException.class , () -> ExcelUtil.toExcel(toPrint));
         }
 
         assertFalse(filePath == null);
