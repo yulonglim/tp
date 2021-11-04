@@ -12,20 +12,29 @@ import seedu.teachbook.model.student.Student;
  */
 
 public class TypicalClasses {
-    public static Class A = new ClassBuilder().withName("A").build();
-    public static Class B = new ClassBuilder().withName("B").build();
+    private static Class aClass = new ClassBuilder().withName("A").build();
+    private static Class bClass = new ClassBuilder().withName("B").build();
 
 
     private TypicalClasses() {}
 
-    public static List<Class> getTypicalClasses() {
-        A = new ClassBuilder().withName("A").build();
-        B = new ClassBuilder().withName("B").build();
-        for (Student student : TypicalStudents.getTypicalStudents()) {
-            student.setStudentClass(A);
-            A.addStudent(student);
-        }
-        return new ArrayList<>(Arrays.asList(A , B));
+    public static Class getAClass() {
+        return aClass;
     }
+
+    public static Class getBClass() {
+        return bClass;
+    }
+
+    public static List<Class> getTypicalClasses() {
+        aClass = new ClassBuilder().withName("A").build();
+        bClass = new ClassBuilder().withName("B").build();
+        for (Student student : TypicalStudents.getTypicalStudents()) {
+            student.setStudentClass(aClass);
+            aClass.addStudent(student);
+        }
+        return new ArrayList<>(Arrays.asList(aClass, bClass));
+    }
+
 
 }
