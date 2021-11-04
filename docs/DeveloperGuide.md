@@ -280,11 +280,11 @@ named `A`.
 
 ![AddClassSequenceDiagram](images/AddClassSequenceDiagram.png)
 
-### \[Proposed\] Undo/redo feature
+### Undo/redo feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedTeachBook`. It extends `TeachBook` with an undo/redo history, stored internally as an `teachBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The undo/redo mechanism is facilitated by `VersionedTeachBook`. It extends `TeachBook` with an undo/redo history, stored internally as an `teachBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
 * `VersionedTeachBook#commit()` — Saves the current teach book state in its history.
 * `VersionedTeachBook#undo()` — Restores the previous teach book state from its history.
@@ -292,17 +292,19 @@ The proposed undo/redo mechanism is facilitated by `VersionedTeachBook`. It exte
 
 These operations are exposed in the `Model` interface as `Model#commitTeachBook()`, `Model#undoTeachBook()` and `Model#redoTeachBook()` respectively.
 
+`Model#undoTeachBook()` and `Model#redoTeachBook()` will return display settings to update the model accordingly.
+
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedTeachBook` will be initialized with the initial teach book state, and the `currentStatePointer` pointing to that single teach book state.
+Step 1. The user launches the application for the first time. The `VersionedTeachBook` will be initialized with the initial TeachbookDataState, and the `currentStatePointer` pointing to that single teach book state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th student in the teach book. The `delete` command calls `Model#commitTeachBook()`, causing the modified state of the teach book after the `delete 5` command executes to be saved in the `teachBookStateList`, and the `currentStatePointer` is shifted to the newly inserted teach book state.
+Step 2. The user executes `delete 5` command to delete the 5th student in the Teachbook. The `delete` command calls `Model#commitTeachBook()`, causing the modified TeachbookDatastate after the `delete 5` command executes to be saved in the `teachBookStateList`, and the `currentStatePointer` is shifted to the newly inserted teach book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David ...` to add a new student. The `add` command also calls `Model#commitTeachBook()`, causing another modified teach book state to be saved into the `teachBookStateList`.
+Step 3. The user executes `add n/David ...` to add a new student. The `add` command also calls `Model#commitTeachBook()`, causing another modified TeachbookDatastate to be saved into the `teachBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -310,7 +312,7 @@ Step 3. The user executes `add n/David ...` to add a new student. The `add` comm
 
 </div>
 
-Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoTeachBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous teach book state, and restores the teach book to that state.
+Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoTeachBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous teach book state, and restores the Teachbook to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -349,7 +351,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire teach book.
+* **Alternative 1 (choice):** Saves the entire teach book.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
@@ -357,13 +359,7 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
+  
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -403,28 +399,32 @@ Priorities: High (must have) - `* * *` , Medium (nice to have) - `* *` , Low (un
 
 | Priority | As a ...                                                  | I want to ...                                                                                   | So that I can ...                                                                        |
 | -------- | --------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `* * *`  | new user                                                  | see usage instructions                                                                          | refer to instructions when I forget how to use the App                                   |
-| `* * *`  | teacher                                                   | add students                                                                                    |                                                                                          |
-| `* *`    | teacher                                                   | modify contacts                                                                                 | change information easily rather than creating a new contact to replace the previous one |
-| `* *`    | teacher with students whom require special attention      | add important information about my students such as diet, allergy and existing health condition | I can quickly react to any medical emergency                                             |
-| `* *`    | teacher who likes to keep work and personal life separate | have separate personal contacts with school contacts                                            | my contact list won't be overpopulated                                                   |
-| `* *`    | teacher                                                   | easily contact students' parents                                                                | the parents can address to any matters as soon as possible                               |
-| `* * *`  | teacher                                                   | delete students with specific ID                                                                | remove specific students who are no longer in my class                                   |
-| `* * *`  | teacher                                                   | find a student by name                                                                          | locate details of students without having to go through the entire list                  |
-| `* *`    | teacher                                                   | sort students by name                                                                           | locate a student easily                                                                  |
-| `* *`    | teacher                                                   | Add all students from a class at once                                                           | quickly add the information of the students in each class.                               |
-| `* *`    | teacher                                                   | delete all students from a class at once                                                        | quickly clean up the TeachBook when I no longer teach s class                            |
-| `* *`    | teacher                                                   | filter all students by tag                                                                      | easily locate all students with the same tag (probably having something in common)       |
-| `*`      | teacher who wants to remember students I have taught      | remove all students I no longer teach but keep a record of the list in another file             | start over with a clean slate and can retrieve records I need in the future              |
-| `* *`    | teacher                                                   | undo the most recent command                                                                    | easily revert everything to the previous state                                           |
-| `*`      | teacher                                                   | remove all students from the contact                                                            | clear my contact in one go                                                               |
-| `* *`    | teacher                                                   | separate personal contacts with school contacts                                                 | prevent my contact list from overpopulating                                              |
-| `* *`    | teacher                                                   | assign a class role to a student                                                                | identify students through their class role                                               |
-| `* *`    | teacher                                                   | assign multiple class roles to a student                                                        | need not to assign class roles to student one at a time                                  |
-| `*`      | teacher                                                   | view the list of all students                                                                   | have an overview of all my students                                                      |
-| `*`      | teacher                                                   | view the information of a student                                                               | take a closer look at a student's information                                            |
+| `* * *` | new user | get instructions | refer to instructions when I forget how to use the Teachbook |
+| `* * *` | teacher | add the students I teach |  |
+| `* * *` | teacher | remove students from my contacts | remove specific students who are no longer take my classes |
+| `* * *` | teacher | search for my students in my contacts | get a student's information easily  |
+| `* * *` | teacher | view my student's information | contact them easily |
+| `* * *` | teacher | separate my students by classes | better sort my contacts |
+| `* * *` | teacher | separate my students by classes | not mix up students with similar names but from different classes |
+| `* *` | teacher | modify contacts | change information easily rather than creating a new contact to replace the previous one |
+| `* *` | teacher with students whom require special attention | add important information about my students such as diet, allergies or health conditions | quickly react to any emergency related to these information |
+| `* *` | teacher | contact student parents | inform parents if any incident happen to the child |
+| `* *` | teacher | easily store the grades of my students | remember how well each student is doing in my classes |
+| `* *` | teacher | sort my students by grade | quickly find out groups of students which require more help |
+| `* *` | teacher | set a special grading system | customize my grading system just in case it changes in the future |
+| `* *` | teacher | delete a class with its data all at once | quickly remove the class I have stopped teaching |
+| `* *` | teacher | clear the Teachbook data all at once | get a fresh Teachbook at the start of the year  |
+| `* *` | teacher | filter my students using keywords | quickly list out specific students |
+| `* *` | teacher | undo the most recent command | revert any mistakes I make quickly |
+| `* *` | teacher | redo the most recent undo | redo any accidental undos |
+| `*` | teacher | set special tags for my students | tag my students with extra information |
+| `*` | teacher | print out a list of students | do any administrative work that requires a hard copy document |
+| `*` | teacher | print out a list of students with their information | do not have to manually input all the information |
+| `*` | teacher | view the list of all students | have an overview of all my students |
+| `*` | teacher | add all students from a class at once | quickly add the information of the students in each class |
+| `*` | teacher | archive my Teachbook data | start over with a clean slate and can retrieve records I need in the future |
+| `*` | teacher | able to load a different Teachbook data to my Teachbook  | easily transfer any data from one device to another |
 
-*{More to be added}*
 
 ### Use cases
 
@@ -566,15 +566,64 @@ Extensions:
    * 1a1. TeachBook displays error.
   
      Use case ends.
+   
+
+**Use case: UC?? - print**
+
+MSS:
+
+1. Teacher print an Excel sheet of all the students.
+2. TeachBook displays that the Excel sheet is generated and is stored in a specific folder path.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. Teacher does not have Excel on the device.
+    * 1a1. TeachBook displays error.
+
+      Use case ends.
+
+**Use case: UC?? - undo**
+
+MSS:
+
+1. Teacher undo a recent command.
+2. TeachBook displays the exact state before the previous command was executed.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. Teachbook does not have any commands to undo.
+    * 1a1. TeachBook displays error telling user no commands to undo.
+
+      Use case ends.
+
+**Use case: UC?? - redo**
+
+MSS:
+
+1. Teacher redo a recent undo command.
+2. TeachBook displays the exact state before the previous undo command was executed.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. Teachbook does not have any undo commands to redo.
+    * 1a1. TeachBook displays error telling user no commands to redo.
+
+      Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1. The app should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. The TeachBook should be able to hold up to 1000 students without a noticeable sluggishness (being able to respond to any command within 3 seconds) in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. The source code should be open source.
+2. The TeachBook should be able to hold up to 1000 students and 30 classes without a noticeable sluggishness (being able to respond to any command within 5 seconds) in performance for typical usage.
+4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+5. The source code should be open source.
 
 *{More to be added}*
 
