@@ -1,11 +1,9 @@
 package seedu.teachbook.commons.util;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.teachbook.logic.commands.PrintCommand.generateColumn;
 
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
