@@ -31,7 +31,8 @@ public class TypicalStudents {
             .withEmail("alice@example.com")
             .withAddress("123, Jurong West Ave 6, #08-111")
             .withRemark("Allergic to seafood.")
-            .withTags("friends")
+            .withTags("monitor")
+            .withAttendance("Absent 2021-11-02T00:15:10.749009800")
             .build();
     public static final Student BENSON = new StudentBuilder()
             .withName("Benson Meier")
@@ -40,7 +41,8 @@ public class TypicalStudents {
             .withEmail("johnd@example.com")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withRemark("Needs to improve on maths.")
-            .withTags("owesMoney", "friends")
+            .withTags("vice monitor")
+            .withAttendance("Present 2021-11-02T00:15:10.749009800")
             .build();
     public static final Student CARL = new StudentBuilder()
             .withName("Carl Kurz")
@@ -49,14 +51,14 @@ public class TypicalStudents {
             .withEmail("heinz@example.com")
             .withAddress("wall street")
             .build();
-    public static final Student DANIEL = new StudentBuilder()
-            .withName("Daniel Meier")
-            .withPhone("87652533")
-            .withClass("A")
-            .withEmail("cornelia@example.com")
-            .withAddress("10th street")
-            .withTags("friends")
-            .build();
+//    public static final Student DANIEL = new StudentBuilder()
+//            .withName("Daniel Meier")
+//            .withPhone("87652533")
+//            .withClass("A")
+//            .withEmail("cornelia@example.com")
+//            .withAddress("10th street")
+//            .withTags("friends")
+//            .build();
     public static final Student ELLE = new StudentBuilder()
             .withName("Elle Meyer")
             .withPhone("9482224")
@@ -71,17 +73,17 @@ public class TypicalStudents {
             .withEmail("lydia@example.com")
             .withAddress("little tokyo")
             .build();
-    public static final Student GEORGE = new StudentBuilder()
-            .withName("George Best")
-            .withPhone("9482442")
-            .withClass("A")
-            .withEmail("anna@example.com")
-            .withAddress("4th street")
-            .build();
+//    public static final Student GEORGE = new StudentBuilder()
+//            .withName("George Best")
+//            .withPhone("9482442")
+//            .withClass("A")
+//            .withEmail("anna@example.com")
+//            .withAddress("4th street")
+//            .build();
 
     // Manually added
     public static final Student HOON = new StudentBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withAddress("little india").build();
+            .withEmail("stefan@example.com").withAddress("little india").withClass("A").build();
     public static final Student IDA = new StudentBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave").build();
 
@@ -114,6 +116,6 @@ public class TypicalStudents {
     }
 
     public static List<Student> getTypicalStudents() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON));
     }
 }

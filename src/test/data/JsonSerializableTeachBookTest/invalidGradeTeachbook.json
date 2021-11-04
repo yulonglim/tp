@@ -18,11 +18,11 @@
       "remark" : "Needs to improve on maths.",
       "tagged" : [ "vice monitor" ],
       "attendance" : "Present 2021-11-02T00:15:10.749009800",
-      "grade" : ""
+      "grade" : "C"
     } ]
   }, {
     "className" : "B",
     "classList" : [ ]
   } ],
-  "gradeList" : [ ]
+  "gradeList" : [ "A" , "B"]
 }

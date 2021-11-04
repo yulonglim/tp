@@ -49,6 +49,19 @@ public class Student {
         this.grade = grade;
     }
 
+    public Student(Student toCopy) {
+        this.name = toCopy.getName();
+        this.phone = toCopy.getPhone();
+        this.studentClass = toCopy.getStudentClass();
+        this.email = toCopy.getEmail();
+        this.address = toCopy.getAddress();
+        this.remark = toCopy.getRemark();
+        this.tags.addAll(toCopy.getTags());
+        this.attendance = toCopy.getAttendance();
+        this.grade = toCopy.getGrade();
+        this.studentClass = toCopy.getStudentClass();
+    }
+
     public Name getName() {
         return name;
     }

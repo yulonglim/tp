@@ -1,27 +1,28 @@
 {
-  "persons": [ {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "alice@example.com",
-    "address": "123, Jurong West Ave 6, #08-111",
-    "remark": "",
-    "tagged": [ "friends" ]
-  }, {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "pauline@example.com",
-    "address": "4th street",
-    "remark": "empty"
-  } ],
   "classes" : [ {
-    "className" : "A"
+    "className" : "A",
+    "classList" : [ {
+      "name" : "Alice Pauline",
+      "phone" : "94351253",
+      "email" : "alice@example.com",
+      "address" : "123, Jurong West Ave 6, #08-111",
+      "remark" : "Allergic to seafood.",
+      "tagged" : [ "monitor" ],
+      "attendance" : "Absent 2021-11-02T00:15:10.749009800",
+      "grade" : ""
+    }, {
+      "name" : "Alice Pauline",
+      "phone" : "94351253",
+      "email" : "alice@example.com",
+      "address" : "123, Jurong West Ave 6, #08-111",
+      "remark" : "Allergic to seafood.",
+      "tagged" : [ "monitor" ],
+      "attendance" : "Absent 2021-11-02T00:15:10.749009800",
+      "grade" : ""
+    } ]
   }, {
-    "className" : "B"
-  }, {
-    "className" : "C"
-  }, {
-    "className" : "D"
-  }, {
-    "className" : "E"
-  } ]
+    "className" : "B",
+    "classList" : [ ]
+  } ],
+  "gradeList" : [ ]
 }
