@@ -71,7 +71,5 @@ public class ExcelUtilTest {
         } catch (IOException e) {
             assertThrows(FileNotFoundException.class , () -> ExcelUtil.toExcel(toPrint));
         }
-
-        assertFalse(filePath == null);
     }
 }
