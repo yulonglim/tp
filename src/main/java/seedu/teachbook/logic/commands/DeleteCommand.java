@@ -13,7 +13,7 @@ import seedu.teachbook.model.Model;
 import seedu.teachbook.model.student.Student;
 
 /**
- * Deletes students identified using the displayed indices from the teachbook.
+ * Deletes students identified using the displayed indices from the TeachBook.
  */
 public class DeleteCommand extends Command {
 
@@ -30,11 +30,19 @@ public class DeleteCommand extends Command {
     private final List<Index> targetIndices;
     private final boolean isAll;
 
+    /**
+     * Creates a {@code DeleteCommand} to delete students at the specified {@code targetIndices}.
+     *
+     * @param targetIndices the index numbers of the students in the filtered student list to be deleted.
+     */
     public DeleteCommand(List<Index> targetIndices) {
         this.targetIndices = targetIndices;
         isAll = false;
     }
 
+    /**
+     * Creates a {@code DeleteCommand} to delete all students in the filtered student list.
+     */
     public DeleteCommand() {
         targetIndices = new ArrayList<>();
         this.isAll = true;
@@ -79,6 +87,7 @@ public class DeleteCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndices.equals(((DeleteCommand) other).targetIndices)); // state check
+                && targetIndices.equals(((DeleteCommand) other).targetIndices)
+                && isAll == ((DeleteCommand) other).isAll); // state check
     }
 }
