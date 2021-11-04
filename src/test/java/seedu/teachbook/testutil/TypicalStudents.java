@@ -17,7 +17,6 @@ import java.util.List;
 
 import seedu.teachbook.model.TeachBook;
 import seedu.teachbook.model.classobject.Class;
-import seedu.teachbook.model.classobject.ClassName;
 import seedu.teachbook.model.student.Student;
 
 /**
@@ -28,7 +27,7 @@ public class TypicalStudents {
     public static final Student ALICE = new StudentBuilder()
             .withName("Alice Pauline")
             .withPhone("94351253")
-//            .withClass("A")
+            .withClass("A")
             .withEmail("alice@example.com")
             .withAddress("123, Jurong West Ave 6, #08-111")
             .withRemark("Allergic to seafood.")
@@ -37,7 +36,7 @@ public class TypicalStudents {
     public static final Student BENSON = new StudentBuilder()
             .withName("Benson Meier")
             .withPhone("98765432")
-//            .withClass("A")
+            .withClass("A")
             .withEmail("johnd@example.com")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withRemark("Needs to improve on maths.")
@@ -46,14 +45,14 @@ public class TypicalStudents {
     public static final Student CARL = new StudentBuilder()
             .withName("Carl Kurz")
             .withPhone("95352563")
-//            .withClass("A")
+            .withClass("A")
             .withEmail("heinz@example.com")
             .withAddress("wall street")
             .build();
     public static final Student DANIEL = new StudentBuilder()
             .withName("Daniel Meier")
             .withPhone("87652533")
-//            .withClass("A")
+            .withClass("A")
             .withEmail("cornelia@example.com")
             .withAddress("10th street")
             .withTags("friends")
@@ -61,21 +60,21 @@ public class TypicalStudents {
     public static final Student ELLE = new StudentBuilder()
             .withName("Elle Meyer")
             .withPhone("9482224")
-//            .withClass("A")
+            .withClass("A")
             .withEmail("werner@example.com")
             .withAddress("michegan ave")
             .build();
     public static final Student FIONA = new StudentBuilder()
             .withName("Fiona Kunz")
             .withPhone("9482427")
-//            .withClass("A")
+            .withClass("A")
             .withEmail("lydia@example.com")
             .withAddress("little tokyo")
             .build();
     public static final Student GEORGE = new StudentBuilder()
             .withName("George Best")
             .withPhone("9482442")
-//            .withClass("A")
+            .withClass("A")
             .withEmail("anna@example.com")
             .withAddress("4th street")
             .build();
@@ -98,20 +97,23 @@ public class TypicalStudents {
     private TypicalStudents() {} // prevents instantiation
 
     /**
-     * Returns an {@code TeachBook} with all the typical students.
+     * Returns an {@code TeachBook} with all the typical students in typical classes.
      */
     public static TeachBook getTypicalTeachBook() {
         TeachBook tb = new TeachBook();
-        Class studentClass = new Class(new ClassName("A"));
-        tb.addClass(studentClass);
-        for (Student student : getTypicalPersons()) {
-            student.setStudentClass(studentClass);
-            studentClass.addStudent(student);
-        }
+        List<Class> typicalClassList = TypicalClasses.getTypicalClasses();
+        Class typicalA = typicalClassList.get(0);
+        Class typicalB = typicalClassList.get(1);
+        Class studentClassA = new Class(typicalA.getClassName());
+        Class studentClassB = new Class(typicalB.getClassName());
+        studentClassA.setStudentsOfThisClass(typicalA.getUniqueStudentListOfThisClass());
+        studentClassB.setStudentsOfThisClass(typicalB.getUniqueStudentListOfThisClass());
+        tb.addClass(studentClassA);
+        tb.addClass(studentClassB);
         return tb;
     }
 
-    public static List<Student> getTypicalPersons() {
+    public static List<Student> getTypicalStudents() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

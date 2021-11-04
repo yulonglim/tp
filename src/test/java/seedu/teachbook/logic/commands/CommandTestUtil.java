@@ -55,6 +55,7 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG
             + "123456789012345678901234567890"; // tag name should have <30 characters
+    public static final String INVALID_CLASSNAME_DESC = " !"; //'!' not allowed in classnames
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
