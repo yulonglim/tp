@@ -1,6 +1,7 @@
 package seedu.teachbook.commons.util;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.teachbook.logic.commands.PrintCommand.generateColumn;
 
 import java.io.IOException;
@@ -19,7 +20,7 @@ public class ExcelUtilTest {
 
 
     @Test
-    public void isPrinted() {
+    public void isPrinted() throws IOException {
         List<List<String>> toPrint = new ArrayList<>();
         List<String> studentNames = new ArrayList<>();
         List<String> columnList = new ArrayList<>();
@@ -37,11 +38,11 @@ public class ExcelUtilTest {
         String filePath = null;
         try {
             filePath = ExcelUtil.toExcel(toPrint);
+            assertFalse(filePath == null);
         } catch (IOException e) {
-            e.printStackTrace();
+            assertThrows(SecurityException.class , () -> ExcelUtil.toExcel(toPrint));
         }
 
-        assertFalse(filePath == null);
     }
 
     @Test
@@ -65,8 +66,9 @@ public class ExcelUtilTest {
         String filePath = null;
         try {
             filePath = ExcelUtil.toExcel(toPrint);
+            assertFalse(filePath == null);
         } catch (IOException e) {
-            e.printStackTrace();
+            assertThrows(SecurityException.class , () -> ExcelUtil.toExcel(toPrint));
         }
 
         assertFalse(filePath == null);
