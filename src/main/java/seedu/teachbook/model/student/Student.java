@@ -145,7 +145,7 @@ public class Student {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, studentClass, email, address, remark, tags, attendance, grade);
+        return Objects.hash(name, phone, studentClass.getClassName(), email, address, remark, tags, attendance, grade);
     }
 
     @Override
