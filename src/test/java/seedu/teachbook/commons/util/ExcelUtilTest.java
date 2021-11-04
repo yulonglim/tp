@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.teachbook.logic.commands.PrintCommand.generateColumn;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,7 +41,7 @@ public class ExcelUtilTest {
             filePath = ExcelUtil.toExcel(toPrint);
             assertFalse(filePath == null);
         } catch (IOException e) {
-            assertThrows(SecurityException.class , () -> ExcelUtil.toExcel(toPrint));
+            assertThrows(FileNotFoundException.class , () -> ExcelUtil.toExcel(toPrint));
         }
 
     }
@@ -68,7 +69,7 @@ public class ExcelUtilTest {
             filePath = ExcelUtil.toExcel(toPrint);
             assertFalse(filePath == null);
         } catch (IOException e) {
-            assertThrows(SecurityException.class , () -> ExcelUtil.toExcel(toPrint));
+            assertThrows(FileNotFoundException.class  , () -> ExcelUtil.toExcel(toPrint));
         }
 
         assertFalse(filePath == null);
