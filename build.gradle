@@ -27,7 +27,6 @@ run {
 test {
     useJUnitPlatform()
     exclude 'seedu/teachbook/logic/commands/AddCommandIntegrationTest.class' // xinyi
-    exclude 'seedu/teachbook/logic/commands/DeleteCommandTest.class' // shufan
     exclude 'seedu/teachbook/logic/commands/EditCommandTest.class' // yunseong
     exclude 'seedu/teachbook/logic/commands/FindCommandTest.class' // xinyi
     exclude 'seedu/teachbook/logic/commands/ListCommandTest.class' // shufan

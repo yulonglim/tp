@@ -1,7 +1,7 @@
 package seedu.teachbook.logic.commands;
 
 import static seedu.teachbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.teachbook.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.teachbook.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static seedu.teachbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.teachbook.testutil.TypicalStudents.getTypicalTeachBook;
 
@@ -33,7 +33,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showStudentAtIndex(model, INDEX_FIRST_PERSON);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

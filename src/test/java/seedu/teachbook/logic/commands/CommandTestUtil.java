@@ -16,6 +16,7 @@ import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.logic.commands.exceptions.CommandException;
 import seedu.teachbook.model.Model;
 import seedu.teachbook.model.TeachBook;
+import seedu.teachbook.model.VersionedTeachBook;
 import seedu.teachbook.model.student.NameContainsKeywordsPredicate;
 import seedu.teachbook.model.student.Student;
 import seedu.teachbook.testutil.EditPersonDescriptorBuilder;
@@ -106,7 +107,7 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        TeachBook expectedTeachBook = new TeachBook(actualModel.getTeachBook());
+        TeachBook expectedTeachBook = new VersionedTeachBook(actualModel.getTeachBook());
         List<Student> expectedFilteredList = new ArrayList<>(actualModel.getFilteredStudentList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
@@ -117,7 +118,7 @@ public class CommandTestUtil {
      * Updates {@code model}'s filtered list to show only the student at the given {@code targetIndex} in the
      * {@code model}'s teachbook book.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
+    public static void showStudentAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredStudentList().size());
 
         Student student = model.getFilteredStudentList().get(targetIndex.getZeroBased());

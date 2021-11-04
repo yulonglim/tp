@@ -7,6 +7,7 @@ import static seedu.teachbook.model.gradeobject.GradingSystem.NOT_GRADED;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -316,13 +317,17 @@ public class TeachBook implements ReadOnlyTeachBook {
 
     @Override
     public ObservableList<Student> getStudentList() {
+        generateStudentList();
+        return students.asUnmodifiableObservableList();
+    }
+
+    public void generateStudentList() {
         students = new UniqueStudentList();
         for (Class studentClass : classes) {
             for (Student student : studentClass.getStudentsOfThisClass()) {
                 students.add(student);
             }
         }
-        return students.asUnmodifiableObservableList();
     }
 
     public boolean isEmpty() {
@@ -340,7 +345,7 @@ public class TeachBook implements ReadOnlyTeachBook {
 
     @Override
     public int hashCode() {
-        return students.hashCode() + classes.hashCode();
+        return Objects.hash(classes, students, gradingSystem);
     }
 
 }
