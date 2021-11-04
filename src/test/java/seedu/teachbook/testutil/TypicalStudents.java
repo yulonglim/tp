@@ -17,6 +17,8 @@ import java.util.List;
 
 import seedu.teachbook.model.TeachBook;
 import seedu.teachbook.model.classobject.Class;
+import seedu.teachbook.model.gradeobject.Grade;
+import seedu.teachbook.model.gradeobject.GradingSystem;
 import seedu.teachbook.model.student.Student;
 
 /**
@@ -112,6 +114,8 @@ public class TypicalStudents {
         studentClassB.setStudentsOfThisClass(typicalB.getUniqueStudentListOfThisClass());
         tb.addClass(studentClassA);
         tb.addClass(studentClassB);
+        GradingSystem typicalGradeSystem = new GradingSystem(Arrays.asList(new Grade("A") , new Grade("B")));
+        tb.setGradingSystem(typicalGradeSystem);
         return tb;
     }
 
