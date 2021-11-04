@@ -15,13 +15,15 @@ import seedu.teachbook.testutil.TypicalClasses;
 
 
 public class ExcelUtilTest {
-    List<Student> studentList = TypicalClasses.getAClass().getStudentsOfThisClass();
-    List<List<String>> toPrint = new ArrayList<>();
-    List<String> studentNames = new ArrayList<>();
-    List<String> columnList = new ArrayList<>();
+    private static final List<Student> studentList = TypicalClasses.getAClass().getStudentsOfThisClass();
+
 
     @Test
     public void isPrinted() {
+        List<List<String>> toPrint = new ArrayList<>();
+        List<String> studentNames = new ArrayList<>();
+        List<String> columnList = new ArrayList<>();
+
         studentNames.add("Name");
         for (Student s : studentList) {
             studentNames.add(s.getName().fullName);
