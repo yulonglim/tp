@@ -6,7 +6,6 @@ import static seedu.teachbook.logic.parser.ParserUtil.arePrefixesPresent;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.logic.commands.GradeCommand;

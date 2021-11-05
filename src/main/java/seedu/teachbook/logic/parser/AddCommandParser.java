@@ -10,7 +10,6 @@ import static seedu.teachbook.logic.parser.ParserUtil.arePrefixesPresent;
 
 import java.time.LocalDateTime;
 import java.util.Set;
-import java.util.stream.Stream;
 
 import seedu.teachbook.logic.commands.AddCommand;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
