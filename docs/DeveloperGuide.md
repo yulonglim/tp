@@ -186,6 +186,31 @@ To integrate the new class feature into the existing AB3 product, we decided tha
     * Similar to _Alternative 2_, there is still the need to maintain the order of students in the unique student list.
     * We always need a predicate to screen out students of the currently selected class. Since users may interact with a specific class at most times, this can degrade the performance of most commands.
 
+### Synchronization of Student List in Model and UI
+
+To ensure synchronization throughout the program, `ModelManager` maintains a `filteredStudents` observable, which is 
+observed by `MainWindow`. `filteredStudents` contains the list of students to be displayed in the UI.
+
+![UiAndModel](images/UiAndModel.png)
+
+`SelectCommand` and `ListCommand` with the `all` option i.e., `list all` are the only two commands that will modify the
+`filteredStudents` entirely, i.e., a new observable is created and replaces the existing observable, via 
+`ModelManager#updateSourceOfFilteredStudentList()`. However, this change is not observed by `MainWindow` as `MainWindow`
+only observes changes within the observable, i.e., the previous `filteredStudents` observable, and not the changes to
+the `filteredStudents` variable itself, which contains the observable. To mitigate this issue, the 
+`updateStudentListPanel` flag, in the `commandResult` returned after the execution of both `SelectCommand` and 
+`ListCommand` with the `all` option, is set to `true`. The flag then triggers the `MainWindow` to retrieve the new 
+`filteredStudents` observable via the `MainWindow#updateStudentListPannel()` and start observing changes in the new 
+observable. Thereafter, the student list in the UI is again in sync with the student list in the Model.
+
+Below is the sequence diagram of the execution of the `SelectCommand`.
+
+![SelectSequenceDiagram](images/SelectSequenceDiagram.png)
+
+Below is the sequence diagram of the execution of the `ListCommand` with the `all` option.
+
+![ListAllSequenceDiagram](images/ListAllSequenceDiagram.png)
+
 ### Delete class feature
 
 #### Implementation
@@ -209,30 +234,6 @@ The following object diagram shows the updated TeachBook:
 #### Design considerations
 
 _{To be updated later}_
-
-### Synchronization of Student List in Model and UI
-
-To ensure synchronization throughout the program, `ModelManager` maintains a `filteredStudents` observable, which is 
-observed by `MainWindow`. `filteredStudents` contains the list of students to be displayed in the UI.
-
-![UiAndModel](images/UiAndModel.png)
-
-`SelectCommand` and `ListCommand` with the `all` option i.e., `list all` are the only two commands that will modify the
-`filteredStudents` entirely, i.e., a new observable is created and replaces the existing observable, via 
-`ModelManager#updateSourceOfFilteredStudentList()`. However, this change is not observed by `MainWindow` as `MainWindow`
-only observes changes within the observable, i.e., the previous `filteredStudents` observable. To mitigate this issue,
-the `updateStudentListPanel` flag, in the `commandResult` returned after the execution of both `SelectCommand` and 
-`ListCommand` with the `all` option, is set to `true`. The flag then triggers the `MainWindow` to retrieve the new 
-`filteredStudents` observable via the `MainWindow#updateStudentListPannel()` and start observing changes in the new 
-observable. Thereafter, the student list in the UI is again in sync with the student list in the Model.
-
-Below is the sequence diagram of the execution of the `SelectCommand`.
-
-![SelectSequenceDiagram](images/SelectSequenceDiagram.png)
-
-Below is the sequence diagram of the execution of the `ListCommand` with the `all` option.
-
-![ListAllSequenceDiagram](images/ListAllSequenceDiagram.png)
 
 ### Implementations of some features
 
@@ -259,6 +260,35 @@ the student's name at index 1 of the current class to john
 Given below is the activity diagram for the same scenario above
 
 ![EditCommandActivityDiagram](images/EditCommandActivityDiagram.png)
+
+### Filtering
+
+Filtering is an essential feature to have when it comes to an application that stores data. This is because with 
+filtering, users can access information with ease in the shortest time possible.
+
+With reference to the discussion on 
+[*Synchronization of Student List in Model and UI*](#synchronization-of-student-list-in-model-and-ui) earlier, 
+at any point of time, `filteredStudents` will contain either the list of all students from the currently 
+selected class or the list of all students from all classes. By making `filteredStudents` a `FilteredList<Student>`,
+filtering can be done easily to both the list of all students from a class and the list of all students from all classes
+by just passing in the corresponding `Predicate<Student>`. For example, `FindCommand` and `ListCommand` with the 
+`absent` option filter the `filteredStudents` via `ModelManager#updateFilteredStudentList()` by passing in the 
+`NameContainsKeywordsPredicate` and `StudentIsAbsentPredicate` respectively. To "clear" the filter on the other hand, 
+there is the `ListCommand` which utilizes the `ModelManager#updateFilteredStudentList()` as well but passing in
+`PREDICATE_SHOW_ALL_STUDENTS` instead. Note that because filtering is done on the `filteredStudent` observable, the 
+changes will be observed by the `MainWindow` and the result of filtering will be reflected immediately in the UI.
+
+Below is the sequence diagram of the execution of the `FindCommand`.
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+Below is the sequence diagram of the execution of the `ListCommand` with the `absent` option.
+
+![ListAbsentSequenceDiagram](images/ListAbsentSequenceDiagram.png)
+
+Below is the sequence diagram of the execution of the `ListCommand`.
+
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
 ### 2. Add class feature
 
@@ -541,33 +571,76 @@ Extensions:
 
       Use case resumes at step 1.
 
-<br>
-
-**Use case: UC?? - List All the Students**
+**Use case: UC?? - List Students from A Class**
 
 MSS:
 
-1. User requests to list students.
-2. TeachBook shows a list of all the students.
+1. User <ins>select a class (UC??)<ins>.
+2. User requests to list students from the class.
+3. TeachBook shows a list of students from the class.
 
    Use case ends.
 
-**Use case: UC?? - Tag a Student**
+**Use case: UC?? - List Students from All Classes**
 
 MSS:
 
-1. Teacher assigns a class role to a student.
-2. TeachBook displays the student with the corresponding class role.
+1. User requests to list students from all classes.
+2. TeachBook shows a list of students from all classes.
+
+   Use case ends.
+
+**Use case: UC?? - List Absent Students from A Class**
+
+MSS:
+
+1. User <ins>select a class (UC??)<ins>.
+2. User requests to list absent students from the class.
+3. TeachBook shows a list of absent students from the class.
+
+   Use case ends.
+
+**Use case: UC?? - List Absent Students from All Classes**
+
+MSS:
+
+1. User requests to <ins>list all classes (UC??)<ins>.
+2. User requests to list absent students from all classes.
+3. TeachBook shows a list of absent students from all classes.
+
+   Use case ends.
+
+**Use case: UC?? - Mark a Student as Present**
+
+MSS:
+
+1. User marks a student as present.
+2. TeachBook displays the student with his attendance marked.
 
    Use case ends.
 
 Extensions:
 
 * 1a. Student does not exist.
-   * 1a1. TeachBook displays error.
-  
-     Use case ends.
-   
+    * 1a1. TeachBook displays error.
+
+      Use case ends.
+
+**Use case: UC?? - Mark a Student as Absent**
+
+MSS:
+
+1. User marks a student as absent.
+2. TeachBook displays the student with his attendance unmarked.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. Student does not exist.
+    * 1a1. TeachBook displays error.
+
+      Use case ends.
 
 **Use case: UC?? - print**
 
@@ -695,6 +768,18 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect edit commands to try: `edit`, `edit nothing` `edit /nJane /p1234`
        Expected: Similar to previous test case.
 
+### Deleting a class
+
+1. Deleting a class.
+
+    1. Prerequisites: Multiple classes in the list.
+    2. Test case: `deleteClass 4E1` where 4E1 is in the list. <br>
+       Expected: Class 4E1 is deleted from the list. Details of the deleted class shown in the status message.
+    3. Test case: `deleteClass 4E1` where 4E1 is not in the list. <br>
+       Expected: No class is deleted. Error details shown in the status message.
+    4. Test case: `deleteClass` <br>
+       Expected: Similar to previous.
+
 ### Editing name of the class
 
 1. Editing the name of the currently selected class.
@@ -781,9 +866,39 @@ Prerequisites: Students are listed using `list` command or `list all` command.
     1. Test case: `sort name`<br>
        Expected: Students are sorted according to their name in alphabetical order.
 
+### Marking a student as present
 
+1. Marking a student as present from list of students.
 
-2. _{ more test cases ... }_
+    1. Prerequisites: At least three students in the list.
+    2. Test case: `mark 1`<br>
+       Expected: First student from the list is marked as present. Details of the marked student shown in the status message.
+    3. Test case: `mark 1 2 3` <br>
+       Expected: First, second and third students from the list are marked as present. Details of the marked students shown in the status message.
+    4. Test case: `mark 2 1 3` <br>
+       Expected: Similar to previous. 
+    5. Test case: `mark 0`<br>
+       Expected: No student is marked. Error details shown in the status message.
+    6. Other incorrect `mark` commands to try: `mark`, `mark random`, `mark x`, `mark 1 2 x`, `...` (where x is non-positive or larger than the list size) <br>
+       Expected: Similar to previous.
+
+### Marking a student as absent
+
+1. Marking a student as absent from list of students.
+
+    1. Prerequisites: At least three students in the list.
+    2. Test case: `unmark 1`<br>
+       Expected: First student from the list is marked as absent. Details of the marked student shown in the status message.
+    3. Test case: `unmark 1 2 3` <br>
+       Expected: First, second and third students from the list are marked as absent. Details of the marked students shown in the status message.
+    4. Test case: `unmark 2 1 3` <br>
+       Expected: Similar to previous.
+    5. Test case: `unmark 0`<br>
+       Expected: No student is unmarked. Error details shown in the status message.
+    6. Other incorrect `unmark` commands to try: `unmark`, `unmark random`, `unmark x`, `unmark 1 2 x`, `...` (where x is non-positive or larger than the list size) <br>
+       Expected: Similar to previous.
+
+3. _{ more test cases ... }_
 
 ### Saving data
 
