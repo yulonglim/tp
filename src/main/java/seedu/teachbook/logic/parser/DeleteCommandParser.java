@@ -9,14 +9,17 @@ import seedu.teachbook.logic.commands.DeleteCommand;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DeleteCommand object
+ * Parses input arguments and creates a new {@code DeleteCommand} object.
  */
 public class DeleteCommandParser implements Parser<DeleteCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteCommand
-     * and returns a DeleteCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * Parses the given {@code String} of arguments in the context of the {@code DeleteCommand}
+     * and returns a {@code DeleteCommand} object for execution.
+     *
+     * @param args input arguments to be parsed.
+     * @return a {@code DeleteCommand} object as a result of the parsing of the input arguments.
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public DeleteCommand parse(String args) throws ParseException {
         if (ParserUtil.parseAll(args)) {

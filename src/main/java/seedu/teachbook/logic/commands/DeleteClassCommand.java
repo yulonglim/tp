@@ -50,10 +50,10 @@ public class DeleteClassCommand extends Command {
         }
 
         Class classToDelete = classes.get(classIndex.getZeroBased());
-        boolean shouldUpdateStudentListPanel = model.deleteClass(classToDelete, classIndex);
+        boolean updateStudentListPanel = model.deleteClass(classToDelete, classIndex);
         model.commitTeachBook();
         return new CommandResult(String.format(MESSAGE_DELETE_CLASS_SUCCESS, classToDelete),
-                false, false, true, shouldUpdateStudentListPanel);
+                false, false, true, updateStudentListPanel);
     }
 
     @Override
