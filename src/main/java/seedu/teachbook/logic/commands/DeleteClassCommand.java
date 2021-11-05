@@ -13,21 +13,25 @@ import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.classobject.exceptions.NoClassWithNameException;
 
 /**
- * Deletes a class identified using its name.
+ * Deletes a class, identified using its name, from the TeachBook.
  */
 public class DeleteClassCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteClass";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the class identified by its name.\n"
-            + "Parameters: CLASSNAME (case-sensitive)\n"
-            + "Example: " + COMMAND_WORD + " A";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes the class identified by its name.\n"
+            + "Parameter: CLASS_NAME (case-sensitive)\n"
+            + "Example: " + COMMAND_WORD + "4E1";
 
-    public static final String MESSAGE_DELETE_CLASS_SUCCESS = "Deleted Class: %1$s";
+    public static final String MESSAGE_DELETE_CLASS_SUCCESS = "Deleted class: %1$s";
 
     private final ClassNameDescriptor className;
 
+    /**
+     * Creates a DeleteClassCommand to delete the class, described by the specified {@code ClassNameDescriptor}.
+     *
+     * @param className Class name descriptor of the class to be deleted from the TeachBook.
+     */
     public DeleteClassCommand(ClassNameDescriptor className) {
         this.className = className;
     }
@@ -35,6 +39,7 @@ public class DeleteClassCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         List<Class> classes = model.getUniqueClassList();
         GeneralIndex classIndex;
 
@@ -45,10 +50,13 @@ public class DeleteClassCommand extends Command {
         }
 
         Class classToDelete = classes.get(classIndex.getZeroBased());
+
         model.deleteClass(classToDelete);
+
         model.commitTeachBook();
-        return new CommandResult(String.format(MESSAGE_DELETE_CLASS_SUCCESS, classToDelete),
-                false, false, true, true);
+
+        return new CommandResult(String.format(MESSAGE_DELETE_CLASS_SUCCESS, classToDelete), false, false,
+                true, true);
     }
 
     @Override

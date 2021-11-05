@@ -15,13 +15,13 @@ import seedu.teachbook.model.Model;
 import seedu.teachbook.model.student.Student;
 
 /**
- * Adds a student to the teachbook.
+ * Adds a student to the TeachBook.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the teachbook.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the TeachBook.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + "[" + PREFIX_PHONE + "PHONE] "
@@ -31,23 +31,24 @@ public class AddCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_EMAIL + "johnd@gmail.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "class monitor";
 
-    public static final String MESSAGE_SUCCESS = "New student added: %1$s";
-    public static final String MESSAGE_NO_CLASS = "Add the first class before adding any student!";
-    public static final String MESSAGE_LIST_ALL = "Select a class before adding any student!";
+    public static final String MESSAGE_ADD_STUDENT_SUCCESS = "New student added: %1$s";
+    public static final String MESSAGE_NO_CLASS = "Add a class before adding any student";
+    public static final String MESSAGE_LIST_ALL = "Select a class before adding any student";
 
-    private final Student toAdd;
+    private final Student studentToAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Student}
+     * Creates an AddCommand to add the specified {@code Student}.
+     *
+     * @param studentToAdd Student to be added to the TeachBook.
      */
-    public AddCommand(Student student) {
-        requireNonNull(student);
-        toAdd = student;
+    public AddCommand(Student studentToAdd) {
+        requireNonNull(studentToAdd);
+        this.studentToAdd = studentToAdd;
     }
 
     @Override
@@ -57,19 +58,20 @@ public class AddCommand extends Command {
         if (model.getCurrentlySelectedClassIndex().equals(INDEX_NO_CLASS)) {
             throw new CommandException(MESSAGE_NO_CLASS);
         }
-
         if (model.getCurrentlySelectedClassIndex().equals(INDEX_LIST_ALL)) {
             throw new CommandException(MESSAGE_LIST_ALL);
         }
 
-        model.setClassForStudent(toAdd);
-        if (model.hasStudent(toAdd)) {
+        model.setClassForStudent(studentToAdd);
+
+        if (model.hasStudent(studentToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
-        model.addStudent(toAdd);
+        model.addStudent(studentToAdd);
         model.commitTeachBook();
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, false,
+
+        return new CommandResult(String.format(MESSAGE_ADD_STUDENT_SUCCESS, studentToAdd), false, false,
                 true, false);
     }
 
@@ -77,7 +79,6 @@ public class AddCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                && studentToAdd.equals(((AddCommand) other).studentToAdd));
     }
-
 }

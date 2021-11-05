@@ -18,29 +18,37 @@ import seedu.teachbook.model.student.Attendance;
 import seedu.teachbook.model.student.Student;
 
 /**
- * Marks students, identified using the displayed indices from the teachbook, as absent.
+ * Marks students, identified using their displayed indices, as absent.
  */
 public class UnmarkCommand extends Command {
 
     public static final String COMMAND_WORD = "unmark";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks one or students, identified by the index number "
-            + "used in the displayed student list, as absent.\n"
-            + "Parameters: INDEX1 [INDEX2]... [all]\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks one or more students, identified by their index "
+            + "numbers used in the displayed student list, as absent.\n"
+            + "Parameters: INDEX…||all\n"
             + "Example: " + COMMAND_WORD + " 1, " + COMMAND_WORD + " 2 4 5, " + COMMAND_WORD + " all";
 
     public static final String MESSAGE_UNMARK_STUDENT_SUCCESS = "Marked %1$s absent at %2$s";
-    public static final String MESSAGE_NOTHING_TO_UNMARK = "There is nothing to unmark as there are no students.";
+    public static final String MESSAGE_NOTHING_TO_UNMARK = "There is nothing to unmark";
 
     private final List<Index> targetIndices;
     private final boolean isAll;
 
+    /**
+     * Creates an UnmarkCommand to mark the students, identified by the indices in the specified {@code List<Index>},
+     * as absent.
+     *
+     * @param targetIndices List of indices, each identifying a student to be marked as absent.
+     */
     public UnmarkCommand(List<Index> targetIndices) {
         this.targetIndices = targetIndices;
         isAll = false;
     }
 
+    /**
+     * Creates an UnmarkCommand to mark all students as absent.
+     */
     public UnmarkCommand() {
         targetIndices = new ArrayList<>();
         isAll = true;
@@ -48,7 +56,10 @@ public class UnmarkCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        // Although there is a noticeable code duplication to MarkCommand, we decided to not extract out the
+        // similarities because mark and unmark are different commands after all
         requireNonNull(model);
+
         List<Student> lastShownList = model.getFilteredStudentList();
 
         if (isAll) {
@@ -78,11 +89,13 @@ public class UnmarkCommand extends Command {
                     new Attendance(false, now), studentToUnmark.getGrade());
             model.setStudent(studentToUnmark, editedStudent);
         }
+
         Collections.reverse(studentToUnmarkNames);
 
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
 
         model.commitTeachBook();
+
         return new CommandResult(String.format(MESSAGE_UNMARK_STUDENT_SUCCESS,
                 String.join(", ", studentToUnmarkNames),
                 now.format(DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a", Locale.ENGLISH))),
