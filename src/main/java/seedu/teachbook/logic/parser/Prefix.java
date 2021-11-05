@@ -7,21 +7,27 @@ package seedu.teachbook.logic.parser;
 public class Prefix {
     private final String prefix;
 
+    /**
+     * Constructs a {@code Prefix} object.
+     *
+     * @param prefix Prefix string.
+     */
     public Prefix(String prefix) {
         this.prefix = prefix;
     }
 
+    /**
+     * Returns the prefix.
+     *
+     * @return prefix.
+     */
     public String getPrefix() {
         return prefix;
     }
 
+    @Override
     public String toString() {
         return getPrefix();
-    }
-
-    @Override
-    public int hashCode() {
-        return prefix == null ? 0 : prefix.hashCode();
     }
 
     @Override
@@ -35,5 +41,10 @@ public class Prefix {
 
         Prefix otherPrefix = (Prefix) obj;
         return otherPrefix.getPrefix().equals(getPrefix());
+    }
+
+    @Override
+    public int hashCode() {
+        return prefix == null ? 0 : prefix.hashCode();
     }
 }

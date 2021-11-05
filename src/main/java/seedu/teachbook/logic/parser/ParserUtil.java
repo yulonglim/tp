@@ -26,7 +26,7 @@ import seedu.teachbook.model.student.Phone;
 import seedu.teachbook.model.tag.Tag;
 
 /**
- * Contains utility methods used for parsing strings in the various *Parser classes.
+ * Contains utility methods used for parsing strings in the various {@code Parser} classes.
  */
 public class ParserUtil {
 
@@ -50,11 +50,17 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    /**
+     * Parses {@code oneBasedIndicesSpaceSeparated} into a list of {@code Index} and returns it. Leading and trailing
+     * whitespaces will be trimmed.
+     *
+     * @throws ParseException if at least one specified index is invalid (not non-zero unsigned integer).
+     */
     public static List<Index> parseIndices(String oneBasedIndicesSpaceSeparated) throws ParseException {
         String trimmedIndices = oneBasedIndicesSpaceSeparated.trim();
         String[] indexArray = trimmedIndices.split("\\s+"); // "" will become String[1] { "" } after split
 
-        // remove duplicate indices
+        // Remove duplicate indices
         Set<String> indexSet = new HashSet<>(Arrays.asList(indexArray));
         String[] rawIndices = indexSet.toArray(new String[0]);
 
@@ -63,7 +69,7 @@ public class ParserUtil {
             oneBasedIndices.add(parseIndex(rawIndex));
         }
 
-        // sort indices
+        // Sort indices
         oneBasedIndices.sort(new IndexComparator());
 
         return oneBasedIndices;
@@ -84,6 +90,12 @@ public class ParserUtil {
         return new Name(trimmedName);
     }
 
+    /**
+     * Parses a {@code String className} into a {@code ClassName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code className} is invalid.
+     */
     public static ClassName parseClassName(String className) throws ParseException {
         requireNonNull(className);
         String trimmedClassName = className.trim();
@@ -93,6 +105,10 @@ public class ParserUtil {
         return new ClassName(trimmedClassName);
     }
 
+    /**
+     * Parses a {@code String className} into a {@code ClassNameDescriptor}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
     public static ClassNameDescriptor parseClassNameForLocatingClass(String className) {
         requireNonNull(className);
         String trimmedClassName = className.trim();
@@ -135,11 +151,11 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String teachbook} into an {@code Address}.
+     * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      * An empty string is valid.
      *
-     * @throws ParseException if the given {@code teachbook} is invalid.
+     * @throws ParseException if the given {@code address} is invalid.
      */
     public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
@@ -151,11 +167,11 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code Optional<String> teachbook} into an {@code Address}.
+     * Parses a {@code Optional<String> address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      * An empty string is invalid.
      *
-     * @throws ParseException if the given {@code teachbook} is invalid.
+     * @throws ParseException if the given {@code address} is invalid.
      */
     public static Address parseAddressForAdd(Optional<String> address) throws ParseException {
         requireNonNull(address);
@@ -231,6 +247,11 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses a {@code String grade} into a {@code Grade}. Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code grade} is invalid.
+     */
     public static Grade parseGrade(String grade) throws ParseException {
         requireNonNull(grade);
         String trimmedGrade = grade.trim();
@@ -240,28 +261,44 @@ public class ParserUtil {
         return new Grade(trimmedGrade);
     }
 
+    /**
+     * Parses {@code grades} into a list of {@code Grade} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     *
+     * @throws ParseException if at least one specified grade is invalid.
+     */
     public static List<Grade> parseGrades(String grades) throws ParseException {
         requireNonNull(grades);
+
         if (grades.endsWith(">")) { // prohibit grades ending with '>'
             throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
         }
+
         final List<Grade> gradeList = new ArrayList<>();
         String[] stringGradeList = grades.split(">");
         for (String grade : stringGradeList) {
             gradeList.add(parseGrade(grade));
         }
+
         Set<Grade> gradeSet = new HashSet<>(gradeList);
         if (gradeSet.size() < gradeList.size()) { // gradeList contains repeated grades
             throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
         }
+
         if (gradeList.stream().anyMatch(grade -> grade.equals(NOT_GRADED))) { // gradeList contains ""
             throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
         }
+
         return gradeList;
     }
 
+    /**
+     * Checks if the preamble equals "all".
+     *
+     * @param preamble Preamble.
+     * @return true if preamble equals "all".
+     */
     public static boolean parseAll(String preamble) {
         return preamble.trim().equals("all");
     }
-
 }

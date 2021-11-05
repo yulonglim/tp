@@ -1,6 +1,7 @@
 package seedu.teachbook.model.student;
 
 import static seedu.teachbook.commons.util.AppUtil.checkArgument;
+import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -9,38 +10,90 @@ import java.util.Locale;
 import java.util.Objects;
 
 /**
- * Represents a Student's attendance in the teachbook.
+ * Represents a Student's attendance in the TeachBook.
+ * Guarantees: immutable.
  */
 public class Attendance {
+
+    public static final String PRESENT = "Present";
+    public static final String ABSENT = "Absent";
 
     public final boolean isPresent;
     public final LocalDateTime lastModified;
 
     /**
      * Constructs an {@code Attendance}.
+     *
+     * @param isPresent Indicator if a {@code Student} is present.
+     * @param lastModified Datetime when the {@code Attendance} object was created.
      */
     public Attendance(boolean isPresent, LocalDateTime lastModified) {
+        requireAllNonNull(isPresent, lastModified);
         this.isPresent = isPresent;
         this.lastModified = lastModified;
     }
 
+    /**
+     * Checks if the given string is a valid attendance.
+     *
+     * @param test Attendance string to be tested.
+     * @return true is the given string is a valid attendance.
+     */
     public static boolean isValidAttendance(String test) {
-        String[] components = test.split("\\s+");
-        if (components.length != 2
-                || (!components[0].equalsIgnoreCase("present")
-                && !components[0].equalsIgnoreCase("absent"))) {
+        String[] attendanceComponents = test.split("\\s+");
+        if (attendanceComponents.length != 2
+                || (!attendanceComponents[0].equalsIgnoreCase(PRESENT)
+                && !attendanceComponents[0].equalsIgnoreCase(ABSENT))) {
             return false;
         }
+
         try {
-            LocalDateTime.parse(components[1]);
+            LocalDateTime.parse(attendanceComponents[1]);
         } catch (DateTimeParseException exception) {
             return false;
         }
+
         return true;
     }
 
+    /**
+     * Checks if the {@code Student} is present.
+     *
+     * @return true if the {@code Student} is present
+     */
     public boolean isPresent() {
         return isPresent;
+    }
+
+    /**
+     * Constructs an {@code Attendance} object from the given attendance string.
+     *
+     * @param attendanceString A valid attendance string.
+     * @return {@code Attendance} object constructed from the given attendance string.
+     */
+    public static Attendance fromString(String attendanceString) {
+        checkArgument(isValidAttendance(attendanceString));
+        String[] attendanceComponents = attendanceString.split("\\s+");
+        boolean isPresent = attendanceComponents[0].equalsIgnoreCase(PRESENT);
+        LocalDateTime lastModified = LocalDateTime.parse(attendanceComponents[1]);
+        return new Attendance(isPresent, lastModified);
+    }
+
+    /**
+     * Returns the string representation of an {@code Attendance} object in the "dd MMM yyyy hh:mm a" format.
+     *
+     * @return formatted string representation of an {@code Attendance} object.
+     */
+    public String asFormattedString() {
+        return isPresent
+                ? PRESENT + " "
+                + lastModified.format(DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a", Locale.ENGLISH))
+                : ABSENT;
+    }
+
+    @Override
+    public String toString() {
+        return (isPresent ? PRESENT : ABSENT) + " " + lastModified.toString();
     }
 
     @Override
@@ -54,25 +107,5 @@ public class Attendance {
     @Override
     public int hashCode() {
         return Objects.hash(isPresent, lastModified);
-    }
-
-    public String asFormattedString() {
-        return isPresent
-                ? "Present  "
-                + lastModified.format(DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a", Locale.ENGLISH))
-                : "Absent";
-    }
-
-    public static Attendance fromString(String attendanceString) {
-        checkArgument(isValidAttendance(attendanceString));
-        String[] components = attendanceString.split("\\s+");
-        boolean isPresent = components[0].equalsIgnoreCase("present");
-        LocalDateTime lastModified = LocalDateTime.parse(components[1]);
-        return new Attendance(isPresent, lastModified);
-    }
-
-    @Override
-    public String toString() {
-        return (isPresent ? "Present " : "Absent ") + lastModified.toString();
     }
 }
