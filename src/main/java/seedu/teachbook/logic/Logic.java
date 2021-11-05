@@ -36,7 +36,7 @@ public interface Logic {
     /**
      * Returns an unmodifiable view of the filtered list of persons
      */
-    ObservableList<Student> getFilteredPersonList();
+    ObservableList<Student> getFilteredStudentList();
 
 //    ObservableList<Class> getFilteredClassList();
 
