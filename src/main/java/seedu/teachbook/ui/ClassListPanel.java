@@ -50,6 +50,9 @@ public class ClassListPanel extends UiPart<Region> {
         }
     }
 
+    /**
+     * Selects the currently selected class and highlights it on the UI.
+     */
     public void select(int currentlySelectedClassIndex) {
         classListView.getSelectionModel().clearAndSelect(currentlySelectedClassIndex);
         classListView.getFocusModel().focus(currentlySelectedClassIndex);
