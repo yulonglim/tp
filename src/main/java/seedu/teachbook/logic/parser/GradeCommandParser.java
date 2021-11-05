@@ -2,6 +2,7 @@ package seedu.teachbook.logic.parser;
 
 import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_GRADE;
+import static seedu.teachbook.logic.parser.ParserUtil.arePrefixesPresent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,8 +45,5 @@ public class GradeCommandParser implements Parser<GradeCommand> {
         }
     }
 
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
 }
 
