@@ -737,6 +737,18 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect edit commands to try: `edit`, `edit nothing` `edit /nJane /p1234`
        Expected: Similar to previous test case.
 
+### Deleting a class
+
+1. Deleting a class.
+
+    1. Prerequisites: Multiple classes in the list.
+    2. Test case: `deleteClass 4E1` where 4E1 is in the list. <br>
+       Expected: Class 4E1 is deleted from the list. Details of the deleted class shown in the status message.
+    3. Test case: `deleteClass 4E1` where 4E1 is not in the list. <br>
+       Expected: No class is deleted. Error details shown in the status message.
+    4. Test case: `deleteClass` <br>
+       Expected: Similar to previous.
+
 ### Editing name of the class
 
 1. Editing the name of the currently selected class.
@@ -823,9 +835,39 @@ Prerequisites: Students are listed using `list` command or `list all` command.
     1. Test case: `sort name`<br>
        Expected: Students are sorted according to their name in alphabetical order.
 
+### Marking a student as present
 
+1. Marking a student as present from list of students.
 
-2. _{ more test cases ... }_
+    1. Prerequisites: At least three students in the list.
+    2. Test case: `mark 1`<br>
+       Expected: First student from the list is marked as present. Details of the marked student shown in the status message.
+    3. Test case: `mark 1 2 3` <br>
+       Expected: First, second and third students from the list are marked as present. Details of the marked students shown in the status message.
+    4. Test case: `mark 2 1 3` <br>
+       Expected: Similar to previous. 
+    5. Test case: `mark 0`<br>
+       Expected: No student is marked. Error details shown in the status message.
+    6. Other incorrect `mark` commands to try: `mark`, `mark random`, `mark x`, `mark 1 2 x`, `...` (where x is non-positive or larger than the list size) <br>
+       Expected: Similar to previous.
+
+### Marking a student as absent
+
+1. Marking a student as absent from list of students.
+
+    1. Prerequisites: At least three students in the list.
+    2. Test case: `unmark 1`<br>
+       Expected: First student from the list is marked as absent. Details of the marked student shown in the status message.
+    3. Test case: `unmark 1 2 3` <br>
+       Expected: First, second and third students from the list are marked as absent. Details of the marked students shown in the status message.
+    4. Test case: `unmark 2 1 3` <br>
+       Expected: Similar to previous.
+    5. Test case: `unmark 0`<br>
+       Expected: No student is unmarked. Error details shown in the status message.
+    6. Other incorrect `unmark` commands to try: `unmark`, `unmark random`, `unmark x`, `unmark 1 2 x`, `...` (where x is non-positive or larger than the list size) <br>
+       Expected: Similar to previous.
+
+3. _{ more test cases ... }_
 
 ### Saving data
 
