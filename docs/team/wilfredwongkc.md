@@ -11,26 +11,26 @@ written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
-* **New Feature 1**: Did up the layout of UI by adding and positioning the class list panel and student list panel
-  * What it does: Main window now displays the both class list and student list on the main page of the application.
-  * Justification: It is placed side by side so that it is easier for users of our app to reference the classes and students.
-* **New Feature 2**: Made the class list to highlight the class according to the which class is being selected by the `select` command
-  * What it does: It automatically changes the highlight to the currently selected class
+* **New Feature 1**: Did up the layout of UI components used for the final version of our app.
+  * What it does: Placed the ClassListPanel and the StudentListPanel side by side such that they can be seen on the main window of our app.
+  * Justification: It is such that users can easily reference the classes and students.
+* **New Feature 2**: Made the class list to highlight the class according to the which class is being selected.
+  * What it does: It automatically changes the highlight to the currently selected class using the `select` command.
   * Justification: As we don't want to allow users to select the class by mouseclick, they can only select it using the `select` command. So the class list panel needs to listen to the change in selected class and highlight the correct one accordingly.
-* **New Feature 3**: Implemented checkbox for the mark/unmark command for the UI
+* **New Feature 3**: Implemented checkbox for the mark/unmark command for the UI.
   * What it does: It is a checkbox that shows the users whether a particular at present or not.
   * Justification: This feature provides a visual cue to the users so that they can easily look through the list to see who is absent or present from the main window.
   * Highlights: This enhancement makes the app looks nicer and more usable as there is colours (red for absent and green for present) added to the checkbox.
-* **New Feature 4**: Make a small tab that appears when user uses the list all command
+* **New Feature 4**: Made a small popup tab that appears when user uses the `list all` command
   * What it does: It shows the user which class each student is from.
   * Justification: It is because when the `list all` command is called, there won't be any selected class anymore. We as a team also decided not to make the class to be always shown on the student card, as it is redundant. Thus, for the user to know which class the students are from, this feature is needed.
-  * Highlights: There is a small tag box that pop up at the top right of the student card 
-* **New Feature 5**: Make class card to show number of students in the class
+  * Highlights: There is a small tag box that pop up at the top right of the student card.
+* **New Feature 5**: Made class card to show number of students in each class.
   * What it does: It shows the total number of students in each class and displays it on the class card.
-  * Justification It is better for teachers to know the total number of students in each class with a glimpse
+  * Justification: This feature is better for users so that they can know the total number of students in each class with in just a glimpse
   * Highlight: It updates accordingly everytime a student is added or deleted.
-* **Bug Fixed**: Fixed problem that the `clear` command does not clear the student list
-* **Code contributed**: RepoSense link
+* **Bug Fixed**: Fixed problem that the `clear` command does not clear the student list.
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=wilfredwongkc&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByAuthors&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=false)
 * **Project management**:
   * Created GitHub organisation for my team
   * Set up team repo and did other things such as forking, enabling issue tracker and GitHub actions, and creating team PR
@@ -49,8 +49,10 @@ Given below are my contributions to the project.
     * Added 2 FAQs
   * Developer Guide:
     * Did up activity diagram for `addClass`
-    * Added the product scope
+    * Added the product scope 
+    * Maintained the UI Component part under the design portion
 * Community:
   * Discussed with team on the progress of the project
+  * Gave feedback to team profBook for PE-D
 
   
