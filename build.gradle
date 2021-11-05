@@ -30,9 +30,6 @@ test {
     exclude 'seedu/teachbook/logic/commands/EditCommandTest.class' // yunseong
     exclude 'seedu/teachbook/logic/commands/FindCommandTest.class' // xinyi
     exclude 'seedu/teachbook/model/ModelManagerTest.class' // wilfred
-//    exclude 'seedu/teachbook/storage/StorageManagerTest.class' // yulong
-//    exclude 'seedu/teachbook/storage/JsonSerializableTeachBookTest.class' // yulong
-//    exclude 'seedu/teachbook/storage/JsonTeachBookStorageTest.class' // yulong
     exclude 'seedu/teachbook/logic/parser/AddCommandParserTest.class' // yunseong
     exclude 'seedu/teachbook/logic/parser/TeachBookParserTest.class' // xinyi
     exclude 'seedu/teachbook/logic/LogicManagerTest.class' // wilfred
