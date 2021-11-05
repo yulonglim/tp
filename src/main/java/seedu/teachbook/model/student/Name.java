@@ -20,7 +20,7 @@ public class Name {
     /**
      * Constructs a {@code Name}.
      *
-     * @param name A valid name.
+     * @param name a valid name.
      */
     public Name(String name) {
         requireNonNull(name);
@@ -31,7 +31,7 @@ public class Name {
     /**
      * Checks if the given string is a valid name.
      *
-     * @param test Name string to be tested.
+     * @param test name string to be tested.
      * @return true is the given string is a valid name.
      */
     public static boolean isValidName(String test) {

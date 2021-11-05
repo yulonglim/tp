@@ -31,14 +31,14 @@ public class Student {
      * Constructs a {@code Student} object without a class.
      * The class of the student can be set later.
      *
-     * @param name Name of student.
-     * @param phone Phone number of student.
-     * @param email Email address of student.
-     * @param address Address of student.
-     * @param remark Remark of student.
-     * @param tags Tags of student.
-     * @param attendance Attendance of student.
-     * @param grade Grade of student.
+     * @param name name of student.
+     * @param phone phone number of student.
+     * @param email email address of student.
+     * @param address address of student.
+     * @param remark remark of student.
+     * @param tags tags of student.
+     * @param attendance attendance of student.
+     * @param grade grade of student.
      */
     public Student(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags,
                    Attendance attendance, Grade grade) {
@@ -48,15 +48,15 @@ public class Student {
     /**
      * Constructs a {@code Student} object.
      *
-     * @param name Name of student.
-     * @param phone Phone number of student.
+     * @param name name of student.
+     * @param phone phone number of student.
      * @param studentClass Class of student.
-     * @param email Email address of student.
-     * @param address Address of student.
-     * @param remark Remark of student.
-     * @param tags Tags of student.
-     * @param attendance Attendance of student.
-     * @param grade Grade of student.
+     * @param email email address of student.
+     * @param address address of student.
+     * @param remark remark of student.
+     * @param tags tags of student.
+     * @param attendance attendance of student.
+     * @param grade grade of student.
      */
     public Student(Name name, Phone phone, Class studentClass, Email email, Address address, Remark remark,
                    Set<Tag> tags, Attendance attendance, Grade grade) {
@@ -75,7 +75,7 @@ public class Student {
     /**
      * Constructs a {@code Student} object from an existing {@code Student} object.
      *
-     * @param toCopy The existing {@code Student} object.
+     * @param toCopy existing {@code Student} object.
      */
     public Student(Student toCopy) {
         this.name = toCopy.getName();
@@ -146,6 +146,8 @@ public class Student {
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException} if modification is attempted.
+     *
+     * @return tags of {@code Student} object.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
@@ -199,6 +201,9 @@ public class Student {
     /**
      * Returns true if both students have the same name and are from the same class.
      * This defines a weaker notion of equality between two students.
+     *
+     * @param otherStudent other student to be checked against.
+     * @return true if both students have the same name and are from the same class.
      */
     public boolean isSameStudent(Student otherStudent) {
         if (otherStudent == this) {
@@ -247,7 +252,11 @@ public class Student {
     /**
      * Returns true if both students have the same identity and data fields.
      * This defines a stronger notion of equality between two students.
+     *
+     * @param other other object to be checked against.
+     * @return true if both students have the same identity and data fields.
      */
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;

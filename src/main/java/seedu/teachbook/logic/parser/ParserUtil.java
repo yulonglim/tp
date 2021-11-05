@@ -37,6 +37,8 @@ public class ParserUtil {
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
      *
+     * @param oneBasedIndex one-based index to be parsed.
+     * @return parsed index.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -55,6 +57,8 @@ public class ParserUtil {
      * Parses {@code oneBasedIndicesSpaceSeparated} into a list of {@code Index} and returns it. Leading and trailing
      * whitespaces will be trimmed.
      *
+     * @param oneBasedIndicesSpaceSeparated one-based indices to be parsed.
+     * @return parsed list of indices.
      * @throws ParseException if at least one specified index is invalid (not non-zero unsigned integer).
      */
     public static List<Index> parseIndices(String oneBasedIndicesSpaceSeparated) throws ParseException {
@@ -80,6 +84,8 @@ public class ParserUtil {
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param name name string to be parsed.
+     * @return parsed name.
      * @throws ParseException if the given {@code name} is invalid.
      */
     public static Name parseName(String name) throws ParseException {
@@ -95,6 +101,8 @@ public class ParserUtil {
      * Parses a {@code String className} into a {@code ClassName}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param className class name string to be parsed.
+     * @return parsed class name.
      * @throws ParseException if the given {@code className} is invalid.
      */
     public static ClassName parseClassName(String className) throws ParseException {
@@ -109,6 +117,9 @@ public class ParserUtil {
     /**
      * Parses a {@code String className} into a {@code ClassNameDescriptor}.
      * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param className class name descriptor string to be parsed.
+     * @return parsed class name descriptor.
      */
     public static ClassNameDescriptor parseClassNameForLocatingClass(String className) {
         requireNonNull(className);
@@ -121,6 +132,8 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      * An empty string is valid.
      *
+     * @param phone phone string to be parsed.
+     * @return parsed phone.
      * @throws ParseException if the given {@code phone} is invalid.
      */
     public static Phone parsePhone(String phone) throws ParseException {
@@ -137,6 +150,8 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      * An empty string is invalid.
      *
+     * @param phone phone string to be parsed.
+     * @return parsed phone.
      * @throws ParseException if the given {@code phone} is invalid.
      */
     public static Phone parsePhoneForAdd(Optional<String> phone) throws ParseException {
@@ -156,6 +171,8 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      * An empty string is valid.
      *
+     * @param address address string to be parsed.
+     * @return parsed address.
      * @throws ParseException if the given {@code address} is invalid.
      */
     public static Address parseAddress(String address) throws ParseException {
@@ -172,6 +189,8 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      * An empty string is invalid.
      *
+     * @param address address string to be parsed or null.
+     * @return parsed address.
      * @throws ParseException if the given {@code address} is invalid.
      */
     public static Address parseAddressForAdd(Optional<String> address) throws ParseException {
@@ -191,6 +210,8 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      * An empty string is valid.
      *
+     * @param email email string to be parsed.
+     * @return parsed email.
      * @throws ParseException if the given {@code email} is invalid.
      */
     public static Email parseEmail(String email) throws ParseException {
@@ -207,6 +228,8 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      * An empty string is invalid.
      *
+     * @param email email string to be parsed or null.
+     * @return parsed email.
      * @throws ParseException if the given {@code email} is invalid.
      */
     public static Email parseEmailForAdd(Optional<String> email) throws ParseException {
@@ -225,6 +248,8 @@ public class ParserUtil {
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param tag tag string to be parsed.
+     * @return parsed tag.
      * @throws ParseException if the given {@code tag} is invalid.
      */
     public static Tag parseTag(String tag) throws ParseException {
@@ -238,6 +263,10 @@ public class ParserUtil {
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     *
+     * @param tags tags string to be parsed.
+     * @return parsed tags.
+     * @throws ParseException if the given {@code tags} is invalid.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
@@ -249,8 +278,11 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String grade} into a {@code Grade}. Leading and trailing whitespaces will be trimmed.
+     * Parses a {@code String grade} into a {@code Grade}.
+     * Leading and trailing whitespaces will be trimmed.
      *
+     * @param grade grade string to be parsed.
+     * @return parsed grade.
      * @throws ParseException if the given {@code grade} is invalid.
      */
     public static Grade parseGrade(String grade) throws ParseException {
@@ -263,9 +295,11 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code grades} into a list of {@code Grade} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
+     * Parses {@code grades} into a list of {@code Grade} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
      *
+     * @param grades grades string to be parsed.
+     * @return parsed list of grades.
      * @throws ParseException if at least one specified grade is invalid.
      */
     public static List<Grade> parseGrades(String grades) throws ParseException {
@@ -296,7 +330,7 @@ public class ParserUtil {
     /**
      * Checks if the preamble equals "all".
      *
-     * @param preamble Preamble.
+     * @param preamble preamble.
      * @return true if preamble equals "all".
      */
     public static boolean parseAll(String preamble) {

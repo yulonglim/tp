@@ -44,7 +44,7 @@ public class AddCommand extends Command {
     /**
      * Creates an AddCommand to add the specified {@code Student}.
      *
-     * @param studentToAdd Student to be added to the TeachBook.
+     * @param studentToAdd student to be added to the TeachBook.
      */
     public AddCommand(Student studentToAdd) {
         requireNonNull(studentToAdd);
