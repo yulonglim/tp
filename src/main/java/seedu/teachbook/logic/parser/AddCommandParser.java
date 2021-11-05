@@ -24,14 +24,17 @@ import seedu.teachbook.model.student.Student;
 import seedu.teachbook.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddCommand object.
  */
 public class AddCommandParser implements Parser<AddCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * Parses the given {@code String} of arguments in the context of the AddCommand and returns an AddCommand object
+     * for execution.
+     *
+     * @param args Input arguments to be parsed.
+     * @return {@code AddCommand} as a result of the parsing of the input arguments.
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
@@ -45,10 +48,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhoneForAdd(argMultimap.getValue(PREFIX_PHONE));
         Email email = ParserUtil.parseEmailForAdd(argMultimap.getValue(PREFIX_EMAIL));
         Address address = ParserUtil.parseAddressForAdd(argMultimap.getValue(PREFIX_ADDRESS));
-        Remark remark = new Remark(""); // add command does not allow adding remark straight away
+        Remark remark = new Remark(""); // add command does not allow adding of remark straight away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Attendance attendance = new Attendance(false, LocalDateTime.now());
-        Grade grade = new Grade(""); // add command does not allow adding grade straight away
+        Grade grade = new Grade(""); // add command does not allow adding of grade straight away
 
         Student student = new Student(name, phone, email, address, remark, tagList, attendance, grade);
 
@@ -62,5 +65,4 @@ public class AddCommandParser implements Parser<AddCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
 }

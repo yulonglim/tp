@@ -12,7 +12,7 @@ import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.tag.Tag;
 
 /**
- * Represents a Student in the teachbook.
+ * Represents a Student in the TeachBook.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Student {
@@ -28,13 +28,36 @@ public class Student {
     private final Grade grade;
 
     /**
-     * Every field must be present and not null.
+     * Constructs a {@code Student} object without a class.
+     * The class of the student can be set later.
+     *
+     * @param name Name of student.
+     * @param phone Phone number of student.
+     * @param email Email address of student.
+     * @param address Address of student.
+     * @param remark Remark of student.
+     * @param tags Tags of student.
+     * @param attendance Attendance of student.
+     * @param grade Grade of student.
      */
     public Student(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags,
                    Attendance attendance, Grade grade) {
         this(name, phone, null, email, address, remark, tags, attendance, grade);
     }
 
+    /**
+     * Constructs a {@code Student} object.
+     *
+     * @param name Name of student.
+     * @param phone Phone number of student.
+     * @param studentClass Class of student.
+     * @param email Email address of student.
+     * @param address Address of student.
+     * @param remark Remark of student.
+     * @param tags Tags of student.
+     * @param attendance Attendance of student.
+     * @param grade Grade of student.
+     */
     public Student(Name name, Phone phone, Class studentClass, Email email, Address address, Remark remark,
                    Set<Tag> tags, Attendance attendance, Grade grade) {
         requireAllNonNull(name, phone, email, address, remark, tags, attendance, grade);
@@ -49,6 +72,11 @@ public class Student {
         this.grade = grade;
     }
 
+    /**
+     * Constructs a {@code Student} object from an existing {@code Student} object.
+     *
+     * @param toCopy The existing {@code Student} object.
+     */
     public Student(Student toCopy) {
         this.name = toCopy.getName();
         this.phone = toCopy.getPhone();
@@ -62,54 +90,108 @@ public class Student {
         this.studentClass = toCopy.getStudentClass();
     }
 
+    /**
+     * Returns the name of the {@code Student} object.
+     *
+     * @return name of {@code Student} object.
+     */
     public Name getName() {
         return name;
     }
 
+    /**
+     * Returns the phone number of the {@code Student} object.
+     *
+     * @return phone number of {@code Student} object.
+     */
     public Phone getPhone() {
         return phone;
     }
 
+    /**
+     * Returns the class of the {@code Student} object.
+     *
+     * @return class of {@code Student} object.
+     */
     public Class getStudentClass() {
         return studentClass;
     }
 
+    /**
+     * Returns the email address of the {@code Student} object.
+     *
+     * @return email address of {@code Student} object.
+     */
     public Email getEmail() {
         return email;
     }
 
+    /**
+     * Returns the address of the {@code Student} object.
+     *
+     * @return address of {@code Student} object.
+     */
     public Address getAddress() {
         return address;
     }
 
+    /**
+     * Returns the remark of the {@code Student} object.
+     *
+     * @return remark of {@code Student} object.
+     */
     public Remark getRemark() {
         return remark;
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException} if modification is attempted.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
 
+    /**
+     * Returns the attendance of the {@code Student} object.
+     *
+     * @return attendance of {@code Student} object.
+     */
     public Attendance getAttendance() {
         return attendance;
     }
 
+    /**
+     * Returns the formatted attendance string representation of the {@code Student} object.
+     *
+     * @return formatted attendance string representation of {@code Student} object.
+     */
     public String getAttendanceString() {
         return attendance.asFormattedString();
     }
 
+    /**
+     * Returns the grade of the {@code Student} object.
+     *
+     * @return grade of {@code Student} object.
+     */
     public Grade getGrade() {
         return grade;
     }
 
+    /**
+     * Sets the class of the {@code Student} object.
+     *
+     * @param studentClass Class of student.
+     */
     public void setStudentClass(Class studentClass) {
         this.studentClass = studentClass;
     }
 
+    /**
+     * Checks if the student is present.
+     *
+     * @return true if the student is present.
+     */
     public boolean isPresent() {
         return attendance.isPresent();
     }
@@ -123,44 +205,16 @@ public class Student {
             return true;
         }
 
-        // TODO: should a student be uniquely identified by his/her class and name?
         return otherStudent != null
                 && otherStudent.getName().equals(getName())
                 && otherStudent.getStudentClass().equals(getStudentClass());
     }
 
     /**
-     * Returns true if both students have the same identity and data fields.
-     * This defines a stronger notion of equality between two students.
+     * Returns the string representation of a {@code Student} object consisting only its non-empty fields.
+     *
+     * @return string representation of {@code Student} object.
      */
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        if (!(other instanceof Student)) {
-            return false;
-        }
-
-        Student otherStudent = (Student) other;
-        return otherStudent.getName().equals(getName())
-                && otherStudent.getPhone().equals(getPhone())
-                && otherStudent.getStudentClass().getClassName().equals(getStudentClass().getClassName())
-                && otherStudent.getEmail().equals(getEmail())
-                && otherStudent.getAddress().equals(getAddress())
-                && otherStudent.getRemark().equals(getRemark())
-                && otherStudent.getTags().equals(getTags())
-                && otherStudent.getAttendance().equals(getAttendance())
-                && otherStudent.getGrade().equals(getGrade());
-    }
-
-    @Override
-    public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, studentClass.getClassName(), email, address, remark, tags, attendance, grade);
-    }
-
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
@@ -188,5 +242,36 @@ public class Student {
             tags.forEach(builder::append);
         }
         return builder.toString();
+    }
+
+    /**
+     * Returns true if both students have the same identity and data fields.
+     * This defines a stronger notion of equality between two students.
+     */
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Student)) {
+            return false;
+        }
+
+        Student otherStudent = (Student) other;
+        return otherStudent.getName().equals(getName())
+                && otherStudent.getPhone().equals(getPhone())
+                && otherStudent.getStudentClass().getClassName().equals(getStudentClass().getClassName())
+                && otherStudent.getEmail().equals(getEmail())
+                && otherStudent.getAddress().equals(getAddress())
+                && otherStudent.getRemark().equals(getRemark())
+                && otherStudent.getTags().equals(getTags())
+                && otherStudent.getAttendance().equals(getAttendance())
+                && otherStudent.getGrade().equals(getGrade());
+    }
+
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(name, phone, studentClass.getClassName(), email, address, remark, tags, attendance, grade);
     }
 }

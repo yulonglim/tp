@@ -4,15 +4,16 @@ import static java.util.Objects.requireNonNull;
 import static seedu.teachbook.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Student's phone number in the teachbook.
- * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
+ * Represents a Student's phone number in the TeachBook.
+ * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}.
  */
 public class Phone {
 
+    public static final String MESSAGE_CONSTRAINTS = "Phone numbers should only contain numbers, and it should be at "
+            + "least 3 digits long";
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}";
+
     public final String value;
 
     /**
@@ -27,7 +28,10 @@ public class Phone {
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Checks if the given string is a valid phone number.
+     *
+     * @param test Phone number string to be tested.
+     * @return true is the given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {
         return test.equals("") || test.matches(VALIDATION_REGEX);
@@ -49,5 +53,4 @@ public class Phone {
     public int hashCode() {
         return value.hashCode();
     }
-
 }

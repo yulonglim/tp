@@ -9,14 +9,17 @@ import seedu.teachbook.logic.commands.MarkCommand;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new MarkCommand object
+ * Parses input arguments and creates a new MarkCommand object.
  */
 public class MarkCommandParser implements Parser<MarkCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the MarkCommand
-     * and returns a MarkCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * Parses the given {@code String} of arguments in the context of the MarkCommand and returns a MarkCommand object
+     * for execution.
+     *
+     * @param args Input arguments to be parsed.
+     * @return {@code MarkCommand} as a result of the parsing of the input arguments.
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public MarkCommand parse(String args) throws ParseException {
         if (ParserUtil.parseAll(args)) {
