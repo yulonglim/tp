@@ -10,7 +10,11 @@ import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.classobject.exceptions.NoClassWithNameException;
 
 /**
- * Switches to another class identified using its name.
+ * Select a class identified using its name, after which UI will display the student list of the selected class
+ * on the student list panel, and operations can be performed on the displayed student list.
+ * The class being selected cannot be selected again.
+ * {@code AddCommand} and {@code EditClassCommand} can only execute when there is a class being selected.
+ *
  */
 public class SelectClassCommand extends Command {
 
@@ -27,6 +31,11 @@ public class SelectClassCommand extends Command {
 
     private final ClassNameDescriptor newClassName;
 
+    /**
+     * Creates a {@code SelectClassCommand} to select the class described by the specified {@code ClassNameDescriptor}.
+     *
+     * @param newClassName class name descriptor of the class to be selected.
+     */
     public SelectClassCommand(ClassNameDescriptor newClassName) {
         this.newClassName = newClassName;
     }

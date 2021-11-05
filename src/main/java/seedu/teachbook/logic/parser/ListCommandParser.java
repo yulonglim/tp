@@ -6,15 +6,17 @@ import seedu.teachbook.logic.commands.ListCommand;
 import seedu.teachbook.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new ListCommand object
+ * Parses input arguments and creates a new {@code ListCommand} object.
  */
 public class ListCommandParser implements Parser<ListCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the ListCommand
-     * and returns a ListCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the {@code ListCommand}
+     * and returns a {@code ListCommand} object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @param args input arguments to be parsed.
+     * @return a {@code ListCommand} object as a result of the parsing of the input arguments.
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public ListCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
@@ -29,4 +31,5 @@ public class ListCommandParser implements Parser<ListCommand> {
         }
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
     }
+
 }

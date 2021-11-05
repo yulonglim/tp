@@ -9,7 +9,9 @@ import seedu.teachbook.model.Model;
 import seedu.teachbook.model.student.StudentIsAbsentPredicate;
 
 /**
- * Lists all students in the currently selected class to the user.
+ * Lists all students in the current student list by clearing any filter.
+ * {@code ListCommand} can also list all students in the entire TeachBook or
+ * list all students in the current student list whose attendance status is absent.
  */
 public class ListCommand extends Command {
 
@@ -29,13 +31,27 @@ public class ListCommand extends Command {
             + "Use \"" + COMMAND_WORD + "\" to display the full list.";
 
     private final boolean isAll;
-    private final boolean isAbsentee;
+    private final boolean isAbsent;
 
-    public ListCommand(boolean isAll, boolean isAbsentee) {
+    /**
+     * Creates a {@code ListCommand} to list students in the entire TeachBook or
+     * list all absent students in the current student list. If both parameters are {@code false},
+     * the constructed {@code ListCommand} will list all students in the current student list.
+     * The two parameters should not both equal to {@code true}.
+     *
+     * @param isAll if {@code true}, the constructed {@code ListCommand} will list students in the entire TeachBook.
+     * @param isAbsent if {@code true}, the constructed {@code ListCommand} will list all absent students
+     *                 in the current student list.
+     */
+    public ListCommand(boolean isAll, boolean isAbsent) {
+        assert !(isAll && isAbsent);
         this.isAll = isAll;
-        this.isAbsentee = isAbsentee;
+        this.isAbsent = isAbsent;
     }
 
+    /**
+     * Creates a {@code ListCommand} that can list all students in the current student list.
+     */
     public ListCommand() {
         this(false, false);
     }
@@ -53,7 +69,7 @@ public class ListCommand extends Command {
             return new CommandResult(MESSAGE_SUCCESS_LIST_ALL, false, false, true, true);
         }
 
-        if (isAbsentee) {
+        if (isAbsent) {
             model.updateFilteredStudentList(new StudentIsAbsentPredicate());
             model.commitTeachBook();
             return new CommandResult(MESSAGE_SUCCESS_LIST_ABSENT);
@@ -62,5 +78,13 @@ public class ListCommand extends Command {
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         model.commitTeachBook();
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ListCommand // instanceof handles nulls
+                && isAll == ((ListCommand) other).isAll) // state check
+                && isAbsent == ((ListCommand) other).isAbsent;
     }
 }

@@ -14,7 +14,7 @@ import seedu.teachbook.model.student.Remark;
 import seedu.teachbook.model.student.Student;
 
 /**
- * Changes the remark of an existing student in the teachbook.
+ * Changes the remark of an existing student in the TeachBook.
  */
 public class RemarkCommand extends Command {
 
@@ -36,10 +36,11 @@ public class RemarkCommand extends Command {
     private final Remark remark;
 
     /**
-     * Creates an RemarkCommand to edit the remark of the specified {@code Student}.
+     * Creates a {@code RemarkCommand} to update the remark of the student at the specified {@code index}
+     * to the specified {@code remark}.
      *
-     * @param index of the student in the filtered student list to edit the remark
-     * @param remark of the student to be updated to
+     * @param index the index number of the student in the filtered student list to edit the remark.
+     * @param remark the remark of the student to be updated to.
      */
     public RemarkCommand(Index index, Remark remark) {
         requireAllNonNull(index, remark);
@@ -79,7 +80,7 @@ public class RemarkCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof RemarkCommand // instanceof handles nulls
-                && index.equals(((RemarkCommand) other).index)
+                && index.equals(((RemarkCommand) other).index) // state check
                 && remark.equals(((RemarkCommand) other).remark));
     }
 
