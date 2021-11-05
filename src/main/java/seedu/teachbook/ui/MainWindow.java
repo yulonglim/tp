@@ -35,7 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private StudentListPanel studentListPanel;
     private ClassListPanel classListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -47,7 +47,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane studentListPanelPlaceholder;
 
     @FXML
     private StackPane classListPanelPlaceholder;
@@ -135,11 +135,11 @@ public class MainWindow extends UiPart<Stage> {
     void updateStudentListPanel() {
         GeneralIndex newSelectedClassIndex = logic.getCurrentlySelectedClassIndex();
         if (newSelectedClassIndex.equals(INDEX_LIST_ALL)) {
-            personListPanel = new PersonListPanel(logic.getFilteredPersonList(), true);
+            studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), true);
         } else {
-            personListPanel = new PersonListPanel(logic.getFilteredPersonList(), false);
+            studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), false);
         }
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
     }
 
     void updateClassListPanel() {
