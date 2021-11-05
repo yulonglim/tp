@@ -19,7 +19,7 @@ public class Phone {
     /**
      * Constructs a {@code Phone}.
      *
-     * @param phone A valid phone number.
+     * @param phone a valid phone number.
      */
     public Phone(String phone) {
         requireNonNull(phone);
@@ -30,7 +30,7 @@ public class Phone {
     /**
      * Checks if the given string is a valid phone number.
      *
-     * @param test Phone number string to be tested.
+     * @param test phone number string to be tested.
      * @return true is the given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {

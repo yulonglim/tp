@@ -30,7 +30,7 @@ public class DeleteClassCommand extends Command {
     /**
      * Creates a DeleteClassCommand to delete the class, described by the specified {@code ClassNameDescriptor}.
      *
-     * @param className Class name descriptor of the class to be deleted from the TeachBook.
+     * @param className class name descriptor of the class to be deleted from the TeachBook.
      */
     public DeleteClassCommand(ClassNameDescriptor className) {
         this.className = className;

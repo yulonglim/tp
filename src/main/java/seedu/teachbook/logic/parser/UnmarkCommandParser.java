@@ -17,8 +17,8 @@ public class UnmarkCommandParser implements Parser<UnmarkCommand> {
      * Parses the given {@code String} of arguments in the context of the UnmarkCommand and returns a UnmarkCommand
      * object for execution.
      *
-     * @param args Input arguments to be parsed.
-     * @return {@code FindCommand} as a result of the parsing of the input arguments.
+     * @param args input arguments to be parsed.
+     * @return {@code UnmarkCommand} as a result of the parsing of the input arguments.
      * @throws ParseException if the user input does not conform the expected format.
      */
     public UnmarkCommand parse(String args) throws ParseException {

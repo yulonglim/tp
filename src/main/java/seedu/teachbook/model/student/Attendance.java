@@ -24,8 +24,8 @@ public class Attendance {
     /**
      * Constructs an {@code Attendance}.
      *
-     * @param isPresent Indicator if a {@code Student} is present.
-     * @param lastModified Datetime when the {@code Attendance} object was created.
+     * @param isPresent indicator if a {@code Student} is present.
+     * @param lastModified datetime when the {@code Attendance} object was created.
      */
     public Attendance(boolean isPresent, LocalDateTime lastModified) {
         requireAllNonNull(isPresent, lastModified);
@@ -36,7 +36,7 @@ public class Attendance {
     /**
      * Checks if the given string is a valid attendance.
      *
-     * @param test Attendance string to be tested.
+     * @param test attendance string to be tested.
      * @return true is the given string is a valid attendance.
      */
     public static boolean isValidAttendance(String test) {
@@ -68,7 +68,7 @@ public class Attendance {
     /**
      * Constructs an {@code Attendance} object from the given attendance string.
      *
-     * @param attendanceString A valid attendance string.
+     * @param attendanceString a valid attendance string.
      * @return {@code Attendance} object constructed from the given attendance string.
      */
     public static Attendance fromString(String attendanceString) {

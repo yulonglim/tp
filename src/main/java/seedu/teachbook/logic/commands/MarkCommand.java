@@ -39,7 +39,7 @@ public class MarkCommand extends Command {
      * Creates a MarkCommand to mark the students, identified by the indices in the specified {@code List<Index>},
      * as present.
      *
-     * @param targetIndices List of indices, each identifying a student to be marked as present.
+     * @param targetIndices list of indices, each identifying a student to be marked as present.
      */
     public MarkCommand(List<Index> targetIndices) {
         this.targetIndices = targetIndices;
