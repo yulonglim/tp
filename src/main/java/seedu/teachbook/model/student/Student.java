@@ -73,6 +73,24 @@ public class Student {
     }
 
     /**
+     * Constructs a {@code Student} object from an existing {@code Student} object.
+     *
+     * @param toCopy The existing {@code Student} object.
+     */
+    public Student(Student toCopy) {
+        this.name = toCopy.getName();
+        this.phone = toCopy.getPhone();
+        this.studentClass = toCopy.getStudentClass();
+        this.email = toCopy.getEmail();
+        this.address = toCopy.getAddress();
+        this.remark = toCopy.getRemark();
+        this.tags.addAll(toCopy.getTags());
+        this.attendance = toCopy.getAttendance();
+        this.grade = toCopy.getGrade();
+        this.studentClass = toCopy.getStudentClass();
+    }
+
+    /**
      * Returns the name of the {@code Student} object.
      *
      * @return name of {@code Student} object.
@@ -230,7 +248,6 @@ public class Student {
      * Returns true if both students have the same identity and data fields.
      * This defines a stronger notion of equality between two students.
      */
-    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -243,7 +260,7 @@ public class Student {
         Student otherStudent = (Student) other;
         return otherStudent.getName().equals(getName())
                 && otherStudent.getPhone().equals(getPhone())
-                && otherStudent.getStudentClass().equals(getStudentClass())
+                && otherStudent.getStudentClass().getClassName().equals(getStudentClass().getClassName())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getAddress().equals(getAddress())
                 && otherStudent.getRemark().equals(getRemark())
@@ -254,6 +271,7 @@ public class Student {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, phone, studentClass, email, address, remark, tags, attendance, grade);
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(name, phone, studentClass.getClassName(), email, address, remark, tags, attendance, grade);
     }
 }

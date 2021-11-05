@@ -10,7 +10,7 @@ public class JsonAdaptedGrade {
     private final String value;
 
     /**
-     * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
+     * Constructs a {@code JsonAdaptedGrade} with the given {@code value}.
      */
     @JsonCreator
     public JsonAdaptedGrade(String value) {
@@ -30,9 +30,9 @@ public class JsonAdaptedGrade {
     }
 
     /**
-     * Converts this Jackson-friendly adapted tag object into the model's {@code Tag} object.
+     * Converts this Jackson-friendly adapted tag object into the model's {@code Grade} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted grade.
      */
     public Grade toModelType() throws IllegalValueException {
         return new Grade(value);

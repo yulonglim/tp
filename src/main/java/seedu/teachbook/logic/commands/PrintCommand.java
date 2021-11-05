@@ -3,6 +3,7 @@ package seedu.teachbook.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_COLUMN;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,7 +15,9 @@ import seedu.teachbook.model.student.Student;
 import seedu.teachbook.model.tag.Tag;
 
 /**
- * Switches to another class identified using its name.
+ * Print an Excel sheet according to current class.
+ *
+ * @author Lim Yu Long
  */
 public class PrintCommand extends Command {
 
@@ -31,27 +34,42 @@ public class PrintCommand extends Command {
             + "[" + PREFIX_COLUMN + "remark] "
             + "[" + PREFIX_COLUMN + "attendance] "
             + "[" + PREFIX_COLUMN + "grade] "
-            + "[" + PREFIX_COLUMN + "COLUMN_TITLE_1] "
-            + "[" + PREFIX_COLUMN + "COLUMN_TITLE_2]...\n"
+            + "[" + PREFIX_COLUMN + "COLUMN_TITLE]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_COLUMN + "class "
             + PREFIX_COLUMN + "phone "
             + PREFIX_COLUMN + "address "
             + PREFIX_COLUMN + "attendance "
             + PREFIX_COLUMN + "grade "
-            + PREFIX_COLUMN + "Sign Here";
+            + PREFIX_COLUMN + "Signature";
 
     public static final String MESSAGE_SUCCESS = "Excel file generated under directory %1$s";
-    public static final String MESSAGE_EXCEL_OPEN = "Print failed! An Excel file with conflicting name is opened, "
-            + "please close it before using print command!";
+    public static final String MESSAGE_RESTART = "try restarting the app and executing \"print\" command again.\n";
+    public static final String MESSAGE_CONTACT_SUPPORT = "If the above does not work or you have any queries, "
+            + "please post an issue at https://github.com/AY2122S1-CS2103T-W10-2/tp/issues";
+    public static final String MESSAGE_FILE_NOT_FOUND = "Print failed! "
+            + "This can be caused by an Excel file with a conflicting name is opened. "
+            + "Try closing the file before using \"print\" command.\n"
+            + "Else, this can also be caused by your system configuration. "
+            + "For \"print\" command to execute, "
+            + "the app needs to access and write to your system's downloads folder. "
+            + "Try giving the app suitable permissions.\n"
+            + "If these does not solve the issue, "
+            + MESSAGE_RESTART + MESSAGE_CONTACT_SUPPORT;
+    public static final String MESSAGE_FAIL = "Print failed! "
+            + "An error occurs when printing the student list due to unknown reasons. You can "
+            + MESSAGE_RESTART + MESSAGE_CONTACT_SUPPORT;
 
     private final List<String> columnList;
 
+    /**
+     * Creates a PrintCommand to print the specified {@code ColumnList}
+     */
     public PrintCommand(List<String> columnList) {
         this.columnList = columnList;
     }
 
-    private static List<String> generateColumn(String columnName, List<Student> studentList) {
+    public static List<String> generateColumn(String columnName, List<Student> studentList) {
         List<String> result = new ArrayList<>();
 
         switch (columnName.toLowerCase()) {
@@ -141,8 +159,10 @@ public class PrintCommand extends Command {
         String filePath;
         try {
             filePath = ExcelUtil.toExcel(toPrint);
-        } catch (RuntimeException ex) {
-            throw new CommandException(MESSAGE_EXCEL_OPEN);
+        } catch (FileNotFoundException | SecurityException ex) {
+            throw new CommandException(MESSAGE_FILE_NOT_FOUND);
+        } catch (Exception ex) {
+            throw new CommandException(MESSAGE_FAIL);
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, filePath), false, false, false, false);

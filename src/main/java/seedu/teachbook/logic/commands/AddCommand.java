@@ -24,16 +24,16 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the TeachBook.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_PHONE + "PHONE_NUMBER] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@gmail.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "class monitor";
+            + PREFIX_NAME + "Jane Doe "
+            + PREFIX_PHONE + "91234567 "
+            + PREFIX_EMAIL + "janedoe@example.com "
+            + PREFIX_ADDRESS + "21 Lower Kent Ridge Road, Singapore 119077 "
+            + PREFIX_TAG + "class monitor ";
 
     public static final String MESSAGE_ADD_STUDENT_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_NO_CLASS = "Add a class before adding any student";

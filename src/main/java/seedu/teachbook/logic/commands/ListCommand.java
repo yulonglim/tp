@@ -19,13 +19,14 @@ public class ListCommand extends Command {
             + ": Lists all students of the currently selected class or " // TODO: not really currently selected class
             + "lists all students from all classes by passing in an optional parameter \"all\".\n"
             + "Lists all absent students by passing in an optional parameter \"absent\".\n"
-            + "Example: " + COMMAND_WORD + ", " + COMMAND_WORD + " all" + ", " + COMMAND_WORD + " absent";
+            + "Parameters: [all||absent]\n"
+            + "Examples: " + COMMAND_WORD + ", " + COMMAND_WORD + " all" + ", " + COMMAND_WORD + " absent";
 
     public static final String MESSAGE_SUCCESS = "Listed all students";
     public static final String MESSAGE_SUCCESS_LIST_ALL = "Currently displaying all students from all classes";
     public static final String MESSAGE_SUCCESS_LIST_ABSENT = "Listed all absent students";
     public static final String MESSAGE_ALREADY_LIST_ALL = "Already displaying students from all classes\n"
-            + "Use \"list\" to display the full list.";
+            + "Use \"" + COMMAND_WORD + "\" to display the full list.";
 
     private final boolean isAll;
     private final boolean isAbsentee;
@@ -54,10 +55,12 @@ public class ListCommand extends Command {
 
         if (isAbsentee) {
             model.updateFilteredStudentList(new StudentIsAbsentPredicate());
+            model.commitTeachBook();
             return new CommandResult(MESSAGE_SUCCESS_LIST_ABSENT);
         }
 
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        model.commitTeachBook();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

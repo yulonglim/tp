@@ -58,14 +58,14 @@ public class ModelManager implements Model {
     //=========== UserPrefs ==================================================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
-        this.userPrefs.resetData(userPrefs);
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
     }
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
+    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        requireNonNull(userPrefs);
+        this.userPrefs.resetData(userPrefs);
     }
 
     @Override
@@ -93,14 +93,14 @@ public class ModelManager implements Model {
     //=========== TeachBook ================================================================================
 
     @Override
-    public void setTeachBook(ReadOnlyTeachBook teachBook) {
-        this.teachBook.resetData(teachBook);
-        initialiseCurrentlySelectedClassIndex();
+    public ReadOnlyTeachBook getTeachBook() {
+        return teachBook;
     }
 
     @Override
-    public ReadOnlyTeachBook getTeachBook() {
-        return teachBook;
+    public void setTeachBook(ReadOnlyTeachBook teachBook) {
+        this.teachBook.resetData(teachBook);
+        initialiseCurrentlySelectedClassIndex();
     }
 
     @Override
@@ -128,17 +128,37 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteClass(Class target) {
+    public boolean deleteClass(Class target, GeneralIndex targetIndex) {
+        assert !targetIndex.equals(INDEX_NO_CLASS);
+        assert teachBook.getClassAtIndex(targetIndex).equals(target);
         teachBook.removeClass(target);
+
+        if (currentlySelectedClassIndex.equals(INDEX_LIST_ALL)) {
+            updateCurrentlySelectedClass(INDEX_LIST_ALL);
+            return true;
+        }
 
         if (teachBook.getNumOfClasses() == 0) {
             updateCurrentlySelectedClass(INDEX_NO_CLASS);
-        } else if (currentlySelectedClassIndex.getOneBased() > teachBook.getNumOfClasses()) {
-            // set currently selected class to the last class in the list
-            updateCurrentlySelectedClass(GeneralIndex.fromOneBased(teachBook.getNumOfClasses()));
+            return true;
+        }
+
+        if (targetIndex.equals(currentlySelectedClassIndex)) { // currently selected class is deleted
+            if (currentlySelectedClassIndex.getOneBased() > teachBook.getNumOfClasses()) {
+                // currently selected class is the last class -> set currently selected class to the last class
+                updateCurrentlySelectedClass(GeneralIndex.fromOneBased(teachBook.getNumOfClasses()));
+            } else {
+                // remain same index
+                updateCurrentlySelectedClass(currentlySelectedClassIndex);
+            }
+            return true;
+        } else if (targetIndex.isSmallerThan(currentlySelectedClassIndex)) {
+            // minus currently selected class index by one, there is no need to update student list panel
+            currentlySelectedClassIndex = currentlySelectedClassIndex.minusOne();
+            return false;
         } else {
-            // same index but different class
-            updateCurrentlySelectedClass(currentlySelectedClassIndex);
+            // there is no need to update student list panel
+            return false;
         }
     }
 
@@ -154,8 +174,8 @@ public class ModelManager implements Model {
 
     @Override
     public void addStudent(Student student) {
-        assert(!currentlySelectedClassIndex.equals(INDEX_NO_CLASS));
-        assert(!currentlySelectedClassIndex.equals(INDEX_LIST_ALL));
+        assert (!currentlySelectedClassIndex.equals(INDEX_NO_CLASS));
+        assert (!currentlySelectedClassIndex.equals(INDEX_LIST_ALL));
 
         teachBook.addStudent(currentlySelectedClassIndex, student);
 
@@ -170,8 +190,8 @@ public class ModelManager implements Model {
     @Override
     public void setClassForStudent(Student student) {
         requireNonNull(student);
-        assert(!currentlySelectedClassIndex.equals(INDEX_NO_CLASS));
-        assert(!currentlySelectedClassIndex.equals(INDEX_LIST_ALL));
+        assert (!currentlySelectedClassIndex.equals(INDEX_NO_CLASS));
+        assert (!currentlySelectedClassIndex.equals(INDEX_LIST_ALL));
 
         teachBook.setClassForStudent(currentlySelectedClassIndex, student);
     }
@@ -209,6 +229,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setGradingSystem(GradingSystem gradingSystem) {
+        teachBook.setGradingSystem(gradingSystem);
+    }
+
+    @Override
     public void updateCurrentlySelectedClass(GeneralIndex newClassIndex) {
         requireNonNull(newClassIndex);
         currentlySelectedClassIndex = newClassIndex;
@@ -239,11 +264,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setGradingSystem(GradingSystem gradingSystem) {
-        teachBook.setGradingSystem(gradingSystem);
-    }
-
-    @Override
     public boolean hasExistingGradingSystem() {
         return teachBook.hasExistingGradingSystem();
     }
@@ -255,7 +275,7 @@ public class ModelManager implements Model {
 
     @Override
     public void reorderStudents(Comparator<? super Student> comparator) {
-        assert(!currentlySelectedClassIndex.equals(INDEX_NO_CLASS));
+        assert (!currentlySelectedClassIndex.equals(INDEX_NO_CLASS));
 
         teachBook.reorderStudents(currentlySelectedClassIndex, comparator);
     }
@@ -275,17 +295,23 @@ public class ModelManager implements Model {
 
     @Override
     public void undoTeachBook() {
-        updateCurrentlySelectedClass(this.teachBook.undo());
+        TeachbookDisplayState previousDisplay = this.teachBook.undo();
+        this.updateCurrentlySelectedClass(previousDisplay.getIndex());
+        this.updateFilteredStudentList(previousDisplay.getPredicate());
     }
 
     @Override
     public void redoTeachBook() {
-        updateCurrentlySelectedClass(this.teachBook.redo());
+        TeachbookDisplayState previousDisplay = this.teachBook.redo();
+        this.updateCurrentlySelectedClass(previousDisplay.getIndex());
+        this.updateFilteredStudentList(previousDisplay.getPredicate());
     }
 
     @Override
     public void commitTeachBook() {
-        this.teachBook.commit(currentlySelectedClassIndex);
+        @SuppressWarnings("unchecked")
+        Predicate<Student> currentPredicate = (Predicate<Student>) filteredStudents.getPredicate();
+        this.teachBook.commit(currentlySelectedClassIndex, currentPredicate);
     }
 
     @Override

@@ -5,6 +5,7 @@ import static seedu.teachbook.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.math.BigInteger;
 import java.util.Arrays;
 
 /**
@@ -49,37 +50,21 @@ public class StringUtil {
     }
 
     /**
-     * Returns true if {@code s} represents a non-zero unsigned integer
-     * e.g. 1, 2, 3, ..., {@code Integer.MAX_VALUE} <br>
+     * Returns true if {@code s} represents an integer
+     * e.g. ..., -1, 0, 1, 2, 3, ... <br>
      * Will return false for any other non-null string input
-     * e.g. empty string, "-1", "0", "+1", and " 2 " (untrimmed), "3 0" (contains whitespace), "1 a" (contains letters)
+     * e.g. empty string, "+1", and " 2 " (untrimmed), "3 0" (contains whitespace), "1 a" (contains letters)
      * @throws NullPointerException if {@code s} is null.
      */
-    public static boolean isNonZeroUnsignedInteger(String s) {
+    public static boolean isInteger(String s) {
         requireNonNull(s);
 
         try {
-            int value = Integer.parseInt(s);
-            return value > 0 && !s.startsWith("+"); // "+1" is successfully parsed by Integer#parseInt(String)
+            new BigInteger(s);
+            return !s.startsWith("+"); // "+1" is successfully parsed by new BigInteger(String)
         } catch (NumberFormatException nfe) {
             return false;
         }
     }
 
-    /**
-     * Returns camel-case format of provided string
-     *
-     * @param string to be converted
-     * @return String in camel case
-     */
-    public static String toCamelCase(String string) {
-        StringBuilder builder = new StringBuilder();
-        String[] words = string.split(" ");
-        for (String s : words) {
-            String word = s;
-            word = word.isEmpty() ? word : Character.toUpperCase(word.charAt(0)) + word.substring(1).toLowerCase();
-            builder.append(" ").append(word);
-        }
-        return builder.toString();
-    }
 }

@@ -73,7 +73,8 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `ClassListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The `ClassCard` will be displayed by the `ClassListPanel` and the `StudentCard` will be displayed by the `StudentListPanel`. 
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2122S1-CS2103T-W10-2/tp/blob/master/src/main/java/seedu/teachbook/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2122S1-CS2103T-W10-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -82,7 +83,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Student` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Student` and `Class` object residing in the `Model`.
 
 ### Logic component
 
@@ -185,6 +186,31 @@ To integrate the new class feature into the existing AB3 product, we decided tha
     * Similar to _Alternative 2_, there is still the need to maintain the order of students in the unique student list.
     * We always need a predicate to screen out students of the currently selected class. Since users may interact with a specific class at most times, this can degrade the performance of most commands.
 
+### Synchronization of Student List in Model and UI
+
+To ensure synchronization throughout the program, `ModelManager` maintains a `filteredStudents` observable, which is 
+observed by `MainWindow`. `filteredStudents` contains the list of students to be displayed in the UI.
+
+![UiAndModel](images/UiAndModel.png)
+
+`SelectCommand` and `ListCommand` with the `all` option i.e., `list all` are the only two commands that will modify the
+`filteredStudents` entirely, i.e., a new observable is created and replaces the existing observable, via 
+`ModelManager#updateSourceOfFilteredStudentList()`. However, this change is not observed by `MainWindow` as `MainWindow`
+only observes changes within the observable, i.e., the previous `filteredStudents` observable, and not the changes to
+the `filteredStudents` variable itself, which contains the observable. To mitigate this issue, the 
+`updateStudentListPanel` flag, in the `commandResult` returned after the execution of both `SelectCommand` and 
+`ListCommand` with the `all` option, is set to `true`. The flag then triggers the `MainWindow` to retrieve the new 
+`filteredStudents` observable via the `MainWindow#updateStudentListPannel()` and start observing changes in the new 
+observable. Thereafter, the student list in the UI is again in sync with the student list in the Model.
+
+Below is the sequence diagram of the execution of the `SelectCommand`.
+
+![SelectSequenceDiagram](images/SelectSequenceDiagram.png)
+
+Below is the sequence diagram of the execution of the `ListCommand` with the `all` option.
+
+![ListAllSequenceDiagram](images/ListAllSequenceDiagram.png)
+
 ### Delete class feature
 
 #### Implementation
@@ -208,30 +234,6 @@ The following object diagram shows the updated TeachBook:
 #### Design considerations
 
 _{To be updated later}_
-
-### Synchronization of Student List in Model and UI
-
-To ensure synchronization throughout the program, `ModelManager` maintains a `filteredStudents` observable, which is 
-observed by `MainWindow`. `filteredStudents` contains the list of students to be displayed in the UI.
-
-![UiAndModel](images/UiAndModel.png)
-
-`SelectCommand` and `ListCommand` with the `all` option i.e., `list all` are the only two commands that will modify the
-`filteredStudents` entirely, i.e., a new observable is created and replaces the existing observable, via 
-`ModelManager#updateSourceOfFilteredStudentList()`. However, this change is not observed by `MainWindow` as `MainWindow`
-only observes changes within the observable, i.e., the previous `filteredStudents` observable. To mitigate this issue,
-the `updateStudentListPanel` flag, in the `commandResult` returned after the execution of both `SelectCommand` and 
-`ListCommand` with the `all` option, is set to `true`. The flag then triggers the `MainWindow` to retrieve the new 
-`filteredStudents` observable via the `MainWindow#updateStudentListPannel()` and start observing changes in the new 
-observable. Thereafter, the student list in the UI is again in sync with the student list in the Model.
-
-Below is the sequence diagram of the execution of the `SelectCommand`.
-
-![SelectSequenceDiagram](images/SelectSequenceDiagram.png)
-
-Below is the sequence diagram of the execution of the `ListCommand` with the `all` option.
-
-![ListAllSequenceDiagram](images/ListAllSequenceDiagram.png)
 
 ### Implementations of some features
 
@@ -259,6 +261,35 @@ Given below is the activity diagram for the same scenario above
 
 ![EditCommandActivityDiagram](images/EditCommandActivityDiagram.png)
 
+### Filtering
+
+Filtering is an essential feature to have when it comes to an application that stores data. This is because with 
+filtering, users can access information with ease in the shortest time possible.
+
+With reference to the discussion on 
+[*Synchronization of Student List in Model and UI*](#synchronization-of-student-list-in-model-and-ui) earlier, 
+at any point of time, `filteredStudents` will contain either the list of all students from the currently 
+selected class or the list of all students from all classes. By making `filteredStudents` a `FilteredList<Student>`,
+filtering can be done easily to both the list of all students from a class and the list of all students from all classes
+by just passing in the corresponding `Predicate<Student>`. For example, `FindCommand` and `ListCommand` with the 
+`absent` option filter the `filteredStudents` via `ModelManager#updateFilteredStudentList()` by passing in the 
+`NameContainsKeywordsPredicate` and `StudentIsAbsentPredicate` respectively. To "clear" the filter on the other hand, 
+there is the `ListCommand` which utilizes the `ModelManager#updateFilteredStudentList()` as well but passing in
+`PREDICATE_SHOW_ALL_STUDENTS` instead. Note that because filtering is done on the `filteredStudent` observable, the 
+changes will be observed by the `MainWindow` and the result of filtering will be reflected immediately in the UI.
+
+Below is the sequence diagram of the execution of the `FindCommand`.
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+Below is the sequence diagram of the execution of the `ListCommand` with the `absent` option.
+
+![ListAbsentSequenceDiagram](images/ListAbsentSequenceDiagram.png)
+
+Below is the sequence diagram of the execution of the `ListCommand`.
+
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
+
 ### 2. Add class feature
 
 TeachBook allows users to add classes.
@@ -280,11 +311,11 @@ named `A`.
 
 ![AddClassSequenceDiagram](images/AddClassSequenceDiagram.png)
 
-### \[Proposed\] Undo/redo feature
+### Undo/redo feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedTeachBook`. It extends `TeachBook` with an undo/redo history, stored internally as an `teachBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The undo/redo mechanism is facilitated by `VersionedTeachBook`. It extends `TeachBook` with an undo/redo history, stored internally as an `teachBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
 * `VersionedTeachBook#commit()` — Saves the current teach book state in its history.
 * `VersionedTeachBook#undo()` — Restores the previous teach book state from its history.
@@ -292,17 +323,19 @@ The proposed undo/redo mechanism is facilitated by `VersionedTeachBook`. It exte
 
 These operations are exposed in the `Model` interface as `Model#commitTeachBook()`, `Model#undoTeachBook()` and `Model#redoTeachBook()` respectively.
 
+`Model#undoTeachBook()` and `Model#redoTeachBook()` will return display settings to update the model accordingly.
+
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedTeachBook` will be initialized with the initial teach book state, and the `currentStatePointer` pointing to that single teach book state.
+Step 1. The user launches the application for the first time. The `VersionedTeachBook` will be initialized with the initial TeachbookDataState, and the `currentStatePointer` pointing to that single teach book state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th student in the teach book. The `delete` command calls `Model#commitTeachBook()`, causing the modified state of the teach book after the `delete 5` command executes to be saved in the `teachBookStateList`, and the `currentStatePointer` is shifted to the newly inserted teach book state.
+Step 2. The user executes `delete 5` command to delete the 5th student in the Teachbook. The `delete` command calls `Model#commitTeachBook()`, causing the modified TeachbookDatastate after the `delete 5` command executes to be saved in the `teachBookStateList`, and the `currentStatePointer` is shifted to the newly inserted teach book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David ...` to add a new student. The `add` command also calls `Model#commitTeachBook()`, causing another modified teach book state to be saved into the `teachBookStateList`.
+Step 3. The user executes `add n/David ...` to add a new student. The `add` command also calls `Model#commitTeachBook()`, causing another modified TeachbookDatastate to be saved into the `teachBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -310,7 +343,7 @@ Step 3. The user executes `add n/David ...` to add a new student. The `add` comm
 
 </div>
 
-Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoTeachBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous teach book state, and restores the teach book to that state.
+Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoTeachBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous teach book state, and restores the Teachbook to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -349,7 +382,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire teach book.
+* **Alternative 1 (choice):** Saves the entire teach book.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
@@ -357,13 +390,7 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
+  
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -403,32 +430,123 @@ Priorities: High (must have) - `* * *` , Medium (nice to have) - `* *` , Low (un
 
 | Priority | As a ...                                                  | I want to ...                                                                                   | So that I can ...                                                                        |
 | -------- | --------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `* * *`  | new user                                                  | see usage instructions                                                                          | refer to instructions when I forget how to use the App                                   |
-| `* * *`  | teacher                                                   | add students                                                                                    |                                                                                          |
-| `* *`    | teacher                                                   | modify contacts                                                                                 | change information easily rather than creating a new contact to replace the previous one |
-| `* *`    | teacher with students whom require special attention      | add important information about my students such as diet, allergy and existing health condition | I can quickly react to any medical emergency                                             |
-| `* *`    | teacher who likes to keep work and personal life separate | have separate personal contacts with school contacts                                            | my contact list won't be overpopulated                                                   |
-| `* *`    | teacher                                                   | easily contact students' parents                                                                | the parents can address to any matters as soon as possible                               |
-| `* * *`  | teacher                                                   | delete students with specific ID                                                                | remove specific students who are no longer in my class                                   |
-| `* * *`  | teacher                                                   | find a student by name                                                                          | locate details of students without having to go through the entire list                  |
-| `* *`    | teacher                                                   | sort students by name                                                                           | locate a student easily                                                                  |
-| `* *`    | teacher                                                   | Add all students from a class at once                                                           | quickly add the information of the students in each class.                               |
-| `* *`    | teacher                                                   | delete all students from a class at once                                                        | quickly clean up the TeachBook when I no longer teach s class                            |
-| `* *`    | teacher                                                   | filter all students by tag                                                                      | easily locate all students with the same tag (probably having something in common)       |
-| `*`      | teacher who wants to remember students I have taught      | remove all students I no longer teach but keep a record of the list in another file             | start over with a clean slate and can retrieve records I need in the future              |
-| `* *`    | teacher                                                   | undo the most recent command                                                                    | easily revert everything to the previous state                                           |
-| `*`      | teacher                                                   | remove all students from the contact                                                            | clear my contact in one go                                                               |
-| `* *`    | teacher                                                   | separate personal contacts with school contacts                                                 | prevent my contact list from overpopulating                                              |
-| `* *`    | teacher                                                   | assign a class role to a student                                                                | identify students through their class role                                               |
-| `* *`    | teacher                                                   | assign multiple class roles to a student                                                        | need not to assign class roles to student one at a time                                  |
-| `*`      | teacher                                                   | view the list of all students                                                                   | have an overview of all my students                                                      |
-| `*`      | teacher                                                   | view the information of a student                                                               | take a closer look at a student's information                                            |
+| `* * *` | new user | get instructions | refer to instructions when I forget how to use the Teachbook |
+| `* * *` | teacher | add the students I teach |  |
+| `* * *` | teacher | remove students from my contacts | remove specific students who are no longer take my classes |
+| `* * *` | teacher | search for my students in my contacts | get a student's information easily  |
+| `* * *` | teacher | view my student's information | contact them easily |
+| `* * *` | teacher | separate my students by classes | better sort my contacts |
+| `* * *` | teacher | separate my students by classes | not mix up students with similar names but from different classes |
+| `* *` | teacher | modify contacts | change information easily rather than creating a new contact to replace the previous one |
+| `* *` | teacher with students whom require special attention | add important information about my students such as diet, allergies or health conditions | quickly react to any emergency related to these information |
+| `* *` | teacher | contact student parents | inform parents if any incident happen to the child |
+| `* *` | teacher | easily store the grades of my students | remember how well each student is doing in my classes |
+| `* *` | teacher | sort my students by grade | quickly find out groups of students which require more help |
+| `* *` | teacher | set a special grading system | customize my grading system just in case it changes in the future |
+| `* *` | teacher | delete a class with its data all at once | quickly remove the class I have stopped teaching |
+| `* *` | teacher | clear the Teachbook data all at once | get a fresh Teachbook at the start of the year  |
+| `* *` | teacher | filter my students using keywords | quickly list out specific students |
+| `* *` | teacher | undo the most recent command | revert any mistakes I make quickly |
+| `* *` | teacher | redo the most recent undo | redo any accidental undos |
+| `*` | teacher | set special tags for my students | tag my students with extra information |
+| `*` | teacher | print out a list of students | do any administrative work that requires a hard copy document |
+| `*` | teacher | print out a list of students with their information | do not have to manually input all the information |
+| `*` | teacher | view the list of all students | have an overview of all my students |
+| `*` | teacher | add all students from a class at once | quickly add the information of the students in each class |
+| `*` | teacher | archive my Teachbook data | start over with a clean slate and can retrieve records I need in the future |
+| `*` | teacher | able to load a different Teachbook data to my Teachbook  | easily transfer any data from one device to another |
 
-*{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `TeachBook` and the **Actor** is the `user`, unless specified otherwise)
+
+
+**Use case: UC01  - Set GradingSystem.**
+
+MSS:
+1. User decides to implement grading system for TeachBook
+2. User enters a list of grades for the grading system
+3. TeachBook confirms that new grading system has been set successfully
+   Use case ends.
+
+Extensions:
+2a.  TeachBook detects that a grading system is already present in TeachBook
+
+    2a1. TeachBook requests user to delete existing grading system before setting a new one.
+    2a2. User resets grading system (UC02)
+    Use case resumes from step 2.
+
+2b. TeachBook detects that the command format is invalid.
+
+    2b1. TeachBook requests user to follow the correct format.
+    Use case resumes from step 2.
+
+
+**Use case: UC02 - Reset GradingSystem.**
+
+MSS:
+1. User decides to reset the existing grading system.
+2. User enters command for resetting grade.
+3. TeachBook confirms that the grading system has been reset successfully.
+
+Extensions:
+2a. TeachBook detects that there is no grading system present in TeachBook.
+
+    2a1. TeachBook informs user that no grading has been set, and therefore no grading system to reset.
+    Use case ends.
+
+2b. TeachBook detects that the command format is invalid.
+
+    2b1. TeachBook requests user to follow the correct format.
+    Use case resumes from step 2.
+
+**Use case UC03 - Grading a student**
+
+MSS:
+1. User decides the grade to give to a specific student.
+2. User enters command to grade the student.
+3. TeachBook confirms that the student has been successfully graded.
+   Use case ends.
+
+Extensions:
+2a. TeachBook detects that no grading system is present in TeachBook.
+
+    2a1. TeachBook prompts user to set a grading system
+    2a2. User sets a new grading system (UC01)
+    Use case resumes from step 2.
+
+2b. TeachBook detects that the specified grade is invalid.
+
+    2b1. TeachBook informs user that the grade is invalid and displays the current grading system.
+    Use case resumes from step 2.
+
+2c. TeachBook detects that the command format is invalid.
+
+    2c1. TeachBook requests user to follow the correct format.
+    Use case resumes from step 2.
+
+**Use case UC04 - Sorting students according to grade.**
+
+MSS:
+1. User decides to sort the students according to their grade.
+2. User enters the command for sorting students according to their grade.
+3. TeachBook sorts the students according to their grade specified by the grading system.
+   Use case ends.
+
+Extension:
+
+2a. TeachBook detects that no grading system is present in TeachBook.
+
+    2a1. TeachBook prompts user to set a grading system
+    2a2. User sets a new grading system (UC01)
+    Use case resumes from step 2.
+
+
+2b. TeachBook detects that the command format is invalid.
+
+    2b1. TeachBook requests user to follow the correct format.
+    Use case resumes from step 2.
 
 **Use case: UC?? - Delete a Student / Students**
 
@@ -453,41 +571,133 @@ Extensions:
 
       Use case resumes at step 1.
 
-<br>
-
-**Use case: UC?? - List All the Students**
+**Use case: UC?? - List Students from A Class**
 
 MSS:
 
-1. User requests to list students.
-2. TeachBook shows a list of all the students.
+1. User <ins>select a class (UC??)<ins>.
+2. User requests to list students from the class.
+3. TeachBook shows a list of students from the class.
 
    Use case ends.
 
-**Use case: UC?? - Tag a Student**
+**Use case: UC?? - List Students from All Classes**
 
 MSS:
 
-1. Teacher assigns a class role to a student.
-2. TeachBook displays the student with the corresponding class role.
+1. User requests to list students from all classes.
+2. TeachBook shows a list of students from all classes.
+
+   Use case ends.
+
+**Use case: UC?? - List Absent Students from A Class**
+
+MSS:
+
+1. User <ins>select a class (UC??)<ins>.
+2. User requests to list absent students from the class.
+3. TeachBook shows a list of absent students from the class.
+
+   Use case ends.
+
+**Use case: UC?? - List Absent Students from All Classes**
+
+MSS:
+
+1. User requests to <ins>list all classes (UC??)<ins>.
+2. User requests to list absent students from all classes.
+3. TeachBook shows a list of absent students from all classes.
+
+   Use case ends.
+
+**Use case: UC?? - Mark a Student as Present**
+
+MSS:
+
+1. User marks a student as present.
+2. TeachBook displays the student with his attendance marked.
 
    Use case ends.
 
 Extensions:
 
 * 1a. Student does not exist.
-   * 1a1. TeachBook displays error.
-  
-     Use case ends.
+    * 1a1. TeachBook displays error.
+
+      Use case ends.
+
+**Use case: UC?? - Mark a Student as Absent**
+
+MSS:
+
+1. User marks a student as absent.
+2. TeachBook displays the student with his attendance unmarked.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. Student does not exist.
+    * 1a1. TeachBook displays error.
+
+      Use case ends.
+
+**Use case: UC?? - print**
+
+MSS:
+
+1. Teacher print an Excel sheet of all the students.
+2. TeachBook displays that the Excel sheet is generated and is stored in a specific folder path.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. Teacher does not have Excel on the device.
+    * 1a1. TeachBook displays error.
+
+      Use case ends.
+
+**Use case: UC?? - undo**
+
+MSS:
+
+1. Teacher undo a recent command.
+2. TeachBook displays the exact state before the previous command was executed.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. Teachbook does not have any commands to undo.
+    * 1a1. TeachBook displays error telling user no commands to undo.
+
+      Use case ends.
+
+**Use case: UC?? - redo**
+
+MSS:
+
+1. Teacher redo a recent undo command.
+2. TeachBook displays the exact state before the previous undo command was executed.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. Teachbook does not have any undo commands to redo.
+    * 1a1. TeachBook displays error telling user no commands to redo.
+
+      Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1. The app should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. The TeachBook should be able to hold up to 1000 students without a noticeable sluggishness (being able to respond to any command within 3 seconds) in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. The source code should be open source.
+2. The TeachBook should be able to hold up to 1000 students and 30 classes without a noticeable sluggishness (being able to respond to any command within 5 seconds) in performance for typical usage.
+4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+5. The source code should be open source.
 
 *{More to be added}*
 
@@ -536,16 +746,159 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `delete 0`<br>
       Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+   
+### Editing a student
 
-1. _{ more test cases ... }_
+1. Editing a student from list of students
+
+    1. Prerequisites: List students in the currently selected class using `list` command or list all students in TeachBook using `list all` command.
+
+    2. Test case: `edit 1 n/Jane p/1234`<br>
+       Expected: First student in the list is being edited. Name of the student is changed to `Jane` and phone number of the student is changed to `1234`
+    3. Test case: `edit 1`<br>
+       Expected: No student is edited. Error details shown in the status message that at least one field has to be specified for edit.
+    4. Other incorrect edit commands to try: `edit`, `edit nothing` `edit /nJane /p1234`
+       Expected: Similar to previous test case.
+
+### Deleting a class
+
+1. Deleting a class.
+
+    1. Prerequisites: Multiple classes in the list.
+    2. Test case: `deleteClass 4E1` where 4E1 is in the list. <br>
+       Expected: Class 4E1 is deleted from the list. Details of the deleted class shown in the status message.
+    3. Test case: `deleteClass 4E1` where 4E1 is not in the list. <br>
+       Expected: No class is deleted. Error details shown in the status message.
+    4. Test case: `deleteClass` <br>
+       Expected: Similar to previous.
+
+### Editing name of the class
+
+1. Editing the name of the currently selected class.
+
+    1. Prerequisites: A class has to be selected using the `select` command.
+    2. Test case: `editClass 4E1`<br>
+       Expected: Name of the currently selected class will change to `4E1`. No changes will be made to existing students in the class.
+    3. Test case: `editClass 4E1` followed by `editClass 4E1`<br>
+       Expected: Error details are shown in the status message that the class already exists in the TeachBook.
+    4. Test case: `editClass`<br>
+       Expected: Error details are shown in the status message that the CLASS_NAME parameter is missing.
+
+### Setting a grading system in TeachBook
+
+1. Setting a grading system in TeachBook when there is no grading system present.
+
+    1. Prerequisites: There has to be no existing grading system present in TeachBook.
+    2. Test case: `setGrade A>B>C>D>E`<br>
+       Expected: Grading system is set for TeachBook in descending order from the highest grade `A` to the lowest grade `E`.
+    3. Test case: `setGrade A`<br>
+       Expected: Grading system is set for TeachBook with a single grade `A`
+    4. Test case: `setGrade`<br>
+       Expected: Error details are shown in the status message that the grade parameter is missing.
+
+
+2. Setting a grading system in TeachBook when there is an existing grading system.
+
+    1. Prerequisites: There is an existing grading system in TeachBook.
+    2. Test case: `setGrade A>B>C>D>E`<br>
+       Expected: Error details are shown in the status message that there is already an existing grading system.
+    3. Test case: `setGrade`<br>
+       Expected: Error details are shown in the status message that the grade parameter is missing.
+
+### Resetting a grading system in TeachBook
+
+1. Resetting a grading system in TeachBook when there is an existing grading system.
+    
+    1. Prerequisites: There is an existing grading system in TeachBook
+    2. Test case: `resetGrade`<br>
+       Expected: Message indicating successful resetting of grade is shown.
+
+2. Resetting a grading system in TeachBook when there is no grading system present.
+
+   1. Prerequisites: There is no grading system present in TeachBook.
+   2. Test case: `resetGrade`<br>
+      Expected: Error details are shown in the status message that there is no grading system to reset.
+
+### Grading a student
+
+Prerequisites: Students are listed using `list` command or `list all` command.
+
+1. Giving grades to students when there is an existing grading system.
+
+    1. Prerequisites: There is an existing grading system in TeachBook with grades `A>B>C>D>E`
+    2. Test case: `grade 1 g/A`<br>
+       Expected: First student in the list is graded with an `A`.
+    3. Test case: `grade 1 g/F`<br>
+       Expected: Error details are shown in the status message that the given grade is invalid.
+
+2. Giving grades to students when there is no grading system present.
+
+    1. Prerequisites: There is no grading system present in TeachBook.
+    2. Test case: `grade 2 g/C`<br>
+       Expected: Error details are shown in the status message that a grading system has to be set before grading students.
+
+### Sorting students
+
+Prerequisites: Students are listed using `list` command or `list all` command.
+
+1. Sorting students according to grade when there is an existing grading system in TeachBook.
+
+    1. Prerequisites: There is an existing grading system in TeachBook.
+    2. Test case: `sort grade`<br>
+       Expected: Students are sorted according to their grades in descending order as specified by the grading system.
+
+2. Sorting students according to grade when there is no grading system present in TeachBook.
+
+    1. Prerequisites: There is no grading system present in TeachBook.
+    2. Test case: `sort grade`<br>
+       Expected: Error details are shown in the status message that a grading system has to be set before sorting according to grade.
+
+3. Sorting students according to name in alphabetical order
+
+    1. Test case: `sort name`<br>
+       Expected: Students are sorted according to their name in alphabetical order.
+
+### Marking a student as present
+
+1. Marking a student as present from list of students.
+
+    1. Prerequisites: At least three students in the list.
+    2. Test case: `mark 1`<br>
+       Expected: First student from the list is marked as present. Details of the marked student shown in the status message.
+    3. Test case: `mark 1 2 3` <br>
+       Expected: First, second and third students from the list are marked as present. Details of the marked students shown in the status message.
+    4. Test case: `mark 2 1 3` <br>
+       Expected: Similar to previous. 
+    5. Test case: `mark 0`<br>
+       Expected: No student is marked. Error details shown in the status message.
+    6. Other incorrect `mark` commands to try: `mark`, `mark random`, `mark x`, `mark 1 2 x`, `...` (where x is non-positive or larger than the list size) <br>
+       Expected: Similar to previous.
+
+### Marking a student as absent
+
+1. Marking a student as absent from list of students.
+
+    1. Prerequisites: At least three students in the list.
+    2. Test case: `unmark 1`<br>
+       Expected: First student from the list is marked as absent. Details of the marked student shown in the status message.
+    3. Test case: `unmark 1 2 3` <br>
+       Expected: First, second and third students from the list are marked as absent. Details of the marked students shown in the status message.
+    4. Test case: `unmark 2 1 3` <br>
+       Expected: Similar to previous.
+    5. Test case: `unmark 0`<br>
+       Expected: No student is unmarked. Error details shown in the status message.
+    6. Other incorrect `unmark` commands to try: `unmark`, `unmark random`, `unmark x`, `unmark 1 2 x`, `...` (where x is non-positive or larger than the list size) <br>
+       Expected: Similar to previous.
+
+3. _{ more test cases ... }_
 
 ### Saving data
 

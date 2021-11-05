@@ -3,6 +3,7 @@ package seedu.teachbook.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.teachbook.model.gradeobject.GradingSystem.NOT_GRADED;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -39,8 +40,12 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+        if (!StringUtil.isInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        BigInteger value = new BigInteger(trimmedIndex);
+        if (value.compareTo(BigInteger.ZERO) <= 0 || value.compareTo(new BigInteger("2147483647")) > 0) {
+            trimmedIndex = "2147483647";
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }

@@ -7,6 +7,7 @@ import static seedu.teachbook.model.gradeobject.GradingSystem.NOT_GRADED;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -64,6 +65,17 @@ public class TeachBook implements ReadOnlyTeachBook {
         this.students.setStudents(students);
     }
 
+    /**
+     * Replaces the contents of the class list with {@code classes}.
+     * {@code classes} must not contain duplicate classes.
+     */
+    public void setClasses(List<Class> classes) {
+        this.classes.setClasses(classes);
+    }
+
+    /**
+     * Removes the contents of the gradingSystem in the class with {@code classIndex}.
+     */
     public void resetGradingSystem(GeneralIndex classIndex) {
         this.gradingSystem = new GradingSystem();
         getClassList().forEach(studentClass -> studentClass.getStudentsOfThisClass().forEach(student -> {
@@ -93,10 +105,92 @@ public class TeachBook implements ReadOnlyTeachBook {
         setGradingSystem(newData.getGradingSystem());
     }
 
+    //// class-level operations
+
+    /**
+     * Adds a class to the teachbook.
+     * The class must not already exist in the teachbook.
+     */
+    public void addClass(Class toAdd) {
+        classes.add(toAdd);
+    }
+
+    /**
+     * Removes {@code target} from this {@code TeachBook}.
+     * {@code target} must exist in the teachbook.
+     */
+    public void removeClass(Class target) {
+        classes.remove(target);
+    }
+
+    /**
+     * Replaces the name of given class with index {@code classIndex} in the list with {@code updatedClassName}.
+     * {@code classIndex} must exist in the teachbook.
+     * The name specified in {@code updatedClassName} must not be the same as
+     * another existing className in the teachbook.
+     */
+    public void setClassName(GeneralIndex classIndex, ClassName updatedClassName) {
+        Class target = getClassAtIndex(classIndex);
+        Class editedClass = new Class(updatedClassName);
+        UniqueStudentList newStudentList = target.getUniqueStudentListOfThisClass();
+        newStudentList.forEach(student -> student.setStudentClass(editedClass));
+        editedClass.setStudentsOfThisClass(newStudentList);
+        setClass(target, editedClass);
+    }
+
+    /**
+     * Getter method to return current number of classes.
+     *
+     * @return number of classes
+     */
+    public int getNumOfClasses() {
+        return classes.size();
+    }
+
+    @Override
+    public ObservableList<Class> getClassList() {
+        return classes.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Returns true if a class with the same identity as {@code classObj} exists in the teachbook.
+     */
+    public boolean hasClass(Class classObj) {
+        requireNonNull(classObj);
+        return classes.contains(classObj);
+    }
+
+    public void setClass(Class target, Class editedClass) { // for editClass command
+        requireNonNull(editedClass);
+        classes.setClass(target, editedClass);
+    }
+
+    /**
+     * Getter method for index of class with specified {@code className}.
+     *
+     * @param className of class to get index of.
+     * @return General index of specified class.
+     * @throws NoClassWithNameException thrown when classname does not exist in class list
+     */
+    public GeneralIndex getIndexOfClass(ClassNameDescriptor className) throws NoClassWithNameException {
+        requireNonNull(className);
+        return classes.locateClass(className);
+    }
+
+    /**
+     * Getter method for class with specified {@code classIndex}.
+     *
+     * @param classIndex of class to get.
+     * @return Class at specified index.
+     */
+    public Class getClassAtIndex(GeneralIndex classIndex) {
+        return classes.getClassAtIndex(classIndex);
+    }
+
     //// student-level operations
 
     /**
-     * Returns true if a student with the same identity as {@code student} exists in the teachbook book.
+     * Returns true if a student with the same identity as {@code student} exists in the teachbook.
      */
     public boolean hasStudent(GeneralIndex classIndex, Student student) {
         if (classIndex.equals(INDEX_LIST_ALL)) {
@@ -108,8 +202,8 @@ public class TeachBook implements ReadOnlyTeachBook {
     }
 
     /**
-     * Adds a student to the teachbook book.
-     * The student must not already exist in the teachbook book.
+     * Adds a student to the teachbook.
+     * The student must not already exist in the teachbook.
      */
     public void addStudent(GeneralIndex classIndex, Student studentToAdd) {
         requireAllNonNull(classIndex, studentToAdd);
@@ -119,9 +213,9 @@ public class TeachBook implements ReadOnlyTeachBook {
 
     /**
      * Replaces the given student {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the teachbook book.
+     * {@code target} must exist in the teachbook.
      * The student identity of {@code editedPerson} must not be the same as
-     * another existing student in the teachbook book.
+     * another existing student in the teachbook.
      */
     public void setStudent(GeneralIndex classIndex, Student target, Student editedStudent) {
         requireAllNonNull(classIndex, target, editedStudent);
@@ -132,8 +226,8 @@ public class TeachBook implements ReadOnlyTeachBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the teachbook book.
+     * Removes {@code key} from this {@code TeachBook}.
+     * {@code key} must exist in the teachbook.
      */
     public void removeStudent(GeneralIndex classIndex, Student key) {
         if (classIndex.equals(INDEX_LIST_ALL)) {
@@ -144,8 +238,75 @@ public class TeachBook implements ReadOnlyTeachBook {
         key.getStudentClass().removeStudent(key);
     }
 
+    /**
+     * Sets the class of {@code student} to the Class with index {@code classIndex}.
+     *
+     * @param classIndex of class to set to.
+     * @param student    to set class for.
+     */
     public void setClassForStudent(GeneralIndex classIndex, Student student) {
         student.setStudentClass(getClassAtIndex(classIndex));
+    }
+
+    /**
+     * Reorders the list of students currently displayed.
+     *
+     * @param classIndex of class to be reordered.
+     * @param comparator to set the way to be reordered.
+     */
+    public void reorderStudents(GeneralIndex classIndex, Comparator<? super Student> comparator) {
+        if (classIndex.equals(INDEX_LIST_ALL)) {
+            students.sort(comparator);
+        } else {
+            getClassAtIndex(classIndex).reorderStudents(comparator);
+        }
+    }
+
+    /**
+     * Getter method for student list in specified class at index {@code classIndex}.
+     *
+     * @param classIndex of class to get student list from.
+     * @return list of students.
+     */
+    public ObservableList<Student> getStudentListOfClass(GeneralIndex classIndex) {
+        return classes.getClassAtIndex(classIndex).getStudentsOfThisClass();
+    }
+
+    //// Grade System methods
+
+    /**
+     * Getter method for Grading System
+     *
+     * @return Grading system of current Teachbook
+     */
+    public GradingSystem getGradingSystem() {
+        return gradingSystem;
+    }
+
+    /**
+     * Setter method for Grading System.
+     *
+     * @param newGradingSystem to set the grading system to.
+     */
+    public void setGradingSystem(GradingSystem newGradingSystem) {
+        gradingSystem = newGradingSystem;
+    }
+
+    /**
+     * Returns true when there is already a grading system set.
+     */
+    public boolean hasExistingGradingSystem() {
+        return gradingSystem.isInUse();
+    }
+
+    /**
+     * Checks if grade provided exist in grading system used.
+     *
+     * @param grade to check
+     * @return validity of grade
+     */
+    public boolean isValidGrade(Grade grade) {
+        return gradingSystem.isValidGrade(grade);
     }
 
     //// util methods
@@ -156,53 +317,16 @@ public class TeachBook implements ReadOnlyTeachBook {
 
     @Override
     public ObservableList<Student> getStudentList() {
+        generateStudentList();
+        return students.asUnmodifiableObservableList();
+    }
+
+    public void generateStudentList() {
         students = new UniqueStudentList();
         for (Class studentClass : classes) {
             for (Student student : studentClass.getStudentsOfThisClass()) {
                 students.add(student);
             }
-        }
-        return students.asUnmodifiableObservableList();
-    }
-
-    public int getNumOfClasses() {
-        return classes.size();
-    }
-
-    public ObservableList<Student> getStudentListOfClass(GeneralIndex classIndex) {
-        return classes.getClassAtIndex(classIndex).getStudentsOfThisClass();
-    }
-
-    public GeneralIndex getIndexOfClass(ClassNameDescriptor className) throws NoClassWithNameException {
-        requireNonNull(className);
-        return classes.locateClass(className);
-    }
-
-    public Class getClassAtIndex(GeneralIndex classIndex) {
-        return classes.getClassAtIndex(classIndex);
-    }
-
-    public GradingSystem getGradingSystem() {
-        return gradingSystem;
-    }
-
-    public void setGradingSystem(GradingSystem newGradingSystem) {
-        gradingSystem = newGradingSystem;
-    }
-
-    public boolean hasExistingGradingSystem() {
-        return gradingSystem.isInUse();
-    }
-
-    public boolean isValidGrade(Grade grade) {
-        return gradingSystem.isValidGrade(grade);
-    }
-
-    public void reorderStudents(GeneralIndex classIndex, Comparator<? super Student> comparator) {
-        if (classIndex.equals(INDEX_LIST_ALL)) {
-            students.sort(comparator);
-        } else {
-            getClassAtIndex(classIndex).reorderStudents(comparator);
         }
     }
 
@@ -221,43 +345,7 @@ public class TeachBook implements ReadOnlyTeachBook {
 
     @Override
     public int hashCode() {
-        return students.hashCode() + classes.hashCode();
-    }
-
-    public boolean hasClass(Class classObj) {
-        requireNonNull(classObj);
-        return classes.contains(classObj);
-    }
-
-    public void setClass(Class target, Class editedClass) { // for editClass command
-        requireNonNull(editedClass);
-        classes.setClass(target, editedClass);
-    }
-
-    public void addClass(Class toAdd) {
-        classes.add(toAdd);
-    }
-
-    public void removeClass(Class target) {
-        classes.remove(target);
-    }
-
-    public void setClasses(List<Class> classes) {
-        this.classes.setClasses(classes);
-    }
-
-    public void setClassName(GeneralIndex classIndex, ClassName updatedClassName) {
-        Class target = getClassAtIndex(classIndex);
-        Class editedClass = new Class(updatedClassName);
-        UniqueStudentList newStudentList = target.getUniqueStudentListOfThisClass();
-        newStudentList.forEach(student -> student.setStudentClass(editedClass));
-        editedClass.setStudentsOfThisClass(newStudentList);
-        setClass(target, editedClass);
-    }
-
-    @Override
-    public ObservableList<Class> getClassList() {
-        return classes.asUnmodifiableObservableList();
+        return Objects.hash(classes, students, gradingSystem);
     }
 
 }
