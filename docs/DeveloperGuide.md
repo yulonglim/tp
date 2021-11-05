@@ -540,33 +540,76 @@ Extensions:
 
       Use case resumes at step 1.
 
-<br>
-
-**Use case: UC?? - List All the Students**
+**Use case: UC?? - List Students from A Class**
 
 MSS:
 
-1. User requests to list students.
-2. TeachBook shows a list of all the students.
+1. User <ins>select a class (UC??)<ins>.
+2. User requests to list students from the class.
+3. TeachBook shows a list of students from the class.
 
    Use case ends.
 
-**Use case: UC?? - Tag a Student**
+**Use case: UC?? - List Students from All Classes**
 
 MSS:
 
-1. Teacher assigns a class role to a student.
-2. TeachBook displays the student with the corresponding class role.
+1. User requests to list students from all classes.
+2. TeachBook shows a list of students from all classes.
+
+   Use case ends.
+
+**Use case: UC?? - List Absent Students from A Class**
+
+MSS:
+
+1. User <ins>select a class (UC??)<ins>.
+2. User requests to list absent students from the class.
+3. TeachBook shows a list of absent students from the class.
+
+   Use case ends.
+
+**Use case: UC?? - List Absent Students from All Classes**
+
+MSS:
+
+1. User requests to <ins>list all classes (UC??)<ins>.
+2. User requests to list absent students from all classes.
+3. TeachBook shows a list of absent students from all classes.
+
+   Use case ends.
+
+**Use case: UC?? - Mark a Student as Present**
+
+MSS:
+
+1. User marks a student as present.
+2. TeachBook displays the student with his attendance marked.
 
    Use case ends.
 
 Extensions:
 
 * 1a. Student does not exist.
-   * 1a1. TeachBook displays error.
-  
-     Use case ends.
-   
+    * 1a1. TeachBook displays error.
+
+      Use case ends.
+
+**Use case: UC?? - Mark a Student as Absent**
+
+MSS:
+
+1. User marks a student as absent.
+2. TeachBook displays the student with his attendance unmarked.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. Student does not exist.
+    * 1a1. TeachBook displays error.
+
+      Use case ends.
 
 **Use case: UC?? - print**
 
