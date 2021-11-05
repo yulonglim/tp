@@ -18,38 +18,48 @@ import seedu.teachbook.model.student.Attendance;
 import seedu.teachbook.model.student.Student;
 
 /**
- * Marks students, identified using the displayed indices from the teachbook, as present.
+ * Marks students, identified using their displayed indices, as present.
  */
 public class MarkCommand extends Command {
 
     public static final String COMMAND_WORD = "mark";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks one or more students, identified by the index number "
-            + "used in the displayed student list, as present.\n"
-            + "Parameters: INDEX...||all\n"
-            + "Examples: " + COMMAND_WORD + " 1, " + COMMAND_WORD + " 2 4 5, " + COMMAND_WORD + " all";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks one or more students, identified by their index "
+            + "numbers used in the displayed student list, as present.\n"
+            + "Parameters: INDEX…||all\n"
+            + "Example: " + COMMAND_WORD + " 1, " + COMMAND_WORD + " 2 4 5, " + COMMAND_WORD + " all";
 
     public static final String MESSAGE_MARK_STUDENT_SUCCESS = "Marked %1$s present at %2$s";
-    public static final String MESSAGE_NOTHING_TO_MARK = "There is nothing to mark as there are no students.";
-
+    public static final String MESSAGE_NOTHING_TO_MARK = "There is nothing to mark";
 
     private final List<Index> targetIndices;
     private final boolean isAll;
 
+    /**
+     * Creates a MarkCommand to mark the students, identified by the indices in the specified {@code List<Index>},
+     * as present.
+     *
+     * @param targetIndices List of indices, each identifying a student to be marked as present.
+     */
     public MarkCommand(List<Index> targetIndices) {
         this.targetIndices = targetIndices;
         isAll = false;
     }
 
+    /**
+     * Creates a MarkCommand to mark all students as present.
+     */
     public MarkCommand() {
         targetIndices = new ArrayList<>();
-        this.isAll = true;
+        isAll = true;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        // Although there is a noticeable code duplication to UnmarkCommand, we decided to not extract out the
+        // similarities because mark and unmark are different commands after all
         requireNonNull(model);
+
         List<Student> lastShownList = model.getFilteredStudentList();
 
         if (isAll) {
@@ -79,11 +89,13 @@ public class MarkCommand extends Command {
                     new Attendance(true, now), studentToMark.getGrade());
             model.setStudent(studentToMark, editedStudent);
         }
+
         Collections.reverse(studentToMarkNames);
 
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
 
         model.commitTeachBook();
+
         return new CommandResult(String.format(MESSAGE_MARK_STUDENT_SUCCESS,
                 String.join(", ", studentToMarkNames),
                 now.format(DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a", Locale.ENGLISH))),
