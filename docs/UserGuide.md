@@ -432,6 +432,10 @@ This command allows you to mark multiple indexes at once. Which can save you lot
 once the attendance of the student is marked! 
 </div>
 
+<div markdown="block" class="alert alert-info">:information_source: **Info**
+When using this command this command on a filtered list generated from a `find` command, the list will no longer be filtered and the full list will be shown!
+</div>
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 After marking, you can retrieve the attendance list with the `print c/attendance` command. You might also want to check out the [print](#printing-to-excel--print) command for more special columns available to be added.
 </div>
@@ -454,6 +458,10 @@ Fig 13: `Jane Doe` who was [marked present previously](#marking-the-attendance-o
 <div markdown="block" class="alert alert-info">:information_source: **Info**
 This command allows you to unmark multiple indexes at once. Which can save you lots of time! The check box will turn red
 once the attendance of the student is unmarked!
+</div>
+
+<div markdown="block" class="alert alert-info">:information_source: **Info**
+When using this command this command on a filtered list generated from a `find` command, the list will no longer be filtered and the full list will be shown!
 </div>
 
 --------------------------------------------------------------------------------------------------------------------

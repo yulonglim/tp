@@ -69,7 +69,7 @@ public class PrintCommand extends Command {
         this.columnList = columnList;
     }
 
-    private static List<String> generateColumn(String columnName, List<Student> studentList) {
+    public static List<String> generateColumn(String columnName, List<Student> studentList) {
         List<String> result = new ArrayList<>();
 
         switch (columnName.toLowerCase()) {

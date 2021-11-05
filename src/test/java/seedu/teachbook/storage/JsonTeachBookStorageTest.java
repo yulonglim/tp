@@ -19,9 +19,10 @@ import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.commons.exceptions.DataConversionException;
 import seedu.teachbook.model.ReadOnlyTeachBook;
 import seedu.teachbook.model.TeachBook;
+import seedu.teachbook.model.student.Student;
 
 public class JsonTeachBookStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonTeachBookStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -73,14 +74,18 @@ public class JsonTeachBookStorageTest {
         assertEquals(original, new TeachBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addStudent(GeneralIndex.fromOneBased(1), HOON);
+        Student test = new Student(HOON);
+        test.setStudentClass(original.getClassAtIndex(GeneralIndex.fromOneBased(1)));
+        original.addStudent(GeneralIndex.fromOneBased(1), test);
         original.removeStudent(GeneralIndex.fromOneBased(1), ALICE);
         jsonTeachBookStorage.saveTeachBook(original, filePath);
         readBack = jsonTeachBookStorage.readTeachBook(filePath).get();
         assertEquals(original, new TeachBook(readBack));
 
         // Save and read without specifying file path
-        original.addStudent(GeneralIndex.fromOneBased(1), IDA);
+        test = new Student(IDA);
+        test.setStudentClass(original.getClassAtIndex(GeneralIndex.fromOneBased(1)));
+        original.addStudent(GeneralIndex.fromOneBased(1), test);
         jsonTeachBookStorage.saveTeachBook(original); // file path not specified
         readBack = jsonTeachBookStorage.readTeachBook().get(); // file path not specified
         assertEquals(original, new TeachBook(readBack));

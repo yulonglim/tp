@@ -49,6 +49,19 @@ public class Student {
         this.grade = grade;
     }
 
+    public Student(Student toCopy) {
+        this.name = toCopy.getName();
+        this.phone = toCopy.getPhone();
+        this.studentClass = toCopy.getStudentClass();
+        this.email = toCopy.getEmail();
+        this.address = toCopy.getAddress();
+        this.remark = toCopy.getRemark();
+        this.tags.addAll(toCopy.getTags());
+        this.attendance = toCopy.getAttendance();
+        this.grade = toCopy.getGrade();
+        this.studentClass = toCopy.getStudentClass();
+    }
+
     public Name getName() {
         return name;
     }
@@ -145,7 +158,7 @@ public class Student {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, studentClass, email, address, remark, tags, attendance, grade);
+        return Objects.hash(name, phone, studentClass.getClassName(), email, address, remark, tags, attendance, grade);
     }
 
     @Override

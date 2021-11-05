@@ -27,18 +27,15 @@ run {
 test {
     useJUnitPlatform()
     exclude 'seedu/teachbook/logic/commands/AddCommandIntegrationTest.class' // xinyi
-    exclude 'seedu/teachbook/logic/commands/DeleteCommandTest.class' // shufan
     exclude 'seedu/teachbook/logic/commands/EditCommandTest.class' // yunseong
     exclude 'seedu/teachbook/logic/commands/FindCommandTest.class' // xinyi
-    exclude 'seedu/teachbook/logic/commands/ListCommandTest.class' // shufan
     exclude 'seedu/teachbook/model/ModelManagerTest.class' // wilfred
-    exclude 'seedu/teachbook/storage/StorageManagerTest.class' // yulong
-    exclude 'seedu/teachbook/storage/JsonSerializableTeachBookTest.class' // yulong
-    exclude 'seedu/teachbook/storage/JsonTeachBookStorageTest.class' // yulong
+//    exclude 'seedu/teachbook/storage/StorageManagerTest.class' // yulong
+//    exclude 'seedu/teachbook/storage/JsonSerializableTeachBookTest.class' // yulong
+//    exclude 'seedu/teachbook/storage/JsonTeachBookStorageTest.class' // yulong
     exclude 'seedu/teachbook/logic/parser/AddCommandParserTest.class' // yunseong
     exclude 'seedu/teachbook/logic/parser/TeachBookParserTest.class' // xinyi
     exclude 'seedu/teachbook/logic/LogicManagerTest.class' // wilfred
-    exclude 'seedu/teachbook/storage/JsonAdaptedStudentTest.class' // yulong
     exclude 'seedu/teachbook/logic/commands/AddCommandTest.class' // yunseong
 
     // TODO: rewrite corresponding tests belonging to your part and remove exclude statements

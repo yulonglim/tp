@@ -12,18 +12,25 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.teachbook.commons.exceptions.IllegalValueException;
+import seedu.teachbook.model.classobject.Class;
+import seedu.teachbook.model.classobject.ClassName;
 import seedu.teachbook.model.student.Address;
+import seedu.teachbook.model.student.Attendance;
 import seedu.teachbook.model.student.Email;
 import seedu.teachbook.model.student.Name;
 import seedu.teachbook.model.student.Phone;
 import seedu.teachbook.model.student.Remark;
+import seedu.teachbook.model.student.Student;
 
 public class JsonAdaptedStudentTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_ADDRESS = " ";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_TAG = "999999999999999999999999999999999999999999999"
+            + "00000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+            + "1111111111111111111111111111111111111111111111111111111111111111111111111111111111";
+    //tag now accepts special character but must be < 30 characters
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -35,11 +42,16 @@ public class JsonAdaptedStudentTest {
             .collect(Collectors.toList());
     private static final String VALID_ATTENDANCE = BENSON.getAttendance().toString();
     private static final String VALID_GRADE = "";
+    private static final String VALID_CLASSNAME = "A";
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
-        JsonAdaptedStudent person = new JsonAdaptedStudent(BENSON);
-        assertEquals(BENSON, person.toModelType());
+        Class testClass = new Class(new ClassName(VALID_CLASSNAME));
+        Student testStudent = new Student(BENSON);
+        JsonAdaptedStudent person = new JsonAdaptedStudent(testStudent);
+        Student convertedStudent = person.toModelType();
+        convertedStudent.setStudentClass(testClass);
+        assertEquals(testStudent, convertedStudent);
     }
 
     @Test
@@ -127,7 +139,7 @@ public class JsonAdaptedStudentTest {
     public void toModelType_nullAttendance_throwsIllegalValueException() {
         JsonAdaptedStudent person = new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS, VALID_REMARK, VALID_TAGS, null, VALID_GRADE);
-        String expectedMessage = String.format(ILLEGAL_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName());
+        String expectedMessage = String.format(ILLEGAL_FIELD_MESSAGE_FORMAT, Attendance.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 }
