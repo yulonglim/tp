@@ -185,6 +185,31 @@ To integrate the new class feature into the existing AB3 product, we decided tha
     * Similar to _Alternative 2_, there is still the need to maintain the order of students in the unique student list.
     * We always need a predicate to screen out students of the currently selected class. Since users may interact with a specific class at most times, this can degrade the performance of most commands.
 
+### Synchronization of Student List in Model and UI
+
+To ensure synchronization throughout the program, `ModelManager` maintains a `filteredStudents` observable, which is 
+observed by `MainWindow`. `filteredStudents` contains the list of students to be displayed in the UI.
+
+![UiAndModel](images/UiAndModel.png)
+
+`SelectCommand` and `ListCommand` with the `all` option i.e., `list all` are the only two commands that will modify the
+`filteredStudents` entirely, i.e., a new observable is created and replaces the existing observable, via 
+`ModelManager#updateSourceOfFilteredStudentList()`. However, this change is not observed by `MainWindow` as `MainWindow`
+only observes changes within the observable, i.e., the previous `filteredStudents` observable, and not the changes to
+the `filteredStudents` variable itself, which contains the observable. To mitigate this issue, the 
+`updateStudentListPanel` flag, in the `commandResult` returned after the execution of both `SelectCommand` and 
+`ListCommand` with the `all` option, is set to `true`. The flag then triggers the `MainWindow` to retrieve the new 
+`filteredStudents` observable via the `MainWindow#updateStudentListPannel()` and start observing changes in the new 
+observable. Thereafter, the student list in the UI is again in sync with the student list in the Model.
+
+Below is the sequence diagram of the execution of the `SelectCommand`.
+
+![SelectSequenceDiagram](images/SelectSequenceDiagram.png)
+
+Below is the sequence diagram of the execution of the `ListCommand` with the `all` option.
+
+![ListAllSequenceDiagram](images/ListAllSequenceDiagram.png)
+
 ### Delete class feature
 
 #### Implementation
@@ -208,30 +233,6 @@ The following object diagram shows the updated TeachBook:
 #### Design considerations
 
 _{To be updated later}_
-
-### Synchronization of Student List in Model and UI
-
-To ensure synchronization throughout the program, `ModelManager` maintains a `filteredStudents` observable, which is 
-observed by `MainWindow`. `filteredStudents` contains the list of students to be displayed in the UI.
-
-![UiAndModel](images/UiAndModel.png)
-
-`SelectCommand` and `ListCommand` with the `all` option i.e., `list all` are the only two commands that will modify the
-`filteredStudents` entirely, i.e., a new observable is created and replaces the existing observable, via 
-`ModelManager#updateSourceOfFilteredStudentList()`. However, this change is not observed by `MainWindow` as `MainWindow`
-only observes changes within the observable, i.e., the previous `filteredStudents` observable. To mitigate this issue,
-the `updateStudentListPanel` flag, in the `commandResult` returned after the execution of both `SelectCommand` and 
-`ListCommand` with the `all` option, is set to `true`. The flag then triggers the `MainWindow` to retrieve the new 
-`filteredStudents` observable via the `MainWindow#updateStudentListPannel()` and start observing changes in the new 
-observable. Thereafter, the student list in the UI is again in sync with the student list in the Model.
-
-Below is the sequence diagram of the execution of the `SelectCommand`.
-
-![SelectSequenceDiagram](images/SelectSequenceDiagram.png)
-
-Below is the sequence diagram of the execution of the `ListCommand` with the `all` option.
-
-![ListAllSequenceDiagram](images/ListAllSequenceDiagram.png)
 
 ### Implementations of some features
 
@@ -258,6 +259,35 @@ the student's name at index 1 of the current class to john
 Given below is the activity diagram for the same scenario above
 
 ![EditCommandActivityDiagram](images/EditCommandActivityDiagram.png)
+
+### Filtering
+
+Filtering is an essential feature to have when it comes to an application that stores data. This is because with 
+filtering, users can access information with ease in the shortest time possible.
+
+With reference to the discussion on 
+[*Synchronization of Student List in Model and UI*](#synchronization-of-student-list-in-model-and-ui) earlier, 
+at any point of time, `filteredStudents` will contain either the list of all students from the currently 
+selected class or the list of all students from all classes. By making `filteredStudents` a `FilteredList<Student>`,
+filtering can be done easily to both the list of all students from a class and the list of all students from all classes
+by just passing in the corresponding `Predicate<Student>`. For example, `FindCommand` and `ListCommand` with the 
+`absent` option filter the `filteredStudents` via `ModelManager#updateFilteredStudentList()` by passing in the 
+`NameContainsKeywordsPredicate` and `StudentIsAbsentPredicate` respectively. To "clear" the filter on the other hand, 
+there is the `ListCommand` which utilizes the `ModelManager#updateFilteredStudentList()` as well but passing in
+`PREDICATE_SHOW_ALL_STUDENTS` instead. Note that because filtering is done on the `filteredStudent` observable, the 
+changes will be observed by the `MainWindow` and the result of filtering will be reflected immediately in the UI.
+
+Below is the sequence diagram of the execution of the `FindCommand`.
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+Below is the sequence diagram of the execution of the `ListCommand` with the `absent` option.
+
+![ListAbsentSequenceDiagram](images/ListAbsentSequenceDiagram.png)
+
+Below is the sequence diagram of the execution of the `ListCommand`.
+
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
 ### 2. Add class feature
 
