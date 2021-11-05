@@ -93,7 +93,7 @@ public class Attendance {
 
     @Override
     public String toString() {
-        return (isPresent ? PRESENT : ABSENT) + " " +  lastModified.toString();
+        return (isPresent ? PRESENT : ABSENT) + " " + lastModified.toString();
     }
 
     @Override
