@@ -80,7 +80,7 @@
                           <AnchorPane>
                               <Label alignment="CENTER" prefHeight="21.0" style="-fx-background-color: red; -fx-text-fill: white;" text="STUDENTS INFORMATION" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                           </AnchorPane>
-                          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                          <StackPane fx:id="studentListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                       </VBox>
                   </AnchorPane>
               </SplitPane>
