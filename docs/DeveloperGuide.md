@@ -315,7 +315,8 @@ named `A`.
 
 #### Implementation
 
-The undo/redo mechanism is facilitated by `VersionedTeachBook`. It extends `TeachBook` with an undo/redo history, stored internally as an `teachBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The undo/redo mechanism is facilitated by `VersionedTeachBook`. It extends `TeachBook` with an undo/redo history, each state is stored internally as an `TeachbookDataState` which consist of a `TeachBook` and `TeachbookDisplayState`. `TeachbookDisplayState` stored the filter predicate for the student list if any is applied and also the index of the selected class to be displayed.
+The `TeachbookDataState` is stored in a `TeachbookStateList` with a `currentStatePointer`. Additionally, it implements the following operations:
 
 * `VersionedTeachBook#commit()` — Saves the current teach book state in its history.
 * `VersionedTeachBook#undo()` — Restores the previous teach book state from its history.
@@ -658,6 +659,11 @@ Extensions:
 
       Use case ends.
 
+* 1b. Teacher does not have a downloads folder on the device.
+    * 1b1. TeachBook displays error.
+
+      Use case ends.
+
 **Use case: UC?? - undo**
 
 MSS:
@@ -898,6 +904,74 @@ Prerequisites: Students are listed using `list` command or `list all` command.
     6. Other incorrect `unmark` commands to try: `unmark`, `unmark random`, `unmark x`, `unmark 1 2 x`, `...` (where x is non-positive or larger than the list size) <br>
        Expected: Similar to previous.
 
+### Print a list of students
+
+1. Print the list of students in a class.
+
+    1. Prerequisites: At least two student in the class, device has Excel/can view excel folder and has Downloads folder.
+    2. Test case: `print`<br>
+       Expected: Excel file in downloads folder with a column "Name" with the student's names.
+    3. Test case: `print c/address` <br>
+       Expected: Excel file in downloads folder with a column "Name" with the student's names and a column "Address" with the student's address.
+    4. Test case: `print c/signature` <br>
+       Expected: Excel file in downloads folder with a column "Name" with the student's names and a column "signature" that is empty.
+    5. Test case: `print c/ c/address`<br>
+       Expected: Excel file in downloads folder with a column "Name" with the student's names and a column "Address" with the student's address, both columns should be separated by an empty column.
+    6. Test case: `print c/c/address`<br>
+       Expected: Excel file in downloads folder with a column "Name" with the student's names and a column "c/address" that is empty.
+    7. Other incorrect `print` commands to try: `print t/`, `print c/` (i.e. print with any invalid prefix after) <br>
+       Expected: Error to be thrown.
+
+### Print a list of students
+
+1. Print the list of students in a class.
+
+    1. Prerequisites: At least two student in the class, device has Excel/can view excel folder and has Downloads folder.
+    2. Test case: `print`<br>
+       Expected: Excel file in downloads folder with a column "Name" with the student's names.
+    3. Test case: `print c/address` <br>
+       Expected: Excel file in downloads folder with a column "Name" with the student's names and a column "Address" with the student's address.
+    4. Test case: `print c/signature` <br>
+       Expected: Excel file in downloads folder with a column "Name" with the student's names and a column "signature" that is empty.
+    5. Test case: `print c/ c/address`<br>
+       Expected: Excel file in downloads folder with a column "Name" with the student's names and a column "Address" with the student's address, both columns should be separated by an empty column.
+    6. Test case: `print c/c/address`<br>
+       Expected: Excel file in downloads folder with a column "Name" with the student's names and a column "c/address" that is empty.
+    7. Other incorrect `print` commands to try: `print t/`, `print c/` (i.e. print with any invalid prefix after) <br>
+       Expected: Error to be thrown.
+
+### Undo Commands
+
+1. Undoing a recent command.
+
+    1. Prerequisites: Start with a newly opened teachbook with no commands to undo.
+    2. Test case: `undo`<br>
+       Expected: Error stating no states to undo.
+    3. Test case: `addClass A` followed by `undo` <br>
+       Expected: Class A is added get removed after undo is done.
+    4. Test case: `list all` followed by `undo` <br>
+       Expected: All students will be displayed, then list will return to previous list after undo.
+    5. Test case: Multiple `list` followed by `undo`<br>
+       Expected: Undo will revert the display back to before first list command is done.
+    6. Test case: `edit` first person name without changing anything, followed with `undo`<br>
+       Expected: Error stating no states to undo.
+
+### Redo Commands
+
+1. Redoing a recent undo command.
+
+    1. Prerequisites: Start with a newly opened teachbook with no commands to redo.
+    2. Test case: `redo`<br>
+       Expected: Error stating no states to redo.
+    3. Test case: `addClass A` followed by `undo` followed by `redo`<br>
+       Expected: Class A is added get removed after undo is done, Class A will reappear after redo is done.
+    4. Test case: `list all` followed by `undo` <br>
+       Expected: All students will be displayed, then list will return to previous list after undo, all students will be displayed again after redo is done.
+    5. Test case: Multiple `list` followed by `undo`<br>
+       Expected: Undo will revert the display back to before first list command is done, redo will then cause list to change to the list after command `list` is executed.
+    6. Test case: `edit` first person name without changing anything, followed with `undo`, followed with `redo`<br>
+       Expected: Error stating no states to redo.
+
 3. _{ more test cases ... }_
 
 ### Saving data
@@ -907,3 +981,4 @@ Prerequisites: Students are listed using `list` command or `list all` command.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases ... }_
+

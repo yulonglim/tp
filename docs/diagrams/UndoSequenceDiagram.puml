@@ -37,9 +37,14 @@ Model -> VersionedTeachBook : undo()
 activate VersionedTeachBook
 
 VersionedTeachBook -> VersionedTeachBook :resetData(ReadOnlyTeachBook)
-VersionedTeachBook --> Model :
+VersionedTeachBook --> Model : TeachBookDisplayState
 deactivate VersionedTeachBook
 
+activate Model
+Model -> Model : updateCurrentlySelectedClass(GeneralIndex)
+Model -> Model : updateFilteredStudentList(Predicate<Student>)
+
+deactivate Model
 Model --> UndoCommand
 deactivate Model
 
