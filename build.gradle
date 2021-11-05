@@ -38,6 +38,16 @@ test {
     exclude 'seedu/teachbook/logic/LogicManagerTest.class' // wilfred
     exclude 'seedu/teachbook/logic/commands/AddCommandTest.class' // yunseong
 
+    exclude 'seedu/teachbook/model/ClassCardTest.class' // wilfred
+    exclude 'seedu/teachbook/model/ClassListPanelTest.class' // wilfred
+    exclude 'seedu/teachbook/model/CommandBox.class' // wilfred
+    exclude 'seedu/teachbook/model/HelpWindowTest.class' // wilfred
+    exclude 'seedu/teachbook/model/ResultDisplayTest.class' // wilfred
+    exclude 'seedu/teachbook/model/StatusBarFooterTest.class' // wilfred
+    exclude 'seedu/teachbook/model/StudentCardTest.class' // wilfred
+    exclude 'seedu/teachbook/model/StudentListPanelTest.class' // wilfred
+    exclude 'seedu/teachbook/model/UiManagerTest.class' // wilfred
+
     // TODO: rewrite corresponding tests belonging to your part and remove exclude statements
 
     finalizedBy jacocoTestReport
