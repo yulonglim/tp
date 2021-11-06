@@ -5,6 +5,8 @@ import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_LIST_ALL;
 import static seedu.teachbook.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.teachbook.model.gradeobject.GradingSystem.NOT_GRADED;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
@@ -102,7 +104,13 @@ public class TeachBook implements ReadOnlyTeachBook {
             copy.add(newClass);
         }
         setClasses(copy);
-        setGradingSystem(newData.getGradingSystem());
+
+        List<Grade> gradeListCopy = new ArrayList<>();
+        for (Grade g : newData.getGradingSystem().getGradeList()) {
+            Grade newGrade = new Grade(g.value);
+            gradeListCopy.add(newGrade);
+        }
+        setGradingSystem(new GradingSystem(gradeListCopy));
     }
 
     //// class-level operations
@@ -286,7 +294,7 @@ public class TeachBook implements ReadOnlyTeachBook {
      * @return Grading system of current Teachbook
      */
     public GradingSystem getGradingSystem() {
-        return gradingSystem;
+        return new GradingSystem(Collections.unmodifiableList(gradingSystem.getGradeList()));
     }
 
     /**

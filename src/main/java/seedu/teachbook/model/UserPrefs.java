@@ -9,7 +9,7 @@ import java.util.Objects;
 import seedu.teachbook.commons.core.GuiSettings;
 
 /**
- * Represents User's preferences.
+ * Represents user's preferences.
  */
 public class UserPrefs implements ReadOnlyUserPrefs {
 
