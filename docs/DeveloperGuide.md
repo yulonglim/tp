@@ -459,7 +459,7 @@ Priorities: High (must have) - `* * *` , Medium (nice to have) - `* *` , Low (un
 (For all use cases below, the **System** is the `TeachBook` and the **Actor** is the `user`, unless specified otherwise)
 
 
-**Use case: UC01  - Set GradingSystem.**
+**Use case: UC01 - Set a grading system**
 
 MSS:
 1. User decides to implement grading system for TeachBook
@@ -480,7 +480,7 @@ Extensions:
     Use case resumes from step 2.
 
 
-**Use case: UC02 - Reset GradingSystem.**
+**Use case: UC02 - Reset grading system**
 
 MSS:
 1. User decides to reset the existing grading system.
@@ -498,7 +498,7 @@ Extensions:
     2b1. TeachBook requests user to follow the correct format.
     Use case resumes from step 2.
 
-**Use case UC03 - Grading a student**
+**Use case: UC03 - Grade a student**
 
 MSS:
 1. User decides the grade to give to a specific student.
@@ -523,7 +523,7 @@ Extensions:
     2c1. TeachBook requests user to follow the correct format.
     Use case resumes from step 2.
 
-**Use case UC04 - Sorting students according to grade.**
+**Use case: UC04 - Sort students according to grade**
 
 MSS:
 1. User decides to sort the students according to their grade.
@@ -545,30 +545,67 @@ Extension:
     2b1. TeachBook requests user to follow the correct format.
     Use case resumes from step 2.
 
-**Use case: UC?? - Delete a Student / Students**
+**Use case: UC?? - Delete one or more student**
 
 MSS:
 
-1. User <ins>list all the students (UC??)</ins>.
-2. User requests to delete a specific student / specific students in the list by giving ID(s).
-3. TeachBook deletes the student(s).
+1. User requests to delete one or more specific students.
+2. TeachBook deletes the students.
+3. TeachBook shows a success message.
 
     Use case ends.
 
 Extensions:
 
-* 1a. The list is empty.
+* 1a. One or more given indices are invalid.
 
-  Use case ends.
+    * 1a1. TeachBook shows an error message.
 
-* 2a. The given ID(s) is/are invalid.
+      Use case ends.
 
-    * 2a1. For all valid ID(s), TeachBook deletes the student(s).
-    * 2a2. For all invalid ID(s), TeachBook shows an error message.
+**Use case: UC?? - Delete all the students in the filtered student list**
 
-      Use case resumes at step 1.
+MSS:
 
-**Use case: UC?? - List Students from A Class**
+1. User requests to delete all the students in the filtered student list.
+2. TeachBook deletes the students.
+3. TeachBook shows a success message.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. The filtered student list is empty.
+
+    * 1a1. TeachBook shows an error message.
+
+      Use case ends.
+
+**Use case: UC?? - Give a remark to a student**
+
+MSS:
+
+1. User requests to give a remark to a specific student.
+2. TeachBook overwrites any existing remark of the student with the given remark.
+3. TeachBook shows a success message.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. The given index is invalid.
+
+    * 1a1. TeachBook shows an error message.
+
+      Use case ends.
+
+* 1b. The given remark is empty.
+
+    * 1b1. TeachBook clears any existing remark of the student.
+
+      Use case resumes at step 3.
+
+**Use case: UC?? - List students from a class**
 
 MSS:
 
@@ -578,7 +615,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC?? - List Students from All Classes**
+**Use case: UC?? - List students from all classes**
 
 MSS:
 
@@ -587,7 +624,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC?? - List Absent Students from A Class**
+**Use case: UC?? - List absent students from a class**
 
 MSS:
 
@@ -597,7 +634,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC?? - List Absent Students from All Classes**
+**Use case: UC?? - List absent students from all classes**
 
 MSS:
 
@@ -607,7 +644,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC?? - Mark a Student as Present**
+**Use case: UC?? - Mark a student as present**
 
 MSS:
 
@@ -623,7 +660,7 @@ Extensions:
 
       Use case ends.
 
-**Use case: UC?? - Mark a Student as Absent**
+**Use case: UC?? - Mark a student as absent**
 
 MSS:
 
@@ -639,7 +676,7 @@ Extensions:
 
       Use case ends.
 
-**Use case: UC?? - print**
+**Use case: UC?? - Print**
 
 MSS:
 
@@ -660,7 +697,7 @@ Extensions:
 
       Use case ends.
 
-**Use case: UC?? - undo**
+**Use case: UC?? - Undo**
 
 MSS:
 
@@ -676,7 +713,7 @@ Extensions:
 
       Use case ends.
 
-**Use case: UC?? - redo**
+**Use case: UC?? - Redo**
 
 MSS:
 
@@ -708,7 +745,7 @@ Extensions:
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Class list panel:**
 * **Student list panel:**
-* **Filtered student list:**
+* **Filtered student list:** The list of students that is currently being displayed on the student list panel
 * **Currently selected class**: The class that is currently being highlighted on the class list panel. ...
 * **Grading system:**
 
