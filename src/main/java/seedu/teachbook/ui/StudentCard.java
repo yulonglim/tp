@@ -132,5 +132,5 @@ public class StudentCard extends UiPart<Region> {
         return id.getText().equals(card.id.getText())
                 && student.equals(card.student);
     }
-    
+
 }
