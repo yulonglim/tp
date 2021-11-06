@@ -3,8 +3,8 @@ package seedu.teachbook.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.teachbook.testutil.Assert.assertThrows;
-import static seedu.teachbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.teachbook.testutil.TypicalIndexes.INDEX_MAX_INTEGER;
+import static seedu.teachbook.testutil.TypicalIndices.INDEX_FIRST_PERSON;
+import static seedu.teachbook.testutil.TypicalIndices.INDEX_MAX_INTEGER;
 
 import java.util.Arrays;
 import java.util.Collections;

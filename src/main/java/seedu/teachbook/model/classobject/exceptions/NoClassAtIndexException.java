@@ -1,7 +1,6 @@
 package seedu.teachbook.model.classobject.exceptions;
 
 /**
- * Signals that there is currently zero class in the teach book.
+ * Signals that there is no class at the specified index in the TeachBook.
  */
-public class NoClassAtIndexException extends RuntimeException {
-}
+public class NoClassAtIndexException extends RuntimeException {}

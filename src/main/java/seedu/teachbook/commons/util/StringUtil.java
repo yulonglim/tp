@@ -54,11 +54,11 @@ public class StringUtil {
      * e.g. ..., -1, 0, 1, 2, 3, ... <br>
      * Will return false for any other non-null string input
      * e.g. empty string, "+1", and " 2 " (untrimmed), "3 0" (contains whitespace), "1 a" (contains letters)
+     *
      * @throws NullPointerException if {@code s} is null.
      */
     public static boolean isInteger(String s) {
         requireNonNull(s);
-
         try {
             new BigInteger(s);
             return !s.startsWith("+"); // "+1" is successfully parsed by new BigInteger(String)

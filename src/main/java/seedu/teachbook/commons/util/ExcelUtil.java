@@ -19,7 +19,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
 /**
- * Utility methods related to Excel
+ * Utility methods related to Excel.
  */
 public class ExcelUtil {
 

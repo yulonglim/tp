@@ -18,7 +18,7 @@ import seedu.teachbook.model.tag.Tag;
 import seedu.teachbook.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Student objects.
+ * A utility class to help with building {@code Student} objects.
  */
 public class StudentBuilder {
 
@@ -60,7 +60,7 @@ public class StudentBuilder {
     }
 
     /**
-     * Initializes the StudentBuilder with the data of {@code personToCopy}.
+     * Initializes the StudentBuilder with the data of {@code studentToCopy}.
      */
     public StudentBuilder(Student studentToCopy) {
         name = studentToCopy.getName();
@@ -138,14 +138,16 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Grade} of the {@code Student} that we are building.
+     */
     public StudentBuilder withGrade(String grade) {
         this.grade = new Grade(grade);
         return this;
     }
 
     public Student build() {
-        Student student = new Student(name, phone, studentClass, email, address, remark, tags, attendance, grade);
-        return student;
+        return new Student(name, phone, studentClass, email, address, remark, tags, attendance, grade);
     }
 
 }

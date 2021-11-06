@@ -101,7 +101,7 @@ public class TypicalStudents {
     private TypicalStudents() {} // prevents instantiation
 
     /**
-     * Returns an {@code TeachBook} with all the typical students in typical classes.
+     * Returns a {@code TeachBook} with all the typical students in typical classes.
      */
     public static TeachBook getTypicalTeachBook() {
         TeachBook tb = new TeachBook();

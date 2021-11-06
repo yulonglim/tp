@@ -231,10 +231,6 @@ The following object diagram shows the updated TeachBook:
 
 <img src="images/DeleteClassObjectDiagram1.png" width="280" />
 
-#### Design considerations
-
-_{To be updated later}_
-
 ### Implementations of some features
 
 ### 1. Edit feature
@@ -463,7 +459,7 @@ Priorities: High (must have) - `* * *` , Medium (nice to have) - `* *` , Low (un
 (For all use cases below, the **System** is the `TeachBook` and the **Actor** is the `user`, unless specified otherwise)
 
 
-**Use case: UC01  - Set GradingSystem.**
+**Use case: UC01 - Set a grading system**
 
 MSS:
 1. User decides to implement grading system for TeachBook
@@ -484,7 +480,7 @@ Extensions:
     Use case resumes from step 2.
 
 
-**Use case: UC02 - Reset GradingSystem.**
+**Use case: UC02 - Reset grading system**
 
 MSS:
 1. User decides to reset the existing grading system.
@@ -502,7 +498,7 @@ Extensions:
     2b1. TeachBook requests user to follow the correct format.
     Use case resumes from step 2.
 
-**Use case UC03 - Grading a student**
+**Use case: UC03 - Grade a student**
 
 MSS:
 1. User decides the grade to give to a specific student.
@@ -527,7 +523,7 @@ Extensions:
     2c1. TeachBook requests user to follow the correct format.
     Use case resumes from step 2.
 
-**Use case UC04 - Sorting students according to grade.**
+**Use case: UC04 - Sort students according to grade**
 
 MSS:
 1. User decides to sort the students according to their grade.
@@ -549,30 +545,67 @@ Extension:
     2b1. TeachBook requests user to follow the correct format.
     Use case resumes from step 2.
 
-**Use case: UC?? - Delete a Student / Students**
+**Use case: UC?? - Delete one or more student**
 
 MSS:
 
-1. User <ins>list all the students (UC??)</ins>.
-2. User requests to delete a specific student / specific students in the list by giving ID(s).
-3. TeachBook deletes the student(s).
+1. User requests to delete one or more specific students.
+2. TeachBook deletes the students.
+3. TeachBook shows a success message.
 
     Use case ends.
 
 Extensions:
 
-* 1a. The list is empty.
+* 1a. One or more given indices are invalid.
 
-  Use case ends.
+    * 1a1. TeachBook shows an error message.
 
-* 2a. The given ID(s) is/are invalid.
+      Use case ends.
 
-    * 2a1. For all valid ID(s), TeachBook deletes the student(s).
-    * 2a2. For all invalid ID(s), TeachBook shows an error message.
+**Use case: UC?? - Delete all the students in the filtered student list**
 
-      Use case resumes at step 1.
+MSS:
 
-**Use case: UC?? - List Students from A Class**
+1. User requests to delete all the students in the filtered student list.
+2. TeachBook deletes the students.
+3. TeachBook shows a success message.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. The filtered student list is empty.
+
+    * 1a1. TeachBook shows an error message.
+
+      Use case ends.
+
+**Use case: UC?? - Give a remark to a student**
+
+MSS:
+
+1. User requests to give a remark to a specific student.
+2. TeachBook overwrites any existing remark of the student with the given remark.
+3. TeachBook shows a success message.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. The given index is invalid.
+
+    * 1a1. TeachBook shows an error message.
+
+      Use case ends.
+
+* 1b. The given remark is empty.
+
+    * 1b1. TeachBook clears any existing remark of the student.
+
+      Use case resumes at step 3.
+
+**Use case: UC?? - List students from a class**
 
 MSS:
 
@@ -582,7 +615,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC?? - List Students from All Classes**
+**Use case: UC?? - List students from all classes**
 
 MSS:
 
@@ -591,7 +624,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC?? - List Absent Students from A Class**
+**Use case: UC?? - List absent students from a class**
 
 MSS:
 
@@ -601,7 +634,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC?? - List Absent Students from All Classes**
+**Use case: UC?? - List absent students from all classes**
 
 MSS:
 
@@ -611,7 +644,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC?? - Mark a Student as Present**
+**Use case: UC?? - Mark a student as present**
 
 MSS:
 
@@ -627,7 +660,7 @@ Extensions:
 
       Use case ends.
 
-**Use case: UC?? - Mark a Student as Absent**
+**Use case: UC?? - Mark a student as absent**
 
 MSS:
 
@@ -643,7 +676,7 @@ Extensions:
 
       Use case ends.
 
-**Use case: UC?? - print**
+**Use case: UC?? - Print**
 
 MSS:
 
@@ -664,7 +697,7 @@ Extensions:
 
       Use case ends.
 
-**Use case: UC?? - undo**
+**Use case: UC?? - Undo**
 
 MSS:
 
@@ -680,7 +713,7 @@ Extensions:
 
       Use case ends.
 
-**Use case: UC?? - redo**
+**Use case: UC?? - Redo**
 
 MSS:
 
@@ -701,22 +734,22 @@ Extensions:
 ### Non-Functional Requirements
 
 1. The app should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. The TeachBook should be able to hold up to 1000 students and 30 classes without a noticeable sluggishness (being able to respond to any command within 5 seconds) in performance for typical usage.
+2. The app should be able to hold up to 30 classes and 200 students in each class without long time lags in performance (being able to respond to any command within 4 seconds) for typical usage.
+3. A new user should be able to understand and use all the commands within two days with the help of the User Guide.
 4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-5. The source code should be open source.
-
-*{More to be added}*
+5. User data of an app should be kept only on the device installed the app.
+6. User data should not be lost or corrupted when the app is closed unexpectedly.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Class number**: A letter A, B, C, ...
-* **Student number**: A positive integer 1, 2, 3, ...
-* **ID**: A serial number assigned to a student when he/she is added to the TeachBook. **ID** is made up of a student's _class number_ and his/her _student number_ in the class,
-e.g. if a student is from class A and has student number 2, then the student’s ID would be A2.
-* **Currently selected class**:
+* **Class list panel:**
+* **Student list panel:**
+* **Filtered student list:** The list of students that is currently being displayed on the student list panel
+* **Currently selected class**: The class that is currently being highlighted on the class list panel. ...
+* **Grading system:**
 
-*{More to be added}*
+*_{More to be added}_*
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -745,25 +778,10 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases ... }_
-
-### Deleting a student
-
-1. Deleting a student while all students are being shown
-
-   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
-
-   2. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   3. Test case: `delete 0`<br>
-      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
-
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
    
 ### Editing a student
 
-1. Editing a student from list of students
+1. Editing a student from list of students.
 
     1. Prerequisites: List students in the currently selected class using `list` command or list all students in TeachBook using `list all` command.
 
@@ -771,8 +789,56 @@ testers are expected to do more *exploratory* testing.
        Expected: First student in the list is being edited. Name of the student is changed to `Jane` and phone number of the student is changed to `1234`
     3. Test case: `edit 1`<br>
        Expected: No student is edited. Error details shown in the status message that at least one field has to be specified for edit.
-    4. Other incorrect edit commands to try: `edit`, `edit nothing` `edit /nJane /p1234`
+    4. Other incorrect edit commands to try: `edit`, `edit nothing` `edit /nJane /p1234`<br>
        Expected: Similar to previous test case.
+
+### Giving remark to a student
+
+1. Giving remark to a student while all students are being shown.
+
+    1. Prerequisites: List all students using the `list` command. There are two and only two students in the student list.
+    2. Test case: `remark 1 r/Allergic to seafood.`<br>
+       Expected: First student in the list has the remark `Allergic to seafood.`.
+    3. Test case: `remark 1 r/`<br>
+       Expected: First student has no remark.
+    4. Test case: `remark 30 r/`<br>
+       Expected: No student's remark field is changed. Error details shown in the status message.
+    5. Other incorrect `remark` commands to try: `remark`, `remark 1`, `remark r/`, `remark 0 r/new`, `remark 1 2 r/new`, `remark hello r/new`<br>
+       Expected: Similar to previous.
+    
+### Deleting students
+
+1. Deleting one or more students while all students are being shown.
+
+    1. Prerequisites: List all students using the `list` command. There are three and only three students in the student list.
+    2. Test case: `delete 1`<br>
+       Expected: First student is deleted from the list. Details of the deleted student shown in the status message.
+    3. Test case: `delete 01`<br>
+       Expected: Similar to previous.
+    4. Test case: `delete 1 2`<br>
+       Expected: First and second students are deleted from the list. Details of the deleted students shown in the status message.
+    5. Test case: `delete all`<br>
+       Expected: All three students are deleted from the list. Details of the deleted students shown in the status message.
+    6. Test case: `delete 0`<br>
+       Expected: No student is deleted. Error details shown in the status message.
+    7. Test case: `delete 0 1 2`<br>
+       Expected: Similar to previous.
+    8. Other incorrect `delete` commands to try: `delete`, `delete hello world`, `delete all all`, `delete 5`, `delete 1 2 all`, `delete -1`<br>
+       Expected: Similar to previous.
+
+### Selecting a class
+
+1. Selecting a class.
+
+    1. Prerequisites: There is a class named `A` in the TeachBook. There is no class named `M` in the TeachBook.
+    2. Test case: `select A` when class `A` is not selected.<br>
+       Expected: Class named `A` is highlighted in class list panel. Student list of class `A` is shown in student list panel.
+    3. Test case: `select A` when class `A` is already selected.<br>
+       Expected: Nothing changes in class list panel and student list panel. Error details shown in the status message.
+    4. Test case: `select M`<br>
+       Expected: Similar to previous.
+    5. Test case: `select`<br>
+       Expected: Similar to previous.
 
 ### Deleting a class
 
