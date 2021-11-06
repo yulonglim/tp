@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.Model;
 import seedu.teachbook.model.ModelManager;
-import seedu.teachbook.model.TeachBook;
 import seedu.teachbook.model.UserPrefs;
 import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.student.Student;

@@ -53,14 +53,14 @@ public class TypicalStudents {
             .withEmail("heinz@example.com")
             .withAddress("wall street")
             .build();
-    public static final Student DANIEL = new StudentBuilder()
-            .withName("Daniel Meier")
-            .withPhone("87652533")
-            .withClass("A")
-            .withEmail("cornelia@example.com")
-            .withAddress("10th street")
-            .withTags("friends")
-            .build();
+//    public static final Student DANIEL = new StudentBuilder()
+//            .withName("Daniel Meier")
+//            .withPhone("87652533")
+//            .withClass("A")
+//            .withEmail("cornelia@example.com")
+//            .withAddress("10th street")
+//            .withTags("friends")
+//            .build();
     public static final Student ELLE = new StudentBuilder()
             .withName("Elle Meyer")
             .withPhone("9482224")
@@ -75,13 +75,13 @@ public class TypicalStudents {
             .withEmail("lydia@example.com")
             .withAddress("little tokyo")
             .build();
-    public static final Student GEORGE = new StudentBuilder()
-            .withName("George Best")
-            .withPhone("9482442")
-            .withClass("A")
-            .withEmail("anna@example.com")
-            .withAddress("4th street")
-            .build();
+//    public static final Student GEORGE = new StudentBuilder()
+//            .withName("George Best")
+//            .withPhone("9482442")
+//            .withClass("A")
+//            .withEmail("anna@example.com")
+//            .withAddress("4th street")
+//            .build();
 
     // Manually added
     public static final Student HOON = new StudentBuilder().withName("Hoon Meier").withPhone("8482424")
@@ -120,6 +120,6 @@ public class TypicalStudents {
     }
 
     public static List<Student> getTypicalStudents() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON));
     }
 }
