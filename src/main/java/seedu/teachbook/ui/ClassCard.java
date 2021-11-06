@@ -8,7 +8,7 @@ import seedu.teachbook.model.classobject.Class;
 
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * A UI component that displays information of a {@code Class}.
  */
 public class ClassCard extends UiPart<Region> {
 
@@ -35,7 +35,7 @@ public class ClassCard extends UiPart<Region> {
 
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code ClassCard} with the given {@code classObj} and index to display.
      */
     public ClassCard(Class classObj, int displayedIndex) {
         super(FXML);
