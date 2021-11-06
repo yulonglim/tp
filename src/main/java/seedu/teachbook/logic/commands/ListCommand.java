@@ -11,7 +11,7 @@ import seedu.teachbook.model.student.StudentIsAbsentPredicate;
 /**
  * Lists all students in the current student list by clearing any filter.
  * {@code ListCommand} can also list all students in the entire TeachBook or
- * list all students in the current student list whose attendance status is absent.
+ * list all students in the current student list whose {@code Attendance} status is absent.
  */
 public class ListCommand extends Command {
 

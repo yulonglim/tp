@@ -32,7 +32,8 @@ public class SelectClassCommand extends Command {
     private final ClassNameDescriptor newClassName;
 
     /**
-     * Creates a {@code SelectClassCommand} to select the class described by the specified {@code ClassNameDescriptor}.
+     * Creates a {@code SelectClassCommand} to select the class whose name is described by the specified
+     * {@code ClassNameDescriptor}.
      *
      * @param newClassName class name descriptor of the class to be selected.
      */

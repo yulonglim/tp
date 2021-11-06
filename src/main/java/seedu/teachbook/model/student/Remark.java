@@ -11,7 +11,9 @@ public class Remark {
     public final String value;
 
     /**
-     * Constructs a {@code Remark}.
+     * Constructs a {@code Name}.
+     *
+     * @param remark a remark as a string.
      */
     public Remark(String remark) {
         requireNonNull(remark);
