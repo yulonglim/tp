@@ -1,6 +1,5 @@
 package seedu.teachbook.testutil;
 
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,7 +27,6 @@ public class StudentBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_REMARK = "Allergic to seafood.";
-    public static final String DEFAULT_ATTENDANCE = "Absent " + LocalDateTime.now();
     public static final String DEFAULT_GRADE = "";
 
     private Name name;
@@ -52,10 +50,7 @@ public class StudentBuilder {
         address = new Address(DEFAULT_ADDRESS);
         remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
-        String[] attendanceComponents = DEFAULT_ATTENDANCE.split(" ");
-        boolean isPresent = attendanceComponents[0].equals("Present");
-        LocalDateTime lastModified = LocalDateTime.parse(attendanceComponents[1]);
-        attendance = new Attendance(isPresent, lastModified);
+        attendance = Attendance.getDefaultAttendance();
         grade = new Grade(DEFAULT_GRADE);
     }
 
