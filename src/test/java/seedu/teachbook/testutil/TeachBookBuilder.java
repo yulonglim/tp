@@ -7,13 +7,13 @@ import seedu.teachbook.model.classobject.ClassName;
 import seedu.teachbook.model.student.Student;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building {@code TeachBook} objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
+ *     {@code TeachBook tb = new TeachBookBuilder().withStudent("John", "Doe").build();}
  */
 public class TeachBookBuilder {
 
-    private TeachBook teachBook;
+    private final TeachBook teachBook;
 
     public TeachBookBuilder() {
         teachBook = new TeachBook();
@@ -25,7 +25,7 @@ public class TeachBookBuilder {
     }
 
     /**
-     * Adds a new {@code Person} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Student} to the {@code TeachBook} that we are building.
      */
     public TeachBookBuilder withStudent(Student student) {
         teachBook.addStudent(GeneralIndex.fromOneBased(1), student);
@@ -35,4 +35,5 @@ public class TeachBookBuilder {
     public TeachBook build() {
         return teachBook;
     }
+
 }

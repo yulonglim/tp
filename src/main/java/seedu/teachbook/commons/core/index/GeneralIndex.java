@@ -2,15 +2,16 @@ package seedu.teachbook.commons.core.index;
 
 /**
  * Represents a zero-based or one-based index.
- *
- * {@code GeneralIndex} is used for indexing the currently selected class.
- * It should not be used with values that can cause integer overflow.
+ * This class is mostly the same as {@code Index}, except {@code GeneralIndex} accepts negative indices.
+ * This class is used for indexing the currently selected class.
+ * It should not be used with values that can cause any integer overflow.
  */
 public class GeneralIndex {
-    private int zeroBasedIndex;
+
+    private final int zeroBasedIndex;
 
     /**
-     * Index can only be created by calling {@link GeneralIndex#fromZeroBased(int)} or
+     * {@code GeneralIndex} can only be created by calling {@link GeneralIndex#fromZeroBased(int)} or
      * {@link GeneralIndex#fromOneBased(int)}.
      */
     private GeneralIndex(int zeroBasedIndex) {
@@ -40,15 +41,18 @@ public class GeneralIndex {
     }
 
     /**
-     * Decrement the value of this {@code GeneralIndex} by one.
+     * Returns a {@code GeneralIndex} whose index value is one less than this.
+     *
+     * @return a {@code GeneralIndex} whose index value is one less than this.
      */
     public GeneralIndex minusOne() {
         return GeneralIndex.fromZeroBased(zeroBasedIndex - 1);
     }
 
     /**
-     * Checks if the value of this {@code GeneralIndex} is smaller than the value of {@code otherIndex}.
-     * @return {@code true} if the value of this {@code GeneralIndex} is smaller than the value of {@code otherIndex}.
+     * Checks if the index value of this is smaller than the index value of {@code otherIndex}.
+     *
+     * @return {@code true} if the index value of this is smaller than the index value of {@code otherIndex}.
      */
     public boolean isSmallerThan(GeneralIndex otherIndex) {
         return this.zeroBasedIndex < otherIndex.zeroBasedIndex;
@@ -60,4 +64,5 @@ public class GeneralIndex {
                 || (other instanceof GeneralIndex // instanceof handles nulls
                 && zeroBasedIndex == ((GeneralIndex) other).zeroBasedIndex); // state check
     }
+
 }

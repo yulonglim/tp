@@ -22,7 +22,7 @@ import seedu.teachbook.model.student.Student;
 import seedu.teachbook.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating the TeachBook with sample data.
  */
 public class SampleDataUtil {
     public static Class[] getSampleClasses() {
