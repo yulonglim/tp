@@ -706,13 +706,13 @@ Extensions:
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Class number**: A letter A, B, C, ...
-* **Student number**: A positive integer 1, 2, 3, ...
-* **ID**: A serial number assigned to a student when he/she is added to the TeachBook. **ID** is made up of a student's _class number_ and his/her _student number_ in the class,
-e.g. if a student is from class A and has student number 2, then the student’s ID would be A2.
-* **Currently selected class**:
+* **Class list panel:**
+* **Student list panel:**
+* **Filtered student list:**
+* **Currently selected class**: The class that is currently being highlighted on the class list panel. ...
+* **Grading system:**
 
-*{More to be added}*
+*_{More to be added}_*
 
 --------------------------------------------------------------------------------------------------------------------
 
