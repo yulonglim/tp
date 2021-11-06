@@ -146,8 +146,18 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Builds a valid {@code Student} object as per resulted after the execution of {@code AddCommand}.
+     */
     public Student build() {
         return new Student(name, phone, studentClass, email, address, remark, tags, attendance, grade);
     }
 
+    /**
+     * Builds a valid {@code Student} object to be passed into {@code AddCommandParser}.
+     */
+    public Student buildToAdd() {
+        return new Student(name, phone, null, email, address, new Remark(""), tags,
+                Attendance.getDefaultAttendance(), new Grade(""));
+    }
 }

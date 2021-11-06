@@ -57,11 +57,20 @@ public class Attendance {
     }
 
     /**
-     * Checks if the {@code Student} is present.
+     * Constructs the default {@code Attendance} object to be used to create a {@code Student} object.
      *
-     * @return true if the {@code Student} is present
+     * @return default {@code Attendance} object to be used to create a {@code Student} object.
      */
-    public boolean isPresent() {
+    public static Attendance getDefaultAttendance() {
+        return new Attendance(false, LocalDateTime.now());
+    }
+
+    /**
+     * Returns the {@code isPresent} field of the {@code Attendance} object.
+     *
+     * @return {@code isPresent} field of the {@code Attendance} object.
+     */
+    public boolean getIsPresent() {
         return isPresent;
     }
 
