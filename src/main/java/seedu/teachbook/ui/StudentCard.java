@@ -136,6 +136,10 @@ public class StudentCard extends UiPart<Region> {
                 && student.equals(card.student);
     }
 
+    /**
+     * Sets the checkbox on UI to marked.
+     *
+     */
     public void markCheckbox() {
         checkBox.setSelected(true);
     }
