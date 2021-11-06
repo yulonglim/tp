@@ -6,7 +6,7 @@ import seedu.teachbook.model.gradeobject.GradingSystem;
 import seedu.teachbook.model.student.Student;
 
 /**
- * Unmodifiable view of TeachBook
+ * Unmodifiable view of {@code TeachBook}.
  */
 public interface ReadOnlyTeachBook {
 
@@ -22,5 +22,9 @@ public interface ReadOnlyTeachBook {
      */
     ObservableList<Class> getClassList();
 
+    /**
+     * Returns an unmodifiable view of the class list.
+     * This list will not contain any duplicate classes.
+     */
     GradingSystem getGradingSystem();
 }

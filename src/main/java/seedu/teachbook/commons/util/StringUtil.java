@@ -58,7 +58,6 @@ public class StringUtil {
      */
     public static boolean isInteger(String s) {
         requireNonNull(s);
-
         try {
             new BigInteger(s);
             return !s.startsWith("+"); // "+1" is successfully parsed by new BigInteger(String)
