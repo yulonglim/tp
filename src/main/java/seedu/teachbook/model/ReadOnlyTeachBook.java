@@ -23,8 +23,8 @@ public interface ReadOnlyTeachBook {
     ObservableList<Class> getClassList();
 
     /**
-     * Returns an unmodifiable view of the class list.
-     * This list will not contain any duplicate classes.
+     * Returns an unmodifiable view of the grading system.
      */
     GradingSystem getGradingSystem();
+
 }
