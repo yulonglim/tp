@@ -29,7 +29,6 @@ public class StudentCard extends UiPart<Region> {
      */
 
     public final Student student;
-    private boolean showClass;
 
     @FXML
     private HBox cardPane;
@@ -61,12 +60,11 @@ public class StudentCard extends UiPart<Region> {
     private StackPane stackPane;
 
     /**
-     * Creates a {@code StudentCode} with the given {@code Student} and index to display.
+     * Creates a {@code StudentCard} with the given {@code student} and index to display.
      */
     public StudentCard(Student student, int displayedIndex, boolean showClass) {
         super(FXML);
         this.student = student;
-        this.showClass = showClass;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
 
@@ -87,7 +85,7 @@ public class StudentCard extends UiPart<Region> {
         checkBox.setSelected(student.isPresent());
 
         if (student.isPresent()) {
-            markCheckbox();
+            checkBox.setSelected(true);
         }
 
         String remarkContent = student.getRemark().value;
@@ -110,7 +108,6 @@ public class StudentCard extends UiPart<Region> {
             grade.setText(gradeContent);
         }
 
-        // TODO: Set the condition to check if it is a list command
         if (showClass) {
             className.setText(student.getStudentClass().toString());
         } else {
@@ -136,7 +133,4 @@ public class StudentCard extends UiPart<Region> {
                 && student.equals(card.student);
     }
 
-    public void markCheckbox() {
-        checkBox.setSelected(true);
-    }
 }

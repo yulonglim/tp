@@ -26,9 +26,9 @@ import static seedu.teachbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.teachbook.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.teachbook.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.teachbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.teachbook.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.teachbook.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+import static seedu.teachbook.testutil.TypicalIndices.INDEX_FIRST_PERSON;
+import static seedu.teachbook.testutil.TypicalIndices.INDEX_SECOND_PERSON;
+import static seedu.teachbook.testutil.TypicalIndices.INDEX_THIRD_PERSON;
 
 import org.junit.jupiter.api.Test;
 
