@@ -803,7 +803,7 @@ testers are expected to do more *exploratory* testing.
        Expected: First student has no remark.
     4. Test case: `remark 30 r/`<br>
        Expected: No student's remark field is changed. Error details shown in the status message.
-    5. Other incorrect `remark` commands to try: `remark`, `remark 1`, `remark r/`, `remark 0 r/new remark`, `remark 1 2 r/new remark`, `remark hello r/new remark`<br>
+    5. Other incorrect `remark` commands to try: `remark`, `remark 1`, `remark r/`, `remark 0 r/new`, `remark 1 2 r/new`, `remark hello r/new`<br>
        Expected: Similar to previous.
     
 ### Deleting students
