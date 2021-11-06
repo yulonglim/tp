@@ -58,12 +58,12 @@ public interface Model {
     void setTeachBook(ReadOnlyTeachBook teachBook);
 
     /**
-     * Returns the TeachBook
+     * Returns the TeachBook.
      */
     ReadOnlyTeachBook getTeachBook();
 
     /**
-     * Returns the index of the currently selected class on UI
+     * Returns the index of the currently selected class on UI.
      */
     GeneralIndex getCurrentlySelectedClassIndex();
 
@@ -112,7 +112,7 @@ public interface Model {
     /**
      * Sets a class of a {@code student}.
      *
-     * @param student that you want to set class
+     * @param student that you want to set class.
      */
     void setClassForStudent(Student student);
 
@@ -149,7 +149,7 @@ public interface Model {
     GradingSystem getGradingSystem();
 
     /**
-     * Sets the grading system for TeachBook
+     * Sets the grading system for TeachBook.
      *
      * @param gradingSystem the grading system to be set.
      */
@@ -178,9 +178,9 @@ public interface Model {
     void updateCurrentlySelectedClass(GeneralIndex newClassIndex);
 
     /**
-     * Reorders the students
+     * Reorders the students.
      *
-     * @param comparator that is used to compare the students to reorder
+     * @param comparator that is used to compare the students to reorder.
      */
     void reorderStudents(Comparator<? super Student> comparator);
 
@@ -210,14 +210,14 @@ public interface Model {
     void commitTeachBook();
 
     /**
-     * Resets the existing grading system
+     * Resets the existing grading system.
      */
     void resetGradingSystem();
 
     /**
      * Checks if TeachBook is empty.
      *
-     * @return true if TeachBook is empty
+     * @return true if TeachBook is empty.
      */
     boolean isTeachBookEmpty();
 
@@ -231,7 +231,7 @@ public interface Model {
     /**
      * Sets the currently class to a new name in {@code newClassName}
      *
-     * @param newClassName the new class name to be set
+     * @param newClassName the new class name to be set.
      */
     void setClassName(ClassName newClassName);
 }
