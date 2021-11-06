@@ -231,10 +231,6 @@ The following object diagram shows the updated TeachBook:
 
 <img src="images/DeleteClassObjectDiagram1.png" width="280" />
 
-#### Design considerations
-
-_{To be updated later}_
-
 ### Implementations of some features
 
 ### 1. Edit feature
@@ -701,10 +697,11 @@ Extensions:
 ### Non-Functional Requirements
 
 1. The app should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. The app should be able to hold up to 30 classes and 200 students in each class without long time lags in performance (being able to respond to any command within 5 seconds) for typical usage.
+2. The app should be able to hold up to 30 classes and 200 students in each class without long time lags in performance (being able to respond to any command within 4 seconds) for typical usage.
 3. A new user should be able to understand and use all the commands within two days with the help of the User Guide.
 4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-5. All user data of an app should be kept only on the device installed the app.
+5. User data of an app should be kept only on the device installed the app.
+6. User data should not be lost or corrupted when the app is closed unexpectedly.
 
 ### Glossary
 
