@@ -28,7 +28,8 @@ public class DeleteClassCommand extends Command {
     private final ClassNameDescriptor className;
 
     /**
-     * Creates a DeleteClassCommand to delete the class, described by the specified {@code ClassNameDescriptor}.
+     * Creates a DeleteClassCommand to delete the class, whose name is described by the specified
+     * {@code ClassNameDescriptor}.
      *
      * @param className class name descriptor of the class to be deleted from the TeachBook.
      */

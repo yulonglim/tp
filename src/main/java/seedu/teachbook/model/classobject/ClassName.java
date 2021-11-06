@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.teachbook.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Class's name in the teachbook book.
- * Guarantees: immutable; is valid as declared in {@link #isValidClassName(String)}
+ * Represents a Class's name in the TeachBook.
+ * Guarantees: immutable; is valid as declared in {@link #isValidClassName(String)}.
  */
 public class ClassName {
 
@@ -13,10 +13,6 @@ public class ClassName {
             + "contain alphanumeric characters and spaces, have less than 20 characters (including spaces), "
             + "and it should not be blank";
 
-    /*
-     * The first character of the teachbook must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String nameOfClass;
@@ -24,7 +20,7 @@ public class ClassName {
     /**
      * Constructs a {@code ClassName}.
      *
-     * @param className A valid class name.
+     * @param className a valid class name.
      */
     public ClassName(String className) {
         requireNonNull(className);
@@ -33,7 +29,10 @@ public class ClassName {
     }
 
     /**
-     * Returns true if a given string is a valid class name.
+     * Checks if the given string is a valid class name.
+     *
+     * @param test a string to be tested.
+     * @return {@code true} if the given string is a valid class name.
      */
     public static boolean isValidClassName(String test) {
         return test.matches(VALIDATION_REGEX) && test.length() < 20;
