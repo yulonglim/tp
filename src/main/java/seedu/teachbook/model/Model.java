@@ -43,74 +43,87 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' teachbook file path.
+     * Returns the user prefs' TeachBook file path.
      */
     Path getTeachBookFilePath();
 
     /**
-     * Sets the user prefs' teachbook file path.
+     * Sets the user prefs' TeachBook file path.
      */
     void setTeachBookFilePath(Path teachBookFilePath);
 
     /**
-     * Replaces teachbook data with the data in {@code teachBook}.
+     * Replaces TeachBook data with the data in {@code teachBook}.
      */
     void setTeachBook(ReadOnlyTeachBook teachBook);
 
-    /** Returns the teachbook */
+    /**
+     * Returns the TeachBook
+     */
     ReadOnlyTeachBook getTeachBook();
 
-    /** Returns the index of the currently selected class on ui */
+    /**
+     * Returns the index of the currently selected class on UI
+     */
     GeneralIndex getCurrentlySelectedClassIndex();
 
     /**
-     * Returns true if a student with the same identity as {@code student} exists in the teachbook.
+     * Returns true if a student with the same identity as {@code student} exists in the TeachBook.
      */
     boolean hasStudent(Student student);
 
     /**
-     * Returns true if a student with the same identity as {@code student} exists in the teachbook.
+     * Returns true if a student with the same identity as {@code student} exists in the TeachBook.
      */
     boolean hasClass(Class aClass);
 
     /**
      * Deletes the given class. Returns true if there is a need to update the student list panel.
-     * The class must exist in the teachbook.
+     * The class must exist in the TeachBook.
      */
     boolean deleteClass(Class target, GeneralIndex targetIndex);
 
     /**
      * Adds the given class.
-     * {@code aClass} must not already exist in the teachbook.
+     * {@code aClass} must not already exist in the TeachBook.
      */
     void addClass(Class aClass);
 
     /**
      * Deletes the given student.
-     * The student must exist in the teachbook.
+     * The student must exist in the TeachBook.
      */
     void deleteStudent(Student target);
 
     /**
      * Adds the given student.
-     * {@code student} must not already exist in the teachbook.
+     * {@code student} must not already exist in the TeachBook.
      */
     void addStudent(Student student);
 
     /**
      * Replaces the given student {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the teachbook.
+     * {@code target} must exist in the TeachBook.
      * The student identity of {@code editedPerson} must not be the same as another
-     * existing student in the teachbook.
+     * existing student in the TeachBook.
      */
     void setStudent(Student target, Student editedStudent);
 
+    /**
+     * Sets a class of a {@code student}.
+     *
+     * @param student that you want to set class
+     */
     void setClassForStudent(Student student);
 
-    /** Returns an unmodifiable view of the filtered student list */
+    /**
+     * Returns an unmodifiable view of the filtered student list.
+     */
     ObservableList<Student> getFilteredStudentList();
 
-    /** Returns an unmodifiable view of the unique class list */
+    /**
+     * Returns an unmodifiable view of the unique class list.
+     */
     ObservableList<Class> getUniqueClassList();
 
     /**
@@ -119,18 +132,56 @@ public interface Model {
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
 
+    /**
+     * Returns the index of the class.
+     *
+     * @param className the name of the class you want to know the index of.
+     * @return the index of the class.
+     * @throws NoClassWithNameException
+     */
     GeneralIndex getIndexOfClass(ClassNameDescriptor className) throws NoClassWithNameException;
 
+    /**
+     * Returns the currently set grading system.
+     *
+     * @return the currently set grading system.
+     */
     GradingSystem getGradingSystem();
 
+    /**
+     * Sets the grading system for TeachBook
+     *
+     * @param gradingSystem the grading system to be set.
+     */
     void setGradingSystem(GradingSystem gradingSystem);
 
+    /**
+     * Checks if there is already an existing grading system.
+     *
+     * @return true if there is an existing grading system.
+     */
     boolean hasExistingGradingSystem();
 
+    /**
+     * Checks if the grade is valid.
+     *
+     * @param grade the grade to be checked if valid.
+     * @return true if the {@code grade} is valid.
+     */
     boolean isValidGrade(Grade grade);
 
+    /**
+     * Updates the currently selected class to the class at {@code newClassIndex}.
+     *
+     * @param newClassIndex the index of the class that to be selected.
+     */
     void updateCurrentlySelectedClass(GeneralIndex newClassIndex);
 
+    /**
+     * Reorders the students
+     *
+     * @param comparator that is used to compare the students to reorder
+     */
     void reorderStudents(Comparator<? super Student> comparator);
 
     /**
@@ -158,11 +209,29 @@ public interface Model {
      */
     void commitTeachBook();
 
+    /**
+     * Resets the existing grading system
+     */
     void resetGradingSystem();
 
+    /**
+     * Checks if TeachBook is empty.
+     *
+     * @return true if TeachBook is empty
+     */
     boolean isTeachBookEmpty();
 
+    /**
+     * Checks if TeachBook is currently listing all students.
+     *
+     * @return true if TeachBook is currently listing all students.
+     */
     boolean isListAll();
 
+    /**
+     * Sets the currently class to a new name in {@code newClassName}
+     *
+     * @param newClassName the new class name to be set
+     */
     void setClassName(ClassName newClassName);
 }
