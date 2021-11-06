@@ -823,7 +823,7 @@ testers are expected to do more *exploratory* testing.
        Expected: No student is deleted. Error details shown in the status message.
     7. Test case: `delete 0 1 2`<br>
        Expected: Similar to previous.
-    8. Other incorrect `delete` commands to try: `delete`, `delete hello world`, `delete all all`, `delete 5`, `delete 1 2 all`, `delete -1`, `delete 9999999999999999999999999999`<br>
+    8. Other incorrect `delete` commands to try: `delete`, `delete hello world`, `delete all all`, `delete 5`, `delete 1 2 all`, `delete -1`<br>
        Expected: Similar to previous.
 
 ### Selecting a class
