@@ -36,7 +36,7 @@ import seedu.teachbook.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(1, 3, 1, true);
+    public static final Version VERSION = new Version(1, 4, 0, false);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -69,9 +69,9 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s teachbook and {@code userPrefs}. <br>
-     * The data from the sample teachbook will be used instead if {@code storage}'s teachbook is not found,
-     * or an empty teachbook will be used instead if errors occur when reading {@code storage}'s teachbook.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s TeachBook and {@code userPrefs}. <br>
+     * The data from the sample TeachBook will be used instead if {@code storage}'s TeachBook is not found,
+     * or an empty TeachBook will be used instead if errors occur when reading {@code storage}'s TeachBook.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyTeachBook> teachBookOptional;
@@ -124,7 +124,7 @@ public class MainApp extends Application {
             initializedConfig = new Config();
         }
 
-        //Update config file in case it was missing to begin with or there are new/unused fields
+        // Update config file in case it was missing to begin with or there are new/unused fields
         try {
             ConfigUtil.saveConfig(initializedConfig, configFilePathUsed);
         } catch (IOException e) {
@@ -155,7 +155,7 @@ public class MainApp extends Application {
             initializedPrefs = new UserPrefs();
         }
 
-        //Update prefs file in case it was missing to begin with or there are new/unused fields
+        // Update prefs file in case it was missing to begin with or there are new/unused fields
         try {
             storage.saveUserPrefs(initializedPrefs);
         } catch (IOException e) {
@@ -180,4 +180,5 @@ public class MainApp extends Application {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }
     }
+
 }

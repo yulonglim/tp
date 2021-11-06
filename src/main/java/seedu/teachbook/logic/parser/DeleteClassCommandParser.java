@@ -15,7 +15,7 @@ public class DeleteClassCommandParser implements Parser<DeleteClassCommand> {
      * Parses the given {@code String} of arguments in the context of the DeleteClassCommand and returns a
      * DeleteClassCommand object for execution.
      *
-     * @param args Input arguments to be parsed.
+     * @param args input arguments to be parsed.
      * @return {@code DeleteClassCommand} as a result of the parsing of the input arguments.
      * @throws ParseException if the user input does not conform the expected format.
      */

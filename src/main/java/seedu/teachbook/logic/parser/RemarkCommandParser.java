@@ -2,8 +2,7 @@ package seedu.teachbook.logic.parser;
 
 import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_REMARK;
-
-import java.util.stream.Stream;
+import static seedu.teachbook.logic.parser.ParserUtil.arePrefixesPresent;
 
 import seedu.teachbook.commons.core.index.Index;
 import seedu.teachbook.logic.commands.RemarkCommand;
@@ -11,14 +10,17 @@ import seedu.teachbook.logic.parser.exceptions.ParseException;
 import seedu.teachbook.model.student.Remark;
 
 /**
- * Parses input arguments and creates a new RemarkCommand object
+ * Parses input arguments and creates a new {@code RemarkCommand} object.
  */
 public class RemarkCommandParser implements Parser<RemarkCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the RemarkCommand
-     * and returns an RemarkCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * Parses the given {@code String} of arguments in the context of the {@code RemarkCommand}
+     * and returns a {@code RemarkCommand} object for execution.
+     *
+     * @param args input arguments to be parsed.
+     * @return a {@code RemarkCommand} object as a result of the parsing of the input arguments.
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public RemarkCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_REMARK);
@@ -37,10 +39,6 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
         String remark = argMultimap.getValue(PREFIX_REMARK).orElse("");
 
         return new RemarkCommand(index, new Remark(remark));
-    }
-
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }

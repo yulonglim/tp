@@ -3,7 +3,7 @@ package seedu.teachbook.logic.parser;
 import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.teachbook.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.teachbook.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.teachbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.teachbook.testutil.TypicalIndices.INDEX_FIRST_PERSON;
 
 import java.util.List;
 

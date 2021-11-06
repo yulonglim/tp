@@ -19,7 +19,7 @@ public class Address {
     /**
      * Constructs an {@code Address}.
      *
-     * @param address A valid address.
+     * @param address a valid address.
      */
     public Address(String address) {
         requireNonNull(address);
@@ -30,7 +30,7 @@ public class Address {
     /**
      * Checks if the given string is a valid address.
      *
-     * @param test Address string to be tested.
+     * @param test address string to be tested.
      * @return true is the given string is a valid address.
      */
     public static boolean isValidAddress(String test) {

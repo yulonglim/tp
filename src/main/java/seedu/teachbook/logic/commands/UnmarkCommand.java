@@ -39,7 +39,7 @@ public class UnmarkCommand extends Command {
      * Creates an UnmarkCommand to mark the students, identified by the indices in the specified {@code List<Index>},
      * as absent.
      *
-     * @param targetIndices List of indices, each identifying a student to be marked as absent.
+     * @param targetIndices list of indices, each identifying a student to be marked as absent.
      */
     public UnmarkCommand(List<Index> targetIndices) {
         this.targetIndices = targetIndices;

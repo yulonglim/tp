@@ -2,7 +2,9 @@ package seedu.teachbook.commons.core.index;
 
 import java.util.Comparator;
 
-
+/**
+ * A comparator that compares two {@code Index} by comparing their index values.
+ */
 public class IndexComparator implements Comparator<Index> {
 
     @Override

@@ -28,9 +28,10 @@ public class DeleteClassCommand extends Command {
     private final ClassNameDescriptor className;
 
     /**
-     * Creates a DeleteClassCommand to delete the class, described by the specified {@code ClassNameDescriptor}.
+     * Creates a DeleteClassCommand to delete the class, whose name is described by the specified
+     * {@code ClassNameDescriptor}.
      *
-     * @param className Class name descriptor of the class to be deleted from the TeachBook.
+     * @param className class name descriptor of the class to be deleted from the TeachBook.
      */
     public DeleteClassCommand(ClassNameDescriptor className) {
         this.className = className;
@@ -50,10 +51,10 @@ public class DeleteClassCommand extends Command {
         }
 
         Class classToDelete = classes.get(classIndex.getZeroBased());
-        boolean shouldUpdateStudentListPanel = model.deleteClass(classToDelete, classIndex);
+        boolean updateStudentListPanel = model.deleteClass(classToDelete, classIndex);
         model.commitTeachBook();
         return new CommandResult(String.format(MESSAGE_DELETE_CLASS_SUCCESS, classToDelete),
-                false, false, true, shouldUpdateStudentListPanel);
+                false, false, true, updateStudentListPanel);
     }
 
     @Override

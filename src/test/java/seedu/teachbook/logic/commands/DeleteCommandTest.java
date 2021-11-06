@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.teachbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.teachbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.teachbook.logic.commands.CommandTestUtil.showStudentAtIndex;
-import static seedu.teachbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.teachbook.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.teachbook.testutil.TypicalIndices.INDEX_FIRST_PERSON;
+import static seedu.teachbook.testutil.TypicalIndices.INDEX_SECOND_PERSON;
 import static seedu.teachbook.testutil.TypicalStudents.getTypicalTeachBook;
 
 import java.util.List;

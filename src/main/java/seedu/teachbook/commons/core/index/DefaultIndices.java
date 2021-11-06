@@ -1,7 +1,7 @@
 package seedu.teachbook.commons.core.index;
 
 /**
- * Container for some default indices.
+ * Container for some default {@code GeneralIndex}.
  */
 public class DefaultIndices {
 
