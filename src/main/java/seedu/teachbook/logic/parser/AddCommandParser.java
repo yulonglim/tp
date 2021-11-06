@@ -8,7 +8,6 @@ import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.teachbook.logic.parser.ParserUtil.arePrefixesPresent;
 
-import java.time.LocalDateTime;
 import java.util.Set;
 
 import seedu.teachbook.logic.commands.AddCommand;
