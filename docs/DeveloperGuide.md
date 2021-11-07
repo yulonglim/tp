@@ -456,14 +456,32 @@ Priorities: High (must have) - `* * *` , Medium (nice to have) - `* *` , Low (un
 
 (For all use cases below, the **System** is the `TeachBook` and the **Actor** is the `user`, unless specified otherwise)
 
-
 **Use case: UC01 - Add class**
 
 **Use case: UC02 - Delete class**
 
 **Use case: UC03 - Edit class**
 
-**Use case: UC04 - Select class**
+**Use case: UC04 - Select a class**
+
+MSS:
+
+1. User requests to select a class. 
+2. TeachBook selects the class.
+
+   Use case ends.
+
+Extensions:
+
+* 2a. The specified class does not exist.
+    * 2a1. TeachBook shows an error message.
+
+      Use case ends. 
+
+* 2b. The specified class is already selected.
+    * 2b1. TeachBook shows an error message.
+
+      Use case ends. 
 
 **Use case: UC05 - Add student**
 
@@ -480,7 +498,6 @@ MSS:
 Extensions:
 
 * 1a. One or more given indices are invalid.
-
     * 1a1. TeachBook shows an error message.
 
       Use case ends.
@@ -498,7 +515,6 @@ MSS:
 Extensions:
 
 * 1a. The filtered student list is empty.
-
     * 1a1. TeachBook shows an error message.
 
       Use case ends.
@@ -518,97 +534,133 @@ MSS:
 Extensions:
 
 * 1a. The given index is invalid.
-
     * 1a1. TeachBook shows an error message.
 
       Use case ends.
 
 * 1b. The given remark is empty.
-
     * 1b1. TeachBook clears any existing remark of the student.
 
       Use case resumes at step 3.
 
-**Use case: UC10 - Find student**
-
-**Use case: UC11 - View all students from the currently selected class**
-
-**Use case: UC12 - List students from a class**
+**Use case: UC10 - Find students by one or more keywords**
 
 MSS:
 
-1. User <ins>select a class (UC??)<ins>.
-2. User requests to list students from the class.
-3. TeachBook shows a list of students from the class.
+1. User requests to find students by one or more keywords.
+2. TeachBook shows a list of students whose name contains at least one of the keywords.
 
    Use case ends.
 
-**Use case: UC13 - List students from all classes**
+**Use case: UC11 - View all students from the currently selected class**
+
+Precondition: There exists a currently selected class
 
 MSS:
 
-1. User requests to list students from all classes.
+1. User requests to view all students from the currently selected class. 
+2. TeachBook shows a list of all students from the currently selected class. 
+
+   Use case ends.
+
+**Use case: UC12 - View all students from a class**
+
+MSS:
+
+1. User requests to <ins>select a class (UC04)<ins>.
+2. User requests to <ins>view all students from the currently selected class (UC11)<ins>.
+
+   Use case ends.
+
+**Use case: UC13 - View students from all classes**
+
+MSS:
+
+1. User requests to view students from all classes.
 2. TeachBook shows a list of students from all classes.
 
    Use case ends.
 
-**Use case: UC14 - List absent students from a class**
+**Use case: UC14 - View absent students from a class**
 
 MSS:
 
-1. User <ins>select a class (UC??)<ins>.
-2. User requests to list absent students from the class.
+1. User requests to <ins>select a class (UC04)<ins>.
+2. User requests to view absent students from the class.
 3. TeachBook shows a list of absent students from the class.
 
    Use case ends.
 
-**Use case: UC15 - List absent students from all classes**
+**Use case: UC15 - View absent students from all classes**
 
 MSS:
 
-1. User requests to <ins>list all classes (UC??)<ins>.
-2. User requests to list absent students from all classes.
+1. User requests to <ins>view students from all classes (UC13)<ins>.
+2. User requests to view absent students from all classes.
 3. TeachBook shows a list of absent students from all classes.
 
    Use case ends.
 
 **Use case: UC16 - Clear filter**
 
-**Use case: UC17 - Mark a student as present**
+Precondition: A filter is applied to the student list.
 
 MSS:
 
-1. User marks a student as present.
-2. TeachBook displays the student with his attendance marked.
+1. User requests to clear the filter applied to the student list.
+2. TeachBook shows the list of all students.
+
+   Use case ends.
+
+**Use case: UC17 - Mark one or more students as present**
+
+MSS:
+
+1. User requests to mark one or more students as present.
+2. TeachBook shows the student(s) with their attendance marked.
 
    Use case ends.
 
 Extensions:
 
-* 1a. Student does not exist.
-    * 1a1. TeachBook displays error.
+* 1a. At least one of the specified students does not exist.
+    * 1a1. TeachBook shows an error message.
 
       Use case ends.
 
-**Use case: UC18 - Mark all present**
-
-**Use case: UC19 - Mark a student as absent**
+**Use case: UC18 - Mark all students as present**
 
 MSS:
 
-1. User marks a student as absent.
-2. TeachBook displays the student with his attendance unmarked.
+1. User requests to mark all students as present.
+2. TeachBook shows all students with their attendance marked.
+
+   Use case ends.
+
+**Use case: UC19 - Mark one or more students as absent**
+
+MSS:
+
+1. User requests to mark one or more students as absent.
+2. TeachBook shows the student(s) with their attendance unmarked.
 
    Use case ends.
 
 Extensions:
 
-* 1a. Student does not exist.
-    * 1a1. TeachBook displays error.
+* 1a. At least one of the specified students does not exist.
+    * 1a1. TeachBook shows an error message.
 
       Use case ends.
 
-**Use case: UC20 - Mark all absent**
+**Use case: UC20 - Mark all students as absent**
+
+MSS:
+
+1. User requests to mark all students as absent.
+2. TeachBook shows all students with their attendance unmarked.
+
+   Use case ends.
 
 **Use case: UC21 - Set a grading system**
 
