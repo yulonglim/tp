@@ -96,6 +96,7 @@ public class CommandTestUtil {
             Model expectedModel) {
         // this is equivalent to new CommandResult(expectedMessage, false, false, false, false)
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        System.out.println(actualModel.getFilteredStudentList());
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
@@ -110,7 +111,8 @@ public class CommandTestUtil {
         // only do so by copying its components.
         TeachBook expectedTeachBook = new VersionedTeachBook(actualModel.getTeachBook());
         List<Student> expectedFilteredList = new ArrayList<>(actualModel.getFilteredStudentList());
-
+        expectedTeachBook.getStudentList();
+        actualModel.getTeachBook().getStudentList();
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedTeachBook, actualModel.getTeachBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredStudentList());

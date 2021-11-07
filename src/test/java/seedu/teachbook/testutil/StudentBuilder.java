@@ -68,10 +68,14 @@ public class StudentBuilder {
         studentClass = studentToCopy.getStudentClass();
         email = studentToCopy.getEmail();
         address = studentToCopy.getAddress();
-        remark = studentToCopy.getRemark();
+        remark = studentToCopy.getRemark() != null ? studentToCopy.getRemark() : new Remark(DEFAULT_REMARK);
         tags = new HashSet<>(studentToCopy.getTags());
-        attendance = studentToCopy.getAttendance();
-        grade = studentToCopy.getGrade();
+        String[] attendanceComponents = DEFAULT_ATTENDANCE.split(" ");
+        boolean isPresent = attendanceComponents[0].equals("Present");
+        LocalDateTime lastModified = LocalDateTime.parse(attendanceComponents[1]);
+        attendance = studentToCopy.getAttendance() != null ? studentToCopy.getAttendance()
+                                                           : new Attendance(isPresent, lastModified);
+        grade = studentToCopy.getGrade() != null ? studentToCopy.getGrade() : new Grade(DEFAULT_GRADE);
     }
 
     /**

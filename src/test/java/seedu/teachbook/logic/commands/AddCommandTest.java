@@ -51,11 +51,10 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicatePerson_throwsCommandException() throws CommandException {
         Student validStudent = new StudentBuilder().build();
         AddCommand addCommand = new AddCommand(validStudent);
         ModelStub modelStub = new ModelStubWithPerson(validStudent);
-
         assertThrows(CommandException.class, MESSAGE_DUPLICATE_STUDENT, () -> addCommand.execute(modelStub));
     }
 
@@ -164,7 +163,7 @@ public class AddCommandTest {
 
         @Override
         public void setClassForStudent(Student student) {
-            throw new AssertionError("This method should not be called.");
+//            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -219,7 +218,8 @@ public class AddCommandTest {
 
         @Override
         public GeneralIndex getCurrentlySelectedClassIndex() {
-            throw new AssertionError("This method should not be called.");
+//            throw new AssertionError("This method should not be called.");
+            return GeneralIndex.fromZeroBased(6);
         }
 
         @Override
