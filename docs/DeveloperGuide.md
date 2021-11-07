@@ -796,21 +796,35 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases ... }_
+3. _{ more test cases ... }_
+
+### Adding a student
+1. Adding a student in a class.
+
+    1. Prerequisites: A class must already be selected. You can know which class is being selected by looking at which class is being highlighted. If none is being selected, you can use the `select` command or if there is no class in the class list, you can add a new class using the `addClass` command.
+    2. Test case: `add n/John p/91234567 e/john@example.com a/21 Lower Kent Ridge Road, Singapore 119077 t/class monitor`<br>
+       Expected: A student named `John` with phone number `91234567`, email `ohn@example.com`, address `21 Lower Kent Ridge Road, Singapore 119077` and tag `class monitor` will be added.
+    3. Test case: `add n/Janice`<br>
+       Expected: A student named `Janice` without other information will be added as additional information are optional.
+    4. Test case: `add n/Janice`<br>
+       Expected: Error details are shown in the status message that the student already exists in the class.
+    5. Test case: `add p/91234567`<br>
+       Expected: Error details are shown in the status message that command format is invalid because information on student's name is compulsory.
+    6. Test case: `add`<br>
+       Expected: Similar to previous.
    
 ### Editing a student
 
 1. Editing a student from list of students.
 
     1. Prerequisites: List students in the currently selected class using `list` command or list all students in TeachBook using `list all` command.
-
     2. Test case: `edit 1 n/Jane p/1234`<br>
        Expected: First student in the list is being edited. Name of the student is changed to `Jane` and phone number of the student is changed to `1234`
     3. Test case: `edit 1`<br>
