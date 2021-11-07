@@ -37,7 +37,7 @@ public class Attendance {
      * Checks if the given string is a valid attendance.
      *
      * @param test attendance string to be tested.
-     * @return true is the given string is a valid attendance.
+     * @return {@code true} is the given string is a valid attendance.
      */
     public static boolean isValidAttendance(String test) {
         String[] attendanceComponents = test.split("\\s+");

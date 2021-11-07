@@ -192,7 +192,7 @@ public class Student {
     /**
      * Checks if the student is present.
      *
-     * @return true if the student is present.
+     * @return {@code true} if the student is present.
      */
     public boolean isPresent() {
         return attendance.getIsPresent();
@@ -203,7 +203,7 @@ public class Student {
      * This defines a weaker notion of equality between two students.
      *
      * @param otherStudent other student to be checked against.
-     * @return true if both students have the same name and are from the same class.
+     * @return {@code true} if both students have the same name and are from the same class.
      */
     public boolean isSameStudent(Student otherStudent) {
         if (otherStudent == this) {
@@ -254,7 +254,7 @@ public class Student {
      * This defines a stronger notion of equality between two students.
      *
      * @param other other object to be checked against.
-     * @return true if both students have the same identity and data fields.
+     * @return {@code true} if both students have the same identity and data fields.
      */
     @Override
     public boolean equals(Object other) {
