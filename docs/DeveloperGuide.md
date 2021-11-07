@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Undo/Redo function and logic adapted from [AB4](https://github.com/se-edu/addressbook-level4)
+* Print function uses 3rd party library [org.apache.poi](https://poi.apache.org/)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -428,13 +429,13 @@ Priorities: High (must have) - `* * *` , Medium (nice to have) - `* *` , Low (un
 | `* * *` | new user | get instructions | refer to instructions when I forget how to use the Teachbook |
 | `* * *` | teacher | add the students I teach |  |
 | `* * *` | teacher | remove students from my contacts | remove specific students who are no longer take my classes |
-| `* * *` | teacher | search for my students in my contacts | get a student's information easily  |
+| `* * *` | teacher | search for my students in my contacts by name | get a student's information easily  |
 | `* * *` | teacher | view my student's information | contact them easily |
-| `* * *` | teacher | separate my students by classes | better sort my contacts |
-| `* * *` | teacher | separate my students by classes | not mix up students with similar names but from different classes |
+| `* * *` | teacher | separate my students by classes | better sort my contacts & not mix up students with similar names but from different classes |
 | `* *` | teacher | modify contacts | change information easily rather than creating a new contact to replace the previous one |
 | `* *` | teacher with students whom require special attention | add important information about my students such as diet, allergies or health conditions | quickly react to any emergency related to these information |
-| `* *` | teacher | contact student parents | inform parents if any incident happen to the child |
+| `* *` | teacher | set a special grading system | customize my grading system just in case it changes in the future |
+| `* *` | teacher | reset the grading system | remove any outdated grading system |
 | `* *` | teacher | easily store the grades of my students | remember how well each student is doing in my classes |
 | `* *` | teacher | sort my students by grade | quickly find out groups of students which require more help |
 | `* *` | teacher | set a special grading system | customize my grading system just in case it changes in the future |
@@ -443,9 +444,15 @@ Priorities: High (must have) - `* * *` , Medium (nice to have) - `* *` , Low (un
 | `* *` | teacher | filter my students using keywords | quickly list out specific students |
 | `* *` | teacher | undo the most recent command | revert any mistakes I make quickly |
 | `* *` | teacher | redo the most recent undo | redo any accidental undos |
+| `* *` | teacher | view the number of students in each class | prepare sufficient material for each class |
+| `* *` | teacher | mark attendance for my students | remember if they attended my classes |
+| `* *` | teacher | mark attendance for all my students | quickly mark attendance if all students are present |
+| `* *` | teacher | mark students as absent | correct any attendance mistakes |
+| `* *` | teacher | mark all students as absent | start marking attendance at the start of the day |
+| `*` | teacher | modify class names | edit the class name in case of mistakes |
 | `*` | teacher | set special tags for my students | tag my students with extra information |
-| `*` | teacher | print out a list of students | do any administrative work that requires a hard copy document |
-| `*` | teacher | print out a list of students with their information | do not have to manually input all the information |
+| `*` | teacher | print out a list of students only containing names | do any administrative work that requires a hard copy document |
+| `*` | teacher | print out a list of students with extra information related to the students | do not have to manually input all the information |
 | `*` | teacher | view the list of all students | have an overview of all my students |
 | `*` | teacher | add all students from a class at once | quickly add the information of the students in each class |
 | `*` | teacher | archive my Teachbook data | start over with a clean slate and can retrieve records I need in the future |
@@ -750,64 +757,110 @@ Extension:
 
 **Use case: UC25 - Sort students according to name**
 
-**Use case: UC26 - Print**
+**Use case: UC26 - Print out list of student**
+
+Preconditions: There exists a currently selected class.
 
 MSS:
 
-1. User print an Excel sheet of all the students.
-2. TeachBook displays that the Excel sheet is generated and is stored in a specific folder path.
+1. User request to get an Excel sheet of students for currently selected class.
+2. TeachBook generate the Excel sheet.
 
    Use case ends.
 
 Extensions:
 
-* 1a. Teacher does not have Excel on the device.
-    * 1a1. TeachBook displays error.
+* 2a. Teacher does not have Excel on the device.
+    * 2a1. TeachBook shows an error message.
 
       Use case ends.
 
-* 1b. User does not have a downloads folder on the device.
-    * 1b1. TeachBook displays error.
+* 2b. User does not have a downloads folder on the device.
+    * 2b1. TeachBook shows an error message.
 
       Use case ends.
 
-**Use case: UC27 - Undo a command**
+**Use case: UC27 - Print out list of student with additional columns**
+
+Preconditions: There exists a currently selected class.
 
 MSS:
 
-1. User undo a recent command.
-2. TeachBook displays the exact state before the previous command was executed.
+1. User request to get an Excel sheet of students for currently selected class with additional custom columns.
+2. TeachBook generate the Excel sheet with requested information.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. Teacher inputs wrong format for columns.
+    * 1a1. TeachBook shows an error message.
+
+      Use case ends.
+
+* 2a. Teacher does not have Excel on the device.
+    * 2a1. TeachBook shows an error message.
+
+      Use case ends.
+
+* 2b. User does not have a downloads folder on the device.
+    * 2b1. TeachBook shows an error message.
+  
+      Use case ends.
+
+**Use case: UC28 - Undo a command**
+
+MSS:
+
+1. User request to undo a command.
+2. TeachBook shows the exact state before the command that is being undone was executed.
 
    Use case ends.
 
 Extensions:
 
 * 1a. User does not have any commands to undo.
-    * 1a1. TeachBook displays error telling user no commands to undo.
+    * 1a1. TeachBook shows an error message.
 
       Use case ends.
 
-**Use case: UC28 - Redo an undo command**
+**Use case: UC29 - Redo an undo command**
 
 MSS:
 
-1. User redo a recent undo command.
-2. TeachBook displays the exact state before the previous undo command was executed.
+1. User requests to redo a recent undo command.
+2. TeachBook shows the exact state before the previous undo command was executed.
 
    Use case ends.
 
 Extensions:
 
 * 1a. Teachbook does not have any undo commands to redo.
-    * 1a1. TeachBook displays error telling user no commands to redo.
+    * 1a1. TeachBook shows an error message.
 
       Use case ends.
 
-**Use case: UC29 - Clear**
+**Use case: UC30 - Clear**
 
-**Use case: UC30 - Help**
+**Use case: UC31 - Help**
 
-**Use case: UC31 - Exit**
+MSS:
+
+1. User requests for a guide.
+2. TeachBook shows a link to the TeachBook User Guide.
+
+   Use case ends.
+
+
+**Use case: UC32 - Exit**
+
+MSS:
+
+1. User requests to exit TeachBook.
+2. TeachBook exits.
+
+   Use case ends.
+
 
 ### Non-Functional Requirements
 
