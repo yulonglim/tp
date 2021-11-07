@@ -40,7 +40,8 @@ public class TeachBook implements ReadOnlyTeachBook {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */ {
+     */
+    {
         students = new UniqueStudentList();
         classes = new UniqueClassList();
         gradingSystem = new GradingSystem();

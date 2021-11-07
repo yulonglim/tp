@@ -11,7 +11,7 @@ public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Tag names can take any values less than 30 characters (including spaces), and it should not be blank";
-//    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    //public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
 
