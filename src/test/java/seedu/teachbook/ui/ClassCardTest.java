@@ -17,12 +17,6 @@ public class ClassCardTest {
                 1));
     }
 
-//    @Test
-//    public void constructor_invalidDisplayedIndex_throwsExceptionInInitializerError() {
-//        assertThrows(ExceptionInInitializerError.class, () -> new ClassCardTest.TestClassCardPart(TEST_CLASS,
-//                -2));
-//    }
-
     private static class TestClassCardPart extends ClassCard {
         TestClassCardPart(Class classObj, int displayedIndex) {
             super(classObj, displayedIndex);
