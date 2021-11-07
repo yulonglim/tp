@@ -1,7 +1,9 @@
 package seedu.teachbook.ui;
 
 import static seedu.teachbook.testutil.Assert.assertThrows;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.teachbook.model.classobject.Class;
 import seedu.teachbook.model.classobject.ClassName;
 
