@@ -8,6 +8,7 @@ import static seedu.teachbook.testutil.TypicalStudents.getTypicalTeachBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.Model;
 import seedu.teachbook.model.ModelManager;
 import seedu.teachbook.model.UserPrefs;
@@ -28,18 +29,23 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newPerson_success() {
-        Student validStudent = new StudentBuilder().build();
-
+        Student validStudent = new StudentBuilder().buildToAdd();
         Model expectedModel = new ModelManager(model.getTeachBook(), new UserPrefs());
+        // Set the first class as the currently selected class in the expected model
+        // Note that this means the expected model should contain at least one class
+        GeneralIndex firstClassIndex = GeneralIndex.fromZeroBased(0);
+        expectedModel.updateCurrentlySelectedClass(firstClassIndex);
+        expectedModel.setClassForStudent(validStudent);
         expectedModel.addStudent(validStudent);
-
-        assertCommandSuccess(new AddCommand(validStudent), model,
-                String.format(AddCommand.MESSAGE_ADD_STUDENT_SUCCESS, validStudent), expectedModel);
+        expectedModel.commitTeachBook();
+        CommandResult expectedCommandResult = new CommandResult(String.format(AddCommand.MESSAGE_ADD_STUDENT_SUCCESS,
+                validStudent), false, false, true, false);
+        assertCommandSuccess(new AddCommand(validStudent), model, expectedCommandResult, expectedModel);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Student studentInList = model.getTeachBook().getStudentList().get(0);
+        Student studentInList = model.getTeachBook().getClassList().get(0).getStudentsOfThisClass().get(0);
         assertCommandFailure(new AddCommand(studentInList), model, MESSAGE_DUPLICATE_STUDENT);
     }
 

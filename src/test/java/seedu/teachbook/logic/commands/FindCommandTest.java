@@ -5,9 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.teachbook.commons.core.Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW;
 import static seedu.teachbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.teachbook.testutil.TypicalStudents.CARL;
-import static seedu.teachbook.testutil.TypicalStudents.ELLE;
-import static seedu.teachbook.testutil.TypicalStudents.FIONA;
+import static seedu.teachbook.testutil.TypicalStudents.ALICE;
+import static seedu.teachbook.testutil.TypicalStudents.BENSON;
 import static seedu.teachbook.testutil.TypicalStudents.getTypicalTeachBook;
 
 import java.util.Arrays;
@@ -60,18 +59,20 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredStudentList(predicate);
+        expectedModel.commitTeachBook();
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredStudentList());
     }
 
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 2);
+        NameContainsKeywordsPredicate predicate = preparePredicate("Pauline Meier");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredStudentList(predicate);
+        expectedModel.commitTeachBook();
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredStudentList());
+        assertEquals(Arrays.asList(ALICE, BENSON), model.getFilteredStudentList());
     }
 
     /**

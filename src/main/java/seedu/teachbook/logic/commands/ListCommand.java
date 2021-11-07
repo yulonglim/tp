@@ -18,11 +18,10 @@ public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Lists all students of the currently selected class or " // TODO: not really currently selected class
-            + "lists all students from all classes by passing in an optional parameter \"all\".\n"
-            + "Lists all absent students by passing in an optional parameter \"absent\".\n"
-            + "Parameters: [all||absent]\n"
-            + "Examples: " + COMMAND_WORD + ", " + COMMAND_WORD + " all" + ", " + COMMAND_WORD + " absent";
+            + ":\n"
+            + "list - shows the original list that contains all the students.\n"
+            + "list all - clears any currently selected class and shows students from all classes.\n"
+            + "list absent - shows all absent students.";
 
     public static final String MESSAGE_SUCCESS = "Listed all students";
     public static final String MESSAGE_SUCCESS_LIST_ALL = "Currently displaying all students from all classes";

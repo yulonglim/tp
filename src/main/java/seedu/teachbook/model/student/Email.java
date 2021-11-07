@@ -49,7 +49,7 @@ public class Email {
      * Checks if a given string is a valid email.
      *
      * @param test email string to be tested.
-     * @return true is the given string is a valid email.
+     * @return {@code true} is the given string is a valid email.
      */
     public static boolean isValidEmail(String test) {
         return test.equals("") || test.matches(VALIDATION_REGEX);
