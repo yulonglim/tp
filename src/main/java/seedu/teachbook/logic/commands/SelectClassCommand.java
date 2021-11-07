@@ -20,8 +20,8 @@ public class SelectClassCommand extends Command {
 
     public static final String COMMAND_WORD = "select";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Switches to the class with "
-            + "the specified class name (case-sensitive).\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Navigates to the class "
+            + "with the specified class name (case-sensitive).\n"
             + "Parameter: CLASS_NAME (case-sensitive)\n"
             + "Example: " + COMMAND_WORD + " 4E2";
 

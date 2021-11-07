@@ -32,7 +32,7 @@ public class Name {
      * Checks if the given string is a valid name.
      *
      * @param test name string to be tested.
-     * @return true is the given string is a valid name.
+     * @return {@code true} is the given string is a valid name.
      */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX) && test.length() < 70;

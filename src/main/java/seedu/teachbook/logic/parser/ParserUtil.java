@@ -331,7 +331,7 @@ public class ParserUtil {
      * Checks if the preamble equals "all".
      *
      * @param preamble preamble.
-     * @return true if preamble equals "all".
+     * @return {@code true} if preamble equals "all".
      */
     public static boolean parseAll(String preamble) {
         return preamble.trim().equals("all");

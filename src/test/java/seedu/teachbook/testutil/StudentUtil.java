@@ -30,10 +30,18 @@ public class StudentUtil {
      */
     public static String getStudentDetails(Student student) {
         StringBuilder sb = new StringBuilder();
+        // Name is compulsory field
         sb.append(PREFIX_NAME + student.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + student.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + student.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + student.getAddress().value + " ");
+        // Phone, email, address and tag are optional fields
+        if (!student.getPhone().value.equals("")) {
+            sb.append(PREFIX_PHONE + student.getPhone().value + " ");
+        }
+        if (!student.getEmail().value.equals("")) {
+            sb.append(PREFIX_EMAIL + student.getEmail().value + " ");
+        }
+        if (!student.getAddress().value.equals("")) {
+            sb.append(PREFIX_ADDRESS + student.getAddress().value + " ");
+        }
         student.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
