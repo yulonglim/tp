@@ -9,8 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* Undo/Redo function and logic adapted from [AB4](https://github.com/se-edu/addressbook-level4)
-* Print function uses 3rd party library [org.apache.poi](https://poi.apache.org/)
+* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -98,7 +97,7 @@ How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `TeachBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a student).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -142,7 +141,7 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both Teachbook data and user preference data in json format, and read them back into corresponding objects.
+* can save both teach book data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `TeachBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -313,9 +312,9 @@ named `A`.
 The undo/redo mechanism is facilitated by `VersionedTeachBook`. It extends `TeachBook` with an undo/redo history, each state is stored internally as an `TeachbookDataState` which consist of a `TeachBook` and `TeachbookDisplayState`. `TeachbookDisplayState` stored the filter predicate for the student list if any is applied and also the index of the selected class to be displayed.
 The `TeachbookDataState` is stored in a `TeachbookStateList` with a `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedTeachBook#commit()` — Saves the current TeachBook state in its history.
-* `VersionedTeachBook#undo()` — Restores the previous TeachBook state from its history.
-* `VersionedTeachBook#redo()` — Restores a previously undone TeachBook state from its history.
+* `VersionedTeachBook#commit()` — Saves the current teach book state in its history.
+* `VersionedTeachBook#undo()` — Restores the previous teach book state from its history.
+* `VersionedTeachBook#redo()` — Restores a previously undone teach book state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitTeachBook()`, `Model#undoTeachBook()` and `Model#redoTeachBook()` respectively.
 
@@ -323,11 +322,11 @@ These operations are exposed in the `Model` interface as `Model#commitTeachBook(
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedTeachBook` will be initialized with the initial TeachbookDataState, and the `currentStatePointer` pointing to that single TeachBook state.
+Step 1. The user launches the application for the first time. The `VersionedTeachBook` will be initialized with the initial TeachbookDataState, and the `currentStatePointer` pointing to that single teach book state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th student in the Teachbook. The `delete` command calls `Model#commitTeachBook()`, causing the modified TeachbookDatastate after the `delete 5` command executes to be saved in the `teachBookStateList`, and the `currentStatePointer` is shifted to the newly inserted TeachBook state.
+Step 2. The user executes `delete 5` command to delete the 5th student in the Teachbook. The `delete` command calls `Model#commitTeachBook()`, causing the modified TeachbookDatastate after the `delete 5` command executes to be saved in the `teachBookStateList`, and the `currentStatePointer` is shifted to the newly inserted teach book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
@@ -335,11 +334,11 @@ Step 3. The user executes `add n/David ...` to add a new student. The `add` comm
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitTeachBook()`, so the TeachBook state will not be saved into the `teachBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitTeachBook()`, so the teach book state will not be saved into the `teachBookStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoTeachBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous TeachBook state, and restores the Teachbook to that state.
+Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoTeachBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous teach book state, and restores the Teachbook to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -356,17 +355,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoTeachBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the TeachBook to that state.
+The `redo` command does the opposite — it calls `Model#redoTeachBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the teach book to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `teachBookStateList.size() - 1`, pointing to the latest TeachBook state, then there are no undone TeachBook states to restore. The `redo` command uses `Model#canRedoTeachBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `teachBookStateList.size() - 1`, pointing to the latest teach book state, then there are no undone TeachBook states to restore. The `redo` command uses `Model#canRedoTeachBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the TeachBook, such as `list`, will usually not call `Model#commitTeachBook()`, `Model#undoTeachBook()` or `Model#redoTeachBook()`. Thus, the `teachBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the teach book, such as `list`, will usually not call `Model#commitTeachBook()`, `Model#undoTeachBook()` or `Model#redoTeachBook()`. Thus, the `teachBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitTeachBook()`. Since the `currentStatePointer` is not pointing at the end of the `teachBookStateList`, all TeachBook states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David ...` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitTeachBook()`. Since the `currentStatePointer` is not pointing at the end of the `teachBookStateList`, all teach book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David ...` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -378,7 +377,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (choice):** Saves the entire TeachBook.
+* **Alternative 1 (choice):** Saves the entire teach book.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
@@ -406,8 +405,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Target user profile**:
 
-* a primary school teacher teaching mathematics
-* has a need to manage 4 class worth of student's contacts which she is teaching
+* a primary or secondary school teacher
+* has a need to manage multiple class worth of student's contacts which she is teaching
 * prefer desktop apps over other types
 * not proficient in IT but can type fast
 * prefers typing to mouse interactions
@@ -417,7 +416,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 * have to also add emergency contact into her phone contact list which makes it flooded, which is hard to find or link it with the correct student
 * would prefer to have an app that can also store other emergency information (e.g. blood type and allergies) all in one place
 
-**Value proposition**: Manage contacts faster than a typical mouse/GUI driven app. Allows teachers to have a dedicated TeachBook to keep their work life separated from their personal life. Allows teacher to find students and their emergency information accurately and easily.
+**Value proposition**: Manage contacts faster than a typical mouse/GUI driven app. Allows teachers to have a dedicated teach book to keep their work life separated from their personal life. Allows teacher to find students and their emergency information accurately and easily.
 
 
 ### User stories
@@ -429,29 +428,24 @@ Priorities: High (must have) - `* * *` , Medium (nice to have) - `* *` , Low (un
 | `* * *` | new user | get instructions | refer to instructions when I forget how to use the Teachbook |
 | `* * *` | teacher | add the students I teach |  |
 | `* * *` | teacher | remove students from my contacts | remove specific students who are no longer take my classes |
-| `* * *` | teacher | search for my students in my contacts by name | get a student's information easily  |
+| `* * *` | teacher | search for my students in my contacts | get a student's information easily  |
 | `* * *` | teacher | view my student's information | contact them easily |
-| `* * *` | teacher | separate my students by classes | better sort my contacts & not mix up students with similar names but from different classes |
+| `* * *` | teacher | separate my students by classes | better sort my contacts |
+| `* * *` | teacher | separate my students by classes | not mix up students with similar names but from different classes |
 | `* *` | teacher | modify contacts | change information easily rather than creating a new contact to replace the previous one |
 | `* *` | teacher with students whom require special attention | add important information about my students such as diet, allergies or health conditions | quickly react to any emergency related to these information |
-| `* *` | teacher | set a special grading system | customize my grading system just in case it changes in the future |
-| `* *` | teacher | reset the grading system | remove any outdated grading system |
+| `* *` | teacher | contact student parents | inform parents if any incident happen to the child |
 | `* *` | teacher | easily store the grades of my students | remember how well each student is doing in my classes |
 | `* *` | teacher | sort my students by grade | quickly find out groups of students which require more help |
+| `* *` | teacher | set a special grading system | customize my grading system just in case it changes in the future |
 | `* *` | teacher | delete a class with its data all at once | quickly remove the class I have stopped teaching |
 | `* *` | teacher | clear the Teachbook data all at once | get a fresh Teachbook at the start of the year  |
 | `* *` | teacher | filter my students using keywords | quickly list out specific students |
 | `* *` | teacher | undo the most recent command | revert any mistakes I make quickly |
 | `* *` | teacher | redo the most recent undo | redo any accidental undos |
-| `* *` | teacher | view the number of students in each class | prepare sufficient material for each class |
-| `* *` | teacher | mark attendance for my students | remember if they attended my classes |
-| `* *` | teacher | mark attendance for all my students | quickly mark attendance if all students are present |
-| `* *` | teacher | mark students as absent | correct any attendance mistakes |
-| `* *` | teacher | mark all students as absent | start marking attendance at the start of the day |
-| `*` | teacher | modify class names | edit the class name in case of mistakes |
 | `*` | teacher | set special tags for my students | tag my students with extra information |
-| `*` | teacher | print out a list of students only containing names | do any administrative work that requires a hard copy document |
-| `*` | teacher | print out a list of students with extra information related to the students | do not have to manually input all the information |
+| `*` | teacher | print out a list of students | do any administrative work that requires a hard copy document |
+| `*` | teacher | print out a list of students with their information | do not have to manually input all the information |
 | `*` | teacher | view the list of all students | have an overview of all my students |
 | `*` | teacher | add all students from a class at once | quickly add the information of the students in each class |
 | `*` | teacher | archive my Teachbook data | start over with a clean slate and can retrieve records I need in the future |
@@ -463,7 +457,160 @@ Priorities: High (must have) - `* * *` , Medium (nice to have) - `* *` , Low (un
 (For all use cases below, the **System** is the `TeachBook` and the **Actor** is the `user`, unless specified otherwise)
 
 
-**Use case: UC01 - Set a grading system**
+**Use case: UC01 - Add class**
+
+**Use case: UC02 - Delete class**
+
+**Use case: UC03 - Edit class**
+
+**Use case: UC04 - Select class**
+
+**Use case: UC05 - Add student**
+
+**Use case: UC06 - Delete one or more student**
+
+MSS:
+
+1. User requests to delete one or more specific students.
+2. TeachBook deletes the students.
+3. TeachBook shows a success message.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. One or more given indices are invalid.
+
+    * 1a1. TeachBook shows an error message.
+
+      Use case ends.
+
+**Use case: UC07 - Delete all the students in the filtered student list**
+
+MSS:
+
+1. User requests to delete all the students in the filtered student list.
+2. TeachBook deletes the students.
+3. TeachBook shows a success message.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. The filtered student list is empty.
+
+    * 1a1. TeachBook shows an error message.
+
+      Use case ends.
+
+**Use case: UC08 - Edit class**
+
+**Use case: UC09 - Give a remark to a student**
+
+MSS:
+
+1. User requests to give a remark to a specific student.
+2. TeachBook overwrites any existing remark of the student with the given remark.
+3. TeachBook shows a success message.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. The given index is invalid.
+
+    * 1a1. TeachBook shows an error message.
+
+      Use case ends.
+
+* 1b. The given remark is empty.
+
+    * 1b1. TeachBook clears any existing remark of the student.
+
+      Use case resumes at step 3.
+
+**Use case: UC10 - Find student**
+
+**Use case: UC11 - View all students from the currently selected class**
+
+**Use case: UC12 - List students from a class**
+
+MSS:
+
+1. User <ins>select a class (UC??)<ins>.
+2. User requests to list students from the class.
+3. TeachBook shows a list of students from the class.
+
+   Use case ends.
+
+**Use case: UC13 - List students from all classes**
+
+MSS:
+
+1. User requests to list students from all classes.
+2. TeachBook shows a list of students from all classes.
+
+   Use case ends.
+
+**Use case: UC14 - List absent students from a class**
+
+MSS:
+
+1. User <ins>select a class (UC??)<ins>.
+2. User requests to list absent students from the class.
+3. TeachBook shows a list of absent students from the class.
+
+   Use case ends.
+
+**Use case: UC15 - List absent students from all classes**
+
+MSS:
+
+1. User requests to <ins>list all classes (UC??)<ins>.
+2. User requests to list absent students from all classes.
+3. TeachBook shows a list of absent students from all classes.
+
+   Use case ends.
+
+**Use case: UC16 - Clear filter**
+
+**Use case: UC17 - Mark a student as present**
+
+MSS:
+
+1. User marks a student as present.
+2. TeachBook displays the student with his attendance marked.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. Student does not exist.
+    * 1a1. TeachBook displays error.
+
+      Use case ends.
+
+**Use case: UC18 - Mark all present**
+
+**Use case: UC19 - Mark a student as absent**
+
+MSS:
+
+1. User marks a student as absent.
+2. TeachBook displays the student with his attendance unmarked.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. Student does not exist.
+    * 1a1. TeachBook displays error.
+
+      Use case ends.
+
+**Use case: UC20 - Mark all absent**
+
+**Use case: UC21 - Set a grading system**
 
 MSS:
 1. User decides to implement grading system for TeachBook
@@ -484,7 +631,7 @@ Extensions:
     Use case resumes from step 2.
 
 
-**Use case: UC02 - Reset grading system**
+**Use case: UC22 - Reset grading system**
 
 MSS:
 1. User decides to reset the existing grading system.
@@ -502,7 +649,7 @@ Extensions:
     2b1. TeachBook requests user to follow the correct format.
     Use case resumes from step 2.
 
-**Use case: UC03 - Grade a student**
+**Use case: UC23 - Grade a student**
 
 MSS:
 1. User decides the grade to give to a specific student.
@@ -527,7 +674,7 @@ Extensions:
     2c1. TeachBook requests user to follow the correct format.
     Use case resumes from step 2.
 
-**Use case: UC04 - Sort students according to grade**
+**Use case: UC24 - Sort students according to grade**
 
 MSS:
 1. User decides to sort the students according to their grade.
@@ -549,138 +696,9 @@ Extension:
     2b1. TeachBook requests user to follow the correct format.
     Use case resumes from step 2.
 
-**Use case: UC05 - Delete one or more student**
+**Use case: UC25 - Sort students according to name**
 
-MSS:
-
-1. User requests to delete one or more specific students.
-2. TeachBook deletes the students.
-3. TeachBook shows a success message.
-
-    Use case ends.
-
-Extensions:
-
-* 1a. One or more given indices are invalid.
-
-    * 1a1. TeachBook shows an error message.
-
-      Use case ends.
-
-**Use case: UC06 - Delete all the students in the filtered student list**
-
-MSS:
-
-1. User requests to delete all the students in the filtered student list.
-2. TeachBook deletes the students.
-3. TeachBook shows a success message.
-
-   Use case ends.
-
-Extensions:
-
-* 1a. The filtered student list is empty.
-
-    * 1a1. TeachBook shows an error message.
-
-      Use case ends.
-
-**Use case: UC07 - Give a remark to a student**
-
-MSS:
-
-1. User requests to give a remark to a specific student.
-2. TeachBook overwrites any existing remark of the student with the given remark.
-3. TeachBook shows a success message.
-
-   Use case ends.
-
-Extensions:
-
-* 1a. The given index is invalid.
-
-    * 1a1. TeachBook shows an error message.
-
-      Use case ends.
-
-* 1b. The given remark is empty.
-
-    * 1b1. TeachBook clears any existing remark of the student.
-
-      Use case resumes at step 3.
-
-**Use case: UC08 - List students from a class**
-
-MSS:
-
-1. User <ins>select a class (UC??)<ins>.
-2. User requests to list students from the class.
-3. TeachBook shows a list of students from the class.
-
-   Use case ends.
-
-**Use case: UC09 - List students from all classes**
-
-MSS:
-
-1. User requests to list students from all classes.
-2. TeachBook shows a list of students from all classes.
-
-   Use case ends.
-
-**Use case: UC10 - List absent students from a class**
-
-MSS:
-
-1. User <ins>select a class (UC??)<ins>.
-2. User requests to list absent students from the class.
-3. TeachBook shows a list of absent students from the class.
-
-   Use case ends.
-
-**Use case: UC11 - List absent students from all classes**
-
-MSS:
-
-1. User requests to <ins>list all classes (UC??)<ins>.
-2. User requests to list absent students from all classes.
-3. TeachBook shows a list of absent students from all classes.
-
-   Use case ends.
-
-**Use case: UC12 - Mark a student as present**
-
-MSS:
-
-1. User marks a student as present.
-2. TeachBook displays the student with his attendance marked.
-
-   Use case ends.
-
-Extensions:
-
-* 1a. Student does not exist.
-    * 1a1. TeachBook displays error.
-
-      Use case ends.
-
-**Use case: UC13 - Mark a student as absent**
-
-MSS:
-
-1. User marks a student as absent.
-2. TeachBook displays the student with his attendance unmarked.
-
-   Use case ends.
-
-Extensions:
-
-* 1a. Student does not exist.
-    * 1a1. TeachBook displays error.
-
-      Use case ends.
-
-**Use case: UC14 - Generate an excel sheet**
+**Use case: UC26 - Print**
 
 MSS:
 
@@ -691,7 +709,7 @@ MSS:
 
 Extensions:
 
-* 1a. User does not have Excel on the device.
+* 1a. Teacher does not have Excel on the device.
     * 1a1. TeachBook displays error.
 
       Use case ends.
@@ -701,7 +719,7 @@ Extensions:
 
       Use case ends.
 
-**Use case: UC15 - Undo a command**
+**Use case: UC27 - Undo a command**
 
 MSS:
 
@@ -712,12 +730,12 @@ MSS:
 
 Extensions:
 
-* 1a. Teachbook does not have any commands to undo.
+* 1a. User does not have any commands to undo.
     * 1a1. TeachBook displays error telling user no commands to undo.
 
       Use case ends.
 
-**Use case: UC16 - Redo an undo**
+**Use case: UC28 - Redo an undo command**
 
 MSS:
 
@@ -733,7 +751,11 @@ Extensions:
 
       Use case ends.
 
-*{More to be added}*
+**Use case: UC29 - Clear**
+
+**Use case: UC30 - Help**
+
+**Use case: UC31 - Exit**
 
 ### Non-Functional Requirements
 
@@ -746,14 +768,14 @@ Extensions:
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Class list panel:**
-* **Student list panel:**
+* **Class list panel:** The panel on the UI that displays the list of classes in TeachBook to the user
+* **CLI:** Command Lind Interface
+* **Currently selected class:** The class that is currently being highlighted on the class list panel. Some commands will act on the currently selected class such as addStudent
 * **Filtered student list:** The list of students that is currently being displayed on the student list panel
-* **Currently selected class**: The class that is currently being highlighted on the class list panel. ...
-* **Grading system:**
-
-*_{More to be added}_*
+* **Grading system:** A particular scale that schools use for evaluating the performance of students in exams (e.g. A, B, C, E and F)
+* **GUI:** Graphical User Interface
+* **Mainstream OS:** Windows, Linux, Unix, OS-X
+* **Student list panel:** The panel on the UI that displays a list of students to the user
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -989,7 +1011,7 @@ Prerequisites: Students are listed using `list` command or `list all` command.
        Expected: Excel file in downloads folder with a column "Name" with the student's names and a column "Address" with the student's address, both columns should be separated by an empty column.
     6. Test case: `print c/c/address`<br>
        Expected: Excel file in downloads folder with a column "Name" with the student's names and a column "c/address" that is empty.
-    7. Other incorrect `print` commands to try: `print t/`, `print a/` (i.e. print with any invalid prefix after) <br>
+    7. Other incorrect `print` commands to try: `print t/`, `print c/` (i.e. print with any invalid prefix after) <br>
        Expected: Error to be thrown.
 
 ### Print a list of students
