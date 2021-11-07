@@ -55,7 +55,7 @@ public class StudentBuilder {
     }
 
     /**
-     * Initializes the StudentBuilder with the data of {@code studentToCopy}.
+     * Initializes the {@code StudentBuilder} with the data of {@code studentToCopy}.
      */
     public StudentBuilder(Student studentToCopy) {
         name = studentToCopy.getName();

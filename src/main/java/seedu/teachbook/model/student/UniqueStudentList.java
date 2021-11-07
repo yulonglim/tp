@@ -15,9 +15,9 @@ import seedu.teachbook.model.student.exceptions.StudentNotFoundException;
 /**
  * A list of students that enforces uniqueness between its elements and does not allow nulls.
  * A student is considered unique by comparing using {@code Student#isSameStudent(Student)}.
- * As such, adding and updating of students uses Student#isSameStudent(Student) for equality so as to
- * ensure that the student being added or updated is unique in terms of identity in the UniqueStudentList.
- * However, the removal of a student uses Student#equals(Object) to ensure that
+ * As such, adding and updating of students uses {@code Student#isSameStudent(Student)} for equality
+ * to ensure that the student being added or updated is unique in terms of identity in the UniqueStudentList.
+ * However, the removal of a student uses {@code Student#equals(Object)} to ensure that
  * the student with exactly the same fields will be removed.
  * <p>
  * Supports a minimal set of list operations.
@@ -38,18 +38,12 @@ public class UniqueStudentList implements Iterable<Student> {
         return internalList.stream().anyMatch(toCheck::isSameStudent);
     }
 
+    /**
+     * Sorts the list according to the order induced by the specified comparator.
+     */
     public void sort(Comparator<? super Student> comparator) {
         internalList.sort(comparator);
     }
-
-    /* public void resetGrade() {
-        List<Student> replacementList = new ArrayList<>();
-        internalList.forEach(student -> {
-            student.resetGrade();
-            replacementList.add(student);
-        });
-        setStudents(replacementList);
-    }*/
 
     /**
      * Adds a student to the list.
