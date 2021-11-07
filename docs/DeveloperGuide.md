@@ -232,14 +232,12 @@ The following object diagram shows the updated TeachBook:
 
 <img src="images/DeleteClassObjectDiagram1.png" width="280" />
 
-### Implementations of some features
-
-### 1. Edit feature
+### Edit feature
 
 TeachBook allows users to edit students' details after initially adding the students. However, 
 a student's class cannot be modified.
 
-#### 1.1 Implementation details
+#### Implementation details
 
 The edit command is implemented using EditCommand and EditCommandParser, along with TeachBookParser
 and LogicManager which creates the required objects. Cases where the user enters an invalid input or
@@ -247,7 +245,7 @@ does not modify the student at all is handled with exceptions along with corresp
 to the user.
 
 The edit command has the following format:
-`edit INDEX [n/NAME] [c/CLASS] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BLOOD_TYPE] [pc/PARENTS_CONTACT] [t\TAG1] [t\TAG2]...`
+`edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 
 Given below is the sequence diagram on how EditCommand behaves in TeachBook when the user tries to edit 
 the student's name at index 1 of the current class to john
@@ -287,11 +285,11 @@ Below is the sequence diagram of the execution of the `ListCommand`.
 
 ![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
-### 2. Add class feature
+### Add class feature
 
 TeachBook allows users to add classes.
 
-#### 2.1 Implementation details
+#### Implementation details
 
 The addClass command is implemented using multiple classes. Firstly, when the user input `addClass A`, the LogicManager
 will invoke the parseCommand of TeachBookParser to create a addClassCommandParse object. The parse method in 

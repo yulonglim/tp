@@ -34,7 +34,7 @@ public class TeachBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Student student = new StudentBuilder().build();
+        Student student = new StudentBuilder().buildToAdd();
         AddCommand command = (AddCommand) parser.parseCommand(StudentUtil.getAddCommand(student));
         assertEquals(new AddCommand(student), command);
     }
@@ -84,7 +84,8 @@ public class TeachBookParserTest {
     @Test
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " all") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " absent") instanceof ListCommand);
     }
 
     @Test

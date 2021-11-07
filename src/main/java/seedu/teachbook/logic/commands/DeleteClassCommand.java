@@ -19,7 +19,8 @@ public class DeleteClassCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteClass";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes the class identified by its name.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes the class "
+            + "with the specified class name (case-sensitive).\n"
             + "Parameter: CLASS_NAME (case-sensitive)\n"
             + "Example: " + COMMAND_WORD + "4E1";
 
