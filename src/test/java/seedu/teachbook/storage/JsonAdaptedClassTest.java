@@ -60,7 +60,6 @@ public class JsonAdaptedClassTest {
                         .map(JsonAdaptedStudent::new)
                         .collect(Collectors.toList());
         invalidStudents.add(new JsonAdaptedStudent(BENSON)); //duplicate student
-        System.out.println(invalidStudents);
         JsonAdaptedClass classObj = new JsonAdaptedClass(VALID_CLASSNAME, invalidStudents);
         assertThrows(IllegalValueException.class,
                 MESSAGE_DUPLICATE_STUDENT,

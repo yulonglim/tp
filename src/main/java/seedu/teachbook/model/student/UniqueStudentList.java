@@ -42,14 +42,14 @@ public class UniqueStudentList implements Iterable<Student> {
         internalList.sort(comparator);
     }
 
-//    public void resetGrade() {
-//        List<Student> replacementList = new ArrayList<>();
-//        internalList.forEach(student -> {
-//            student.resetGrade();
-//            replacementList.add(student);
-//        });
-//        setStudents(replacementList);
-//    }
+    /* public void resetGrade() {
+        List<Student> replacementList = new ArrayList<>();
+        internalList.forEach(student -> {
+            student.resetGrade();
+            replacementList.add(student);
+        });
+        setStudents(replacementList);
+    }*/
 
     /**
      * Adds a student to the list.

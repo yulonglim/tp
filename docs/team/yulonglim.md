@@ -47,6 +47,10 @@ Given below are my contributions to the project.
       * Linked Screenshots to one another for better consistency.
       * Added documentation for `print` command.
     * Developer Guide:
-      * Updated undo redo diagrams.
-    
+      * Updated diagrams for undo and redo.
+      * Sorted and added user stories.
+      * Added use cases for `undo`, `redo` and `print`.
+
+* **Community**:
+    * Reported bugs and suggestions for other teams ([PE-DryRun](https://github.com/yulonglim/ped/issues), [Extra](https://github.com/AY2122S1-CS2103-F10-4/tp/issues/155))
 
