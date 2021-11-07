@@ -19,6 +19,11 @@ public class VersionedTeachBook extends TeachBook {
     private final List<TeachbookDataState> teachBookStateList;
     private int currentStatePointer;
 
+    /**
+     * Constructor method for the VersionTeachBook
+     *
+     * @param initialState state during first launch of the application
+     */
     public VersionedTeachBook(ReadOnlyTeachBook initialState) {
         super(initialState);
 

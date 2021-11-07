@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Undo/Redo function and logic adapted from [AB4](https://github.com/se-edu/addressbook-level4)
+* Print function uses 3rd party library [org.apache.poi](https://poi.apache.org/)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -428,13 +429,13 @@ Priorities: High (must have) - `* * *` , Medium (nice to have) - `* *` , Low (un
 | `* * *` | new user | get instructions | refer to instructions when I forget how to use the Teachbook |
 | `* * *` | teacher | add the students I teach |  |
 | `* * *` | teacher | remove students from my contacts | remove specific students who are no longer take my classes |
-| `* * *` | teacher | search for my students in my contacts | get a student's information easily  |
+| `* * *` | teacher | search for my students in my contacts by name | get a student's information easily  |
 | `* * *` | teacher | view my student's information | contact them easily |
-| `* * *` | teacher | separate my students by classes | better sort my contacts |
-| `* * *` | teacher | separate my students by classes | not mix up students with similar names but from different classes |
+| `* * *` | teacher | separate my students by classes | better sort my contacts & not mix up students with similar names but from different classes |
 | `* *` | teacher | modify contacts | change information easily rather than creating a new contact to replace the previous one |
 | `* *` | teacher with students whom require special attention | add important information about my students such as diet, allergies or health conditions | quickly react to any emergency related to these information |
-| `* *` | teacher | contact student parents | inform parents if any incident happen to the child |
+| `* *` | teacher | set a special grading system | customize my grading system just in case it changes in the future |
+| `* *` | teacher | reset the grading system | remove any outdated grading system |
 | `* *` | teacher | easily store the grades of my students | remember how well each student is doing in my classes |
 | `* *` | teacher | sort my students by grade | quickly find out groups of students which require more help |
 | `* *` | teacher | set a special grading system | customize my grading system just in case it changes in the future |
@@ -443,9 +444,15 @@ Priorities: High (must have) - `* * *` , Medium (nice to have) - `* *` , Low (un
 | `* *` | teacher | filter my students using keywords | quickly list out specific students |
 | `* *` | teacher | undo the most recent command | revert any mistakes I make quickly |
 | `* *` | teacher | redo the most recent undo | redo any accidental undos |
+| `* *` | teacher | view the number of students in each class | prepare sufficient material for each class |
+| `* *` | teacher | mark attendance for my students | remember if they attended my classes |
+| `* *` | teacher | mark attendance for all my students | quickly mark attendance if all students are present |
+| `* *` | teacher | mark students as absent | correct any attendance mistakes |
+| `* *` | teacher | mark all students as absent | start marking attendance at the start of the day |
+| `*` | teacher | modify class names | edit the class name in case of mistakes |
 | `*` | teacher | set special tags for my students | tag my students with extra information |
-| `*` | teacher | print out a list of students | do any administrative work that requires a hard copy document |
-| `*` | teacher | print out a list of students with their information | do not have to manually input all the information |
+| `*` | teacher | print out a list of students only containing names | do any administrative work that requires a hard copy document |
+| `*` | teacher | print out a list of students with extra information related to the students | do not have to manually input all the information |
 | `*` | teacher | view the list of all students | have an overview of all my students |
 | `*` | teacher | add all students from a class at once | quickly add the information of the students in each class |
 | `*` | teacher | archive my Teachbook data | start over with a clean slate and can retrieve records I need in the future |
@@ -459,6 +466,19 @@ Priorities: High (must have) - `* * *` , Medium (nice to have) - `* *` , Low (un
 **Use case: UC01 - Add class**
 
 **Use case: UC02 - Delete class**
+
+MSS:
+
+1. User requests to delete a class.
+2. TeachBook deletes the class.
+
+   Use case ends.
+
+Extensions:
+
+* 2a. The specified class does not exist.
+    * 2a1. TeachBook shows an error message.
+      Use case ends.
 
 **Use case: UC03 - Edit class**
 
@@ -484,6 +504,23 @@ Extensions:
       Use case ends. 
 
 **Use case: UC05 - Add student**
+
+MSS:
+
+1. User requests to add a student.
+2. TeachBook adds the student.
+
+   Use case ends.
+
+Extensions:
+
+* 2a. There is no currently selected class.
+  * 2a1. TeachBook shows an error message.
+  Use case ends.
+
+* 2b. Name was not provided.
+  * 2b1. TeachBook shows an error message.
+  Use case ends.
 
 **Use case: UC06 - Delete one or more student**
 
@@ -519,7 +556,24 @@ Extensions:
 
       Use case ends.
 
-**Use case: UC08 - Edit class**
+**Use case: UC08 - Edit student**
+
+MSS:
+
+1. User requests to edit a student.
+2. TeachBook edits the student.
+
+   Use case ends.
+
+Extensions:
+
+* 2a. Index provided is invalid.
+    * 2a1. TeachBook shows an error message.
+      Use case ends.
+
+* 2b. No fields were provided.
+    * 2b1. TeachBook shows an error message.
+      Use case ends.
 
 **Use case: UC09 - Give a remark to a student**
 
@@ -750,64 +804,110 @@ Extension:
 
 **Use case: UC25 - Sort students according to name**
 
-**Use case: UC26 - Print**
+**Use case: UC26 - Print out list of student**
+
+Preconditions: There exists a currently selected class.
 
 MSS:
 
-1. User print an Excel sheet of all the students.
-2. TeachBook displays that the Excel sheet is generated and is stored in a specific folder path.
+1. User request to get an Excel sheet of students for currently selected class.
+2. TeachBook generate the Excel sheet.
 
    Use case ends.
 
 Extensions:
 
-* 1a. Teacher does not have Excel on the device.
-    * 1a1. TeachBook displays error.
+* 2a. Teacher does not have Excel on the device.
+    * 2a1. TeachBook shows an error message.
 
       Use case ends.
 
-* 1b. User does not have a downloads folder on the device.
-    * 1b1. TeachBook displays error.
+* 2b. User does not have a downloads folder on the device.
+    * 2b1. TeachBook shows an error message.
 
       Use case ends.
 
-**Use case: UC27 - Undo a command**
+**Use case: UC27 - Print out list of student with additional columns**
+
+Preconditions: There exists a currently selected class.
 
 MSS:
 
-1. User undo a recent command.
-2. TeachBook displays the exact state before the previous command was executed.
+1. User request to get an Excel sheet of students for currently selected class with additional custom columns.
+2. TeachBook generate the Excel sheet with requested information.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. Teacher inputs wrong format for columns.
+    * 1a1. TeachBook shows an error message.
+
+      Use case ends.
+
+* 2a. Teacher does not have Excel on the device.
+    * 2a1. TeachBook shows an error message.
+
+      Use case ends.
+
+* 2b. User does not have a downloads folder on the device.
+    * 2b1. TeachBook shows an error message.
+  
+      Use case ends.
+
+**Use case: UC28 - Undo a command**
+
+MSS:
+
+1. User request to undo a command.
+2. TeachBook shows the exact state before the command that is being undone was executed.
 
    Use case ends.
 
 Extensions:
 
 * 1a. User does not have any commands to undo.
-    * 1a1. TeachBook displays error telling user no commands to undo.
+    * 1a1. TeachBook shows an error message.
 
       Use case ends.
 
-**Use case: UC28 - Redo an undo command**
+**Use case: UC29 - Redo an undo command**
 
 MSS:
 
-1. User redo a recent undo command.
-2. TeachBook displays the exact state before the previous undo command was executed.
+1. User requests to redo a recent undo command.
+2. TeachBook shows the exact state before the previous undo command was executed.
 
    Use case ends.
 
 Extensions:
 
 * 1a. Teachbook does not have any undo commands to redo.
-    * 1a1. TeachBook displays error telling user no commands to redo.
+    * 1a1. TeachBook shows an error message.
 
       Use case ends.
 
-**Use case: UC29 - Clear**
+**Use case: UC30 - Clear**
 
-**Use case: UC30 - Help**
+**Use case: UC31 - Help**
 
-**Use case: UC31 - Exit**
+MSS:
+
+1. User requests for a guide.
+2. TeachBook shows a link to the TeachBook User Guide.
+
+   Use case ends.
+
+
+**Use case: UC32 - Exit**
+
+MSS:
+
+1. User requests to exit TeachBook.
+2. TeachBook exits.
+
+   Use case ends.
+
 
 ### Non-Functional Requirements
 
@@ -848,21 +948,35 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases ... }_
+3. _{ more test cases ... }_
+
+### Adding a student
+1. Adding a student in a class.
+
+    1. Prerequisites: A class must already be selected. You can know which class is being selected by looking at which class is being highlighted. If none is being selected, you can use the `select` command or if there is no class in the class list, you can add a new class using the `addClass` command.
+    2. Test case: `add n/John p/91234567 e/john@example.com a/21 Lower Kent Ridge Road, Singapore 119077 t/class monitor`<br>
+       Expected: A student named `John` with phone number `91234567`, email `ohn@example.com`, address `21 Lower Kent Ridge Road, Singapore 119077` and tag `class monitor` will be added.
+    3. Test case: `add n/Janice`<br>
+       Expected: A student named `Janice` without other information will be added as additional information are optional.
+    4. Test case: `add n/Janice`<br>
+       Expected: Error details are shown in the status message that the student already exists in the class.
+    5. Test case: `add p/91234567`<br>
+       Expected: Error details are shown in the status message that command format is invalid because information on student's name is compulsory.
+    6. Test case: `add`<br>
+       Expected: Similar to previous.
    
 ### Editing a student
 
 1. Editing a student from list of students.
 
     1. Prerequisites: List students in the currently selected class using `list` command or list all students in TeachBook using `list all` command.
-
     2. Test case: `edit 1 n/Jane p/1234`<br>
        Expected: First student in the list is being edited. Name of the student is changed to `Jane` and phone number of the student is changed to `1234`
     3. Test case: `edit 1`<br>
@@ -904,19 +1018,37 @@ testers are expected to do more *exploratory* testing.
     8. Other incorrect `delete` commands to try: `delete`, `delete hello world`, `delete all all`, `delete 5`, `delete 1 2 all`, `delete -1`<br>
        Expected: Similar to previous.
 
-### Selecting a class
 
-1. Selecting a class.
+### Finding students
 
-    1. Prerequisites: There is a class named `A` in the TeachBook. There is no class named `M` in the TeachBook.
-    2. Test case: `select A` when class `A` is not selected.<br>
-       Expected: Class named `A` is highlighted in class list panel. Student list of class `A` is shown in student list panel.
-    3. Test case: `select A` when class `A` is already selected.<br>
-       Expected: Nothing changes in class list panel and student list panel. Error details shown in the status message.
-    4. Test case: `select M`<br>
-       Expected: Similar to previous.
-    5. Test case: `select`<br>
-       Expected: Similar to previous.
+1. Finding a students or multiple students.
+
+   1. Prerequisites: 2 students named James Doe and Jane Doe in the list.
+   2. Test case: `find James`<br>
+      Expected: Shows the information of James Doe.
+   3. Test case: `find Jane`<br>
+      Expected: Shows the information of Jane Doe.
+   4. Test case: `find jane`<br>
+      Expected: Same as previous.
+   5. Test case: `find Ja`<br>
+      Expected: Shows nothing because there is no partial match feature.
+   6. Test case: `find Doe`<br>
+      Expected: Shows both James Doe and Jane Doe.
+   7. Test case: `find Janice`<br>
+      Expected: Shows nothing because Janice is not in the list.
+   8. Test case: `find`<br>
+      Expected: Error details shown in the status message that the command format is invalid as a keyword is required.
+   
+### Adding a class
+
+1. Adding a class.
+
+    1. Test case: `addClass 4E1` where 4E1 is the name of the class to be added into list. <br>
+       Expected: Class 4E1 is added into the list.
+    2. Test case: `addClass 4E1 `where 4E1 is the name of the class that is already added in the list. <br>
+       Expected: No class is added. Error details shown in the status message that the class already exist in the TeachBook.
+    3. Test case: `addClass`<br>
+       Expected: No class is added. Error details shown in the status message that the command format is invalid as class name is compulsory.
 
 ### Deleting a class
 
@@ -941,6 +1073,20 @@ testers are expected to do more *exploratory* testing.
        Expected: Error details are shown in the status message that the class already exists in the TeachBook.
     4. Test case: `editClass`<br>
        Expected: Error details are shown in the status message that the CLASS_NAME parameter is missing.
+
+### Selecting a class
+
+1. Selecting a class.
+
+    1. Prerequisites: There is a class named `A` in the TeachBook. There is no class named `M` in the TeachBook.
+    2. Test case: `select A` when class `A` is not selected.<br>
+       Expected: Class named `A` is highlighted in class list panel. Student list of class `A` is shown in student list panel.
+    3. Test case: `select A` when class `A` is already selected.<br>
+       Expected: Nothing changes in class list panel and student list panel. Error details shown in the status message.
+    4. Test case: `select M`<br>
+       Expected: Similar to previous.
+    5. Test case: `select`<br>
+       Expected: Similar to previous.
 
 ### Setting a grading system in TeachBook
 
@@ -1088,7 +1234,7 @@ Prerequisites: Students are listed using `list` command or `list all` command.
 
 1. Undoing a recent command.
 
-    1. Prerequisites: Start with a newly opened teachbook with no commands to undo.
+    1. Prerequisites: Start with a newly opened TeachBook with no commands to undo.
     2. Test case: `undo`<br>
        Expected: Error stating no states to undo.
     3. Test case: `addClass A` followed by `undo` <br>
@@ -1104,7 +1250,7 @@ Prerequisites: Students are listed using `list` command or `list all` command.
 
 1. Redoing a recent undo command.
 
-    1. Prerequisites: Start with a newly opened teachbook with no commands to redo.
+    1. Prerequisites: Start with a newly opened TeachBook with no commands to redo.
     2. Test case: `redo`<br>
        Expected: Error stating no states to redo.
     3. Test case: `addClass A` followed by `undo` followed by `redo`<br>
