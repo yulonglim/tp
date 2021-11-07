@@ -64,7 +64,7 @@ Given below are my contributions to the project.
     * Added manual test case for `add`, `addClass` and `find` commands
 
 * **Community**:
-  * Discussed with team on the progress of the project
+  * Discussed with team on the progress and direction of the project
   * Gave feedback to team profBook for PE-D
 
   
