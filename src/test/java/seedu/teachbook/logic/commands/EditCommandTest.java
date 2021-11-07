@@ -1,5 +1,6 @@
 package seedu.teachbook.logic.commands;
 
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.teachbook.commons.core.Messages.MESSAGE_DUPLICATE_STUDENT;
@@ -11,6 +12,7 @@ import static seedu.teachbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.teachbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.teachbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.teachbook.logic.commands.CommandTestUtil.showStudentAtIndex;
+import static seedu.teachbook.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.teachbook.testutil.TypicalIndices.INDEX_FIRST_PERSON;
 import static seedu.teachbook.testutil.TypicalIndices.INDEX_SECOND_PERSON;
 import static seedu.teachbook.testutil.TypicalStudents.getTypicalTeachBook;
@@ -40,12 +42,11 @@ public class EditCommandTest {
         Student editedStudent = new StudentBuilder().build();
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(editedStudent).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
-
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
-
         Model expectedModel = new ModelManager(new TeachBook(model.getTeachBook()), new UserPrefs());
-        expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
-
+        expectedModel.setStudent(expectedModel.getFilteredStudentList().get(0), editedStudent);
+        expectedModel.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        expectedModel.commitTeachBook();
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
@@ -65,8 +66,10 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
 
         Model expectedModel = new ModelManager(new TeachBook(model.getTeachBook()), new UserPrefs());
-        expectedModel.setStudent(lastStudent, editedStudent);
-
+        expectedModel.setStudent(expectedModel.getFilteredStudentList().get(indexLastPerson.getZeroBased()),
+                editedStudent);
+        expectedModel.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        expectedModel.commitTeachBook();
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
@@ -84,19 +87,16 @@ public class EditCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showStudentAtIndex(model, INDEX_FIRST_PERSON);
-
         Student studentInFilteredList = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student editedStudent = new StudentBuilder(studentInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build());
-
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
-
         Model expectedModel = new ModelManager(new TeachBook(model.getTeachBook()), new UserPrefs());
-        expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
-
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        expectedModel.setStudent(expectedModel.getFilteredStudentList().get(0), editedStudent);
+        expectedModel.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        expectedModel.commitTeachBook();
+        assertCommandSuccess(editCommand, this.model, expectedMessage, expectedModel);
     }
 
     @Test

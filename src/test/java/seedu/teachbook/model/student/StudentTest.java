@@ -81,9 +81,9 @@ public class StudentTest {
         editedAlice = new StudentBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different class -> returns false
-        editedAlice = new StudentBuilder(ALICE).withClass(VALID_CLASS_NAME_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+//        // different class -> returns false
+//        editedAlice = new StudentBuilder(ALICE).withClass(VALID_CLASS_NAME_BOB).build();
+//        assertFalse(ALICE.equals(editedAlice));
 
         // different email -> returns false
         editedAlice = new StudentBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();

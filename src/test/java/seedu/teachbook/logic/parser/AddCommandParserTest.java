@@ -31,6 +31,7 @@ import static seedu.teachbook.testutil.TypicalStudents.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.teachbook.logic.commands.AddCommand;
+import seedu.teachbook.logic.parser.exceptions.ParseException;
 import seedu.teachbook.model.student.Email;
 import seedu.teachbook.model.student.Name;
 import seedu.teachbook.model.student.Phone;
@@ -43,9 +44,17 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Student expectedStudent = new StudentBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
+        Student expectedStudent = new StudentBuilder(BOB).withTags(VALID_TAG_FRIEND).withRemark("").build();
+        System.out.println(expectedStudent);
         // whitespace only preamble
+        try {
+            System.out.println(parser.parse(PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                    + ADDRESS_DESC_BOB + TAG_DESC_FRIEND).equals(new AddCommand(expectedStudent)));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedStudent));
 
@@ -67,6 +76,7 @@ public class AddCommandParserTest {
 
         // multiple tags - all accepted
         Student expectedStudentMultipleTags = new StudentBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+                .withRemark("")
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedStudentMultipleTags));
@@ -75,7 +85,8 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Student expectedStudent = new StudentBuilder(AMY).withTags().build();
+        Student expectedStudent = new StudentBuilder(AMY).withTags()
+                .withRemark("").build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
                 new AddCommand(expectedStudent));
     }
