@@ -467,6 +467,19 @@ Priorities: High (must have) - `* * *` , Medium (nice to have) - `* *` , Low (un
 
 **Use case: UC02 - Delete class**
 
+MSS:
+
+1. User requests to delete a class.
+2. TeachBook deletes the class.
+
+   Use case ends.
+
+Extensions:
+
+* 2a. The specified class does not exist.
+    * 2a1. TeachBook shows an error message.
+      Use case ends.
+
 **Use case: UC03 - Edit class**
 
 **Use case: UC04 - Select a class**
@@ -491,6 +504,23 @@ Extensions:
       Use case ends. 
 
 **Use case: UC05 - Add student**
+
+MSS:
+
+1. User requests to add a student.
+2. TeachBook adds the student.
+
+   Use case ends.
+
+Extensions:
+
+* 2a. There is no currently selected class.
+  * 2a1. TeachBook shows an error message.
+  Use case ends.
+
+* 2b. Name was not provided.
+  * 2b1. TeachBook shows an error message.
+  Use case ends.
 
 **Use case: UC06 - Delete one or more student**
 
@@ -526,7 +556,24 @@ Extensions:
 
       Use case ends.
 
-**Use case: UC08 - Edit class**
+**Use case: UC08 - Edit student**
+
+MSS:
+
+1. User requests to edit a student.
+2. TeachBook edits the student.
+
+   Use case ends.
+
+Extensions:
+
+* 2a. Index provided is invalid.
+    * 2a1. TeachBook shows an error message.
+      Use case ends.
+
+* 2b. No fields were provided.
+    * 2b1. TeachBook shows an error message.
+      Use case ends.
 
 **Use case: UC09 - Give a remark to a student**
 
