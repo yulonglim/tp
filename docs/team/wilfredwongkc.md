@@ -49,6 +49,7 @@ Given below are my contributions to the project.
   * Create meeting minutes documents on Microsoft Teams for our weekly meetings
   * Facilitated team's submissions to professors on Microsoft Teams
 
+<div style="page-break-after: always;"></div>
 * **Documentation**:
   * User Guide:
     * Added the introduction and the "how to use this guide"
