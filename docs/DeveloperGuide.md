@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Undo/Redo function and logic adapted from [AB4](https://github.com/se-edu/addressbook-level4)
+* Print function uses 3rd party library [org.apache.poi](https://poi.apache.org/)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -430,24 +431,29 @@ Priorities: High (must have) - `* * *` , Medium (nice to have) - `* *` , Low (un
 | `* * *` | new user | get instructions | refer to instructions when I forget how to use the Teachbook |
 | `* * *` | teacher | add the students I teach |  |
 | `* * *` | teacher | remove students from my contacts | remove specific students who are no longer take my classes |
-| `* * *` | teacher | search for my students in my contacts | get a student's information easily  |
+| `* * *` | teacher | search for my students in my contacts by name | get a student's information easily  |
 | `* * *` | teacher | view my student's information | contact them easily |
-| `* * *` | teacher | separate my students by classes | better sort my contacts |
-| `* * *` | teacher | separate my students by classes | not mix up students with similar names but from different classes |
+| `* * *` | teacher | separate my students by classes | better sort my contacts & not mix up students with similar names but from different classes |
 | `* *` | teacher | modify contacts | change information easily rather than creating a new contact to replace the previous one |
 | `* *` | teacher with students whom require special attention | add important information about my students such as diet, allergies or health conditions | quickly react to any emergency related to these information |
-| `* *` | teacher | contact student parents | inform parents if any incident happen to the child |
+| `* *` | teacher | set a special grading system | customize my grading system just in case it changes in the future |
+| `* *` | teacher | reset the grading system | remove any outdated grading system |
 | `* *` | teacher | easily store the grades of my students | remember how well each student is doing in my classes |
 | `* *` | teacher | sort my students by grade | quickly find out groups of students which require more help |
-| `* *` | teacher | set a special grading system | customize my grading system just in case it changes in the future |
 | `* *` | teacher | delete a class with its data all at once | quickly remove the class I have stopped teaching |
 | `* *` | teacher | clear the Teachbook data all at once | get a fresh Teachbook at the start of the year  |
 | `* *` | teacher | filter my students using keywords | quickly list out specific students |
 | `* *` | teacher | undo the most recent command | revert any mistakes I make quickly |
 | `* *` | teacher | redo the most recent undo | redo any accidental undos |
+| `* *` | teacher | view the number of students in each class | prepare sufficient material for each class |
+| `* *` | teacher | mark attendance for my students | remember if they attended my classes |
+| `* *` | teacher | mark attendance for all my students | quickly mark attendance if all students are present |
+| `* *` | teacher | mark students as absent | correct any attendance mistakes |
+| `* *` | teacher | mark all students as absent | start marking attendance at the start of the day |
+| `*` | teacher | modify class names | edit the class name in case of mistakes |
 | `*` | teacher | set special tags for my students | tag my students with extra information |
-| `*` | teacher | print out a list of students | do any administrative work that requires a hard copy document |
-| `*` | teacher | print out a list of students with their information | do not have to manually input all the information |
+| `*` | teacher | print out a list of students only containing names | do any administrative work that requires a hard copy document |
+| `*` | teacher | print out a list of students with extra information related to the students | do not have to manually input all the information |
 | `*` | teacher | view the list of all students | have an overview of all my students |
 | `*` | teacher | add all students from a class at once | quickly add the information of the students in each class |
 | `*` | teacher | archive my Teachbook data | start over with a clean slate and can retrieve records I need in the future |
@@ -545,7 +551,7 @@ Extension:
     2b1. TeachBook requests user to follow the correct format.
     Use case resumes from step 2.
 
-**Use case: UC?? - Delete one or more student**
+**Use case: UC05 - Delete one or more student**
 
 MSS:
 
@@ -563,7 +569,7 @@ Extensions:
 
       Use case ends.
 
-**Use case: UC?? - Delete all the students in the filtered student list**
+**Use case: UC06 - Delete all the students in the filtered student list**
 
 MSS:
 
@@ -581,7 +587,7 @@ Extensions:
 
       Use case ends.
 
-**Use case: UC?? - Give a remark to a student**
+**Use case: UC07 - Give a remark to a student**
 
 MSS:
 
@@ -605,7 +611,7 @@ Extensions:
 
       Use case resumes at step 3.
 
-**Use case: UC?? - List students from a class**
+**Use case: UC08 - List students from a class**
 
 MSS:
 
@@ -615,7 +621,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC?? - List students from all classes**
+**Use case: UC09 - List students from all classes**
 
 MSS:
 
@@ -624,7 +630,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC?? - List absent students from a class**
+**Use case: UC10 - List absent students from a class**
 
 MSS:
 
@@ -634,7 +640,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC?? - List absent students from all classes**
+**Use case: UC11 - List absent students from all classes**
 
 MSS:
 
@@ -644,7 +650,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC?? - Mark a student as present**
+**Use case: UC12 - Mark a student as present**
 
 MSS:
 
@@ -660,7 +666,7 @@ Extensions:
 
       Use case ends.
 
-**Use case: UC?? - Mark a student as absent**
+**Use case: UC13 - Mark a student as absent**
 
 MSS:
 
@@ -676,32 +682,32 @@ Extensions:
 
       Use case ends.
 
-**Use case: UC?? - Print**
+**Use case: UC14 - Generate an excel sheet**
 
 MSS:
 
-1. Teacher print an Excel sheet of all the students.
+1. User print an Excel sheet of all the students.
 2. TeachBook displays that the Excel sheet is generated and is stored in a specific folder path.
 
    Use case ends.
 
 Extensions:
 
-* 1a. Teacher does not have Excel on the device.
+* 1a. User does not have Excel on the device.
     * 1a1. TeachBook displays error.
 
       Use case ends.
 
-* 1b. Teacher does not have a downloads folder on the device.
+* 1b. User does not have a downloads folder on the device.
     * 1b1. TeachBook displays error.
 
       Use case ends.
 
-**Use case: UC?? - Undo**
+**Use case: UC15 - Undo a command**
 
 MSS:
 
-1. Teacher undo a recent command.
+1. User undo a recent command.
 2. TeachBook displays the exact state before the previous command was executed.
 
    Use case ends.
@@ -713,11 +719,11 @@ Extensions:
 
       Use case ends.
 
-**Use case: UC?? - Redo**
+**Use case: UC16 - Redo an undo**
 
 MSS:
 
-1. Teacher redo a recent undo command.
+1. User redo a recent undo command.
 2. TeachBook displays the exact state before the previous undo command was executed.
 
    Use case ends.
@@ -985,7 +991,7 @@ Prerequisites: Students are listed using `list` command or `list all` command.
        Expected: Excel file in downloads folder with a column "Name" with the student's names and a column "Address" with the student's address, both columns should be separated by an empty column.
     6. Test case: `print c/c/address`<br>
        Expected: Excel file in downloads folder with a column "Name" with the student's names and a column "c/address" that is empty.
-    7. Other incorrect `print` commands to try: `print t/`, `print c/` (i.e. print with any invalid prefix after) <br>
+    7. Other incorrect `print` commands to try: `print t/`, `print a/` (i.e. print with any invalid prefix after) <br>
        Expected: Error to be thrown.
 
 ### Print a list of students
