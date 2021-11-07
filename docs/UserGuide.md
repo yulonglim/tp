@@ -263,22 +263,22 @@ Fig 4: `4E2` is highlighted in blue with its students list after `select 4E2` wa
 ### Student related features
 #### Adding a student : `add`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A student can have any number of tags (including 0)
+</div>
+
 Start organising your classes by adding students! This command allows you to add a new student to the 
 currently selected class.
 
 Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A student can have any number of tags (including 0)
-</div>
+* A class must be selected before adding a student.
+* Everything is optional except for name of the student.
+* You can add multiple tags by adding more `t/` flags.
 
 <div markdown="block" class="alert alert-info">:information_source: **Info**
 For now you won't be able to students with the exact same name (although highly unlikely). This feature will be available in future updates.
 </div>
-
-* A class must be selected before adding a student.
-* Everything is optional except for name of the student.
-* You can add multiple tags by adding more `t/` flags.
 
 Examples:
 * `add n/John Doe` adds a student named John Doe into the currently selected class.
@@ -364,6 +364,10 @@ Fig 9: `Jane Doe` who was added in [add](#adding-a-student--add), is displayed w
 ### Grade related features
 #### Setting a grading system : `setGrade`
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+This command takes in a list of grades separated by ">" and they are entered in decreasing order!
+</div>
+
 TeachBook allows for setting of personalised grading system. You may implement your own grading system
 which may differ from semester to semester and subject to subject in order to grade your students accordingly.
 Grades are set in descending order, from the highest to the lowest grade.
@@ -376,10 +380,6 @@ Example:
 ![setGrade](images/setGrade.png)
 
 Fig 10: New grading system added after `setGrade A>B>C>D` was executed.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-This command takes in a list of grades separated by ">" and they are entered in decreasing order!
-</div>
 
 #### Giving grade to a student : `grade`
 
