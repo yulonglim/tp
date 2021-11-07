@@ -31,6 +31,8 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=yulonglim&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=false)
 
+<div style="page-break-after: always;"></div>
+
 * **Enhancements to existing features**:
     * Updated and maintain storage of the Teachbook to store student,class and grade object.
       * Created JsonAdaptedClass, JsonAdaptedStudent and JsonAdaptedGrade.
