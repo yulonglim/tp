@@ -153,13 +153,14 @@ Don't forget that TeachBook provides an undo feature just in case you accidental
 #### Undoing a command : `undo`
 
 This command allows you to revert the TeachBook to the previous state. You most likely will be using this command if you have made a mistake.
+
+Format: `undo`
+
 <div markdown="block" class="alert alert-info">:information_source: **Info**
 Notes about undo:
 * If commands executed results in an error message, TeachBook does not store the outcome, hence you do not have to undo!
 * Commands that do not affect the information displayed or data of TeachBook is not stored (e.g. print, help, etc.), therefore they can't be undone!
 </div>
-
-Format: `undo`
 
 #### Redoing a command: `redo`
 
@@ -188,15 +189,15 @@ organising the class by adding students to the added class.
 
 Format: `addClass CLASS_NAME`
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+There is a limit of 20 characters for the class name! But I am sure your class name will not be longer that limit!
+</div>
+
 Examples:
 * `addClass 4E4` adds a class named `4E4` into the TeachBook.
 
 ![addClass](images/addClass.png)
 Fig 1:  `4E4` is added after `addClass 4E4` was executed
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-There is a limit of 20 characters for the class name! But I am sure your class name will not be longer that limit!
-</div>
 
 #### Deleting a class : `deleteClass`
 
@@ -206,11 +207,11 @@ to delete individual students.
 
 Format: `deleteClass CLASS_NAME`
 
+* Deletes the class with the specified `CLASS_NAME`
+
 <div markdown="block" class="alert alert-info">:information_source: **Info**
 We are currently working on a new feature that allows you to select a class by its index!
 </div>
-
-* Deletes the class with the specified `CLASS_NAME`
 
 Examples:
 * `deleteClass 4E4` Deletes the class named `4E4` from the TeachBook.
@@ -243,13 +244,12 @@ view the students in the selected class.
 
 Format: `select CLASS_NAME`
 
+* The `CLASS_NAME` to be selected is case-sensitive and must be already inside the list. If not the TeachBook will return `The class does not exist`.
+* The currently selected class will be highlighted in blue and the list of student in the class will be displayed.
+
 <div markdown="block" class="alert alert-info">:information_source: **Info**
 We are currently working on a new feature that allows you to select a class by its index!
 </div>
-
-
-* The `CLASS_NAME` to be selected is case-sensitive and must be already inside the list. If not the TeachBook will return `The class does not exist`.
-* The currently selected class will be highlighted in blue and the list of student in the class will be displayed.
 
 Example:
 * `select 4E2` selects the class named `4E2` from the list of classes.
@@ -268,17 +268,17 @@ currently selected class.
 
 Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A student can have any number of tags (including 0)
-</div>
+* A class must be selected before adding a student.
+* Everything is optional except for name of the student.
+* You can add multiple tags by adding more `t/` flags.
 
 <div markdown="block" class="alert alert-info">:information_source: **Info**
 For now you won't be able to students with the exact same name (although highly unlikely). This feature will be available in future updates.
 </div>
 
-* A class must be selected before adding a student.
-* Everything is optional except for name of the student.
-* You can add multiple tags by adding more `t/` flags.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A student can have any number of tags (including 0)
+</div>
 
 Examples:
 * `add n/John Doe` adds a student named John Doe into the currently selected class.
@@ -310,12 +310,12 @@ Any change in students' information can be reflected in the TeachBook using this
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
+* Edits the student at the specified `INDEX`.
+* Existing values will be updated to the input values.
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can clear a field by omitting the value after the prefix.
 </div>
-
-* Edits the student at the specified `INDEX`.
-* Existing values will be updated to the input values.
 
 Examples:
 * `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st student shown in the list to be `91234567` and `johndoe@example.com` respectively.
@@ -370,6 +370,10 @@ Grades are set in descending order, from the highest to the lowest grade.
 
 Format: `setGrade GRADE_1[>GRADE_2]…`
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+This command takes in a list of grades separated by ">" and they are entered in decreasing order!
+</div>
+
 Example:
 * `setGrade A>B>C>D` sets the grading system where A is the highest grade and F is the lowest grade.
 
@@ -377,15 +381,15 @@ Example:
 
 Fig 10: New grading system added after `setGrade A>B>C>D` was executed.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-This command takes in a list of grades separated by ">" and they are entered in decreasing order!
-</div>
-
 #### Giving grade to a student : `grade`
 
 You can use this command to set a grade for a particular student.
 
 Format: `grade INDEX…||all g/[GRADE]`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+You cannot grade a student without having first add grading system. So, remember to do that first!
+</div>
 
 Example:
 * `grade 1 g/B` gives the student at index 1 a B grade.
@@ -396,10 +400,6 @@ Example:
 ![Grade](images/gradeAll.png)
 Fig 11: All students in `4E1` is given an A grade after `grade all g/A` was executed.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-You cannot grade a student without having first add grading system. So, remember to do that first!
-</div>
-
 #### Resetting the grading system : `resetGrade`
 
 Teachbook can only incorporate at most 1 grading system at any time. Therefore, you have to wipe out an existing
@@ -407,6 +407,10 @@ grading system before implementing a new one. This command not only resets the g
 all the grades which were previously given to the students.
 
 Format: `resetGrade`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+All grades will be cleared!
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 <a href="#" style="float: right;">[ Back to top ]</a>
@@ -417,15 +421,6 @@ Format: `resetGrade`
 You can use this to mark your student as present. The `present` checkbox will turn green with a tick indicating successful marking of attendance.
 
 Format: `mark INDEX…||all`
-
-Examples:
-* `mark 3` marks the student at index 3 as present.
-* `mark 2 3 4` marks the students at index 2, 3 and 4 as present.
-* `mark all` marks all the students present.
-  
-![mark](images/markAttendance.png) 
-Fig 12: `Jane Doe` who was added in [add](#adding-a-student--add), is displayed with a green checkbox after `mark 3` was executed.
-
 
 <div markdown="block" class="alert alert-info">:information_source: **Info**
 This command allows you to mark multiple indexes at once. Which can save you lots of time! The check box will turn green
@@ -440,20 +435,20 @@ When using this command this command on a filtered list generated from a `find` 
 After marking, you can retrieve the attendance list with the `print c/attendance` command. You might also want to check out the [print](#printing-to-excel--print) command for more special columns available to be added.
 </div>
 
+Examples:
+* `mark 3` marks the student at index 3 as present.
+* `mark 2 3 4` marks the students at index 2, 3 and 4 as present.
+* `mark all` marks all the students present.
+  
+![mark](images/markAttendance.png) 
+Fig 12: `Jane Doe` who was added in [add](#adding-a-student--add), is displayed with a green checkbox after `mark 3` was executed.
+
 #### Unmarking the attendance of a student : `unmark`
 
 Just in case you have accidentally marked your student present, you can always unmark them with this command. 
 This command also allows you to unmark all the attendance for the selected class so that you can clear your attendance with ease for a new day.
 
 Format: `unmark INDEX…||all`
-
-Examples:
-* `unmark 3` marks the student at index 3 as absent.
-* `unmark 2 3 4` marks the students at index 2, 3 and 4 as absent.
-* `unmark all` marks all the students absent.
-
-![unmark](images/unmark.png)
-Fig 13: `Jane Doe` who was [marked present previously](#marking-the-attendance-of-a-student--mark), is now unmarked and is displayed with a red box after `unmark 3` was executed.
 
 <div markdown="block" class="alert alert-info">:information_source: **Info**
 This command allows you to unmark multiple indexes at once. Which can save you lots of time! The check box will turn red
@@ -463,6 +458,14 @@ once the attendance of the student is unmarked!
 <div markdown="block" class="alert alert-info">:information_source: **Info**
 When using this command this command on a filtered list generated from a `find` command, the list will no longer be filtered and the full list will be shown!
 </div>
+
+Examples:
+* `unmark 3` marks the student at index 3 as absent.
+* `unmark 2 3 4` marks the students at index 2, 3 and 4 as absent.
+* `unmark all` marks all the students absent.
+
+![unmark](images/unmark.png)
+Fig 13: `Jane Doe` who was [marked present previously](#marking-the-attendance-of-a-student--mark), is now unmarked and is displayed with a red box after `unmark 3` was executed.
 
 --------------------------------------------------------------------------------------------------------------------
 <a href="#" style="float: right;">[ Back to top ]</a>
@@ -511,12 +514,12 @@ Format: `list [all||absent]`
 * `list all` lists all students in the TeachBook.
 * `list absent` lists all students from the currently selected class or the entire TeachBook whose status is unmarked.
 
-![list all](images/listAll.png)
-Fig 15: TeachBook display after `list all` was executed.
-
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 `list all` clears any currently selected class. As a result, any command followed by `list all` will be operating on all students in the TeachBook.
 </div>
+
+![list all](images/listAll.png)
+Fig 15: TeachBook display after `list all` was executed.
 
 --------------------------------------------------------------------------------------------------------------------
 <a href="#" style="float: right;">[ Back to top ]</a>
