@@ -35,7 +35,7 @@ test {
     exclude 'seedu/teachbook/logic/LogicManagerTest.class' // wilfred
     exclude 'seedu/teachbook/logic/commands/AddCommandTest.class' // yunseong
 
-    exclude 'seedu/teachbook/ui/ClassCardTest.class' // wilfred
+//    exclude 'seedu/teachbook/ui/ClassCardTest.class' // wilfred
     exclude 'seedu/teachbook/ui/ClassListPanelTest.class' // wilfred
     exclude 'seedu/teachbook/ui/CommandBox.class' // wilfred
     exclude 'seedu/teachbook/ui/HelpWindowTest.class' // wilfred
