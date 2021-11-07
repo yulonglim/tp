@@ -866,19 +866,37 @@ testers are expected to do more *exploratory* testing.
     8. Other incorrect `delete` commands to try: `delete`, `delete hello world`, `delete all all`, `delete 5`, `delete 1 2 all`, `delete -1`<br>
        Expected: Similar to previous.
 
-### Selecting a class
 
-1. Selecting a class.
+### Finding students
 
-    1. Prerequisites: There is a class named `A` in the TeachBook. There is no class named `M` in the TeachBook.
-    2. Test case: `select A` when class `A` is not selected.<br>
-       Expected: Class named `A` is highlighted in class list panel. Student list of class `A` is shown in student list panel.
-    3. Test case: `select A` when class `A` is already selected.<br>
-       Expected: Nothing changes in class list panel and student list panel. Error details shown in the status message.
-    4. Test case: `select M`<br>
-       Expected: Similar to previous.
-    5. Test case: `select`<br>
-       Expected: Similar to previous.
+1. Finding a students or multiple students.
+
+   1. Prerequisites: 2 students named James Doe and Jane Doe in the list.
+   2. Test case: `find James`<br>
+      Expected: Shows the information of James Doe.
+   3. Test case: `find Jane`<br>
+      Expected: Shows the information of Jane Doe.
+   4. Test case: `find jane`<br>
+      Expected: Same as previous.
+   5. Test case: `find Ja`<br>
+      Expected: Shows nothing because there is no partial match feature.
+   6. Test case: `find Doe`<br>
+      Expected: Shows both James Doe and Jane Doe.
+   7. Test case: `find Janice`<br>
+      Expected: Shows nothing because Janice is not in the list.
+   8. Test case: `find`<br>
+      Expected: Error details shown in the status message that the command format is invalid as a keyword is required.
+   
+### Adding a class
+
+1. Adding a class.
+
+    1. Test case: `addClass 4E1` where 4E1 is the name of the class to be added into list. <br>
+       Expected: Class 4E1 is added into the list.
+    2. Test case: `addClass 4E1 `where 4E1 is the name of the class that is already added in the list. <br>
+       Expected: No class is added. Error details shown in the status message that the class already exist in the TeachBook.
+    3. Test case: `addClass`<br>
+       Expected: No class is added. Error details shown in the status message that the command format is invalid as class name is compulsory.
 
 ### Deleting a class
 
@@ -903,6 +921,20 @@ testers are expected to do more *exploratory* testing.
        Expected: Error details are shown in the status message that the class already exists in the TeachBook.
     4. Test case: `editClass`<br>
        Expected: Error details are shown in the status message that the CLASS_NAME parameter is missing.
+
+### Selecting a class
+
+1. Selecting a class.
+
+    1. Prerequisites: There is a class named `A` in the TeachBook. There is no class named `M` in the TeachBook.
+    2. Test case: `select A` when class `A` is not selected.<br>
+       Expected: Class named `A` is highlighted in class list panel. Student list of class `A` is shown in student list panel.
+    3. Test case: `select A` when class `A` is already selected.<br>
+       Expected: Nothing changes in class list panel and student list panel. Error details shown in the status message.
+    4. Test case: `select M`<br>
+       Expected: Similar to previous.
+    5. Test case: `select`<br>
+       Expected: Similar to previous.
 
 ### Setting a grading system in TeachBook
 
@@ -1050,7 +1082,7 @@ Prerequisites: Students are listed using `list` command or `list all` command.
 
 1. Undoing a recent command.
 
-    1. Prerequisites: Start with a newly opened teachbook with no commands to undo.
+    1. Prerequisites: Start with a newly opened TeachBook with no commands to undo.
     2. Test case: `undo`<br>
        Expected: Error stating no states to undo.
     3. Test case: `addClass A` followed by `undo` <br>
@@ -1066,7 +1098,7 @@ Prerequisites: Students are listed using `list` command or `list all` command.
 
 1. Redoing a recent undo command.
 
-    1. Prerequisites: Start with a newly opened teachbook with no commands to redo.
+    1. Prerequisites: Start with a newly opened TeachBook with no commands to redo.
     2. Test case: `redo`<br>
        Expected: Error stating no states to redo.
     3. Test case: `addClass A` followed by `undo` followed by `redo`<br>
