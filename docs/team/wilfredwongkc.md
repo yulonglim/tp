@@ -24,6 +24,7 @@ Given below are my contributions to the project.
   * Justification: This feature provides a visual cue to the users so that they can easily look through the list to see who is absent or present from the main window.
   * Highlights: This enhancement makes the app looks nicer and more usable as there is colours (red for absent and green for present) added to the checkbox.
 
+<div style="page-break-after: always;"></div>
 * **New Feature 4**: Made a small popup tab that appears when user uses the `list all` command. (Pull request [\#178](https://github.com/AY2122S1-CS2103T-W10-2/tp/pull/178))
   * What it does: It shows the user which class each student is from.
   * Justification: It is because when the `list all` command is called, there won't be any selected class anymore. We as a team also decided not to make the class to be always shown on the student card, as it is redundant. Thus, for the user to know which class the students are from, this feature is needed.
@@ -48,6 +49,7 @@ Given below are my contributions to the project.
   * Create meeting minutes documents on Microsoft Teams for our weekly meetings
   * Facilitated team's submissions to professors on Microsoft Teams
 
+<div style="page-break-after: always;"></div>
 * **Documentation**:
   * User Guide:
     * Added the introduction and the "how to use this guide"
