@@ -1,7 +1,5 @@
 package seedu.teachbook.ui;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.teachbook.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 import seedu.teachbook.model.classobject.Class;
