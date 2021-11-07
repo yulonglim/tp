@@ -97,7 +97,7 @@ How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `TeachBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a student).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -122,7 +122,7 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the teach book data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
+* stores the TeachBook data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
 * stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -405,8 +405,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Target user profile**:
 
-* a primary school teacher teaching mathematics
-* has a need to manage 4 class worth of student's contacts which she is teaching
+* a primary or secondary school teacher
+* has a need to manage multiple class worth of student's contacts which she is teaching
 * prefer desktop apps over other types
 * not proficient in IT but can type fast
 * prefers typing to mouse interactions
@@ -457,7 +457,160 @@ Priorities: High (must have) - `* * *` , Medium (nice to have) - `* *` , Low (un
 (For all use cases below, the **System** is the `TeachBook` and the **Actor** is the `user`, unless specified otherwise)
 
 
-**Use case: UC01 - Set a grading system**
+**Use case: UC01 - Add class**
+
+**Use case: UC02 - Delete class**
+
+**Use case: UC03 - Edit class**
+
+**Use case: UC04 - Select class**
+
+**Use case: UC05 - Add student**
+
+**Use case: UC06 - Delete one or more student**
+
+MSS:
+
+1. User requests to delete one or more specific students.
+2. TeachBook deletes the students.
+3. TeachBook shows a success message.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. One or more given indices are invalid.
+
+    * 1a1. TeachBook shows an error message.
+
+      Use case ends.
+
+**Use case: UC07 - Delete all the students in the filtered student list**
+
+MSS:
+
+1. User requests to delete all the students in the filtered student list.
+2. TeachBook deletes the students.
+3. TeachBook shows a success message.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. The filtered student list is empty.
+
+    * 1a1. TeachBook shows an error message.
+
+      Use case ends.
+
+**Use case: UC08 - Edit class**
+
+**Use case: UC09 - Give a remark to a student**
+
+MSS:
+
+1. User requests to give a remark to a specific student.
+2. TeachBook overwrites any existing remark of the student with the given remark.
+3. TeachBook shows a success message.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. The given index is invalid.
+
+    * 1a1. TeachBook shows an error message.
+
+      Use case ends.
+
+* 1b. The given remark is empty.
+
+    * 1b1. TeachBook clears any existing remark of the student.
+
+      Use case resumes at step 3.
+
+**Use case: UC10 - Find student**
+
+**Use case: UC11 - View all students from the currently selected class**
+
+**Use case: UC12 - List students from a class**
+
+MSS:
+
+1. User <ins>select a class (UC??)<ins>.
+2. User requests to list students from the class.
+3. TeachBook shows a list of students from the class.
+
+   Use case ends.
+
+**Use case: UC13 - List students from all classes**
+
+MSS:
+
+1. User requests to list students from all classes.
+2. TeachBook shows a list of students from all classes.
+
+   Use case ends.
+
+**Use case: UC14 - List absent students from a class**
+
+MSS:
+
+1. User <ins>select a class (UC??)<ins>.
+2. User requests to list absent students from the class.
+3. TeachBook shows a list of absent students from the class.
+
+   Use case ends.
+
+**Use case: UC15 - List absent students from all classes**
+
+MSS:
+
+1. User requests to <ins>list all classes (UC??)<ins>.
+2. User requests to list absent students from all classes.
+3. TeachBook shows a list of absent students from all classes.
+
+   Use case ends.
+
+**Use case: UC16 - Clear filter**
+
+**Use case: UC17 - Mark a student as present**
+
+MSS:
+
+1. User marks a student as present.
+2. TeachBook displays the student with his attendance marked.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. Student does not exist.
+    * 1a1. TeachBook displays error.
+
+      Use case ends.
+
+**Use case: UC18 - Mark all present**
+
+**Use case: UC19 - Mark a student as absent**
+
+MSS:
+
+1. User marks a student as absent.
+2. TeachBook displays the student with his attendance unmarked.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. Student does not exist.
+    * 1a1. TeachBook displays error.
+
+      Use case ends.
+
+**Use case: UC20 - Mark all absent**
+
+**Use case: UC21 - Set a grading system**
 
 MSS:
 1. User decides to implement grading system for TeachBook
@@ -478,7 +631,7 @@ Extensions:
     Use case resumes from step 2.
 
 
-**Use case: UC02 - Reset grading system**
+**Use case: UC22 - Reset grading system**
 
 MSS:
 1. User decides to reset the existing grading system.
@@ -496,7 +649,7 @@ Extensions:
     2b1. TeachBook requests user to follow the correct format.
     Use case resumes from step 2.
 
-**Use case: UC03 - Grade a student**
+**Use case: UC23 - Grade a student**
 
 MSS:
 1. User decides the grade to give to a specific student.
@@ -521,7 +674,7 @@ Extensions:
     2c1. TeachBook requests user to follow the correct format.
     Use case resumes from step 2.
 
-**Use case: UC04 - Sort students according to grade**
+**Use case: UC24 - Sort students according to grade**
 
 MSS:
 1. User decides to sort the students according to their grade.
@@ -543,142 +696,13 @@ Extension:
     2b1. TeachBook requests user to follow the correct format.
     Use case resumes from step 2.
 
-**Use case: UC?? - Delete one or more student**
+**Use case: UC25 - Sort students according to name**
+
+**Use case: UC26 - Print**
 
 MSS:
 
-1. User requests to delete one or more specific students.
-2. TeachBook deletes the students.
-3. TeachBook shows a success message.
-
-    Use case ends.
-
-Extensions:
-
-* 1a. One or more given indices are invalid.
-
-    * 1a1. TeachBook shows an error message.
-
-      Use case ends.
-
-**Use case: UC?? - Delete all the students in the filtered student list**
-
-MSS:
-
-1. User requests to delete all the students in the filtered student list.
-2. TeachBook deletes the students.
-3. TeachBook shows a success message.
-
-   Use case ends.
-
-Extensions:
-
-* 1a. The filtered student list is empty.
-
-    * 1a1. TeachBook shows an error message.
-
-      Use case ends.
-
-**Use case: UC?? - Give a remark to a student**
-
-MSS:
-
-1. User requests to give a remark to a specific student.
-2. TeachBook overwrites any existing remark of the student with the given remark.
-3. TeachBook shows a success message.
-
-   Use case ends.
-
-Extensions:
-
-* 1a. The given index is invalid.
-
-    * 1a1. TeachBook shows an error message.
-
-      Use case ends.
-
-* 1b. The given remark is empty.
-
-    * 1b1. TeachBook clears any existing remark of the student.
-
-      Use case resumes at step 3.
-
-**Use case: UC?? - List students from a class**
-
-MSS:
-
-1. User <ins>select a class (UC??)<ins>.
-2. User requests to list students from the class.
-3. TeachBook shows a list of students from the class.
-
-   Use case ends.
-
-**Use case: UC?? - List students from all classes**
-
-MSS:
-
-1. User requests to list students from all classes.
-2. TeachBook shows a list of students from all classes.
-
-   Use case ends.
-
-**Use case: UC?? - List absent students from a class**
-
-MSS:
-
-1. User <ins>select a class (UC??)<ins>.
-2. User requests to list absent students from the class.
-3. TeachBook shows a list of absent students from the class.
-
-   Use case ends.
-
-**Use case: UC?? - List absent students from all classes**
-
-MSS:
-
-1. User requests to <ins>list all classes (UC??)<ins>.
-2. User requests to list absent students from all classes.
-3. TeachBook shows a list of absent students from all classes.
-
-   Use case ends.
-
-**Use case: UC?? - Mark a student as present**
-
-MSS:
-
-1. User marks a student as present.
-2. TeachBook displays the student with his attendance marked.
-
-   Use case ends.
-
-Extensions:
-
-* 1a. Student does not exist.
-    * 1a1. TeachBook displays error.
-
-      Use case ends.
-
-**Use case: UC?? - Mark a student as absent**
-
-MSS:
-
-1. User marks a student as absent.
-2. TeachBook displays the student with his attendance unmarked.
-
-   Use case ends.
-
-Extensions:
-
-* 1a. Student does not exist.
-    * 1a1. TeachBook displays error.
-
-      Use case ends.
-
-**Use case: UC?? - Print**
-
-MSS:
-
-1. Teacher print an Excel sheet of all the students.
+1. User print an Excel sheet of all the students.
 2. TeachBook displays that the Excel sheet is generated and is stored in a specific folder path.
 
    Use case ends.
@@ -690,32 +714,32 @@ Extensions:
 
       Use case ends.
 
-* 1b. Teacher does not have a downloads folder on the device.
+* 1b. User does not have a downloads folder on the device.
     * 1b1. TeachBook displays error.
 
       Use case ends.
 
-**Use case: UC?? - Undo**
+**Use case: UC27 - Undo a command**
 
 MSS:
 
-1. Teacher undo a recent command.
+1. User undo a recent command.
 2. TeachBook displays the exact state before the previous command was executed.
 
    Use case ends.
 
 Extensions:
 
-* 1a. Teachbook does not have any commands to undo.
+* 1a. User does not have any commands to undo.
     * 1a1. TeachBook displays error telling user no commands to undo.
 
       Use case ends.
 
-**Use case: UC?? - Redo**
+**Use case: UC28 - Redo an undo command**
 
 MSS:
 
-1. Teacher redo a recent undo command.
+1. User redo a recent undo command.
 2. TeachBook displays the exact state before the previous undo command was executed.
 
    Use case ends.
@@ -727,7 +751,11 @@ Extensions:
 
       Use case ends.
 
-*{More to be added}*
+**Use case: UC29 - Clear**
+
+**Use case: UC30 - Help**
+
+**Use case: UC31 - Exit**
 
 ### Non-Functional Requirements
 
@@ -740,14 +768,14 @@ Extensions:
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Class list panel:**
-* **Student list panel:**
+* **Class list panel:** The panel on the UI that displays the list of classes in TeachBook to the user
+* **CLI:** Command Lind Interface
+* **Currently selected class:** The class that is currently being highlighted on the class list panel. Some commands will act on the currently selected class such as addStudent
 * **Filtered student list:** The list of students that is currently being displayed on the student list panel
-* **Currently selected class**: The class that is currently being highlighted on the class list panel. ...
-* **Grading system:**
-
-*_{More to be added}_*
+* **Grading system:** A particular scale that schools use for evaluating the performance of students in exams (e.g. A, B, C, E and F)
+* **GUI:** Graphical User Interface
+* **Mainstream OS:** Windows, Linux, Unix, OS-X
+* **Student list panel:** The panel on the UI that displays a list of students to the user
 
 --------------------------------------------------------------------------------------------------------------------
 
