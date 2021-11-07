@@ -12,7 +12,6 @@ import seedu.teachbook.commons.core.index.GeneralIndex;
 import seedu.teachbook.model.Model;
 import seedu.teachbook.model.ModelManager;
 import seedu.teachbook.model.UserPrefs;
-import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.student.Student;
 import seedu.teachbook.testutil.StudentBuilder;
 
@@ -30,32 +29,17 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newPerson_success() {
-        // Build expected student
-        // Note that the class of the expected student must be the same as the initialized currently selected class in
-        // the expected model ie. it is sufficient for the classes to have the same name.
-        Student validStudent = new StudentBuilder().build();
-
-        // Get class of expected student
+        Student validStudent = new StudentBuilder().buildToAdd();
         Model expectedModel = new ModelManager(model.getTeachBook(), new UserPrefs());
-        String className = validStudent.getStudentClass().getClassName().nameOfClass;
-        ClassNameDescriptor classNameDescriptor = new ClassNameDescriptor(className);
-        GeneralIndex classIndex = expectedModel.getIndexOfClass(classNameDescriptor);
-
-        // Set currently selected class to class of expected student
-        expectedModel.updateCurrentlySelectedClass(classIndex);
-
-        // Link the class of the expected student to the currently selected class in the expected model so that
-        // addStudent() will add the student to the currently selected class in the expected model instead of
-        // the class created during the creation of StudentBuilder
+        // Set the first class as the currently selected class in the expected model
+        // Note that this means the expected model should contain at least one class
+        GeneralIndex firstClassIndex = GeneralIndex.fromZeroBased(0);
+        expectedModel.updateCurrentlySelectedClass(firstClassIndex);
         expectedModel.setClassForStudent(validStudent);
-
         expectedModel.addStudent(validStudent);
-
         expectedModel.commitTeachBook();
-
         CommandResult expectedCommandResult = new CommandResult(String.format(AddCommand.MESSAGE_ADD_STUDENT_SUCCESS,
                 validStudent), false, false, true, false);
-
         assertCommandSuccess(new AddCommand(validStudent), model, expectedCommandResult, expectedModel);
     }
 
