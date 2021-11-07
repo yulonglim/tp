@@ -31,7 +31,7 @@ public class Address {
      * Checks if the given string is a valid address.
      *
      * @param test address string to be tested.
-     * @return true is the given string is a valid address.
+     * @return {@code true} is the given string is a valid address.
      */
     public static boolean isValidAddress(String test) {
         return test.equals("") || test.matches(VALIDATION_REGEX);
