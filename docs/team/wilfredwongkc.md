@@ -51,11 +51,12 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Added the introduction and the "how to use this guide"
-    * Added sub-headers for the 
+    * Added sub-headers for the features and reorder the list
     * Added "back to top" button throughout the UG
     * Did up the Graphical User Interface section of the UG and created an image to explain the different portions of the UI
     * Added `select`, `remark`, `mark`, `unmark`, `undo` and `redo` command feature into UG
     * Added 2 FAQs
+    * Fixed bugs and incorporate suggestions given by reviewers given during PE-D
   * Developer Guide:
     * Did up activity diagram for `addClass`
     * Added the product scope 
@@ -64,7 +65,7 @@ Given below are my contributions to the project.
     * Added manual test case for `add`, `addClass` and `find` commands
 
 * **Community**:
-  * Discussed with team on the progress and direction of the project
-  * Gave feedback to team profBook for PE-D
+  * Discussed with team on the progress and direction of the project.
+  * Tested and gave feedbacks to team profBook on their app for PE-D.
 
   
