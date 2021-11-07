@@ -10,6 +10,13 @@ import seedu.teachbook.model.gradeobject.Grade;
 
 public class SetGradeCommandParser implements Parser<SetGradeCommand> {
 
+    /**
+     * Parses the user input according to the right context for SetGradeCommand
+     *
+     * @param args user input to be parsed.
+     * @return {@code SetGradeCommand} result of parsing the input.
+     * @throws ParseException if the user input does not conform the expected format.
+     */
     public SetGradeCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
 
