@@ -556,7 +556,24 @@ Extensions:
 
       Use case ends.
 
-**Use case: UC08 - Edit class**
+**Use case: UC08 - Edit student**
+
+MSS:
+
+1. User requests to edit a student.
+2. TeachBook edits the student.
+
+   Use case ends.
+
+Extensions:
+
+* 2a. Index provided is invalid.
+    * 2a1. TeachBook shows an error message.
+      Use case ends.
+
+* 2b. No fields were provided.
+    * 2b1. TeachBook shows an error message.
+      Use case ends.
 
 **Use case: UC09 - Give a remark to a student**
 
