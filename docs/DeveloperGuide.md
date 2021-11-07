@@ -467,6 +467,19 @@ Priorities: High (must have) - `* * *` , Medium (nice to have) - `* *` , Low (un
 
 **Use case: UC02 - Delete class**
 
+MSS:
+
+1. User requests to delete a class.
+2. TeachBook deletes the class.
+
+   Use case ends.
+
+Extensions:
+
+* 2a. The specified class does not exist.
+    * 2a1. TeachBook shows an error message.
+      Use case ends.
+
 **Use case: UC03 - Edit class**
 
 **Use case: UC04 - Select a class**
@@ -495,7 +508,7 @@ Extensions:
 MSS:
 
 1. User requests to add a student.
-2. TeachBook adds the class.
+2. TeachBook adds the student.
 
    Use case ends.
 
