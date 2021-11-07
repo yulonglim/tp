@@ -231,14 +231,12 @@ The following object diagram shows the updated TeachBook:
 
 <img src="images/DeleteClassObjectDiagram1.png" width="280" />
 
-### Implementations of some features
-
-### 1. Edit feature
+### Edit feature
 
 TeachBook allows users to edit students' details after initially adding the students. However, 
 a student's class cannot be modified.
 
-#### 1.1 Implementation details
+#### Implementation details
 
 The edit command is implemented using EditCommand and EditCommandParser, along with TeachBookParser
 and LogicManager which creates the required objects. Cases where the user enters an invalid input or
@@ -246,7 +244,7 @@ does not modify the student at all is handled with exceptions along with corresp
 to the user.
 
 The edit command has the following format:
-`edit INDEX [n/NAME] [c/CLASS] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BLOOD_TYPE] [pc/PARENTS_CONTACT] [t\TAG1] [t\TAG2]...`
+`edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 
 Given below is the sequence diagram on how EditCommand behaves in TeachBook when the user tries to edit 
 the student's name at index 1 of the current class to john
@@ -286,11 +284,11 @@ Below is the sequence diagram of the execution of the `ListCommand`.
 
 ![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
-### 2. Add class feature
+### Add class feature
 
 TeachBook allows users to add classes.
 
-#### 2.1 Implementation details
+#### Implementation details
 
 The addClass command is implemented using multiple classes. Firstly, when the user input `addClass A`, the LogicManager
 will invoke the parseCommand of TeachBookParser to create a addClassCommandParse object. The parse method in 
@@ -778,25 +776,10 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases ... }_
-
-### Deleting a student
-
-1. Deleting a student while all students are being shown
-
-   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
-
-   2. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   3. Test case: `delete 0`<br>
-      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
-
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
    
 ### Editing a student
 
-1. Editing a student from list of students
+1. Editing a student from list of students.
 
     1. Prerequisites: List students in the currently selected class using `list` command or list all students in TeachBook using `list all` command.
 
@@ -804,8 +787,56 @@ testers are expected to do more *exploratory* testing.
        Expected: First student in the list is being edited. Name of the student is changed to `Jane` and phone number of the student is changed to `1234`
     3. Test case: `edit 1`<br>
        Expected: No student is edited. Error details shown in the status message that at least one field has to be specified for edit.
-    4. Other incorrect edit commands to try: `edit`, `edit nothing` `edit /nJane /p1234`
+    4. Other incorrect edit commands to try: `edit`, `edit nothing` `edit /nJane /p1234`<br>
        Expected: Similar to previous test case.
+
+### Giving remark to a student
+
+1. Giving remark to a student while all students are being shown.
+
+    1. Prerequisites: List all students using the `list` command. There are two and only two students in the student list.
+    2. Test case: `remark 1 r/Allergic to seafood.`<br>
+       Expected: First student in the list has the remark `Allergic to seafood.`.
+    3. Test case: `remark 1 r/`<br>
+       Expected: First student has no remark.
+    4. Test case: `remark 30 r/`<br>
+       Expected: No student's remark field is changed. Error details shown in the status message.
+    5. Other incorrect `remark` commands to try: `remark`, `remark 1`, `remark r/`, `remark 0 r/new`, `remark 1 2 r/new`, `remark hello r/new`<br>
+       Expected: Similar to previous.
+    
+### Deleting students
+
+1. Deleting one or more students while all students are being shown.
+
+    1. Prerequisites: List all students using the `list` command. There are three and only three students in the student list.
+    2. Test case: `delete 1`<br>
+       Expected: First student is deleted from the list. Details of the deleted student shown in the status message.
+    3. Test case: `delete 01`<br>
+       Expected: Similar to previous.
+    4. Test case: `delete 1 2`<br>
+       Expected: First and second students are deleted from the list. Details of the deleted students shown in the status message.
+    5. Test case: `delete all`<br>
+       Expected: All three students are deleted from the list. Details of the deleted students shown in the status message.
+    6. Test case: `delete 0`<br>
+       Expected: No student is deleted. Error details shown in the status message.
+    7. Test case: `delete 0 1 2`<br>
+       Expected: Similar to previous.
+    8. Other incorrect `delete` commands to try: `delete`, `delete hello world`, `delete all all`, `delete 5`, `delete 1 2 all`, `delete -1`<br>
+       Expected: Similar to previous.
+
+### Selecting a class
+
+1. Selecting a class.
+
+    1. Prerequisites: There is a class named `A` in the TeachBook. There is no class named `M` in the TeachBook.
+    2. Test case: `select A` when class `A` is not selected.<br>
+       Expected: Class named `A` is highlighted in class list panel. Student list of class `A` is shown in student list panel.
+    3. Test case: `select A` when class `A` is already selected.<br>
+       Expected: Nothing changes in class list panel and student list panel. Error details shown in the status message.
+    4. Test case: `select M`<br>
+       Expected: Similar to previous.
+    5. Test case: `select`<br>
+       Expected: Similar to previous.
 
 ### Deleting a class
 
