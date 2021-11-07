@@ -492,6 +492,23 @@ Extensions:
 
 **Use case: UC05 - Add student**
 
+MSS:
+
+1. User requests to add a student.
+2. TeachBook adds the class.
+
+   Use case ends.
+
+Extensions:
+
+* 2a. There is no currently selected class.
+  * 2a1. TeachBook shows an error message.
+  Use case ends.
+
+* 2b. Name was not provided.
+  * 2b1. TeachBook shows an error message.
+  Use case ends.
+
 **Use case: UC06 - Delete one or more student**
 
 MSS:
