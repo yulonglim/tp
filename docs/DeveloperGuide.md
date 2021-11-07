@@ -719,72 +719,95 @@ MSS:
 **Use case: UC21 - Set a grading system**
 
 MSS:
-1. User decides to implement grading system for TeachBook
-2. User enters a list of grades for the grading system
-3. TeachBook confirms that new grading system has been set successfully
+1. User requests to set a grading system.
+
+[comment]: <> (2. User enters a list of grades for the grading system)
+2. TeachBook sets the grading system.
    Use case ends.
 
 Extensions:
-2a.  TeachBook detects that a grading system is already present in TeachBook
 
-    2a1. TeachBook requests user to delete existing grading system before setting a new one.
-    2a2. User resets grading system (UC02)
-    Use case resumes from step 2.
+* 2a.  TeachBook detects that a grading system is already present in TeachBook
+  * 2a1. TeachBook shows an error message.
+  
+    Use case ends.
 
-2b. TeachBook detects that the command format is invalid.
 
-    2b1. TeachBook requests user to follow the correct format.
-    Use case resumes from step 2.
+[comment]: <> (    2a1. TeachBook requests user to delete existing grading system before setting a new one.)
+
+[comment]: <> (    2a2. User resets grading system &#40;UC02&#41;)
+
+[comment]: <> (    Use case resumes from step 2.)
+
+* 2b. TeachBook detects that the command format is invalid.
+  * 2b1. TeachBook shows an error message.
+
+    Use case ends.
+
+[comment]: <> (    2b1. TeachBook requests user to follow the correct format.)
+
+[comment]: <> (    Use case resumes from step 2.)
 
 
 **Use case: UC22 - Reset grading system**
 
 MSS:
-1. User decides to reset the existing grading system.
-2. User enters command for resetting grade.
-3. TeachBook confirms that the grading system has been reset successfully.
+1. User requests to reset the existing grading system.
+2. TeachBook resets the grading system.
 
 Extensions:
-2a. TeachBook detects that there is no grading system present in TeachBook.
+* 2a. TeachBook detects that there is no grading system present in TeachBook.
+  * 2a1. TeachBook shows an error message.
 
-    2a1. TeachBook informs user that no grading has been set, and therefore no grading system to reset.
     Use case ends.
 
-2b. TeachBook detects that the command format is invalid.
+* 2b. TeachBook detects that the command format is invalid.
+  * 2b1. TeachBook shows an error message.
 
-    2b1. TeachBook requests user to follow the correct format.
-    Use case resumes from step 2.
+    Use case ends.
 
 **Use case: UC23 - Grade a student**
 
 MSS:
-1. User decides the grade to give to a specific student.
-2. User enters command to grade the student.
-3. TeachBook confirms that the student has been successfully graded.
-   Use case ends.
+1. User requests to grade a specific student.
+2. TeachBook grades the specified student.
 
 Extensions:
 2a. TeachBook detects that no grading system is present in TeachBook.
 
-    2a1. TeachBook prompts user to set a grading system
-    2a2. User sets a new grading system (UC01)
-    Use case resumes from step 2.
+[comment]: <> (    2a1. TeachBook prompts user to set a grading system)
+
+[comment]: <> (    2a2. User sets a new grading system &#40;UC01&#41;)
+
+[comment]: <> (    Use case resumes from step 2.)
+* 2a1. TeachBook shows an error message.
+
+  Use case ends.
 
 2b. TeachBook detects that the specified grade is invalid.
 
-    2b1. TeachBook informs user that the grade is invalid and displays the current grading system.
-    Use case resumes from step 2.
+[comment]: <> (    2b1. TeachBook informs user that the grade is invalid and displays the current grading system.)
+
+[comment]: <> (    Use case resumes from step 2.)
+
+* 2b1. TeachBook shows an error message.
+
+  Use case ends.
 
 2c. TeachBook detects that the command format is invalid.
 
-    2c1. TeachBook requests user to follow the correct format.
-    Use case resumes from step 2.
+[comment]: <> (    2c1. TeachBook requests user to follow the correct format.)
+
+[comment]: <> (    Use case resumes from step 2.)
+
+* 2c1. TeachBook shows an error message.
+
+  Use case ends.
 
 **Use case: UC24 - Sort students according to grade**
 
 MSS:
-1. User decides to sort the students according to their grade.
-2. User enters the command for sorting students according to their grade.
+1. User requests to sort the students according to their grade.
 3. TeachBook sorts the students according to their grade specified by the grading system.
    Use case ends.
 
@@ -792,17 +815,37 @@ Extension:
 
 2a. TeachBook detects that no grading system is present in TeachBook.
 
-    2a1. TeachBook prompts user to set a grading system
-    2a2. User sets a new grading system (UC01)
-    Use case resumes from step 2.
+[comment]: <> (    2a1. TeachBook prompts user to set a grading system)
 
+[comment]: <> (    2a2. User sets a new grading system &#40;UC01&#41;)
+
+[comment]: <> (    Use case resumes from step 2.)
+
+* 2a1. TeachBook shows an error message.
+
+  Use case ends.
 
 2b. TeachBook detects that the command format is invalid.
 
-    2b1. TeachBook requests user to follow the correct format.
-    Use case resumes from step 2.
+[comment]: <> (    2b1. TeachBook requests user to follow the correct format.)
+
+[comment]: <> (    Use case resumes from step 2.)
+
+* 2b1. TeachBook shows an error message.
+
+  Use case ends.
 
 **Use case: UC25 - Sort students according to name**
+
+MSS:
+1. User requests to sort the students according to their name.
+2. TeachBook sorts the students according to their name in alphabetical order.
+
+2a. TeachBook detects that the command format is invalid.
+
+* 2a1. TeachBook shows an error message.
+
+  Use case ends.
 
 **Use case: UC26 - Print out list of student**
 
