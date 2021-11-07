@@ -31,7 +31,7 @@ public class Phone {
      * Checks if the given string is a valid phone number.
      *
      * @param test phone number string to be tested.
-     * @return true is the given string is a valid phone number.
+     * @return {@code true} is the given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {
         return test.equals("") || test.matches(VALIDATION_REGEX);

@@ -1,6 +1,5 @@
 package seedu.teachbook.testutil;
 
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,7 +27,6 @@ public class StudentBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_REMARK = "Allergic to seafood.";
-    public static final String DEFAULT_ATTENDANCE = "Absent " + LocalDateTime.now();
     public static final String DEFAULT_GRADE = "";
 
     private Name name;
@@ -52,10 +50,7 @@ public class StudentBuilder {
         address = new Address(DEFAULT_ADDRESS);
         remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
-        String[] attendanceComponents = DEFAULT_ATTENDANCE.split(" ");
-        boolean isPresent = attendanceComponents[0].equals("Present");
-        LocalDateTime lastModified = LocalDateTime.parse(attendanceComponents[1]);
-        attendance = new Attendance(isPresent, lastModified);
+        attendance = Attendance.getDefaultAttendance();
         grade = new Grade(DEFAULT_GRADE);
     }
 
@@ -70,11 +65,7 @@ public class StudentBuilder {
         address = studentToCopy.getAddress();
         remark = studentToCopy.getRemark() != null ? studentToCopy.getRemark() : new Remark(DEFAULT_REMARK);
         tags = new HashSet<>(studentToCopy.getTags());
-        String[] attendanceComponents = DEFAULT_ATTENDANCE.split(" ");
-        boolean isPresent = attendanceComponents[0].equals("Present");
-        LocalDateTime lastModified = LocalDateTime.parse(attendanceComponents[1]);
-        attendance = studentToCopy.getAttendance() != null ? studentToCopy.getAttendance()
-                                                           : new Attendance(isPresent, lastModified);
+        attendance = studentToCopy.getAttendance();
         grade = studentToCopy.getGrade() != null ? studentToCopy.getGrade() : new Grade(DEFAULT_GRADE);
     }
 
@@ -150,8 +141,18 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Builds a valid {@code Student} object as per resulted after the execution of {@code AddCommand}.
+     */
     public Student build() {
         return new Student(name, phone, studentClass, email, address, remark, tags, attendance, grade);
     }
 
+    /**
+     * Builds a valid {@code Student} object to be passed into {@code AddCommandParser}.
+     */
+    public Student buildToAdd() {
+        return new Student(name, phone, null, email, address, new Remark(""), tags,
+                Attendance.getDefaultAttendance(), new Grade(""));
+    }
 }

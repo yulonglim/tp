@@ -40,7 +40,8 @@ public class TeachBook implements ReadOnlyTeachBook {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */ {
+     */
+    {
         students = new UniqueStudentList();
         classes = new UniqueClassList();
         gradingSystem = new GradingSystem();
@@ -168,6 +169,12 @@ public class TeachBook implements ReadOnlyTeachBook {
         return classes.contains(classObj);
     }
 
+    /**
+     * Sets the target class to the edited class.
+     *
+     * @param target the class to be change.
+     * @param editedClass the class to be replaced with.
+     */
     public void setClass(Class target, Class editedClass) { // for editClass command
         requireNonNull(editedClass);
         classes.setClass(target, editedClass);
@@ -250,7 +257,7 @@ public class TeachBook implements ReadOnlyTeachBook {
      * Sets the class of {@code student} to the Class with index {@code classIndex}.
      *
      * @param classIndex of class to set to.
-     * @param student    to set class for.
+     * @param student to set class for.
      */
     public void setClassForStudent(GeneralIndex classIndex, Student student) {
         student.setStudentClass(getClassAtIndex(classIndex));
@@ -329,6 +336,9 @@ public class TeachBook implements ReadOnlyTeachBook {
         return students.asUnmodifiableObservableList();
     }
 
+    /**
+     * Generates student list.
+     */
     public void generateStudentList() {
         students = new UniqueStudentList();
         for (Class studentClass : classes) {
@@ -338,6 +348,11 @@ public class TeachBook implements ReadOnlyTeachBook {
         }
     }
 
+    /**
+     * Generates student list.
+     *
+     * @return True if class list is empty and if there is not grading system in use.
+     */
     public boolean isEmpty() {
         return classes.isEmpty() && !gradingSystem.isInUse();
     }

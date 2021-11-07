@@ -24,8 +24,8 @@ public class UnmarkCommand extends Command {
 
     public static final String COMMAND_WORD = "unmark";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks one or more students, identified by their index "
-            + "numbers used in the displayed student list, as absent.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks one or more students, identified by the index "
+            + "number used in the displayed student list, as absent.\n"
             + "Parameters: INDEX…||all\n"
             + "Example: " + COMMAND_WORD + " 1, " + COMMAND_WORD + " 2 4 5, " + COMMAND_WORD + " all";
 

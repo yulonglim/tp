@@ -192,10 +192,10 @@ public class Student {
     /**
      * Checks if the student is present.
      *
-     * @return true if the student is present.
+     * @return {@code true} if the student is present.
      */
     public boolean isPresent() {
-        return attendance.isPresent();
+        return attendance.getIsPresent();
     }
 
     /**
@@ -203,7 +203,7 @@ public class Student {
      * This defines a weaker notion of equality between two students.
      *
      * @param otherStudent other student to be checked against.
-     * @return true if both students have the same name and are from the same class.
+     * @return {@code true} if both students have the same name and are from the same class.
      */
     public boolean isSameStudent(Student otherStudent) {
         if (otherStudent == this) {
@@ -254,7 +254,7 @@ public class Student {
      * This defines a stronger notion of equality between two students.
      *
      * @param other other object to be checked against.
-     * @return true if both students have the same identity and data fields.
+     * @return {@code true} if both students have the same identity and data fields.
      */
     @Override
     public boolean equals(Object other) {
@@ -269,12 +269,18 @@ public class Student {
         Student otherStudent = (Student) other;
         return otherStudent.getName().equals(getName())
                 && otherStudent.getPhone().equals(getPhone())
-//                && otherStudent.getStudentClass().getClassName().equals(getStudentClass().getClassName())
+                // at any certain point of time, a student obj may exist without a class ie. just after being parsed
+                // by AddCommandParser
+                && ((otherStudent.getStudentClass() == null && getStudentClass() == null)
+                || (otherStudent.getStudentClass() != null && getStudentClass() != null
+                && otherStudent.getStudentClass().getClassName().equals(getStudentClass().getClassName())))
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getAddress().equals(getAddress())
                 && otherStudent.getRemark().equals(getRemark())
                 && otherStudent.getTags().equals(getTags())
-//                && otherStudent.getAttendance().equals(getAttendance())
+                // this is to skip pass the checking of lastModified field in an attendance obj as the sensitivity of
+                // LocalDateTime.now() is very high eg. 2021-10-27T22:52:40.133105900
+                && otherStudent.isPresent() == isPresent()
                 && otherStudent.getGrade().equals(getGrade());
     }
 

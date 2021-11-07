@@ -8,7 +8,6 @@ import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.teachbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.teachbook.logic.parser.ParserUtil.arePrefixesPresent;
 
-import java.time.LocalDateTime;
 import java.util.Set;
 
 import seedu.teachbook.logic.commands.AddCommand;
@@ -51,7 +50,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddressForAdd(argMultimap.getValue(PREFIX_ADDRESS));
         Remark remark = new Remark(""); // add command does not allow adding of remark straight away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Attendance attendance = new Attendance(false, LocalDateTime.now());
+        Attendance attendance = Attendance.getDefaultAttendance();
         Grade grade = new Grade(""); // add command does not allow adding of grade straight away
 
         Student student = new Student(name, phone, email, address, remark, tagList, attendance, grade);

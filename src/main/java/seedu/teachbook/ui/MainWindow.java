@@ -132,6 +132,9 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
+    /**
+     * Updates the student list panel.
+     */
     void updateStudentListPanel() {
         GeneralIndex newSelectedClassIndex = logic.getCurrentlySelectedClassIndex();
         if (newSelectedClassIndex.equals(INDEX_LIST_ALL)) {
@@ -142,6 +145,9 @@ public class MainWindow extends UiPart<Stage> {
         studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
     }
 
+    /**
+     * Updates the class list panel.
+     */
     void updateClassListPanel() {
         classListPanel = new ClassListPanel(logic.getUniqueClassList());
         classListPanelPlaceholder.getChildren().add(classListPanel.getRoot());
@@ -181,10 +187,16 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.show();
     }
 
+    /**
+     * Calls the updateClassListPanel() method that updates the class list panel.
+     */
     public void handleUpdateClassListPanel() {
         updateClassListPanel();
     }
 
+    /**
+     * Calls the updateStudentListPanel() method that updates the class list panel.
+     */
     public void handleUpdateStudentListPanel() {
         updateStudentListPanel();
     }
