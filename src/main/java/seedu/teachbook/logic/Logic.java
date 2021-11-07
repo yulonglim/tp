@@ -38,8 +38,9 @@ public interface Logic {
      */
     ObservableList<Student> getFilteredStudentList();
 
-//    ObservableList<Class> getFilteredClassList();
-
+    /**
+     * Returns an unmodifiable view of the unique list of classes
+     */
     ObservableList<Class> getUniqueClassList();
 
     /**
