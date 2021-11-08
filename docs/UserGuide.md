@@ -132,7 +132,8 @@ There are a total of 5 different sections according to the image of out GUI belo
 </div>
 
 <div style="page-break-after: always;"></div>
-
+--------------------------------------------------------------------------------------------------------------------
+<a href="#" style="float: right;">[ Back to top ]</a>
 ### Basic features
 #### Viewing help : `help`
 
@@ -155,7 +156,6 @@ Don't forget that TeachBook provides an undo feature just in case you accidental
 </div>
 <br>
 
-
 #### Undoing a command : `undo`
 
 This command allows you to revert the TeachBook to the previous state. You most likely will be using this command if you have made a mistake.
@@ -174,8 +174,6 @@ Notes about undo:
 This command allows you to redo a command after using an undo command, just in case you did an undo accidentally.
 
 Format: `redo`
-
-<br>
 <br>
 
 #### Exiting the program : `exit`
@@ -212,9 +210,7 @@ Examples:
 
 ![addClass](images/addClass.png)
 Fig 2:  `4E4` is added after `addClass 4E4` was executed
-
-<br>
-<br>
+<div style="page-break-after: always;"></div>
 
 #### Deleting a class : `deleteClass`
 
@@ -299,7 +295,7 @@ Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 * You can add multiple tags by adding more `t/` flags.
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
-If you have multiple students with the same name (although unlikely), you can use different capitalization or different spacing between first and last name to store the same name!
+If you have multiple students with the same name (although unlikely), you can use different capitalization or spacing between first and last name to store the same name!
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -312,7 +308,6 @@ Examples:
 
 ![add](images/addStudent.png)
 Fig 6: `Jane Doe` is added after second command under Examples was executed.
-
 <div style="page-break-after: always;"></div>
 
 #### Deleting a student : `delete`
@@ -440,7 +435,7 @@ Fig 12: All students in `4E1` is given an A grade after `grade all g/A` was exec
 
 #### Resetting the grading system : `resetGrade`
 
-Teachbook can only incorporate at most 1 grading system at any time. Therefore, you have to wipe out an existing
+Teachbook can only incorporate at most 1 grading system at any time. Therefore, you have to remove any existing
 grading system before implementing a new one. This command not only resets the grading system, but also wipes out
 all the grades which were previously given to the students.
 
@@ -495,12 +490,6 @@ This command allows you to unmark multiple indexes at once. Which can save you l
 once the attendance of the student is unmarked! <br>
 When using this command this command on a filtered list generated from a `find` command, the list will no longer be filtered and the full list will be shown!
 </div>
-
-[comment]: <> (<div markdown="span" class="alert alert-info">:information_source: **Info:**)
-
-[comment]: <> (When using this command this command on a filtered list generated from a `find` command, the list will no longer be filtered and the full list will be shown!)
-
-[comment]: <> (</div>)
 
 Examples:
 * `unmark 3` marks the student at index 3 as absent.
