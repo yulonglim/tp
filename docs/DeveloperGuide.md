@@ -1008,6 +1008,13 @@ Extensions:
 
 **Use case: UC30 - Clear**
 
+MSS:
+
+1. User requests for a guide.
+2. TeachBook shows a fresh new class and student list.
+
+   Use case ends.
+
 **Use case: UC31 - Help**
 
 MSS:
