@@ -126,13 +126,8 @@ The `Model` component,
 * stores TeachBook data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
 * stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TeachBook`, which `Student` references. This allows `TeachBook` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
 
 
 ### Storage component
@@ -243,9 +238,8 @@ a student's class cannot be modified.
 #### Implementation details
 
 The edit command is implemented using `EditCommand` and `EditCommandParser`, along with `TeachBookParser`
-and `LogicManager` which creates the required objects. Cases where the user enters an invalid input or
-does not modify the student at all is handled with exceptions along with corresponding error feedback
-to the user.
+and `LogicManager` which creates the required objects. Cases where the user enters an invalid input is handled with 
+exceptions along with corresponding error feedback to the user.
 
 The edit command has the following format:
 `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
@@ -433,7 +427,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 * wants to better take care of her students by storing some special notes (e.g. allergy condition) of her students somewhere
 * wants to have an app to help with administrative work in teaching (e.g. taking attendance, keying in grades of students)
 
-**Value proposition**: Manage contacts faster than a typical mouse/GUI driven app. Allows teachers to have a dedicated 
+**Value proposition**: Manages contacts faster than a typical mouse/GUI driven app. Allows teachers to have a dedicated 
 app to keep their work life separated from their personal life. Allows teachers to find students and their emergency 
 information accurately and easily. Assists teachers with their day to day administrative work such as marking of attendance
 and grading.
@@ -584,7 +578,7 @@ Extensions:
 
 MSS:
 
-1. User requests to add a student.
+1. User requests to add a student to the currently selected class.
 2. TeachBook adds the student.
 
    Use case ends.
@@ -678,7 +672,7 @@ Extensions:
 
 MSS:
 
-1. User requests to give a remark to a specific student.
+1. User requests to give a remark to a student.
 2. TeachBook overwrites any existing remark of the student with the given remark.
 
    Use case ends.
@@ -711,7 +705,7 @@ Preconditions: There is a currently selected class.
 MSS:
 
 1. User requests to view all the students from the currently selected class. 
-2. TeachBook shows a list of all the students from the currently selected class. 
+2. TeachBook shows all the students in the class. 
 
    Use case ends.
 
@@ -719,8 +713,8 @@ MSS:
 
 MSS:
 
-1. User requests to <ins>select a class (UC04)<ins>.
-2. User requests to <ins>view all the students from the currently selected class (UC11)<ins>.
+1. User <ins>selects a class (UC04)<ins>.
+2. User <ins>views all the students from the currently selected class (UC11)<ins>.
 
    Use case ends.
 
@@ -729,38 +723,34 @@ MSS:
 MSS:
 
 1. User requests to view students from all the classes.
-2. TeachBook shows a list of students from all the classes.
+2. TeachBook shows students from all the classes.
 
    Use case ends.
 
-**Use case: UC14 - View absent students from a class**
+**Use case: UC14 - View all absent students from the current student list** 
 
 MSS:
 
-1. User requests to <ins>select a class (UC04)<ins>.
-2. User requests to view absent students from the class.
-3. TeachBook shows a list of absent students from the class.
+1. User requests to view absent students from the class.
+2. TeachBook shows a list of absent students from the class.
 
    Use case ends.
 
-**Use case: UC15 - View absent students from all the classes**
+**Use case: UC15 - View absent students from a class**
 
 MSS:
 
-1. User requests to <ins>view students from all the classes (UC13)<ins>.
-2. User requests to view absent students from all the classes.
-3. TeachBook shows a list of absent students from all the classes.
+1. User <ins>selects a class (UC04)<ins>.
+2. User <ins>views all absent students from the current student list (UC14)<ins>.
 
    Use case ends.
 
-**Use case: UC16 - Clear filter**
-
-Preconditions: A filter is applied to the student list.
+**Use case: UC16 - View absent students from all the classes**
 
 MSS:
 
-1. User requests to clear the filter applied to the student list.
-2. TeachBook shows the list of all the students.
+1. User <ins>views students from all the classes (UC13)<ins>.
+2. User <ins>views all absent students from the current student list (UC14)<ins>.
 
    Use case ends.
 
@@ -858,7 +848,7 @@ Extensions:
 
       Use case ends.
 
-**Use case: UC23 - Give grade to one or more student**
+**Use case: UC23 - Give grade to one or more students**
 
 MSS:
 
@@ -877,6 +867,11 @@ Extensions:
 
       Use case ends.
 
+* 1c. One or more specified students do not exist.
+    * 1c1. TeachBook shows an error message.
+  
+      Use case ends.
+    
 **Use case: UC24 - Give grade to all the students in the filtered student list**
 
 MSS:
@@ -1023,6 +1018,7 @@ MSS:
 
 * **Class list panel:** The panel on the UI that displays the list of classes in TeachBook to the user
 * **CLI:** Command Lind Interface
+* **Current student list** A list containing either all the students from the currently selected class if there is a currently selected class, or all the students from all the classes if there is no currently selected class.
 * **Currently selected class:** The class that is currently being highlighted on the class list panel. Some commands will act on the currently selected class such as addStudent
 * **Filtered student list:** The list of students that is currently being displayed on the student list panel
 * **Grading system:** A particular scale that schools use for evaluating the performance of students in exams (e.g. A, B, C, E and F)
@@ -1046,10 +1042,10 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: A class must already be selected. You can know which class is being selected by looking at which class is being highlighted. If none is being selected, you can use the `select` command or if there is no class in the class list, you can add a new class using the `addClass` command.
     2. Test case: `add n/John p/91234567 e/john@example.com a/21 Lower Kent Ridge Road, Singapore 119077 t/class monitor`<br>
-       Expected: A student named `John` with phone number `91234567`, email `ohn@example.com`, address `21 Lower Kent Ridge Road, Singapore 119077` and tag `class monitor` will be added.
+       Expected: A student named `John` with phone number `91234567`, email `John@gmail.com`, address `21 Lower Kent Ridge Road, Singapore 119077` and tag `class monitor` will be added.
     3. Test case: `add n/Janice`<br>
        Expected: A student named `Janice` without other information will be added as additional information are optional.
-    4. Test case: `add n/Janice`<br>
+    4. Test case: `add n/Janice`<br> where `janice` already exist in the student list.
        Expected: Error details are shown in the status message that the student already exists in the class.
     5. Test case: `add p/91234567`<br>
        Expected: Error details are shown in the status message that command format is invalid because information on student's name is compulsory.
@@ -1150,7 +1146,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Editing the name of the currently selected class.
 
-    1. Prerequisites: A class has to be selected using the `select` command.
+    1. Prerequisites: A class, other than `4E1`, has to be selected using the `select` command.
     2. Test case: `editClass 4E1`<br>
        Expected: Name of the currently selected class will change to `4E1`. No changes will be made to existing students in the class.
     3. Test case: `editClass 4E1` followed by `editClass 4E1`<br>
@@ -1209,7 +1205,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Grading a student
 
-Prerequisites: Students are listed using `list` command or `list all` command.
+Prerequisites: At least two students present in the student list.
 
 1. Giving grades to students when there is an existing grading system.
 
@@ -1227,7 +1223,7 @@ Prerequisites: Students are listed using `list` command or `list all` command.
 
 ### Sorting students
 
-Prerequisites: Students are listed using `list` command or `list all` command.
+Prerequisites: At least two students present in the student list.
 
 1. Sorting students according to grade when there is an existing grading system in TeachBook.
 
@@ -1241,14 +1237,14 @@ Prerequisites: Students are listed using `list` command or `list all` command.
     2. Test case: `sort grade`<br>
        Expected: Error details are shown in the status message that a grading system has to be set before sorting according to grade.
 
-3. Sorting students according to name in alphabetical order
+3. Sorting students according to name.
 
     1. Test case: `sort name`<br>
-       Expected: Students are sorted according to their name in alphabetical order.
+       Expected: Students are sorted according to their name.
 
-### Marking a student as present
+### Marking students as present
 
-1. Marking a student as present from list of students.
+1. Marking students as present from list of students.
 
     1. Prerequisites: At least three students in the list.
     2. Test case: `mark 1`<br>
@@ -1262,9 +1258,9 @@ Prerequisites: Students are listed using `list` command or `list all` command.
     6. Other incorrect `mark` commands to try: `mark`, `mark random`, `mark x`, `mark 1 2 x`, `...` (where x is non-positive or larger than the list size) <br>
        Expected: Similar to previous.
 
-### Marking a student as absent
+### Marking students as absent
 
-1. Marking a student as absent from list of students.
+1. Marking students as absent from list of students.
 
     1. Prerequisites: At least three students in the list.
     2. Test case: `unmark 1`<br>
@@ -1278,27 +1274,9 @@ Prerequisites: Students are listed using `list` command or `list all` command.
     6. Other incorrect `unmark` commands to try: `unmark`, `unmark random`, `unmark x`, `unmark 1 2 x`, `...` (where x is non-positive or larger than the list size) <br>
        Expected: Similar to previous.
 
-### Print a list of students
+### Printing a list of students
 
-1. Print the list of students in a class.
-
-    1. Prerequisites: At least two student in the class, device has Excel/can view excel folder and has Downloads folder.
-    2. Test case: `print`<br>
-       Expected: Excel file in downloads folder with a column "Name" with the student's names.
-    3. Test case: `print c/address` <br>
-       Expected: Excel file in downloads folder with a column "Name" with the student's names and a column "Address" with the student's address.
-    4. Test case: `print c/signature` <br>
-       Expected: Excel file in downloads folder with a column "Name" with the student's names and a column "signature" that is empty.
-    5. Test case: `print c/ c/address`<br>
-       Expected: Excel file in downloads folder with a column "Name" with the student's names and a column "Address" with the student's address, both columns should be separated by an empty column.
-    6. Test case: `print c/c/address`<br>
-       Expected: Excel file in downloads folder with a column "Name" with the student's names and a column "c/address" that is empty.
-    7. Other incorrect `print` commands to try: `print t/`, `print c/` (i.e. print with any invalid prefix after) <br>
-       Expected: Error to be thrown.
-
-### Print a list of students
-
-1. Print the list of students in a class.
+1. Printing the list of students in a class.
 
     1. Prerequisites: At least two student in the class, device has Excel/can view excel folder and has Downloads folder.
     2. Test case: `print`<br>
@@ -1311,10 +1289,10 @@ Prerequisites: Students are listed using `list` command or `list all` command.
        Expected: Excel file in downloads folder with a column "Name" with the student's names and a column "Address" with the student's address, both columns should be separated by an empty column.
     6. Test case: `print c/c/address`<br>
        Expected: Excel file in downloads folder with a column "Name" with the student's names and a column "c/address" that is empty.
-    7. Other incorrect `print` commands to try: `print t/`, `print c/` (i.e. print with any invalid prefix after) <br>
+    7. Other incorrect `print` commands to try: `print t/`, `print a/` (i.e. print with any invalid prefix after) <br>
        Expected: Error to be thrown.
 
-### Undo Commands
+### Undoing Commands
 
 1. Undoing a recent command.
 
@@ -1322,15 +1300,15 @@ Prerequisites: Students are listed using `list` command or `list all` command.
     2. Test case: `undo`<br>
        Expected: Error stating no states to undo.
     3. Test case: `addClass A` followed by `undo` <br>
-       Expected: Class A is added get removed after undo is done.
+       Expected: Class A is added, then gets removed after undo is executed.
     4. Test case: `list all` followed by `undo` <br>
-       Expected: All the students will be displayed, then list will return to previous list after undo.
+       Expected: All students will be displayed, after undo is executed, original list when TeachBook is first opened is displayed.
     5. Test case: Multiple `list` followed by `undo`<br>
-       Expected: Undo will revert the display back to before first list command is done.
-    6. Test case: `edit` first person name without changing anything, followed with `undo`<br>
+       Expected: Similar to previous.
+    6. Test case: `edit` first person name without changing anything, followed by `undo`<br>
        Expected: Error stating no states to undo.
 
-### Redo Commands
+### Redoing Commands
 
 1. Redoing a recent undo command.
 
@@ -1338,10 +1316,12 @@ Prerequisites: Students are listed using `list` command or `list all` command.
     2. Test case: `redo`<br>
        Expected: Error stating no states to redo.
     3. Test case: `addClass A` followed by `undo` followed by `redo`<br>
-       Expected: Class A is added get removed after undo is done, Class A will reappear after redo is done.
-    4. Test case: `list all` followed by `undo` <br>
-       Expected: All the students will be displayed, then list will return to previous list after undo, all the students will be displayed again after redo is done.
-    5. Test case: Multiple `list` followed by `undo`<br>
-       Expected: Undo will revert the display back to before first list command is done, redo will then cause list to change to the list after command `list` is executed.
+       Expected: Class `A` is added, then gets removed after undo is executed, redo will bring back class `A`.
+    4. Test case: `list all` followed by `undo` then `redo`<br>
+       Expected: All students will be displayed, after undo and redo is executed, there should be no change in display.
+    5. Test case: Multiple `list` followed by `undo` then `redo` <br>
+       Expected: Similar to previous.
     6. Test case: `edit` first person name without changing anything, followed with `undo`, followed with `redo`<br>
        Expected: Error stating no states to redo.
+    7. Test case: `addClass A` followed by `undo` followed by `addClass B` followed by `redo`<br>
+       Expected: Class `B` is added and error stating no states to redo.
