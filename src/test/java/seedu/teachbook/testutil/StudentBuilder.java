@@ -72,6 +72,21 @@ public class StudentBuilder {
     }
 
     /**
+     * Initializes the {@code StudentBuilder} with the data of {@code studentToCopy}, but set student class to null.
+     */
+    public StudentBuilder(Student studentToCopy, boolean isForAddCommandParser) {
+        name = studentToCopy.getName();
+        phone = studentToCopy.getPhone();
+        studentClass = null;
+        email = studentToCopy.getEmail();
+        address = studentToCopy.getAddress();
+        remark = studentToCopy.getRemark();
+        tags = new HashSet<>(studentToCopy.getTags());
+        attendance = studentToCopy.getAttendance();
+        grade = studentToCopy.getGrade();
+    }
+
+    /**
      * Sets the {@code Name} of the {@code Student} that we are building.
      */
     public StudentBuilder withName(String name) {
@@ -158,8 +173,8 @@ public class StudentBuilder {
      * Builds a valid {@code Student} object to be passed into {@code AddCommandParser}.
      */
     public Student buildToAdd() {
-        return new Student(name, phone, null, email, address, remark, tags,
-                Attendance.getDefaultAttendance(), grade);
+        return new Student(name, phone, null, email, address, new Remark(""), tags,
+                Attendance.getDefaultAttendance(), new Grade(""));
     }
 
 }
