@@ -21,17 +21,18 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
     * Updated `addCommand` to make previously compulsory fields optional (Pull request [\#175](https://github.com/AY2122S1-CS2103T-W10-2/tp/pull/175))
+    * Updated existing test cases (Pull requests [\#286](https://github.com/AY2122S1-CS2103T-W10-2/tp/pull/286) [\#291](https://github.com/AY2122S1-CS2103T-W10-2/tp/pull/291))
 
 * **Documentation**:
-    * README
+    * README (Pull requests [\#38](https://github.com/AY2122S1-CS2103T-W10-2/tp/pull/38) [\#292](https://github.com/AY2122S1-CS2103T-W10-2/tp/pull/292))
     * User Guide:
         * Added documentation for the `deleteClass` and `list` commands (Pull request [\#124](https://github.com/AY2122S1-CS2103T-W10-2/tp/pull/124))
     * Developer Guide:
         * Updated the class diagrams for all components to fit our current implementation (Pull request [\#114](https://github.com/AY2122S1-CS2103T-W10-2/tp/pull/114))
         * Added the implementation details for synchronization of student list in Ui and Model components, complemented by some sequence diagrams of related commands (Commit [1](https://github.com/AY2122S1-CS2103T-W10-2/tp/commit/e17325ba1e7fdf30c9a17ab2381f7e265d01260a))
-        * Added the implementation details of how filtering is done
-        * Added some use cases
-        * Added some manual testings
+        * Added the implementation details of how filtering is done (Commit [1](https://github.com/AY2122S1-CS2103T-W10-2/tp/pull/273/commits/47432b0522eabd9fe06151d08e5c7e0213138b01))
+        * Added some use cases (Commit [1](https://github.com/AY2122S1-CS2103T-W10-2/tp/pull/273/commits/60f7ac8a2ba4a03a30f9ddb1af2e85405f2c0d7e) Pull request [\#290](https://github.com/AY2122S1-CS2103T-W10-2/tp/pull/290))
+        * Added some manual testings instructions (Commit [1](https://github.com/AY2122S1-CS2103T-W10-2/tp/pull/273/commits/5e3ffb436457c4651c70add26d1b171392db4925))
 
 * **Project management**:
     * Facilitated some team meetings.
