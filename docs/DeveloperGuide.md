@@ -783,7 +783,7 @@ MSS:
 
 Extensions:
 
-* 1a. ㅎrading system is already present in TeachBook
+* 1a. Grading system is already present in TeachBook
   * 1a1. TeachBook shows an error message.
   
     Use case ends.
@@ -795,10 +795,11 @@ Extensions:
 
 [comment]: <> (    Use case resumes from step 2.)
 
-* 2b. TeachBook detects that the command format is invalid.
-  * 2b1. TeachBook shows an error message.
+[comment]: <> (* 1b. Command format is invalid.)
 
-    Use case ends.
+[comment]: <> (  * 1b1. TeachBook shows an error message.)
+
+[comment]: <> (    Use case ends.)
 
 [comment]: <> (    2b1. TeachBook requests user to follow the correct format.)
 
@@ -830,7 +831,7 @@ MSS:
 2. TeachBook grades the specified student.
 
 Extensions:
-2a. There is no grading system is present in TeachBook.
+1a. There is no grading system is present in TeachBook.
 
 [comment]: <> (    2a1. TeachBook prompts user to set a grading system)
 
@@ -855,12 +856,13 @@ Extensions:
 
 MSS:
 1. User requests to sort the students according to their grade.
-3. TeachBook sorts the students according to their grade specified by the grading system.
-   Use case ends.
+2. TeachBook sorts the students according to their grade specified by the grading system.
+
+    Use case ends.
 
 Extension:
 
-2a. There is no grading system is present in TeachBook.
+1a. There is no grading system is present in TeachBook.
 
 [comment]: <> (    2a1. TeachBook prompts user to set a grading system)
 
@@ -868,7 +870,7 @@ Extension:
 
 [comment]: <> (    Use case resumes from step 2.)
 
-* 2a1. TeachBook shows an error message.
+* 1a1. TeachBook shows an error message.
 
   Use case ends.
 
