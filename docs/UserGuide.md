@@ -49,7 +49,7 @@ Symbol                 | Meaning
 :exclamation:          | an extra caution you have take to prevent any unwanted results
 
 --------------------------------------------------------------------------------------------------------------------
-<a href="#" style="float: right;">[ Back to top ]</a>
+[ Back to top ](#)
 
 ## Quick Start
 
@@ -80,7 +80,7 @@ Symbol                 | Meaning
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-<a href="#" style="float: right;">[ Back to top ]</a>
+[ Back to top ](#)
 
 ## Graphical User Interface
 
@@ -95,7 +95,7 @@ There are a total of 5 different sections according to the image of out GUI belo
 ![GUI](images/GUI.png)
 
 --------------------------------------------------------------------------------------------------------------------
-<a href="#" style="float: right;">[ Back to top ]</a>
+[ Back to top ](#)
 
 ## Features
 
@@ -183,7 +183,7 @@ This command will exit TeachBook. There is no need to save any data manually.
 Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
-<a href="#" style="float: right;">[ Back to top ]</a>
+[ Back to top ](#)
 
 ### Class related features
 #### Adding a class : `addClass`
@@ -263,7 +263,7 @@ Example:
 Fig 5: Class `4E2` is highlighted in blue with its students list displayed after `select 4E2` is executed
 
 --------------------------------------------------------------------------------------------------------------------
-<a href="#" style="float: right;">[ Back to top ]</a>
+[ Back to top ](#)
 
 ### Student related features
 #### Adding a student : `add`
@@ -384,7 +384,7 @@ Example:
 Fig 10: Student `Jane Doe` added in [add](#adding-a-student--add) is displayed with remark `Contracted COVID-19` after `remark 3 r/Contracted COVID-19` is executed
 
 --------------------------------------------------------------------------------------------------------------------
-<a href="#" style="float: right;">[ Back to top ]</a>
+[ Back to top ](#)
 
 ### Grade related features
 #### Setting a grading system : `setGrade`
@@ -444,7 +444,7 @@ All students' grades will be cleared!
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-<a href="#" style="float: right;">[ Back to top ]</a>
+[ Back to top ](#)
 
 ### Attendance related features
 #### Marking the attendance of a student : `mark`
@@ -498,7 +498,7 @@ Examples:
 Fig 14: Student `Jane Doe`, who was previously [marked as present](#marking-the-attendance-of-a-student--mark), is now marked as absent and is displayed with a red checkbox after `unmark 3` is executed
 
 --------------------------------------------------------------------------------------------------------------------
-<a href="#" style="float: right;">[ Back to top ]</a>
+[ Back to top ](#)
 
 ### Utility features
 #### Printing to Excel : `print`
@@ -575,7 +575,7 @@ list by listing out all the students from all the classes as no class is selecte
 Fig 16: All students in the TeachBook are displayed after `list all` is executed
 
 --------------------------------------------------------------------------------------------------------------------
-<a href="#" style="float: right;">[ Back to top ]</a>
+[ Back to top ](#)
 
 ### Others
 #### Saving the data
@@ -593,7 +593,7 @@ If your changes to the data file makes its format invalid, TeachBook will discar
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-<a href="#" style="float: right;">[ Back to top ]</a>
+[ Back to top ](#)
 
 ## FAQs
 
@@ -610,7 +610,7 @@ If your changes to the data file makes its format invalid, TeachBook will discar
 **A**: Currently, it is still not possible. We have heard your feedback and are currently working on it to add this feature in. Do keep a lookout for our next update! <br>
 
 --------------------------------------------------------------------------------------------------------------------
-<a href="#" style="float: right;">[ Back to top ]</a>
+[ Back to top ](#)
 
 ## Command Summary
 
@@ -639,5 +639,5 @@ Action                         | Format, Examples
 **Sort students**              | <code>sort name&#124;&#124;grade</code>
 **List students**              | <code>list &#91;all&#124;&#124;absent&#93;</code>
 
-<a href="#" style="float: right;">[ Back to top ]</a>
+[ Back to top ](#)
 
