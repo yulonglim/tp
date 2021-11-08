@@ -17,16 +17,18 @@ about what TeachBook can do, you are at the right place!
 In this user guide, you will find step-by-step instructions on how you can install TeachBook and guide on how to use all 
 of its features.
 
-[comment]: <> (its features. Did we also mention that TeachBook is free?)
 
 ## How to use this guide?
 
 As this user guide is created for users with varying levels of experience using our app, it is divided in different 
-sections, so feel free to navigate to the portion of interest using our handy Table of Contents provided above. If you 
-are a new user who is using TeachBook for the first time, you can follow the [Quick Start](#quick-start) on how to get 
+sections, so feel free to navigate to the portion of interest using our handy Table of Contents provided above.
+
+If you are a new user who is using TeachBook for the first time, you can follow the [Quick Start](#quick-start) on how to get 
 TeachBook running on your system for the first time. If you are a user who faced some issues with TeachBook, you can go 
 to the [FAQs](#faqs) section to see if your issues have already been addressed. If not, feel free to reach out to us, 
-and we will respond promptly. If you are an experienced user who can't remember the extensive list of features that 
+and we will respond promptly. 
+
+If you are an experienced user who can't remember the extensive list of features that 
 TeachBook provide, you can jump to the [Command Summary](#command-summary) section or the [Features](#features) section 
 if you want to find out more.
 
@@ -38,8 +40,8 @@ There are 3 symbols that you need know in order to use this user guide effective
 * If you see a :bulb: symbol, it means that it is a tip (e.g. shortcut or hidden features) which you can follow to enhance
 your experience. 
 
-* If you see a :exclamation: symbol, take extra caution because if you don't follow the instruction listed, it might cause 
-the program to not run the way you intended it to and return unwanted results.
+* If you see a :exclamation: symbol, take extra caution. If instruction listed are not followed properly,
+the program may not run the way you intended it to and return unwanted results.
 
 
 ## What is TeachBook?
@@ -137,8 +139,12 @@ There are a total of 5 different sections according to the image of out GUI belo
 This command provides you with a link back to this user guide whenever you are in need of assistance.
 
 ![help message](images/helpMessage.png)
+Fig 1: Help popup when help command is executed.
 
 Format: `help`
+
+<br>
+<br>
 
 #### Clearing all entries : `clear`
 
@@ -150,23 +156,32 @@ Format: `clear`
 Don't forget that TeachBook provides an undo feature just in case you accidentally clear TeachBook of all its data!
 </div>
 
+<br>
+<br>
+
 #### Undoing a command : `undo`
 
 This command allows you to revert the TeachBook to the previous state. You most likely will be using this command if you have made a mistake.
 
 Format: `undo`
 
-<div markdown="block" class="alert alert-info">:information_source: **Info**
+<div markdown="block" class="alert alert-info">:information_source: **Info:**
 Notes about undo:
-* If commands executed results in an error message, TeachBook does not store the outcome, hence you do not have to undo!
-* Commands that do not affect the information displayed or data of TeachBook is not stored (e.g. print, help, etc.), therefore they can't be undone!
+* If commands executed results in an error message, TeachBook does not store the outcome, hence you do not have to undo.
+* Commands that do not affect the information displayed or data of TeachBook is not stored (e.g. print, help, etc.), therefore they can't be undone.
 </div>
+
+<br>
+<br>
 
 #### Redoing a command: `redo`
 
-This command allows you to redo a command after using an undo command, just in case you did an undo accidentally!
+This command allows you to redo a command after using an undo command, just in case you did an undo accidentally.
 
 Format: `redo`
+
+<br>
+<br>
 
 #### Exiting the program : `exit`
 
@@ -174,8 +189,8 @@ This command helps you to exit TeachBook, while also saving all your data!
 
 Format: `exit`
 
-<div markdown="block" class="alert alert-info">:information_source: **Info**
-TeachBook will automatically save you progress if you exit the app so that you can continue working on it at a later time!
+<div markdown="block" class="alert alert-info">:information_source: **Info:**
+TeachBook will automatically save you progress if you exit the app so that you can continue working on it at a later time.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -189,19 +204,22 @@ organising the class by adding students to the added class.
 
 Format: `addClass CLASS_NAME`
 
-<div markdown="block" class="alert alert-info">:information_source: **Info**
-CLASS_NAME is case sensitive! 
+<div markdown="block" class="alert alert-info">:information_source: **Info:**
+CLASS_NAME is case sensitive. 
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-There is a limit of 20 characters for the class name! But I am sure your class name will not be longer that limit!
+There is a limit of 20 characters for the class name! But I am sure your class name will not be longer than that limit!
 </div>
 
 Examples:
 * `addClass 4E4` adds a class named `4E4` into the TeachBook.
 
 ![addClass](images/addClass.png)
-Fig 1:  `4E4` is added after `addClass 4E4` was executed
+Fig 2:  `4E4` is added after `addClass 4E4` was executed
+
+<br>
+<br>
 
 #### Deleting a class : `deleteClass`
 
@@ -213,17 +231,20 @@ Format: `deleteClass CLASS_NAME`
 
 * Deletes the class with the specified `CLASS_NAME`
 
-<div markdown="block" class="alert alert-info">:information_source: **Info**
-CLASS_NAME is case sensitive! 
+<div markdown="block" class="alert alert-info">:information_source: **Info:**
+CLASS_NAME is case sensitive.
 
-We are currently working on a new feature that allows you to select a class by its index!
+We are currently working on a new feature that allows you to delete a class by its index!
 </div>
 
 Examples:
-* `deleteClass 4E4` Deletes the class named `4E4` from the TeachBook.
+* `deleteClass 4E4` deletes the class named `4E4` from the TeachBook.
 
 ![deleteClass](images/deleteClass.png)
-Fig 2: `4E4` that was added in [addClass](#adding-a-class--addclass) is deleted after `deleteClass 4E4` was executed.
+Fig 3: `4E4` that was added in [addClass](#adding-a-class--addclass) is deleted after `deleteClass 4E4` was executed.
+
+<br>
+<br>
 
 #### Editing a class name : `editClass`
 
@@ -232,18 +253,20 @@ this command to edit the name of the currently selected class to CLASS_NAME spec
 
 Format: `editClass CLASS_NAME`
 
-<div markdown="block" class="alert alert-info">:information_source: **Info**
-CLASS_NAME is case sensitive! 
+<div markdown="block" class="alert alert-info">:information_source: **Info:**
+CLASS_NAME is case sensitive. 
 
-We are currently working on a new feature that allows you to select a class by its index!
+We are currently working on a new feature that allows you to edit a class by its index!
 </div>
-
 
 Examples:
 * `editClass 4E5` edits the name of the currently selected class to be `4E5`.
 
 ![editClass](images/editClass.png)
-Fig 3: `4E4` that was added in [addClass](#adding-a-class--addclass) is now `4E5` after `editClass 4E5` was executed.
+Fig 4: `4E4` that was added in [addClass](#adding-a-class--addclass) is now `4E5` after `editClass 4E5` was executed.
+
+<br>
+<br>
 
 #### Selecting a class : `select`
 
@@ -255,8 +278,8 @@ Format: `select CLASS_NAME`
 * The `CLASS_NAME` to be selected is case-sensitive and must be already inside the list. If not the TeachBook will return `The class does not exist`.
 * The currently selected class will be highlighted in blue and the list of student in the class will be displayed.
 
-<div markdown="block" class="alert alert-info">:information_source: **Info**
-CLASS_NAME is case sensitive! 
+<div markdown="block" class="alert alert-info">:information_source: **Info:**
+CLASS_NAME is case sensitive. 
 
 We are currently working on a new feature that allows you to select a class by its index!
 </div>
@@ -265,7 +288,7 @@ Example:
 * `select 4E2` selects the class named `4E2` from the list of classes.
   
 ![select_example](images/select_example.png)
-Fig 4: `4E2` is highlighted in blue with its students list after `select 4E2` was executed.
+Fig 5: `4E2` is highlighted in blue with its students list after `select 4E2` was executed.
 
 --------------------------------------------------------------------------------------------------------------------
 <a href="#" style="float: right;">[ Back to top ]</a>
@@ -282,8 +305,8 @@ Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 * Everything is optional except for name of the student.
 * You can add multiple tags by adding more `t/` flags.
 
-<div markdown="block" class="alert alert-info">:information_source: **Info**
-If you have multiple students with the same name (although unlikely), you can use different capitalization to store the same name!
+<div markdown="block" class="alert alert-info">:information_source: **Info:**
+If you have multiple students with the same name (although unlikely), you can use different capitalization or different spacing between first and last name to store the same name!
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -295,7 +318,10 @@ Examples:
 * `add n/Jane Doe p/91234567 e/janedoe@example.com a/21 Lower Kent Ridge Road, Singapore 119077 t/class monitor` adds contact information of Jane Doe with all the optional information into the currently selected class.
 
 ![add](images/addStudent.png)
-Fig 5: `Jane Doe` is added after second command under Examples was executed.
+Fig 6: `Jane Doe` is added after second command under Examples was executed.
+
+<br>
+<br>
 
 #### Deleting a student : `delete`
 
@@ -312,7 +338,10 @@ Examples:
 * `select 4E2` followed by `delete all` deletes all the students in class `4E2`.
 
 ![delete](images/deleteStudent.png)
-Fig 6: `Jane Doe` who was added in [add](#adding-a-student--add), has been removed from the student list after `delete 3` was executed.
+Fig 7: `Jane Doe` who was added in [add](#adding-a-student--add), has been removed from the student list after `delete 3` was executed.
+
+<br>
+<br>
 
 #### Editing a student : `edit`
 
@@ -334,7 +363,10 @@ Examples:
   will result in the tag being `Allergic to seafood` rather than `class monitor` together with `Allergic to seafood` or `excellent grade` with `Allergic to seafood`.
 
 ![edit](images/editStudent.png)
-Fig 7: `Jane Doe` who was added in [add](#adding-a-student--add), has been renamed to `Joseph Chan` with no tags after `edit 3 n/Joseph Chan t/` was executed.
+Fig 8: `Jane Doe` who was added in [add](#adding-a-student--add), has been renamed to `Joseph Chan` with no tags after `edit 3 n/Joseph Chan t/` was executed.
+
+<br>
+<br>
 
 #### Locating students by name : `find`
 
@@ -347,14 +379,17 @@ Format: `find KEYWORD…`
 * The order of the keywords does not matter e.g. Doe John will match John Doe.
 * Only the name is searched.
 * Only full words will be matched e.g. John will not match Johnny.
-* Students matching at least one keyword will be returned (i.e. OR search). e.g. John Doe will return John Deer, Jane Doe.
+* Students matching at least one keyword will be returned (i.e. OR search) e.g. John Doe will return John Deer, Jane Doe.
 
 Examples:
 * `find Jane Doe` returns only one `Jane Doe` from the currently selected class, even if there is another `Jane Doe` from a different class.
 * `list all` followed by `find John Doe` returns two `John Doe`, assuming that there are two `John Doe` in the entire the TeachBook, one from class `4E1` and another one from class `4E2`.
 
 ![find](images/findStudent.png)
-Fig 8: `Jane Doe` who was added in [add](#adding-a-student--add), is displayed in the student list after `find Jane Doe` was executed.
+Fig 9: `Jane Doe` who was added in [add](#adding-a-student--add), is displayed in the student list after `find Jane Doe` was executed.
+
+<br>
+<br>
 
 #### Adding a remark to a student : `remark`
 
@@ -367,7 +402,7 @@ Example:
 * `remark 1 r/` clears previously added remark of the student at index 1. 
 
 ![remark](images/remark.png)
-Fig 9: `Jane Doe` who was added in [add](#adding-a-student--add), is displayed with remark `Contracted COVID-19` after `remark 3 r/Contracted COVID-19` was executed.
+Fig 10: `Jane Doe` who was added in [add](#adding-a-student--add), is displayed with remark `Contracted COVID-19` after `remark 3 r/Contracted COVID-19` was executed.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -391,7 +426,10 @@ Example:
 
 ![setGrade](images/setGrade.png)
 
-Fig 10: New grading system added after `setGrade A>B>C>D` was executed.
+Fig 11: New grading system added after `setGrade A>B>C>D` was executed.
+
+<br>
+<br>
 
 #### Giving grade to a student : `grade`
 
@@ -410,7 +448,10 @@ Example:
 * `grade 1 g/` clears previously added grade of the student at index 1.
 
 ![Grade](images/gradeAll.png)
-Fig 11: All students in `4E1` is given an A grade after `grade all g/A` was executed.
+Fig 12: All students in `4E1` is given an A grade after `grade all g/A` was executed.
+
+<br>
+<br>
 
 #### Resetting the grading system : `resetGrade`
 
@@ -434,12 +475,12 @@ You can use this to mark your student as present. The `present` checkbox will tu
 
 Format: `mark INDEX…||all`
 
-<div markdown="block" class="alert alert-info">:information_source: **Info**
+<div markdown="block" class="alert alert-info">:information_source: **Info:**
 This command allows you to mark multiple indexes at once. Which can save you lots of time! The check box will turn green
 once the attendance of the student is marked! 
 </div>
 
-<div markdown="block" class="alert alert-info">:information_source: **Info**
+<div markdown="block" class="alert alert-info">:information_source: **Info:**
 When using this command this command on a filtered list generated from a `find` command, the list will no longer be filtered and the full list will be shown!
 </div>
 
@@ -453,7 +494,10 @@ Examples:
 * `mark all` marks all the students present.
   
 ![mark](images/markAttendance.png) 
-Fig 12: `Jane Doe` who was added in [add](#adding-a-student--add), is displayed with a green checkbox after `mark 3` was executed.
+Fig 13: `Jane Doe` who was added in [add](#adding-a-student--add), is displayed with a green checkbox after `mark 3` was executed.
+
+<br>
+<br>
 
 #### Unmarking the attendance of a student : `unmark`
 
@@ -462,12 +506,12 @@ This command also allows you to unmark all the attendance for the selected class
 
 Format: `unmark INDEX…||all`
 
-<div markdown="block" class="alert alert-info">:information_source: **Info**
+<div markdown="block" class="alert alert-info">:information_source: **Info:**
 This command allows you to unmark multiple indexes at once. Which can save you lots of time! The check box will turn red
 once the attendance of the student is unmarked!
 </div>
 
-<div markdown="block" class="alert alert-info">:information_source: **Info**
+<div markdown="block" class="alert alert-info">:information_source: **Info:**
 When using this command this command on a filtered list generated from a `find` command, the list will no longer be filtered and the full list will be shown!
 </div>
 
@@ -477,7 +521,7 @@ Examples:
 * `unmark all` marks all the students absent.
 
 ![unmark](images/unmark.png)
-Fig 13: `Jane Doe` who was [marked present previously](#marking-the-attendance-of-a-student--mark), is now unmarked and is displayed with a red box after `unmark 3` was executed.
+Fig 14: `Jane Doe` who was [marked present previously](#marking-the-attendance-of-a-student--mark), is now unmarked and is displayed with a red box after `unmark 3` was executed.
 
 --------------------------------------------------------------------------------------------------------------------
 <a href="#" style="float: right;">[ Back to top ]</a>
@@ -495,14 +539,17 @@ Format: `print [c/class] [c/phone] [c/email] [c/address] [c/tags] [c/remark] [c/
 * Columns with special names mentioned in format will be populated with the respective information from TeachBook.
 
 <div markdown="block" class="alert alert-info">:information_source: **Info**
-* Putting an empty column heading (i.e. `c/ `) will give you an empty column! This can help you have larger separation between columns.
+Putting an empty column heading (i.e. `c/ `) will give you an empty column! This can help you have larger separation between columns.
 </div>
 
 Examples:
 * `print c/class c/email c/Signature` creates an Excel (.xls) file with four columns, student name column, class column, email column, and an empty column with title `Signature`.
 
-![excel](images/excel.png)
-Fig 14: Excel sheet generated from TeachBook after `print c/class c/email c/Signature` was executed.
+![excel](images/img.png)
+Fig 15: Excel sheet generated from TeachBook after `print c/class c/email c/Signature` was executed.
+
+<br>
+<br>
 
 #### Sorting students : `sort`
 
@@ -514,7 +561,9 @@ Examples:
 * `sort name` sorts the list of students according to their name in alphabetical order.
 * `sort grade` sorts the list of students according to their grade in descending order.
 
-[comment]: <> (Double check which feature should be in)
+<br>
+<br>
+
 #### Listing all students : `list`
 
 Shows the list of all students from the currently selected class or the entire TeachBook. 
@@ -537,7 +586,7 @@ list by listing out all the students as no class is selected.
 </div>
 
 ![list all](images/listAll.png)
-Fig 15: TeachBook display after `list all` was executed.
+Fig 16: TeachBook display after `list all` was executed.
 
 --------------------------------------------------------------------------------------------------------------------
 <a href="#" style="float: right;">[ Back to top ]</a>
@@ -546,6 +595,9 @@ Fig 15: TeachBook display after `list all` was executed.
 #### Saving the data
 
 TeachBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+<br>
+<br>
 
 #### Editing the data file
 
@@ -565,12 +617,11 @@ If your changes to the data file makes its format invalid, TeachBook will discar
 <br>
 **Q**: Where does the Excel file save to after using the print command? <br>
 **A**: It will be saved to your computer's download folder. <br>
-<br>
 
 **Q**: There seems to be a lag after some commands. What can I do? <br>
 **A**: Close any background programs or applications which are not in used to possibly reduce the lag. <br>
 
-**Q**: When performing tasks on classes (e.g. deleting or selecting a class), I find it cumbersome to type the class name all the time. Can I select it by the index?
+**Q**: When performing tasks on classes (e.g. deleting or selecting a class), I find it cumbersome to type the class name all the time. Can I select it by the index? <br>
 **A**: Currently, it is still not possible. We have heard your feedback and are currently working on it to add this feature in. Do keep a look out for our next update!
 <br>
 

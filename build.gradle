@@ -76,7 +76,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName.set("teachbook-v1.3.1.jar")
+    archiveFileName.set("[CS2103T-W10-2][TeachBook]-alpha.jar")
 }
 
 defaultTasks 'clean', 'test'

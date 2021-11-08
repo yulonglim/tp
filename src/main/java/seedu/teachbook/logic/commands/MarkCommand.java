@@ -56,8 +56,8 @@ public class MarkCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        // Although there is a noticeable code duplication to UnmarkCommand, we decided to not extract out the
-        // similarities because mark and unmark are different commands after all
+        // Although there is a noticeable code duplication to MarkCommand, we decided to not extract out the
+        // similarities because delete, grade, mark, and unmark are different commands after all
         requireNonNull(model);
 
         List<Student> lastShownList = model.getFilteredStudentList();
