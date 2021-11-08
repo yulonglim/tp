@@ -916,13 +916,13 @@ MSS:
 
 Extensions:
 
-* 2a. Teacher does not have Excel on the device.
+* 1a. Teacher does not have Excel on the device.
     * 2a1. TeachBook shows an error message.
 
       Use case ends.
 
-* 2b. User does not have a downloads folder on the device.
-    * 2b1. TeachBook shows an error message.
+* 1b. User does not have a downloads folder on the device.
+    * 1b1. TeachBook shows an error message.
 
       Use case ends.
 
@@ -944,13 +944,13 @@ Extensions:
 
       Use case ends.
 
-* 2a. Teacher does not have Excel on the device.
-    * 2a1. TeachBook shows an error message.
+* 1b. Teacher does not have Excel on the device.
+    * 1b1. TeachBook shows an error message.
 
       Use case ends.
 
-* 2b. User does not have a downloads folder on the device.
-    * 2b1. TeachBook shows an error message.
+* 1c. User does not have a downloads folder on the device.
+    * 1c1. TeachBook shows an error message.
   
       Use case ends.
 
