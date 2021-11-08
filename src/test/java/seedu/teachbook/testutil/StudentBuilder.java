@@ -63,10 +63,12 @@ public class StudentBuilder {
         studentClass = studentToCopy.getStudentClass();
         email = studentToCopy.getEmail();
         address = studentToCopy.getAddress();
-        remark = studentToCopy.getRemark() != null ? studentToCopy.getRemark() : new Remark(DEFAULT_REMARK);
+//        remark = studentToCopy.getRemark() != null ? studentToCopy.getRemark() : new Remark(DEFAULT_REMARK);
+        remark = studentToCopy.getRemark();
         tags = new HashSet<>(studentToCopy.getTags());
         attendance = studentToCopy.getAttendance();
-        grade = studentToCopy.getGrade() != null ? studentToCopy.getGrade() : new Grade(DEFAULT_GRADE);
+//        grade = studentToCopy.getGrade() != null ? studentToCopy.getGrade() : new Grade(DEFAULT_GRADE);
+        grade = studentToCopy.getGrade();
     }
 
     /**
@@ -89,7 +91,11 @@ public class StudentBuilder {
      * Sets the {@code Class} of the {@code Student} that we are building.
      */
     public StudentBuilder withClass(String className) {
-        this.studentClass = new Class(new ClassName(className));
+        if (className != null) {
+            this.studentClass = new Class(new ClassName(className));
+        } else {
+            this.studentClass = null;
+        }
         return this;
     }
 
@@ -152,7 +158,8 @@ public class StudentBuilder {
      * Builds a valid {@code Student} object to be passed into {@code AddCommandParser}.
      */
     public Student buildToAdd() {
-        return new Student(name, phone, null, email, address, new Remark(""), tags,
-                Attendance.getDefaultAttendance(), new Grade(""));
+        return new Student(name, phone, null, email, address, remark, tags,
+                Attendance.getDefaultAttendance(), grade);
     }
+
 }
