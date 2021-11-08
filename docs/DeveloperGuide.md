@@ -406,18 +406,17 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Target user profile**:
 
-* a primary or secondary school teacher
-* has a need to manage multiple class worth of student's contacts which she is teaching
-* prefer desktop apps over other types
-* not proficient in IT but can type fast
+* is a primary or secondary school teacher
+* has a need to manage multiple class worth of student's contacts that she is teaching
+* prefers desktop apps over other types
+* is not proficient in IT but can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
-* wants to keep her work life and personal life separate
-* often face problem of mixing up students with the same name when she adds it into her phone contact list
-* have to also add emergency contact into her phone contact list which makes it flooded, which is hard to find or link it with the correct student
-* would prefer to have an app that can also store other emergency information (e.g. blood type and allergies) all in one place
+* wants to keep her personal contacts and students' contacts separate
+* wants to better take care of her students by storing some special notes (e.g. allergy condition) of her students somewhere
+* wants to have an app to help with administrative work in teaching (e.g. taking attendance, keying in grades of students)
 
-**Value proposition**: Manage contacts faster than a typical mouse/GUI driven app. Allows teachers to have a dedicated app to keep their work life separated from their personal life. Allows teacher to find students and their emergency information accurately and easily.
+**Value proposition**: manage contacts faster than a typical mouse/GUI driven app. Allows teachers to have a dedicated app to keep their work life separated from their personal life. Allows teacher to find students and their emergency information accurately and easily.
 
 
 ### User stories
