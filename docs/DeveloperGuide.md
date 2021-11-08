@@ -9,8 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* Undo/Redo function and logic adapted from [AB4](https://github.com/se-edu/addressbook-level4)
-* Print function uses 3rd party library [org.apache.poi](https://poi.apache.org/)
+* The logic of `undo` and `redo` features is adapted from [AB4](https://github.com/se-edu/addressbook-level4).
+* The `print` feature uses third-party library [Apache POI](https://poi.apache.org/).
 
 --------------------------------------------------------------------------------------------------------------------
 

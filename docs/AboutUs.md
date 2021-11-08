@@ -5,11 +5,11 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `wilfredw[at]comp.nus.edu.sg`
+You can reach us at the email `wilfredw@comp.nus.edu.sg`
 
 ## Project team
 
-### Wilfred Wong
+### Wilfred Wong Kang Chee
 
 <img src="images/wilfredwongkc.png" width="200px">
 
@@ -49,7 +49,7 @@ You can reach us at the email `wilfredw[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Yu Shufan
+### YU SHUFAN
 
 <img src="images/fans2619.png" width="200px">
 
@@ -57,4 +57,4 @@ You can reach us at the email `wilfredw[at]comp.nus.edu.sg`
 [[portfolio](team/fans2619.md)]
 
 * Role: Developer
-* Responsibilities: In charge of Testing
+* Responsibilities: In charge of software architecture, code quality, and testing
