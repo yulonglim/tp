@@ -26,21 +26,6 @@ run {
 
 test {
     useJUnitPlatform()
-    exclude 'seedu/teachbook/model/ModelManagerTest.class' // wilfred
-    exclude 'seedu/teachbook/logic/LogicManagerTest.class' // wilfred
-
-//    exclude 'seedu/teachbook/ui/ClassCardTest.class' // wilfred
-    exclude 'seedu/teachbook/ui/ClassListPanelTest.class' // wilfred
-    exclude 'seedu/teachbook/ui/CommandBox.class' // wilfred
-    exclude 'seedu/teachbook/ui/HelpWindowTest.class' // wilfred
-    exclude 'seedu/teachbook/ui/ResultDisplayTest.class' // wilfred
-    exclude 'seedu/teachbook/ui/StatusBarFooterTest.class' // wilfred
-    exclude 'seedu/teachbook/ui/StudentCardTest.class' // wilfred
-    exclude 'seedu/teachbook/ui/StudentListPanelTest.class' // wilfred
-    exclude 'seedu/teachbook/ui/UiManagerTest.class' // wilfred
-
-    // TODO: rewrite corresponding tests belonging to your part and remove exclude statements
-
     finalizedBy jacocoTestReport
 }
 
