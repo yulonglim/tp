@@ -330,6 +330,8 @@ You can clear a field by omitting the value after the prefix.
 Examples:
 * `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st student shown in the list to be `91234567` and `johndoe@example.com` respectively.
 * `edit 3 n/Joseph Chan t/` edits the name of the 3rd student shown in the list to be `Joseph Chan` and clears all existing tags.
+* Tags cannot be replaced individually. If the original tag of the first student is `class monitor` and `excellent grade`, calling `edit 1 t/Allergic to seafood`
+  will result in the tag being `Allergic to seafood` rather than `class monitor` together with `Allergic to seafood` or `excellent grade` with `Allergic to seafood`.
 
 ![edit](images/editStudent.png)
 Fig 7: `Jane Doe` who was added in [add](#adding-a-student--add), has been renamed to `Joseph Chan` with no tags after `edit 3 n/Joseph Chan t/` was executed.
@@ -526,6 +528,12 @@ Format: `list [all||absent]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 `list all` clears any currently selected class. As a result, any command followed by `list all` will be operating on all students in the TeachBook.
+</div>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+`list all` should be interpreted as a way to unselect the currently selected class. Therefore, in order to view the original list after calling 
+`list all` followed by other list commands like `list absent`, `list all` won't take you back to the original list
+and will be prohibited from calling `list all` as there is already no class selectd. Instead, `list` command should be used to take you back to the original 
+list by listing out all the students as no class is selected.
 </div>
 
 ![list all](images/listAll.png)
