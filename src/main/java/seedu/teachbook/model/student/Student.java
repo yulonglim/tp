@@ -280,6 +280,7 @@ public class Student {
                 && otherStudent.getTags().equals(getTags())
                 // this is to skip pass the checking of lastModified field in an attendance obj as the sensitivity of
                 // LocalDateTime.now() is very high eg. 2021-10-27T22:52:40.133105900
+                && otherStudent.getAttendance().equals(getAttendance())
                 && otherStudent.isPresent() == isPresent()
                 && otherStudent.getGrade().equals(getGrade());
     }

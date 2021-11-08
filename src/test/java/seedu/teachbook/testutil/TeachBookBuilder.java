@@ -15,6 +15,9 @@ public class TeachBookBuilder {
 
     private final TeachBook teachBook;
 
+    /**
+     * Creates a {@code TeachBookBuilder} with the default details.
+     */
     public TeachBookBuilder() {
         teachBook = new TeachBook();
         teachBook.addClass(new Class(new ClassName("A")));

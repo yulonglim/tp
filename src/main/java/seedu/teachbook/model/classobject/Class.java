@@ -7,34 +7,42 @@ import javafx.collections.ObservableList;
 import seedu.teachbook.model.student.Student;
 import seedu.teachbook.model.student.UniqueStudentList;
 
+/**
+ * Represents a Class in the TeachBook.
+ */
 public class Class {
 
-    private ClassName className;
+    private final ClassName className;
     private UniqueStudentList studentsOfThisClass;
 
+    /**
+     * Constructs a class with the specified class name.
+     *
+     * @param className name of the class.
+     */
     public Class(ClassName className) {
         this.className = className;
         this.studentsOfThisClass = new UniqueStudentList();
-    }
-
-    public void reorderStudents(Comparator<? super Student> comparator) {
-        studentsOfThisClass.sort(comparator);
-    }
-
-    public ObservableList<Student> getStudentsOfThisClass() {
-        return studentsOfThisClass.asUnmodifiableObservableList();
-    }
-
-    public UniqueStudentList getUniqueStudentListOfThisClass() {
-        return studentsOfThisClass;
     }
 
     public ClassName getClassName() {
         return className;
     }
 
-    public void setStudent(Student target, Student editedStudent) {
-        studentsOfThisClass.setStudent(target, editedStudent);
+    public UniqueStudentList getUniqueStudentListOfThisClass() {
+        return studentsOfThisClass;
+    }
+
+    public ObservableList<Student> getStudentsOfThisClass() {
+        return studentsOfThisClass.asUnmodifiableObservableList();
+    }
+
+    public void setStudentsOfThisClass(UniqueStudentList studentsOfThisClass) {
+        this.studentsOfThisClass = studentsOfThisClass;
+    }
+
+    public int getClassSize() {
+        return this.studentsOfThisClass.size();
     }
 
     public void addStudent(Student student) {
@@ -49,14 +57,24 @@ public class Class {
         return studentsOfThisClass.contains(student);
     }
 
-    public void setStudentsOfThisClass(UniqueStudentList studentsOfThisClass) {
-        this.studentsOfThisClass = studentsOfThisClass;
+    public void setStudent(Student target, Student editedStudent) {
+        studentsOfThisClass.setStudent(target, editedStudent);
     }
 
-    public void setClassName(String newClassName) {
-        this.className = new ClassName(newClassName);
+    /**
+     * Sorts the student list of this class according to the order induced by the specified comparator.
+     */
+    public void reorderStudents(Comparator<? super Student> comparator) {
+        studentsOfThisClass.sort(comparator);
     }
 
+    /**
+     * Returns true if both classes have the same name.
+     * This defines a weaker notion of equality between two classes.
+     *
+     * @param otherClass other class to be checked against.
+     * @return {@code true} if both classes have the same name.
+     */
     public boolean isSameClass(Class otherClass) {
         if (otherClass == this) {
             return true;
@@ -64,10 +82,6 @@ public class Class {
 
         return otherClass != null
                 && otherClass.getClassName().equals(getClassName());
-    }
-
-    public int getClassSize() {
-        return this.studentsOfThisClass.size();
     }
 
     @Override
@@ -82,7 +96,7 @@ public class Class {
 
         Class otherClass = (Class) other;
         return otherClass.getClassName().equals(this.className)
-                && otherClass.getUniqueStudentListOfThisClass().equals(this.getUniqueStudentListOfThisClass());
+                && otherClass.getUniqueStudentListOfThisClass().equals(this.studentsOfThisClass);
     }
 
     @Override

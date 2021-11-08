@@ -5,12 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.teachbook.commons.core.Messages.MESSAGE_DUPLICATE_STUDENT;
+import static seedu.teachbook.commons.core.index.DefaultIndices.INDEX_DEFAULT_INITIAL_CLASS;
 import static seedu.teachbook.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -29,32 +28,35 @@ import seedu.teachbook.model.classobject.ClassNameDescriptor;
 import seedu.teachbook.model.gradeobject.Grade;
 import seedu.teachbook.model.gradeobject.GradingSystem;
 import seedu.teachbook.model.student.Student;
+import seedu.teachbook.model.student.UniqueStudentList;
 import seedu.teachbook.testutil.StudentBuilder;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullStudent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+    public void execute_studentAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingStudentAdded modelStub = new ModelStubAcceptingStudentAdded();
         Student validStudent = new StudentBuilder().build();
 
         CommandResult commandResult = new AddCommand(validStudent).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_ADD_STUDENT_SUCCESS, validStudent),
                 commandResult.getFeedbackToUser());
-        assertEquals(List.of(validStudent), modelStub.personsAdded);
+        UniqueStudentList expectedList = new UniqueStudentList();
+        expectedList.add(validStudent);
+        assertEquals(expectedList, modelStub.classObj.getUniqueStudentListOfThisClass());
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() throws CommandException {
+    public void execute_duplicateStudent_throwsCommandException() {
         Student validStudent = new StudentBuilder().build();
         AddCommand addCommand = new AddCommand(validStudent);
-        ModelStub modelStub = new ModelStubWithPerson(validStudent);
+        ModelStub modelStub = new ModelStubWithStudent(validStudent);
         assertThrows(CommandException.class, MESSAGE_DUPLICATE_STUDENT, () -> addCommand.execute(modelStub));
     }
 
@@ -83,7 +85,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all the methods failing.
      */
     private class ModelStub implements Model {
         @Override
@@ -163,7 +165,7 @@ public class AddCommandTest {
 
         @Override
         public void setClassForStudent(Student student) {
-//            throw new AssertionError("This method should not be called.");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -218,33 +220,32 @@ public class AddCommandTest {
 
         @Override
         public GeneralIndex getCurrentlySelectedClassIndex() {
-//            throw new AssertionError("This method should not be called.");
-            return GeneralIndex.fromZeroBased(6);
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public boolean canUndoAddressBook() {
-            return false;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public boolean canRedoAddressBook() {
-            return false;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void undoTeachBook() {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void redoTeachBook() {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void commitTeachBook() {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -272,12 +273,23 @@ public class AddCommandTest {
     /**
      * A Model stub that contains a single student.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class ModelStubWithStudent extends ModelStub {
         private final Student student;
 
-        ModelStubWithPerson(Student student) {
+        ModelStubWithStudent(Student student) {
             requireNonNull(student);
             this.student = student;
+        }
+
+        @Override
+        public GeneralIndex getCurrentlySelectedClassIndex() {
+            // called by {@code AddCommand#execute()}
+            return INDEX_DEFAULT_INITIAL_CLASS;
+        }
+
+        @Override
+        public void setClassForStudent(Student student) {
+            // called by {@code AddCommand#execute()}
         }
 
         @Override
@@ -290,24 +302,41 @@ public class AddCommandTest {
     /**
      * A Model stub that always accept the student being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Student> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingStudentAdded extends ModelStub {
+//        final ArrayList<Student> studentsAdded = new ArrayList<>();
+        final Class classObj = new Class(new ClassName("A"));
+
+        @Override
+        public GeneralIndex getCurrentlySelectedClassIndex() {
+            // called by {@code AddCommand#execute()}
+            return INDEX_DEFAULT_INITIAL_CLASS;
+        }
+
+        @Override
+        public void setClassForStudent(Student student) {
+            student.setStudentClass(classObj);
+        }
 
         @Override
         public boolean hasStudent(Student student) {
             requireNonNull(student);
-            return personsAdded.stream().anyMatch(student::isSameStudent);
+            return classObj.containsStudent(student);
         }
 
         @Override
         public void addStudent(Student student) {
             requireNonNull(student);
-            personsAdded.add(student);
+            classObj.addStudent(student);
         }
 
         @Override
         public ReadOnlyTeachBook getTeachBook() {
             return new TeachBook();
+        }
+
+        @Override
+        public void commitTeachBook() {
+            // called by {@code AddCommand#execute()}
         }
     }
 

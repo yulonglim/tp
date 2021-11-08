@@ -14,12 +14,12 @@ import seedu.teachbook.model.classobject.exceptions.NoClassAtIndexException;
 import seedu.teachbook.model.classobject.exceptions.NoClassWithNameException;
 
 /**
- * A list of Classes that enforces uniqueness between its elements and does not allow nulls.
- * A classobject is considered unique by comparing using {@code classobject#isSameClass(classobject)}.
- * As such, adding and updating of Classes uses classobject#isSameClass(classobject) for equality so
- * as to ensure that the classobject being added or updated is unique in terms of identity in the UniqueClassList.
- * However, the removal of a classobject uses classobject#equals(Object) so
- * as to ensure that the classobject with exactly the same fields will be removed.
+ * A list of classes that enforces uniqueness between its elements and does not allow nulls.
+ * A class is considered unique by comparing using {@code Class#isSameClass(Class)}.
+ * As such, adding and updating of classes uses {@code Class#isSameClass(Class)} for equality
+ * to ensure that the class being added or updated is unique in terms of identity in the UniqueClassList.
+ * However, the removal of a class uses {@code Class#equals(Object)} to ensure that
+ * the class with exactly the same fields will be removed.
  * <p>
  * Supports a minimal set of list operations.
  *
@@ -32,7 +32,7 @@ public class UniqueClassList implements Iterable<Class> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent classobject as the given argument.
+     * Returns true if the list contains an equivalent class as the given argument.
      */
     public boolean contains(Class toCheck) {
         requireNonNull(toCheck);
@@ -40,8 +40,8 @@ public class UniqueClassList implements Iterable<Class> {
     }
 
     /**
-     * Adds a classobject to the list.
-     * The classobject must not already exist in the list.
+     * Adds a class to the list.
+     * The class must not already exist in the list.
      */
     public void add(Class toAdd) {
         requireNonNull(toAdd);
@@ -52,9 +52,9 @@ public class UniqueClassList implements Iterable<Class> {
     }
 
     /**
-     * Replaces the classobject {@code target} in the list with {@code editedClass}.
+     * Replaces the class {@code target} in the list with {@code editedClass}.
      * {@code target} must exist in the list.
-     * The classobject identity of {@code editedClass} must not be the same as another existing classobject in the list.
+     * The class identity of {@code editedClass} must not be the same as another existing class in the list.
      */
     public void setClass(Class target, Class editedClass) {
         requireAllNonNull(target, editedClass);
@@ -69,8 +69,8 @@ public class UniqueClassList implements Iterable<Class> {
     }
 
     /**
-     * Removes the equivalent classobject from the list.
-     * The classobject must exist in the list.
+     * Removes the equivalent class from the list.
+     * The class must exist in the list.
      */
     public void remove(Class toRemove) {
         requireNonNull(toRemove);
@@ -85,8 +85,8 @@ public class UniqueClassList implements Iterable<Class> {
     }
 
     /**
-     * Replaces the contents of this list with {@code Classes}.
-     * {@code Classes} must not contain duplicate Classes.
+     * Replaces the contents of this list with {@code classes}.
+     * {@code classes} must not contain duplicate classes.
      */
     public void setClasses(List<Class> classes) {
         requireAllNonNull(classes);
@@ -111,6 +111,15 @@ public class UniqueClassList implements Iterable<Class> {
         }
     }
 
+    /**
+     * Returns the index of the class with the specified name in the list.
+     * There should be at most one class with the name in the list.
+     * Throws a {@code NoClassWithNameException} if the list does not contain such a class.
+     *
+     * @param className name of the class to be located.
+     * @return the index of the class with the specified name.
+     * @throws NoClassWithNameException if the list does not contain any class with the name.
+     */
     public GeneralIndex locateClass(ClassNameDescriptor className) throws NoClassWithNameException {
         for (int i = 0; i < internalList.size(); i++) {
             if (internalList.get(i).getClassName().equals((className))) {
@@ -120,11 +129,21 @@ public class UniqueClassList implements Iterable<Class> {
         throw new NoClassWithNameException();
     }
 
+    /**
+     * Returns the number of classes in this list.
+     *
+     * @return the number of classes in this list.
+     */
     public int size() {
         assert (internalList.size() >= 0);
         return internalList.size();
     }
 
+    /**
+     * Returns {@code true} if this list contains no class.
+     *
+     * @return @code true} if this list contains no class.
+     */
     public boolean isEmpty() {
         return internalList.isEmpty();
     }

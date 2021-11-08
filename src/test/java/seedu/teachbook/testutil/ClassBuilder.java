@@ -25,23 +25,32 @@ public class ClassBuilder {
     }
 
     /**
-     * Initializes the ClassBuilder with the data of {@code classToCopy}.
+     * Initializes the {@code ClassBuilder} with the data of {@code classToCopy}.
      */
     public ClassBuilder(Class classToCopy) {
         this.className = classToCopy.getClassName();
         this.studentList = classToCopy.getUniqueStudentListOfThisClass();
     }
 
+    /**
+     * Sets the {@code ClassName} of the {@code Class} that we are building.
+     */
     public ClassBuilder withName(String className) {
         this.className = new ClassName(className);
         return this;
     }
 
+    /**
+     * Sets the student list of the {@code Class} that we are building.
+     */
     public ClassBuilder withStudentList(Student... studentList) {
         this.studentList.setStudents(Arrays.stream(studentList).collect(Collectors.toList()));
         return this;
     }
 
+    /**
+     * Builds a valid {@code Class} object as per resulted after the execution of {@code AddClassCommand}.
+     */
     public Class build() {
         Class classObj = new Class(className);
         classObj.setStudentsOfThisClass(studentList);
