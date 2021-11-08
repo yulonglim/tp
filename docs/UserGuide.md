@@ -512,7 +512,7 @@ Putting an empty column heading (i.e. `c/ `) will give you an empty column! This
 Examples:
 * `print c/class c/email c/Signature` creates an Excel (.xls) file with four columns, student name column, class column, email column, and an empty column with title `Signature`.
 
-![excel](images/excel.png)
+![excel](images/img.png)
 Fig 15: Excel sheet generated from TeachBook after `print c/class c/email c/Signature` was executed.
 
 
