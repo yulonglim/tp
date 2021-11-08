@@ -588,23 +588,8 @@ Extensions:
 
       Use case ends.
 
-* 1d. Student name entered consist of special characters.
-    * 1c1. TeachBook shows an error message.
-
-      Use case ends.
-
-* 1e. Student name entered is longer than 70 characters.
+* 1d. Invalid input parameters.
     * 1d1. TeachBook shows an error message.
-
-      Use case ends.
-
-* 1f. Email entered is of the wrong format.
-    * 1e1. TeachBook shows an error message.
-
-      Use case ends.
-
-* 1g. Phone number entered consist of less than three numbers.
-    * 1f1. TeachBook shows an error message.
 
       Use case ends.
 
@@ -666,23 +651,8 @@ Extensions:
 
       Use case ends.
 
-* 1d. Student name entered consist of special characters.
-    * 1c1. TeachBook shows an error message.
-
-      Use case ends.
-
-* 1e. Student name entered is longer than 70 characters.
+* 1d. Invalid input parameters.
     * 1d1. TeachBook shows an error message.
-
-      Use case ends.
-
-* 1f. Email entered is of the wrong format.
-    * 1d1. TeachBook shows an error message.
-
-      Use case ends.
-
-* 1g. Phone number entered consist of less than three numbers.
-    * 1e1. TeachBook shows an error message.
 
       Use case ends.
 
