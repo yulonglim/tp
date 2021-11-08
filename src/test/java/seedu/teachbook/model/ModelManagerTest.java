@@ -10,12 +10,10 @@ import static seedu.teachbook.testutil.TypicalStudents.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.teachbook.commons.core.GuiSettings;
-import seedu.teachbook.model.student.NameContainsKeywordsPredicate;
 import seedu.teachbook.testutil.TeachBookBuilder;
 
 public class ModelManagerTest {
@@ -78,17 +76,6 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_personNotInTeachBook_returnsFalse() {
-        assertFalse(modelManager.hasStudent(ALICE));
-    }
-
-    @Test
-    public void hasPerson_personInTeachBook_returnsTrue() {
-        modelManager.addStudent(ALICE);
-        assertTrue(modelManager.hasStudent(ALICE));
-    }
-
-    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStudentList().remove(0));
     }
@@ -115,11 +102,6 @@ public class ModelManagerTest {
 
         // different addressBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentTeachBook, userPrefs)));
-
-        // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(teachBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
