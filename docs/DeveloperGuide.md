@@ -1100,23 +1100,6 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
-
-1. Initial launch
-
-   1. Download the jar file and copy into an empty folder
-
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-2. Saving window preferences
-
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-3. _{ more test cases ... }_
-
 ### Adding a student
 1. Adding a student in a class.
 
@@ -1421,14 +1404,3 @@ Prerequisites: Students are listed using `list` command or `list all` command.
        Expected: Undo will revert the display back to before first list command is done, redo will then cause list to change to the list after command `list` is executed.
     6. Test case: `edit` first person name without changing anything, followed with `undo`, followed with `redo`<br>
        Expected: Error stating no states to redo.
-
-3. _{ more test cases ... }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases ... }_
-
