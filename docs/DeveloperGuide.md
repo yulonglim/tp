@@ -1010,7 +1010,7 @@ Extensions:
 
 MSS:
 
-1. User requests for a guide.
+1. User requests to clear TeachBook.
 2. TeachBook shows a fresh new class and student list.
 
    Use case ends.
