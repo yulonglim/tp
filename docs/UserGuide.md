@@ -67,7 +67,7 @@ Symbol                 | Meaning
    
    Some example commands you can try:
 
-    * **`select`**`4E2`** : Displays all the students from the class named `4E2`.
+    * **`select`**`4E2` : Displays all the students from the class named `4E2`.
 
     * **`delete`**`2` : Deletes the 2nd student shown in the list on the right.
 
