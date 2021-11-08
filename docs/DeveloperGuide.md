@@ -621,13 +621,13 @@ MSS:
 
 Extensions:
 
-* 2a. Index provided is invalid.
-    * 2a1. TeachBook shows an error message.
+* 1a. The specified student does not exist.
+    * 1a1. TeachBook shows an error message.
       
       Use case ends.
 
-* 2b. No fields are provided.
-    * 2b1. TeachBook shows an error message.
+* 1b. No fields are provided.
+    * 1b1. TeachBook shows an error message.
       
       Use case ends.
 
