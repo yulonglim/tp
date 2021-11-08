@@ -45,7 +45,7 @@ Symbol                 | Meaning
 -----------------------|---------
 :information_source:   | additional information that we feel that you ought to know
 :bulb:                 | a tip (e.g. shortcut or hidden features) which you can follow to enhance your experience using TeachBook
-:exclamation:          | an extra caution you have take to prevent unwanted results
+:exclamation:          | an extra caution you have take to prevent any unwanted results
 
 --------------------------------------------------------------------------------------------------------------------
 <a href="#" style="float: right;">[ Back to top ]</a>
