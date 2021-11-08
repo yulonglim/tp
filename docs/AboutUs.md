@@ -17,7 +17,7 @@ You can reach us at the email `wilfredw@comp.nus.edu.sg`
 [[portfolio](team/wilfredwongkc.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: In charge of UI component
 
 ### Lim Yu Long
 
@@ -27,7 +27,7 @@ You can reach us at the email `wilfredw@comp.nus.edu.sg`
 [[portfolio](team/yulonglim.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: In charge of Storage component
 
 ### Chung Yunseong
 
@@ -37,7 +37,7 @@ You can reach us at the email `wilfredw@comp.nus.edu.sg`
 [[portfolio](team/jasonc01.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: In charge of Model component
 
 ### Liew Xin Yi
 
@@ -47,7 +47,7 @@ You can reach us at the email `wilfredw@comp.nus.edu.sg`
 [[portfolio](team/xyliew25.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: In charge of Logic component
 
 ### YU SHUFAN
 
