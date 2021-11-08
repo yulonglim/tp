@@ -631,7 +631,7 @@ MSS:
 
 Extensions:
 
-* 1a. Index provided is invalid.
+* 1a. The specified student does not exist.
     * 1a1. TeachBook shows an error message.
       
       Use case ends.

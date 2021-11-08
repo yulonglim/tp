@@ -189,6 +189,10 @@ organising the class by adding students to the added class.
 
 Format: `addClass CLASS_NAME`
 
+<div markdown="block" class="alert alert-info">:information_source: **Info**
+CLASS_NAME is case sensitive! 
+</div>
+
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 There is a limit of 20 characters for the class name! But I am sure your class name will not be longer that limit!
 </div>
@@ -210,6 +214,8 @@ Format: `deleteClass CLASS_NAME`
 * Deletes the class with the specified `CLASS_NAME`
 
 <div markdown="block" class="alert alert-info">:information_source: **Info**
+CLASS_NAME is case sensitive! 
+
 We are currently working on a new feature that allows you to select a class by its index!
 </div>
 
@@ -227,6 +233,8 @@ this command to edit the name of the currently selected class to CLASS_NAME spec
 Format: `editClass CLASS_NAME`
 
 <div markdown="block" class="alert alert-info">:information_source: **Info**
+CLASS_NAME is case sensitive! 
+
 We are currently working on a new feature that allows you to select a class by its index!
 </div>
 
@@ -248,6 +256,8 @@ Format: `select CLASS_NAME`
 * The currently selected class will be highlighted in blue and the list of student in the class will be displayed.
 
 <div markdown="block" class="alert alert-info">:information_source: **Info**
+CLASS_NAME is case sensitive! 
+
 We are currently working on a new feature that allows you to select a class by its index!
 </div>
 
@@ -273,7 +283,7 @@ Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 * You can add multiple tags by adding more `t/` flags.
 
 <div markdown="block" class="alert alert-info">:information_source: **Info**
-For now you won't be able to students with the exact same name (although highly unlikely). This feature will be available in future updates.
+If you have multiple students with the same name (although unlikely), you can use different capitalization to store the same name!
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -320,6 +330,8 @@ You can clear a field by omitting the value after the prefix.
 Examples:
 * `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st student shown in the list to be `91234567` and `johndoe@example.com` respectively.
 * `edit 3 n/Joseph Chan t/` edits the name of the 3rd student shown in the list to be `Joseph Chan` and clears all existing tags.
+* Tags cannot be replaced individually. If the original tag of the first student is `class monitor` and `excellent grade`, calling `edit 1 t/Allergic to seafood`
+  will result in the tag being `Allergic to seafood` rather than `class monitor` together with `Allergic to seafood` or `excellent grade` with `Allergic to seafood`.
 
 ![edit](images/editStudent.png)
 Fig 7: `Jane Doe` who was added in [add](#adding-a-student--add), has been renamed to `Joseph Chan` with no tags after `edit 3 n/Joseph Chan t/` was executed.
@@ -516,6 +528,12 @@ Format: `list [all||absent]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 `list all` clears any currently selected class. As a result, any command followed by `list all` will be operating on all students in the TeachBook.
+</div>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+`list all` should be interpreted as a way to unselect the currently selected class. Therefore, in order to view the original list after calling 
+`list all` followed by other list commands like `list absent`, `list all` won't take you back to the original list
+and will be prohibited from calling `list all` as there is already no class selectd. Instead, `list` command should be used to take you back to the original 
+list by listing out all the students as no class is selected.
 </div>
 
 ![list all](images/listAll.png)
