@@ -133,16 +133,17 @@ There are a total of 5 different sections according to the image of out GUI belo
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Basic features
 #### Viewing help : `help`
 
 This command provides you with a link back to this user guide whenever you are in need of assistance.
 
 ![help message](images/helpMessage.png)
-Fig 1: Help popup when help command is executed.
+Fig 1: Help pop up when help command is executed.
 
 Format: `help`
-
 <br>
 <br>
 
@@ -192,7 +193,7 @@ Format: `exit`
 <div markdown="block" class="alert alert-info">:information_source: **Info:**
 TeachBook will automatically save you progress if you exit the app so that you can continue working on it at a later time.
 </div>
-
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 <a href="#" style="float: right;">[ Back to top ]</a>
 
@@ -290,6 +291,7 @@ Example:
 ![select_example](images/select_example.png)
 Fig 5: `4E2` is highlighted in blue with its students list after `select 4E2` was executed.
 
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 <a href="#" style="float: right;">[ Back to top ]</a>
 
@@ -404,7 +406,7 @@ Example:
 ![remark](images/remark.png)
 Fig 10: `Jane Doe` who was added in [add](#adding-a-student--add), is displayed with remark `Contracted COVID-19` after `remark 3 r/Contracted COVID-19` was executed.
 
-
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 <a href="#" style="float: right;">[ Back to top ]</a>
 
@@ -464,7 +466,7 @@ Format: `resetGrade`
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 All grades will be cleared!
 </div>
-
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 <a href="#" style="float: right;">[ Back to top ]</a>
 
@@ -522,7 +524,7 @@ Examples:
 
 ![unmark](images/unmark.png)
 Fig 14: `Jane Doe` who was [marked present previously](#marking-the-attendance-of-a-student--mark), is now unmarked and is displayed with a red box after `unmark 3` was executed.
-
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 <a href="#" style="float: right;">[ Back to top ]</a>
 
@@ -587,7 +589,7 @@ list by listing out all the students as no class is selected.
 
 ![list all](images/listAll.png)
 Fig 16: TeachBook display after `list all` was executed.
-
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 <a href="#" style="float: right;">[ Back to top ]</a>
 
@@ -606,7 +608,7 @@ TeachBook data are saved as a JSON file `[JAR file location]/data/teachbook.json
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, TeachBook will discard all data and start with an empty data file at the next run.
 </div>
-
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 <a href="#" style="float: right;">[ Back to top ]</a>
 
@@ -627,6 +629,7 @@ If your changes to the data file makes its format invalid, TeachBook will discar
 
 
 [comment]: <> (file path is given in command result)
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 <a href="#" style="float: right;">[ Back to top ]</a>
