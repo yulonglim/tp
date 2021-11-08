@@ -48,7 +48,7 @@ deactivate TeachBookParser
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model : deleteStudent(1)
+DeleteCommand -> Model : deleteStudent(student)
 activate Model
 
 Model --> DeleteCommand
