@@ -7,13 +7,13 @@ skinparam classBackgroundColor LOGIC_COLOR
 package Model{
 Interface Model <<Interface>>
 Class ModelManager
-Class FilteredList
+Class FilteredList <<Observable>>
 }
 
 package UI{
 Interface Ui <<Interface>>
 Class UiManager
-Class MainWindow
+Class MainWindow <<Observer>>
 }
 
 UiManager .up.|> Ui
