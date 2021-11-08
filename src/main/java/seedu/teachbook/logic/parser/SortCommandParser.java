@@ -7,6 +7,13 @@ import seedu.teachbook.logic.parser.exceptions.ParseException;
 
 public class SortCommandParser implements Parser<SortCommand> {
 
+    /**
+     * Parses the user input accordingly in order to distinguish between sorting of grades and sorting of names.
+     *
+     * @param args user input which should be either "name" or "grade"
+     * @return {@code SortCommand} result of parsing the user input.
+     * @throws ParseException if the user input does not conform the expected format.
+     */
     public SortCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
 

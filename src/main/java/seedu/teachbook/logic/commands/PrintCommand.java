@@ -69,6 +69,14 @@ public class PrintCommand extends Command {
         this.columnList = columnList;
     }
 
+
+    /**
+     * Utility code to generate column base on student list and column required
+     *
+     * @param columnName name of column to be generated
+     * @param studentList list of student to generate the column for
+     * @return list of string with the student information base on {@code columnName}.
+     */
     public static List<String> generateColumn(String columnName, List<Student> studentList) {
         List<String> result = new ArrayList<>();
 

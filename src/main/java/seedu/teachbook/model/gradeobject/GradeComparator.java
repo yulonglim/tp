@@ -13,6 +13,11 @@ public class GradeComparator implements Comparator<Student> {
 
     private final List<Grade> gradeList;
 
+    /**
+     * Creates a new comparator for grades and adds UNGRADED to the list of grades for easier comparison.
+     *
+     * @param gradeList list of grades set in the grading system to be compared.
+     */
     public GradeComparator(List<Grade> gradeList) {
         this.gradeList = new ArrayList<>(gradeList);
         this.gradeList.add(NOT_GRADED);

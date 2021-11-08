@@ -18,6 +18,7 @@ package "TeachBook Storage" #F4F6F6{
 Interface TeachBookStorage <<Interface>>
 Class JsonTeachBookStorage
 Class JsonSerializableTeachBook
+Class JsonAdaptedGrade
 Class JsonAdaptedClass
 Class JsonAdaptedStudent
 Class JsonAdaptedTag
@@ -38,6 +39,7 @@ Storage -right-|> TeachBookStorage
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonTeachBookStorage .up.|> TeachBookStorage
 JsonTeachBookStorage ..> JsonSerializableTeachBook
+JsonSerializableTeachBook --> "*" JsonAdaptedGrade
 JsonSerializableTeachBook --> "*" JsonAdaptedClass
 JsonAdaptedClass --> "*" JsonAdaptedStudent
 JsonAdaptedStudent --> "*" JsonAdaptedTag
