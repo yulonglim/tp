@@ -183,7 +183,6 @@
 .check-box:indeterminate  > .box > .mark {
     /* modify mark color */
     -fx-background-color: mark-color;
-    /* -fx-padding: 10px; */
 }
 
 .stack-pane {
