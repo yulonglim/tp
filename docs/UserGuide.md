@@ -144,6 +144,7 @@ Fig 1: Help popup when help command is executed.
 Format: `help`
 
 <br>
+<br>
 
 #### Clearing all entries : `clear`
 
@@ -155,6 +156,7 @@ Format: `clear`
 Don't forget that TeachBook provides an undo feature just in case you accidentally clear TeachBook of all its data!
 </div>
 
+<br>
 <br>
 
 #### Undoing a command : `undo`
@@ -170,6 +172,7 @@ Notes about undo:
 </div>
 
 <br>
+<br>
 
 #### Redoing a command: `redo`
 
@@ -177,6 +180,7 @@ This command allows you to redo a command after using an undo command, just in c
 
 Format: `redo`
 
+<br>
 <br>
 
 #### Exiting the program : `exit`
@@ -215,6 +219,7 @@ Examples:
 Fig 2:  `4E4` is added after `addClass 4E4` was executed
 
 <br>
+<br>
 
 #### Deleting a class : `deleteClass`
 
@@ -239,6 +244,7 @@ Examples:
 Fig 3: `4E4` that was added in [addClass](#adding-a-class--addclass) is deleted after `deleteClass 4E4` was executed.
 
 <br>
+<br>
 
 #### Editing a class name : `editClass`
 
@@ -259,6 +265,7 @@ Examples:
 ![editClass](images/editClass.png)
 Fig 4: `4E4` that was added in [addClass](#adding-a-class--addclass) is now `4E5` after `editClass 4E5` was executed.
 
+<br>
 <br>
 
 #### Selecting a class : `select`
@@ -314,6 +321,7 @@ Examples:
 Fig 6: `Jane Doe` is added after second command under Examples was executed.
 
 <br>
+<br>
 
 #### Deleting a student : `delete`
 
@@ -332,6 +340,7 @@ Examples:
 ![delete](images/deleteStudent.png)
 Fig 7: `Jane Doe` who was added in [add](#adding-a-student--add), has been removed from the student list after `delete 3` was executed.
 
+<br>
 <br>
 
 #### Editing a student : `edit`
@@ -357,6 +366,7 @@ Examples:
 Fig 8: `Jane Doe` who was added in [add](#adding-a-student--add), has been renamed to `Joseph Chan` with no tags after `edit 3 n/Joseph Chan t/` was executed.
 
 <br>
+<br>
 
 #### Locating students by name : `find`
 
@@ -378,6 +388,7 @@ Examples:
 ![find](images/findStudent.png)
 Fig 9: `Jane Doe` who was added in [add](#adding-a-student--add), is displayed in the student list after `find Jane Doe` was executed.
 
+<br>
 <br>
 
 #### Adding a remark to a student : `remark`
@@ -418,6 +429,7 @@ Example:
 Fig 11: New grading system added after `setGrade A>B>C>D` was executed.
 
 <br>
+<br>
 
 #### Giving grade to a student : `grade`
 
@@ -438,6 +450,7 @@ Example:
 ![Grade](images/gradeAll.png)
 Fig 12: All students in `4E1` is given an A grade after `grade all g/A` was executed.
 
+<br>
 <br>
 
 #### Resetting the grading system : `resetGrade`
@@ -483,6 +496,7 @@ Examples:
 ![mark](images/markAttendance.png) 
 Fig 13: `Jane Doe` who was added in [add](#adding-a-student--add), is displayed with a green checkbox after `mark 3` was executed.
 
+<br>
 <br>
 
 #### Unmarking the attendance of a student : `unmark`
@@ -535,6 +549,7 @@ Examples:
 Fig 15: Excel sheet generated from TeachBook after `print c/class c/email c/Signature` was executed.
 
 <br>
+<br>
 
 #### Sorting students : `sort`
 
@@ -546,6 +561,7 @@ Examples:
 * `sort name` sorts the list of students according to their name in alphabetical order.
 * `sort grade` sorts the list of students according to their grade in descending order.
 
+<br>
 <br>
 
 #### Listing all students : `list`
@@ -580,6 +596,7 @@ Fig 16: TeachBook display after `list all` was executed.
 
 TeachBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
+<br>
 <br>
 
 #### Editing the data file
