@@ -52,9 +52,7 @@ towards teachers who can type fast. It allows teachers to store and organise con
 different classes. On top of that, teachers can tag the class role of the student.
 
 --------------------------------------------------------------------------------------------------------------------
-<a href="#" style="float: right;">[ Back to top ]</a>
-
-## Quick start
+## Quick start <a href="#" style="float: right;">[ Back to top ]</a>
 
 1. Ensure you have Java `11` or above installed in your computer.
 
@@ -82,9 +80,8 @@ different classes. On top of that, teachers can tag the class role of the studen
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-<a href="#" style="float: right;">[ Back to top ]</a>
+## Graphical User Interface <a href="#" style="float: right;">[ Back to top ]</a>
 
-## Graphical User Interface
 
 In this section, we will be guiding you through the different sections of TeachBook's Graphical User Interface (GUI). 
 There are a total of 5 different sections according to the image of out GUI below (highlighted in red) and they are the:
@@ -97,11 +94,9 @@ There are a total of 5 different sections according to the image of out GUI belo
 ![](images/GUI.png)
 
 --------------------------------------------------------------------------------------------------------------------
-<a href="#" style="float: right;">[ Back to top ]</a>
+## Features <a href="#" style="float: right;">[ Back to top ]</a>
 
-## Features
-
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
@@ -145,7 +140,6 @@ Fig 1: Help pop up when help command is executed.
 
 Format: `help`
 <br>
-<br>
 
 #### Clearing all entries : `clear`
 
@@ -156,9 +150,8 @@ Format: `clear`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Don't forget that TeachBook provides an undo feature just in case you accidentally clear TeachBook of all its data!
 </div>
+<br>
 
-<br>
-<br>
 
 #### Undoing a command : `undo`
 
@@ -166,14 +159,12 @@ This command allows you to revert the TeachBook to the previous state. You most 
 
 Format: `undo`
 
-<div markdown="block" class="alert alert-info">:information_source: **Info:**
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
 Notes about undo:
 * If commands executed results in an error message, TeachBook does not store the outcome, hence you do not have to undo.
 * Commands that do not affect the information displayed or data of TeachBook is not stored (e.g. print, help, etc.), therefore they can't be undone.
 </div>
-
-<br>
-<br>
+<div style="page-break-after: always;"></div>
 
 #### Redoing a command: `redo`
 
@@ -190,7 +181,7 @@ This command helps you to exit TeachBook, while also saving all your data!
 
 Format: `exit`
 
-<div markdown="block" class="alert alert-info">:information_source: **Info:**
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
 TeachBook will automatically save you progress if you exit the app so that you can continue working on it at a later time.
 </div>
 <div style="page-break-after: always;"></div>
@@ -205,7 +196,7 @@ organising the class by adding students to the added class.
 
 Format: `addClass CLASS_NAME`
 
-<div markdown="block" class="alert alert-info">:information_source: **Info:**
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
 CLASS_NAME is case sensitive. 
 </div>
 
@@ -232,7 +223,7 @@ Format: `deleteClass CLASS_NAME`
 
 * Deletes the class with the specified `CLASS_NAME`
 
-<div markdown="block" class="alert alert-info">:information_source: **Info:**
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
 CLASS_NAME is case sensitive.
 
 We are currently working on a new feature that allows you to delete a class by its index!
@@ -244,8 +235,7 @@ Examples:
 ![deleteClass](images/deleteClass.png)
 Fig 3: `4E4` that was added in [addClass](#adding-a-class--addclass) is deleted after `deleteClass 4E4` was executed.
 
-<br>
-<br>
+<div style="page-break-after: always;"></div>
 
 #### Editing a class name : `editClass`
 
@@ -254,7 +244,7 @@ this command to edit the name of the currently selected class to CLASS_NAME spec
 
 Format: `editClass CLASS_NAME`
 
-<div markdown="block" class="alert alert-info">:information_source: **Info:**
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
 CLASS_NAME is case sensitive. 
 
 We are currently working on a new feature that allows you to edit a class by its index!
@@ -266,8 +256,7 @@ Examples:
 ![editClass](images/editClass.png)
 Fig 4: `4E4` that was added in [addClass](#adding-a-class--addclass) is now `4E5` after `editClass 4E5` was executed.
 
-<br>
-<br>
+<div style="page-break-after: always;"></div>
 
 #### Selecting a class : `select`
 
@@ -279,7 +268,7 @@ Format: `select CLASS_NAME`
 * The `CLASS_NAME` to be selected is case-sensitive and must be already inside the list. If not the TeachBook will return `The class does not exist`.
 * The currently selected class will be highlighted in blue and the list of student in the class will be displayed.
 
-<div markdown="block" class="alert alert-info">:information_source: **Info:**
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
 CLASS_NAME is case sensitive. 
 
 We are currently working on a new feature that allows you to select a class by its index!
@@ -293,9 +282,7 @@ Fig 5: `4E2` is highlighted in blue with its students list after `select 4E2` wa
 
 <div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
-<a href="#" style="float: right;">[ Back to top ]</a>
-
-### Student related features
+### Student related features <a href="#" style="float: right;">[ Back to top ]</a>
 #### Adding a student : `add`
 
 Start organising your classes by adding students! This command allows you to add a new student to the 
@@ -307,7 +294,7 @@ Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 * Everything is optional except for name of the student.
 * You can add multiple tags by adding more `t/` flags.
 
-<div markdown="block" class="alert alert-info">:information_source: **Info:**
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
 If you have multiple students with the same name (although unlikely), you can use different capitalization or different spacing between first and last name to store the same name!
 </div>
 
@@ -322,8 +309,7 @@ Examples:
 ![add](images/addStudent.png)
 Fig 6: `Jane Doe` is added after second command under Examples was executed.
 
-<br>
-<br>
+<div style="page-break-after: always;"></div>
 
 #### Deleting a student : `delete`
 
@@ -342,8 +328,7 @@ Examples:
 ![delete](images/deleteStudent.png)
 Fig 7: `Jane Doe` who was added in [add](#adding-a-student--add), has been removed from the student list after `delete 3` was executed.
 
-<br>
-<br>
+<div style="page-break-after: always;"></div>
 
 #### Editing a student : `edit`
 
@@ -367,8 +352,7 @@ Examples:
 ![edit](images/editStudent.png)
 Fig 8: `Jane Doe` who was added in [add](#adding-a-student--add), has been renamed to `Joseph Chan` with no tags after `edit 3 n/Joseph Chan t/` was executed.
 
-<br>
-<br>
+<div style="page-break-after: always;"></div>
 
 #### Locating students by name : `find`
 
@@ -390,8 +374,7 @@ Examples:
 ![find](images/findStudent.png)
 Fig 9: `Jane Doe` who was added in [add](#adding-a-student--add), is displayed in the student list after `find Jane Doe` was executed.
 
-<br>
-<br>
+<div style="page-break-after: always;"></div>
 
 #### Adding a remark to a student : `remark`
 
@@ -408,9 +391,7 @@ Fig 10: `Jane Doe` who was added in [add](#adding-a-student--add), is displayed 
 
 <div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
-<a href="#" style="float: right;">[ Back to top ]</a>
-
-### Grade related features
+### Grade related features <a href="#" style="float: right;">[ Back to top ]</a>
 #### Setting a grading system : `setGrade`
 
 TeachBook allows for setting of personalised grading system. You may implement your own grading system
@@ -430,8 +411,7 @@ Example:
 
 Fig 11: New grading system added after `setGrade A>B>C>D` was executed.
 
-<br>
-<br>
+<div style="page-break-after: always;"></div>
 
 #### Giving grade to a student : `grade`
 
@@ -451,8 +431,6 @@ Example:
 
 ![Grade](images/gradeAll.png)
 Fig 12: All students in `4E1` is given an A grade after `grade all g/A` was executed.
-
-<br>
 <br>
 
 #### Resetting the grading system : `resetGrade`
@@ -468,21 +446,20 @@ All grades will be cleared!
 </div>
 <div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
-<a href="#" style="float: right;">[ Back to top ]</a>
 
-### Attendance related features
+### Attendance related features <a href="#" style="float: right;">[ Back to top ]</a>
 #### Marking the attendance of a student : `mark`
 
 You can use this to mark your student as present. The `present` checkbox will turn green with a tick indicating successful marking of attendance.
 
 Format: `mark INDEX…||all`
 
-<div markdown="block" class="alert alert-info">:information_source: **Info:**
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
 This command allows you to mark multiple indexes at once. Which can save you lots of time! The check box will turn green
 once the attendance of the student is marked! 
 </div>
 
-<div markdown="block" class="alert alert-info">:information_source: **Info:**
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
 When using this command this command on a filtered list generated from a `find` command, the list will no longer be filtered and the full list will be shown!
 </div>
 
@@ -498,8 +475,7 @@ Examples:
 ![mark](images/markAttendance.png) 
 Fig 13: `Jane Doe` who was added in [add](#adding-a-student--add), is displayed with a green checkbox after `mark 3` was executed.
 
-<br>
-<br>
+<div style="page-break-after: always;"></div>
 
 #### Unmarking the attendance of a student : `unmark`
 
@@ -508,14 +484,17 @@ This command also allows you to unmark all the attendance for the selected class
 
 Format: `unmark INDEX…||all`
 
-<div markdown="block" class="alert alert-info">:information_source: **Info:**
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
 This command allows you to unmark multiple indexes at once. Which can save you lots of time! The check box will turn red
-once the attendance of the student is unmarked!
-</div>
-
-<div markdown="block" class="alert alert-info">:information_source: **Info:**
+once the attendance of the student is unmarked! <br>
 When using this command this command on a filtered list generated from a `find` command, the list will no longer be filtered and the full list will be shown!
 </div>
+
+[comment]: <> (<div markdown="span" class="alert alert-info">:information_source: **Info:**)
+
+[comment]: <> (When using this command this command on a filtered list generated from a `find` command, the list will no longer be filtered and the full list will be shown!)
+
+[comment]: <> (</div>)
 
 Examples:
 * `unmark 3` marks the student at index 3 as absent.
@@ -526,9 +505,7 @@ Examples:
 Fig 14: `Jane Doe` who was [marked present previously](#marking-the-attendance-of-a-student--mark), is now unmarked and is displayed with a red box after `unmark 3` was executed.
 <div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
-<a href="#" style="float: right;">[ Back to top ]</a>
-
-### Utility features
+### Utility features <a href="#" style="float: right;">[ Back to top ]</a>
 #### Printing to Excel : `print`
 
 This command generates an Excel file containing students in the currently shown list, with personalised columns as specified in the command parameter.
@@ -540,7 +517,7 @@ Format: `print [c/class] [c/phone] [c/email] [c/address] [c/tags] [c/remark] [c/
 * You can add one or more empty columns with customized titles.
 * Columns with special names mentioned in format will be populated with the respective information from TeachBook.
 
-<div markdown="block" class="alert alert-info">:information_source: **Info**
+<div markdown="span" class="alert alert-info">:information_source: **Info**
 Putting an empty column heading (i.e. `c/ `) will give you an empty column! This can help you have larger separation between columns.
 </div>
 
@@ -550,8 +527,7 @@ Examples:
 ![excel](images/img.png)
 Fig 15: Excel sheet generated from TeachBook after `print c/class c/email c/Signature` was executed.
 
-<br>
-<br>
+<div style="page-break-after: always;"></div>
 
 #### Sorting students : `sort`
 
@@ -591,15 +567,10 @@ list by listing out all the students as no class is selected.
 Fig 16: TeachBook display after `list all` was executed.
 <div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
-<a href="#" style="float: right;">[ Back to top ]</a>
-
-### Others
+### Others <a href="#" style="float: right;">[ Back to top ]</a>
 #### Saving the data
 
 TeachBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-<br>
-<br>
 
 #### Editing the data file
 
@@ -608,11 +579,9 @@ TeachBook data are saved as a JSON file `[JAR file location]/data/teachbook.json
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, TeachBook will discard all data and start with an empty data file at the next run.
 </div>
-<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
-<a href="#" style="float: right;">[ Back to top ]</a>
 
-## FAQs
+## FAQs <a href="#" style="float: right;">[ Back to top ]</a>
 
 **Q**: How do I transfer my data to another Computer? <br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder. <br>
@@ -630,7 +599,6 @@ If your changes to the data file makes its format invalid, TeachBook will discar
 
 [comment]: <> (file path is given in command result)
 <div style="page-break-after: always;"></div>
-
 --------------------------------------------------------------------------------------------------------------------
 <a href="#" style="float: right;">[ Back to top ]</a>
 
