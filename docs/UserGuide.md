@@ -41,8 +41,8 @@ There are 3 symbols that you need know in order to use this user guide effective
 * If you see a :bulb: symbol, it means that it is a tip (e.g. shortcut or hidden features) which you can follow to enhance
 your experience. 
 
-* If you see a :exclamation: symbol, take extra caution because if you don't follow the instruction listed, it might cause 
-the program to not run the way you intended it to and return unwanted results.
+* If you see a :exclamation: symbol, take extra caution. If instruction listed are not followed properly,
+the program may not run the way you intended it to and return unwanted results.
 
 
 ## What is TeachBook?
@@ -163,14 +163,14 @@ Format: `undo`
 
 <div markdown="block" class="alert alert-info">:information_source: **Info:**
 Notes about undo:
-* If commands executed results in an error message, TeachBook does not store the outcome, hence you do not have to undo!
-* Commands that do not affect the information displayed or data of TeachBook is not stored (e.g. print, help, etc.), therefore they can't be undone!
+* If commands executed results in an error message, TeachBook does not store the outcome, hence you do not have to undo.
+* Commands that do not affect the information displayed or data of TeachBook is not stored (e.g. print, help, etc.), therefore they can't be undone.
 </div>
 
 
 #### Redoing a command: `redo`
 
-This command allows you to redo a command after using an undo command, just in case you did an undo accidentally!
+This command allows you to redo a command after using an undo command, just in case you did an undo accidentally.
 
 Format: `redo`
 
@@ -182,7 +182,7 @@ This command helps you to exit TeachBook, while also saving all your data!
 Format: `exit`
 
 <div markdown="block" class="alert alert-info">:information_source: **Info:**
-TeachBook will automatically save you progress if you exit the app so that you can continue working on it at a later time!
+TeachBook will automatically save you progress if you exit the app so that you can continue working on it at a later time.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -197,11 +197,11 @@ organising the class by adding students to the added class.
 Format: `addClass CLASS_NAME`
 
 <div markdown="block" class="alert alert-info">:information_source: **Info:**
-CLASS_NAME is case sensitive! 
+CLASS_NAME is case sensitive. 
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-There is a limit of 20 characters for the class name! But I am sure your class name will not be longer that limit!
+There is a limit of 20 characters for the class name! But I am sure your class name will not be longer than that limit!
 </div>
 
 Examples:
@@ -224,7 +224,7 @@ Format: `deleteClass CLASS_NAME`
 <div markdown="block" class="alert alert-info">:information_source: **Info:**
 CLASS_NAME is case sensitive.
 
-We are currently working on a new feature that allows you to select a class by its index!
+We are currently working on a new feature that allows you to delete a class by its index!
 </div>
 
 Examples:
@@ -244,7 +244,7 @@ Format: `editClass CLASS_NAME`
 <div markdown="block" class="alert alert-info">:information_source: **Info:**
 CLASS_NAME is case sensitive. 
 
-We are currently working on a new feature that allows you to select a class by its index!
+We are currently working on a new feature that allows you to edit a class by its index!
 </div>
 
 
