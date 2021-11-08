@@ -25,7 +25,7 @@ import seedu.teachbook.model.student.Student;
 import seedu.teachbook.model.student.UniqueStudentList;
 
 /**
- * Wraps all data at the teachbook level
+ * Wraps all data at the TeachBook level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class TeachBook implements ReadOnlyTeachBook {
@@ -117,8 +117,8 @@ public class TeachBook implements ReadOnlyTeachBook {
     //// class-level operations
 
     /**
-     * Adds a class to the teachbook.
-     * The class must not already exist in the teachbook.
+     * Adds a class to the TeachBook.
+     * The class must not already exist in the TeachBook.
      */
     public void addClass(Class toAdd) {
         classes.add(toAdd);
@@ -126,7 +126,7 @@ public class TeachBook implements ReadOnlyTeachBook {
 
     /**
      * Removes {@code target} from this {@code TeachBook}.
-     * {@code target} must exist in the teachbook.
+     * {@code target} must exist in the TeachBook.
      */
     public void removeClass(Class target) {
         classes.remove(target);
@@ -134,9 +134,9 @@ public class TeachBook implements ReadOnlyTeachBook {
 
     /**
      * Replaces the name of given class with index {@code classIndex} in the list with {@code updatedClassName}.
-     * {@code classIndex} must exist in the teachbook.
+     * {@code classIndex} must exist in the TeachBook.
      * The name specified in {@code updatedClassName} must not be the same as
-     * another existing className in the teachbook.
+     * another existing className in the TeachBook.
      */
     public void setClassName(GeneralIndex classIndex, ClassName updatedClassName) {
         Class target = getClassAtIndex(classIndex);
@@ -162,7 +162,7 @@ public class TeachBook implements ReadOnlyTeachBook {
     }
 
     /**
-     * Returns true if a class with the same identity as {@code classObj} exists in the teachbook.
+     * Returns true if a class with the same identity as {@code classObj} exists in the TeachBook.
      */
     public boolean hasClass(Class classObj) {
         requireNonNull(classObj);
@@ -205,7 +205,7 @@ public class TeachBook implements ReadOnlyTeachBook {
     //// student-level operations
 
     /**
-     * Returns true if a student with the same identity as {@code student} exists in the teachbook.
+     * Returns true if a student with the same identity as {@code student} exists in the TeachBook.
      */
     public boolean hasStudent(GeneralIndex classIndex, Student student) {
         if (classIndex.equals(INDEX_LIST_ALL)) {
@@ -217,8 +217,8 @@ public class TeachBook implements ReadOnlyTeachBook {
     }
 
     /**
-     * Adds a student to the teachbook.
-     * The student must not already exist in the teachbook.
+     * Adds a student to the TeachBook.
+     * The student must not already exist in the TeachBook.
      */
     public void addStudent(GeneralIndex classIndex, Student studentToAdd) {
         requireAllNonNull(classIndex, studentToAdd);
@@ -228,9 +228,9 @@ public class TeachBook implements ReadOnlyTeachBook {
 
     /**
      * Replaces the given student {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the teachbook.
+     * {@code target} must exist in the TeachBook.
      * The student identity of {@code editedPerson} must not be the same as
-     * another existing student in the teachbook.
+     * another existing student in the TeachBook.
      */
     public void setStudent(GeneralIndex classIndex, Student target, Student editedStudent) {
         requireAllNonNull(classIndex, target, editedStudent);
@@ -242,7 +242,7 @@ public class TeachBook implements ReadOnlyTeachBook {
 
     /**
      * Removes {@code key} from this {@code TeachBook}.
-     * {@code key} must exist in the teachbook.
+     * {@code key} must exist in the TeachBook.
      */
     public void removeStudent(GeneralIndex classIndex, Student key) {
         if (classIndex.equals(INDEX_LIST_ALL)) {
@@ -292,7 +292,7 @@ public class TeachBook implements ReadOnlyTeachBook {
     /**
      * Getter method for Grading System
      *
-     * @return Grading system of current Teachbook
+     * @return Grading system of current TeachBook
      */
     public GradingSystem getGradingSystem() {
         return new GradingSystem(Collections.unmodifiableList(gradingSystem.getGradeList()));

@@ -426,7 +426,7 @@ Priorities: High (must have) - `* * *` , Medium (nice to have) - `* *` , Low (un
 
 | Priority | As a ...                                                  | I want to ...                                                                                   | So that I can ...                                                                        |
 | -------- | --------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `* * *` | new user | get instructions | refer to instructions when I forget how to use the Teachbook |
+| `* * *` | new user | get instructions | refer to instructions when I forget how to use the TeachBook |
 | `* * *` | teacher | add the students I teach |  |
 | `* * *` | teacher | remove students from my contacts | remove specific students who are no longer take my classes |
 | `* * *` | teacher | search for my students in my contacts by name | get a student's information easily  |
@@ -440,7 +440,7 @@ Priorities: High (must have) - `* * *` , Medium (nice to have) - `* *` , Low (un
 | `* *` | teacher | sort my students by grade | quickly find out groups of students which require more help |
 | `* *` | teacher | set a special grading system | customize my grading system just in case it changes in the future |
 | `* *` | teacher | delete a class with its data all at once | quickly remove the class I have stopped teaching |
-| `* *` | teacher | clear the Teachbook data all at once | get a fresh Teachbook at the start of the year  |
+| `* *` | teacher | clear the TeachBook data all at once | get a fresh TeachBook at the start of the year  |
 | `* *` | teacher | filter my students using keywords | quickly list out specific students |
 | `* *` | teacher | undo the most recent command | revert any mistakes I make quickly |
 | `* *` | teacher | redo the most recent undo | redo any accidental undos |
@@ -455,8 +455,8 @@ Priorities: High (must have) - `* * *` , Medium (nice to have) - `* *` , Low (un
 | `*` | teacher | print out a list of students with extra information related to the students | do not have to manually input all the information |
 | `*` | teacher | view the list of all students | have an overview of all my students |
 | `*` | teacher | add all students from a class at once | quickly add the information of the students in each class |
-| `*` | teacher | archive my Teachbook data | start over with a clean slate and can retrieve records I need in the future |
-| `*` | teacher | able to load a different Teachbook data to my Teachbook  | easily transfer any data from one device to another |
+| `*` | teacher | archive my TeachBook data | start over with a clean slate and can retrieve records I need in the future |
+| `*` | teacher | able to load a different TeachBook data to my TeachBook  | easily transfer any data from one device to another |
 
 
 ### Use cases
@@ -583,8 +583,28 @@ Extensions:
 
     Use case ends.
 
-* 1c. Email entered is of the wrong format.
+* 1c. There is an existing student with the same name.
     * 1c1. TeachBook shows an error message.
+
+      Use case ends.
+
+* 1d. Student name entered consist of special characters.
+    * 1c1. TeachBook shows an error message.
+
+      Use case ends.
+
+* 1e. Student name entered is longer than 70 characters.
+    * 1d1. TeachBook shows an error message.
+
+      Use case ends.
+
+* 1f. Email entered is of the wrong format.
+    * 1e1. TeachBook shows an error message.
+
+      Use case ends.
+
+* 1g. Phone number entered consist of less than three numbers.
+    * 1f1. TeachBook shows an error message.
 
       Use case ends.
 
@@ -646,8 +666,23 @@ Extensions:
 
       Use case ends.
 
-* 1d. Email entered is of the wrong format.
+* 1d. Student name entered consist of special characters.
+    * 1c1. TeachBook shows an error message.
+
+      Use case ends.
+
+* 1e. Student name entered is longer than 70 characters.
     * 1d1. TeachBook shows an error message.
+
+      Use case ends.
+
+* 1f. Email entered is of the wrong format.
+    * 1d1. TeachBook shows an error message.
+
+      Use case ends.
+
+* 1g. Phone number entered consist of less than three numbers.
+    * 1e1. TeachBook shows an error message.
 
       Use case ends.
 
@@ -1001,7 +1036,7 @@ MSS:
 
 Extensions:
 
-* 1a. Teachbook does not have any undo commands to redo.
+* 1a. TeachBook does not have any undo commands to redo.
     * 1a1. TeachBook shows an error message.
 
       Use case ends.

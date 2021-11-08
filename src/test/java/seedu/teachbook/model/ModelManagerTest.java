@@ -1,22 +1,14 @@
 package seedu.teachbook.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.teachbook.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.teachbook.testutil.Assert.assertThrows;
-import static seedu.teachbook.testutil.TypicalStudents.ALICE;
-import static seedu.teachbook.testutil.TypicalStudents.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.teachbook.commons.core.GuiSettings;
-import seedu.teachbook.model.student.NameContainsKeywordsPredicate;
-import seedu.teachbook.testutil.TeachBookBuilder;
 
 public class ModelManagerTest {
 
@@ -78,55 +70,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_personNotInTeachBook_returnsFalse() {
-        assertFalse(modelManager.hasStudent(ALICE));
-    }
-
-    @Test
-    public void hasPerson_personInTeachBook_returnsTrue() {
-        modelManager.addStudent(ALICE);
-        assertTrue(modelManager.hasStudent(ALICE));
-    }
-
-    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStudentList().remove(0));
-    }
-
-    @Test
-    public void equals() {
-        TeachBook teachBook = new TeachBookBuilder().withStudent(ALICE).withStudent(BENSON).build();
-        TeachBook differentTeachBook = new TeachBook();
-        UserPrefs userPrefs = new UserPrefs();
-
-        // same values -> returns true
-        modelManager = new ModelManager(teachBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(teachBook, userPrefs);
-        assertTrue(modelManager.equals(modelManagerCopy));
-
-        // same object -> returns true
-        assertTrue(modelManager.equals(modelManager));
-
-        // null -> returns false
-        assertFalse(modelManager.equals(null));
-
-        // different types -> returns false
-        assertFalse(modelManager.equals(5));
-
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentTeachBook, userPrefs)));
-
-        // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(teachBook, userPrefs)));
-
-        // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-
-        // different userPrefs -> returns false
-        UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setTeachBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(teachBook, differentUserPrefs)));
     }
 }
