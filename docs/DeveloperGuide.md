@@ -362,11 +362,12 @@ Step 1. The user launches the application for the first time. The `VersionedTeac
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
+<div style="page-break-after: always;"></div>
+
 Step 2. The user executes `delete 5` command to delete the 5th student in the Teachbook. The `delete` command calls `Model#commitTeachBook()`, causing the modified TeachbookDatastate after the `delete 5` command executes to be saved in the `teachBookStateList`, and the `currentStatePointer` is shifted to the newly inserted TeachBook state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-<div style="page-break-after: always;"></div>
 
 Step 3. The user executes `add n/David ...` to add a new student. The `add` command also calls `Model#commitTeachBook()`, causing another modified TeachbookDatastate to be saved into the `teachBookStateList`.
 
@@ -413,7 +414,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-<div style="page-break-after: always;"></div>
 
 #### Design considerations
 
