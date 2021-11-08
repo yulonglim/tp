@@ -63,6 +63,8 @@ Each of the four main components (also shown in the diagram above),
 * defines its API in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
+<div style="page-break-after: always;"></div>
+
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
@@ -70,7 +72,6 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 The sections below give more details of each component.
 
 <div style="page-break-after: always;"></div>
-
 
 ### UI component
 
@@ -362,11 +363,12 @@ Step 1. The user launches the application for the first time. The `VersionedTeac
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
+<div style="page-break-after: always;"></div>
+
 Step 2. The user executes `delete 5` command to delete the 5th student in the Teachbook. The `delete` command calls `Model#commitTeachBook()`, causing the modified TeachbookDatastate after the `delete 5` command executes to be saved in the `teachBookStateList`, and the `currentStatePointer` is shifted to the newly inserted TeachBook state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-<div style="page-break-after: always;"></div>
 
 Step 3. The user executes `add n/David ...` to add a new student. The `add` command also calls `Model#commitTeachBook()`, causing another modified TeachbookDatastate to be saved into the `teachBookStateList`.
 
@@ -380,12 +382,12 @@ Step 4. The user now decides that adding the student was a mistake, and decides 
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial TeachBook state, then there are no previous TeachBook states to restore. The `undo` command uses `Model#canUndoTeachBook()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
-
-<div style="page-break-after: always;"></div>
 
 The following sequence diagram shows how the undo operation works:
 
@@ -413,7 +415,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-<div style="page-break-after: always;"></div>
 
 #### Design considerations
 
