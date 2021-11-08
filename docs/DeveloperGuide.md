@@ -19,6 +19,7 @@ title: Developer Guide
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
@@ -68,6 +69,9 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S1-CS2103T-W10-2/tp/blob/master/src/main/java/seedu/teachbook/ui/Ui.java)
@@ -85,6 +89,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Student` and `Class` object residing in the `Model`.
+
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -115,6 +121,8 @@ How the parsing works:
 * When called upon to parse a user command, the `TeachBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TeachBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2122S1-CS2103T-W10-2/tp/blob/master/src/main/java/seedu/teachbook/model/Model.java)
 
@@ -128,7 +136,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
-
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -146,6 +154,7 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.teachbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -182,6 +191,8 @@ To integrate the new class feature into the existing AB3 product, we decided tha
     * Similar to _Alternative 2_, there is still the need to maintain the order of students in the unique student list.
     * We always need a predicate to screen out students of the currently selected class. Since users may interact with a specific class at most times, this can degrade the performance of most commands.
 
+<div style="page-break-after: always;"></div>
+
 ### Synchronization of Student List in Model and UI
 
 To ensure synchronization throughout the program, `ModelManager` maintains a `filteredStudents` observable, which is 
@@ -207,6 +218,8 @@ Below is the sequence diagram of the execution of the `ListCommand` with the `al
 
 ![ListAllSequenceDiagram](images/ListAllSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Delete class feature
 
 #### Implementation
@@ -229,6 +242,8 @@ The following sequence diagram shows interactions within the `Logic` component a
 The following object diagram shows the updated TeachBook:
 
 <img src="images/DeleteClassObjectDiagram1.png" width="280" />
+
+<div style="page-break-after: always;"></div>
 
 ### Edit feature
 
@@ -256,6 +271,8 @@ Given below is the activity diagram for the same scenario above:
 
 ![EditCommandActivityDiagram](images/EditCommandActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Filtering
 
 Filtering is an essential feature to have when it comes to an application that stores data. This is because with 
@@ -280,6 +297,8 @@ Below is the sequence diagram of the execution of the `FindCommand`.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Below is the sequence diagram of the execution of the `ListCommand` with the `absent` option.
 
 ![ListAbsentSequenceDiagram](images/ListAbsentSequenceDiagram.png)
@@ -293,6 +312,8 @@ Below is the sequence diagram of the execution of the `ListCommand`.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Add class feature
 
@@ -317,6 +338,8 @@ named `A`.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddClassCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Undo/redo feature
 
@@ -343,6 +366,8 @@ Step 2. The user executes `delete 5` command to delete the 5th student in the Te
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
+<div style="page-break-after: always;"></div>
+
 Step 3. The user executes `add n/David ...` to add a new student. The `add` command also calls `Model#commitTeachBook()`, causing another modified TeachbookDatastate to be saved into the `teachBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
@@ -359,6 +384,8 @@ Step 4. The user now decides that adding the student was a mistake, and decides 
 than attempting to perform the undo.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 The following sequence diagram shows how the undo operation works:
 
@@ -386,6 +413,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
+<div style="page-break-after: always;"></div>
+
 #### Design considerations
 
 **Aspect: How undo & redo executes:**
@@ -400,6 +429,7 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -432,6 +462,7 @@ app to keep their work life separated from their personal life. Allows teachers 
 information accurately and easily. Assists teachers with their day to day administrative work such as marking of attendance
 and grading.
 
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
@@ -470,6 +501,7 @@ Priorities: High (must have) - `* * *` , Medium (nice to have) - `* *` , Low (un
 | `*` | teacher | archive my TeachBook data | start over with a clean slate and can retrieve records I need in the future |
 | `*` | teacher | able to load a different TeachBook data to my TeachBook  | easily transfer any data from one device to another |
 
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -1004,6 +1036,7 @@ MSS:
 
    Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 
@@ -1027,6 +1060,7 @@ MSS:
 * **Student list panel:** The panel on the UI that displays a list of students to the user
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
