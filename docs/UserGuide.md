@@ -17,7 +17,6 @@ about what TeachBook can do, you are at the right place!
 In this user guide, you will find step-by-step instructions on how you can install TeachBook and guide on how to use all 
 of its features.
 
-[comment]: <> (its features. Did we also mention that TeachBook is free?)
 
 ## How to use this guide?
 
@@ -144,6 +143,8 @@ Fig 1: Help popup when help command is executed.
 
 Format: `help`
 
+<br>
+
 #### Clearing all entries : `clear`
 
 This command deletes all classes and students, and resets the grading system of the TeachBook, giving you a fresh TeachBook to work with.
@@ -154,6 +155,7 @@ Format: `clear`
 Don't forget that TeachBook provides an undo feature just in case you accidentally clear TeachBook of all its data!
 </div>
 
+<br>
 
 #### Undoing a command : `undo`
 
@@ -167,6 +169,7 @@ Notes about undo:
 * Commands that do not affect the information displayed or data of TeachBook is not stored (e.g. print, help, etc.), therefore they can't be undone.
 </div>
 
+<br>
 
 #### Redoing a command: `redo`
 
@@ -174,6 +177,7 @@ This command allows you to redo a command after using an undo command, just in c
 
 Format: `redo`
 
+<br>
 
 #### Exiting the program : `exit`
 
@@ -210,6 +214,7 @@ Examples:
 ![addClass](images/addClass.png)
 Fig 2:  `4E4` is added after `addClass 4E4` was executed
 
+<br>
 
 #### Deleting a class : `deleteClass`
 
@@ -233,6 +238,7 @@ Examples:
 ![deleteClass](images/deleteClass.png)
 Fig 3: `4E4` that was added in [addClass](#adding-a-class--addclass) is deleted after `deleteClass 4E4` was executed.
 
+<br>
 
 #### Editing a class name : `editClass`
 
@@ -247,13 +253,13 @@ CLASS_NAME is case sensitive.
 We are currently working on a new feature that allows you to edit a class by its index!
 </div>
 
-
 Examples:
 * `editClass 4E5` edits the name of the currently selected class to be `4E5`.
 
 ![editClass](images/editClass.png)
 Fig 4: `4E4` that was added in [addClass](#adding-a-class--addclass) is now `4E5` after `editClass 4E5` was executed.
 
+<br>
 
 #### Selecting a class : `select`
 
@@ -307,6 +313,7 @@ Examples:
 ![add](images/addStudent.png)
 Fig 6: `Jane Doe` is added after second command under Examples was executed.
 
+<br>
 
 #### Deleting a student : `delete`
 
@@ -325,6 +332,7 @@ Examples:
 ![delete](images/deleteStudent.png)
 Fig 7: `Jane Doe` who was added in [add](#adding-a-student--add), has been removed from the student list after `delete 3` was executed.
 
+<br>
 
 #### Editing a student : `edit`
 
@@ -348,6 +356,7 @@ Examples:
 ![edit](images/editStudent.png)
 Fig 8: `Jane Doe` who was added in [add](#adding-a-student--add), has been renamed to `Joseph Chan` with no tags after `edit 3 n/Joseph Chan t/` was executed.
 
+<br>
 
 #### Locating students by name : `find`
 
@@ -369,6 +378,7 @@ Examples:
 ![find](images/findStudent.png)
 Fig 9: `Jane Doe` who was added in [add](#adding-a-student--add), is displayed in the student list after `find Jane Doe` was executed.
 
+<br>
 
 #### Adding a remark to a student : `remark`
 
@@ -407,6 +417,7 @@ Example:
 
 Fig 11: New grading system added after `setGrade A>B>C>D` was executed.
 
+<br>
 
 #### Giving grade to a student : `grade`
 
@@ -427,6 +438,7 @@ Example:
 ![Grade](images/gradeAll.png)
 Fig 12: All students in `4E1` is given an A grade after `grade all g/A` was executed.
 
+<br>
 
 #### Resetting the grading system : `resetGrade`
 
@@ -470,6 +482,8 @@ Examples:
   
 ![mark](images/markAttendance.png) 
 Fig 13: `Jane Doe` who was added in [add](#adding-a-student--add), is displayed with a green checkbox after `mark 3` was executed.
+
+<br>
 
 #### Unmarking the attendance of a student : `unmark`
 
@@ -520,6 +534,7 @@ Examples:
 ![excel](images/img.png)
 Fig 15: Excel sheet generated from TeachBook after `print c/class c/email c/Signature` was executed.
 
+<br>
 
 #### Sorting students : `sort`
 
@@ -531,6 +546,7 @@ Examples:
 * `sort name` sorts the list of students according to their name in alphabetical order.
 * `sort grade` sorts the list of students according to their grade in descending order.
 
+<br>
 
 #### Listing all students : `list`
 
@@ -564,6 +580,7 @@ Fig 16: TeachBook display after `list all` was executed.
 
 TeachBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
+<br>
 
 #### Editing the data file
 
