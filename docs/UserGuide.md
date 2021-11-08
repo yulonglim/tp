@@ -99,7 +99,8 @@ There are a total of 5 different sections according to the image of out GUI belo
 <a href="#" style="float: right;">[ Back to top ]</a>
 ## Features 
 
-<div markdown="span" class="alert alert-info">
+<div markdown="block
+" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
@@ -151,7 +152,8 @@ This command deletes all classes and students, and resets the grading system of 
 
 Format: `clear`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="block
+" class="alert alert-primary">:bulb: **Tip:**
 Don't forget that TeachBook provides an undo feature just in case you accidentally clear TeachBook of all its data!
 </div>
 <br>
@@ -162,7 +164,7 @@ This command allows you to revert the TeachBook to the previous state. You most 
 
 Format: `undo`
 
-<div markdown="span" class="alert alert-info">:information_source: **Info:**
+<div markdown="block" class="alert alert-info">:information_source: **Info:**
 Notes about undo:
 * If commands executed results in an error message, TeachBook does not store the outcome, hence you do not have to undo.
 * Commands that do not affect the information displayed or data of TeachBook is not stored (e.g. print, help, etc.), therefore they can't be undone.
@@ -182,7 +184,8 @@ This command helps you to exit TeachBook, while also saving all your data!
 
 Format: `exit`
 
-<div markdown="span" class="alert alert-info">:information_source: **Info:**
+<div markdown="block
+" class="alert alert-info">:information_source: **Info:**
 TeachBook will automatically save you progress if you exit the app so that you can continue working on it at a later time.
 </div>
 <div style="page-break-after: always;"></div>
@@ -197,11 +200,13 @@ organising the class by adding students to the added class.
 
 Format: `addClass CLASS_NAME`
 
-<div markdown="span" class="alert alert-info">:information_source: **Info:**
+<div markdown="block
+" class="alert alert-info">:information_source: **Info:**
 CLASS_NAME is case sensitive. 
 </div>
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="block
+" class="alert alert-warning">:exclamation: **Caution:**
 There is a limit of 20 characters for the class name! But I am sure your class name will not be longer than that limit!
 </div>
 
@@ -222,7 +227,8 @@ Format: `deleteClass CLASS_NAME`
 
 * Deletes the class with the specified `CLASS_NAME`
 
-<div markdown="span" class="alert alert-info">:information_source: **Info:**
+<div markdown="block
+" class="alert alert-info">:information_source: **Info:**
 CLASS_NAME is case sensitive.
 
 We are currently working on a new feature that allows you to delete a class by its index!
@@ -243,7 +249,8 @@ this command to edit the name of the currently selected class to CLASS_NAME spec
 
 Format: `editClass CLASS_NAME`
 
-<div markdown="span" class="alert alert-info">:information_source: **Info:**
+<div markdown="block
+" class="alert alert-info">:information_source: **Info:**
 CLASS_NAME is case sensitive. 
 
 We are currently working on a new feature that allows you to edit a class by its index!
@@ -267,7 +274,8 @@ Format: `select CLASS_NAME`
 * The `CLASS_NAME` to be selected is case-sensitive and must be already inside the list. If not the TeachBook will return `The class does not exist`.
 * The currently selected class will be highlighted in blue and the list of student in the class will be displayed.
 
-<div markdown="span" class="alert alert-info">:information_source: **Info:**
+<div markdown="block
+" class="alert alert-info">:information_source: **Info:**
 CLASS_NAME is case sensitive. 
 
 We are currently working on a new feature that allows you to select a class by its index!
@@ -294,11 +302,13 @@ Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 * Everything is optional except for name of the student.
 * You can add multiple tags by adding more `t/` flags.
 
-<div markdown="span" class="alert alert-info">:information_source: **Info:**
+<div markdown="block
+" class="alert alert-info">:information_source: **Info:**
 If you have multiple students with the same name (although unlikely), you can use different capitalization or spacing between first and last name to store the same name!
 </div>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="block
+" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0)
 </div>
 
@@ -338,7 +348,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 * Edits the student at the specified `INDEX`.
 * Existing values will be updated to the input values.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="block
+" class="alert alert-primary">:bulb: **Tip:**
 You can clear a field by omitting the value after the prefix.
 </div>
 
@@ -400,7 +411,8 @@ Grades are set in descending order, from the highest to the lowest grade.
 
 Format: `setGrade GRADE_1[>GRADE_2]…`
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="block
+" class="alert alert-warning">:exclamation: **Caution:**
 This command takes in a list of grades separated by ">" and they are entered in decreasing order!
 </div>
 
@@ -419,7 +431,8 @@ You can use this command to set a grade for a particular student.
 
 Format: `grade INDEX…||all g/[GRADE]`
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="block
+" class="alert alert-warning">:exclamation: **Caution:**
 You cannot grade a student without having first add grading system. So, remember to do that first!
 </div>
 
@@ -441,7 +454,8 @@ all the grades which were previously given to the students.
 
 Format: `resetGrade`
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="block
+" class="alert alert-warning">:exclamation: **Caution:**
 All grades will be cleared!
 </div>
 <div style="page-break-after: always;"></div>
@@ -455,16 +469,19 @@ You can use this to mark your student as present. The `present` checkbox will tu
 
 Format: `mark INDEX…||all`
 
-<div markdown="span" class="alert alert-info">:information_source: **Info:**
+<div markdown="block
+" class="alert alert-info">:information_source: **Info:**
 This command allows you to mark multiple indexes at once. Which can save you lots of time! The check box will turn green
 once the attendance of the student is marked! 
 </div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Info:**
+<div markdown="block
+" class="alert alert-info">:information_source: **Info:**
 When using this command this command on a filtered list generated from a `find` command, the list will no longer be filtered and the full list will be shown!
 </div>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="block
+" class="alert alert-primary">:bulb: **Tip:**
 After marking, you can retrieve the attendance list with the `print c/attendance` command. You might also want to check out the [print](#printing-to-excel--print) command for more special columns available to be added.
 </div>
 
@@ -485,7 +502,8 @@ This command also allows you to unmark all the attendance for the selected class
 
 Format: `unmark INDEX…||all`
 
-<div markdown="span" class="alert alert-info">:information_source: **Info:**
+<div markdown="block
+" class="alert alert-info">:information_source: **Info:**
 This command allows you to unmark multiple indexes at once. Which can save you lots of time! The check box will turn red
 once the attendance of the student is unmarked! <br>
 When using this command this command on a filtered list generated from a `find` command, the list will no longer be filtered and the full list will be shown!
@@ -513,7 +531,8 @@ Format: `print [c/class] [c/phone] [c/email] [c/address] [c/tags] [c/remark] [c/
 * You can add one or more empty columns with customized titles.
 * Columns with special names mentioned in format will be populated with the respective information from TeachBook.
 
-<div markdown="span" class="alert alert-info">:information_source: **Info**
+<div markdown="block
+" class="alert alert-info">:information_source: **Info**
 Putting an empty column heading (i.e. `c/ `) will give you an empty column! This can help you have larger separation between columns.
 </div>
 
@@ -522,8 +541,7 @@ Examples:
 
 ![excel](images/img.png)
 Fig 15: Excel sheet generated from TeachBook after `print c/class c/email c/Signature` was executed.
-
-<div style="page-break-after: always;"></div>
+<br>
 
 #### Sorting students : `sort`
 
@@ -535,8 +553,7 @@ Examples:
 * `sort name` sorts the list of students according to their name in alphabetical order.
 * `sort grade` sorts the list of students according to their grade in descending order.
 
-<br>
-<br>
+<div style="page-break-after: always;"></div>
 
 #### Listing all students : `list`
 
@@ -549,10 +566,12 @@ Format: `list [all||absent]`
 * `list all` lists all students in the TeachBook.
 * `list absent` lists all students from the currently selected class or the entire TeachBook whose status is unmarked.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="block
+" class="alert alert-primary">:bulb: **Tip:**
 `list all` clears any currently selected class. As a result, any command followed by `list all` will be operating on all students in the TeachBook.
 </div>
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="block
+" class="alert alert-primary">:bulb: **Tip:**
 `list all` should be interpreted as a way to unselect the currently selected class. Therefore, in order to view the original list after calling 
 `list all` followed by other list commands like `list absent`, `list all` won't take you back to the original list
 and will be prohibited from calling `list all` as there is already no class selectd. Instead, `list` command should be used to take you back to the original 
@@ -573,7 +592,8 @@ TeachBook data are saved in the hard disk automatically after any command that c
 
 TeachBook data are saved as a JSON file `[JAR file location]/data/teachbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="block
+" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, TeachBook will discard all data and start with an empty data file at the next run.
 </div>
 --------------------------------------------------------------------------------------------------------------------
