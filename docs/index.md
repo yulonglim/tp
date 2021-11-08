@@ -8,7 +8,7 @@ title: TeachBook
 
 ![Ui](images/Ui.png)
 
-**TeachBook is a desktop app for teachers to manage student contacts.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**TeachBook is a desktop app for primary and secondary school teachers to manage student contacts.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
 * If you are interested in using TeachBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing TeachBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
@@ -16,4 +16,4 @@ title: TeachBook
 
 **Acknowledgements**
 
-* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [Apache POI](https://poi.apache.org/)
