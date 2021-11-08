@@ -239,20 +239,20 @@ a student's class cannot be modified.
 
 #### Implementation details
 
-The edit command is implemented using EditCommand and EditCommandParser, along with TeachBookParser
-and LogicManager which creates the required objects. Cases where the user enters an invalid input or
+The edit command is implemented using `EditCommand` and `EditCommandParser`, along with `TeachBookParser`
+and `LogicManager` which creates the required objects. Cases where the user enters an invalid input or
 does not modify the student at all is handled with exceptions along with corresponding error feedback
 to the user.
 
 The edit command has the following format:
 `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 
-Given below is the sequence diagram on how EditCommand behaves in TeachBook when the user tries to edit 
-the student's name at index 1 of the current class to john
+Given below is the sequence diagram on how `EditCommand` behaves in TeachBook when the user tries to edit 
+the student's name at index 1 of the current class to `john`:
 
 ![EditCommandSequenceDiagram](images/EditCommandSequenceDiagram.png)
 
-Given below is the activity diagram for the same scenario above
+Given below is the activity diagram for the same scenario above:
 
 ![EditCommandActivityDiagram](images/EditCommandActivityDiagram.png)
 
@@ -386,7 +386,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
-  
 
 --------------------------------------------------------------------------------------------------------------------
 
