@@ -500,8 +500,13 @@ MSS:
 
 Extensions:
 
-* 2a. The specified class does not exist.
-    * 2a1. TeachBook shows an error message.
+* 1a. Class name is not provided.
+    * 1a1. TeachBook shows an error message.
+
+      Use case ends.
+
+* 1b. The specified class does not exist.
+    * 1b1. TeachBook shows an error message.
     
       Use case ends.
 
@@ -568,15 +573,20 @@ MSS:
 
 Extensions:
 
-* 2a. There is no currently selected class.
-  * 2a1. TeachBook shows an error message.
+* 1a. There is no currently selected class.
+  * 1a1. TeachBook shows an error message.
   
     Use case ends.
 
-* 2b. Student name is not provided.
-  * 2b1. TeachBook shows an error message.
+* 1b. Student name is not provided.
+  * 1b1. TeachBook shows an error message.
 
     Use case ends.
+
+* 1c. Email entered is of the wrong format.
+    * 1c1. TeachBook shows an error message.
+
+      Use case ends.
 
 **Use case: UC06 - Delete one or more students**
 
@@ -629,6 +639,16 @@ Extensions:
 * 1b. No fields are provided.
     * 1b1. TeachBook shows an error message.
       
+      Use case ends.
+
+* 1c. There is an existing student with the given new student name.
+    * 1c1. TeachBook shows an error message.
+
+      Use case ends.
+
+* 1d. Email entered is of the wrong format.
+    * 1d1. TeachBook shows an error message.
+
       Use case ends.
 
 **Use case: UC09 - Give remark to a student**
