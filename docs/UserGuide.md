@@ -55,7 +55,7 @@ Symbol                 | Meaning
 
 1. Ensure you have Java `11` or above installed in your computer.
 
-2. Download the latest `[CS2103T-W10-2][TeachBook].jar` from [here](unknown).
+2. Download the latest `TeachBook-v1.4.0.jar` from [here](https://github.com/AY2122S1-CS2103T-W10-2/tp/releases/download/v1.4/TeachBook-v1.4.0.jar).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your TeachBook.
 
