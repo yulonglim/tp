@@ -19,6 +19,7 @@ Class ModelManager
 Class UniqueClassList
 Class GeneralIndex
 Class UniqueStudentList
+Class GradingSystem
 
 Class Student
 Class Name
@@ -27,6 +28,8 @@ Class Class
 Class Address
 Class Email
 Class Tag
+Class Attendance
+Class Grade
 }
 
 Class HiddenOutside #FFFFFF
@@ -43,20 +46,27 @@ ModelManager -up-> "1" UserPrefs
 ModelManager --> "~* filtered" Student
 ModelManager -right-> "1 selected class" GeneralIndex
 
+TeachBook *--> "1" GradingSystem
 TeachBook *--> "1" UniqueClassList
 UniqueClassList --> "~* all" Class
 Class *--> "1" UniqueStudentList
 UniqueStudentList --> "~* all" Student
+
+GradingSystem *--> "*" Grade
 
 Student *--> "1" Name
 Student *--> "1" Phone
 Student --> "1" Class
 Student *--> "1" Email
 Student *--> "1" Address
+Student *--> "1" Attendance
+Student *--> "1" Grade
 Student *--> "*" Tag
+
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
+UniqueClassList -[hidden]right-> Email
 
 @enduml

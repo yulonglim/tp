@@ -228,6 +228,9 @@ The following sequence diagram shows interactions within the `Logic` component a
 
 ![Interactions Inside the Logic and Model Components for the `deleteClass B` Command](images/DeleteClassSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteClassCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 The following object diagram shows the updated TeachBook:
 
 <img src="images/DeleteClassObjectDiagram1.png" width="280" />
@@ -251,6 +254,9 @@ Given below is the sequence diagram on how `EditCommand` behaves in TeachBook wh
 the student's name at index 1 of the current class to `john`:
 
 ![EditCommandSequenceDiagram](images/EditCommandSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 Given below is the activity diagram for the same scenario above:
 
@@ -277,13 +283,22 @@ Below is the sequence diagram of the execution of the `FindCommand`.
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 Below is the sequence diagram of the execution of the `ListCommand` with the `absent` option.
 
 ![ListAbsentSequenceDiagram](images/ListAbsentSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 Below is the sequence diagram of the execution of the `ListCommand`.
 
 ![ListSequenceDiagram](images/ListSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ### Add class feature
 
@@ -305,6 +320,9 @@ Given below is the sequence diagram on how addClass Command behaves in TeachBook
 named `A`.
 
 ![AddClassSequenceDiagram](images/AddClassSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddClassCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ### Undo/redo feature
 
@@ -406,7 +424,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Target user profile**:
 
 * is a primary or secondary school teacher
-* has a need to manage multiple class worth of student's contacts that she is teaching
+* has a need to manage multiple class worth of students' contacts that she is teaching
 * prefers desktop apps over other types
 * is not proficient in IT but can type fast
 * prefers typing to mouse interactions
@@ -415,7 +433,10 @@ The following activity diagram summarizes what happens when a user executes a ne
 * wants to better take care of her students by storing some special notes (e.g. allergy condition) of her students somewhere
 * wants to have an app to help with administrative work in teaching (e.g. taking attendance, keying in grades of students)
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app. Allows teachers to have a dedicated app to keep their work life separated from their personal life. Allows teacher to find students and their emergency information accurately and easily.
+**Value proposition**: Manage contacts faster than a typical mouse/GUI driven app. Allows teachers to have a dedicated 
+app to keep their work life separated from their personal life. Allows teachers to find students and their emergency 
+information accurately and easily. Assists teachers with their day to day administrative work such as marking of attendance
+and grading.
 
 
 ### User stories
@@ -425,7 +446,7 @@ Priorities: High (must have) - `* * *` , Medium (nice to have) - `* *` , Low (un
 | Priority | As a ...                                                  | I want to ...                                                                                   | So that I can ...                                                                        |
 | -------- | --------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `* * *` | new user | get instructions | refer to instructions when I forget how to use the TeachBook |
-| `* * *` | teacher | add the students I teach |  |
+| `* * *` | teacher | add the students I teach | keep track of my students' contact |
 | `* * *` | teacher | remove students from my contacts | remove specific students who are no longer take my classes |
 | `* * *` | teacher | search for my students in my contacts by name | get a student's information easily  |
 | `* * *` | teacher | view my student's information | contact them easily |
@@ -436,7 +457,6 @@ Priorities: High (must have) - `* * *` , Medium (nice to have) - `* *` , Low (un
 | `* *` | teacher | reset the grading system | remove any outdated grading system |
 | `* *` | teacher | easily store the grades of my students | remember how well each student is doing in my classes |
 | `* *` | teacher | sort my students by grade | quickly find out groups of students which require more help |
-| `* *` | teacher | set a special grading system | customize my grading system just in case it changes in the future |
 | `* *` | teacher | delete a class with its data all at once | quickly remove the class I have stopped teaching |
 | `* *` | teacher | clear the TeachBook data all at once | get a fresh TeachBook at the start of the year  |
 | `* *` | teacher | filter my students using keywords | quickly list out specific students |

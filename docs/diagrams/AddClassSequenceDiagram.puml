@@ -7,7 +7,7 @@ participant ":TeachBookParser" as TeachBookParser LOGIC_COLOR
 participant ":AddClassCommandParser" as AddClassCommandParser LOGIC_COLOR
 participant ":ParserUtil" as ParserUtil LOGIC_COLOR
 participant ":Class" as Class LOGIC_COLOR
-participant ":AddClassCommand" as AddClassCommand LOGIC_COLOR
+participant "a:AddClassCommand" as AddClassCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -54,16 +54,16 @@ create AddClassCommand
 AddClassCommandParser -> AddClassCommand
 activate AddClassCommand
 
-AddClassCommand --> AddClassCommandParser : classObj
+AddClassCommand --> AddClassCommandParser : a
 deactivate AddClassCommand
 
-AddClassCommandParser --> TeachBookParser :
+AddClassCommandParser --> TeachBookParser : a
 deactivate AddClassCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 AddClassCommandParser -[hidden]-> TeachBookParser
 destroy AddClassCommandParser
 
-TeachBookParser --> LogicManager :
+TeachBookParser --> LogicManager : a
 deactivate TeachBookParser
 
 LogicManager -> AddClassCommand : execute()
