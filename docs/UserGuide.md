@@ -52,7 +52,8 @@ towards teachers who can type fast. It allows teachers to store and organise con
 different classes. On top of that, teachers can tag the class role of the student.
 
 --------------------------------------------------------------------------------------------------------------------
-## Quick start <a href="#" style="float: right;">[ Back to top ]</a>
+<a href="#" style="float: right;">[ Back to top ]</a>
+## Quick start 
 
 1. Ensure you have Java `11` or above installed in your computer.
 
@@ -80,7 +81,8 @@ different classes. On top of that, teachers can tag the class role of the studen
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## Graphical User Interface <a href="#" style="float: right;">[ Back to top ]</a>
+<a href="#" style="float: right;">[ Back to top ]</a>
+## Graphical User Interface 
 
 
 In this section, we will be guiding you through the different sections of TeachBook's Graphical User Interface (GUI). 
@@ -94,7 +96,8 @@ There are a total of 5 different sections according to the image of out GUI belo
 ![](images/GUI.png)
 
 --------------------------------------------------------------------------------------------------------------------
-## Features <a href="#" style="float: right;">[ Back to top ]</a>
+<a href="#" style="float: right;">[ Back to top ]</a>
+## Features 
 
 <div markdown="span" class="alert alert-info">
 
@@ -282,7 +285,8 @@ Fig 5: `4E2` is highlighted in blue with its students list after `select 4E2` wa
 
 <div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
-### Student related features <a href="#" style="float: right;">[ Back to top ]</a>
+<a href="#" style="float: right;">[ Back to top ]</a>
+### Student related features 
 #### Adding a student : `add`
 
 Start organising your classes by adding students! This command allows you to add a new student to the 
@@ -391,7 +395,8 @@ Fig 10: `Jane Doe` who was added in [add](#adding-a-student--add), is displayed 
 
 <div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
-### Grade related features <a href="#" style="float: right;">[ Back to top ]</a>
+<a href="#" style="float: right;">[ Back to top ]</a>
+### Grade related features 
 #### Setting a grading system : `setGrade`
 
 TeachBook allows for setting of personalised grading system. You may implement your own grading system
@@ -446,8 +451,9 @@ All grades will be cleared!
 </div>
 <div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
+<a href="#" style="float: right;">[ Back to top ]</a>
 
-### Attendance related features <a href="#" style="float: right;">[ Back to top ]</a>
+### Attendance related features 
 #### Marking the attendance of a student : `mark`
 
 You can use this to mark your student as present. The `present` checkbox will turn green with a tick indicating successful marking of attendance.
@@ -505,7 +511,8 @@ Examples:
 Fig 14: `Jane Doe` who was [marked present previously](#marking-the-attendance-of-a-student--mark), is now unmarked and is displayed with a red box after `unmark 3` was executed.
 <div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
-### Utility features <a href="#" style="float: right;">[ Back to top ]</a>
+<a href="#" style="float: right;">[ Back to top ]</a>
+### Utility features 
 #### Printing to Excel : `print`
 
 This command generates an Excel file containing students in the currently shown list, with personalised columns as specified in the command parameter.
@@ -567,7 +574,8 @@ list by listing out all the students as no class is selected.
 Fig 16: TeachBook display after `list all` was executed.
 <div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
-### Others <a href="#" style="float: right;">[ Back to top ]</a>
+<a href="#" style="float: right;">[ Back to top ]</a>
+### Others 
 #### Saving the data
 
 TeachBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -580,8 +588,9 @@ TeachBook data are saved as a JSON file `[JAR file location]/data/teachbook.json
 If your changes to the data file makes its format invalid, TeachBook will discard all data and start with an empty data file at the next run.
 </div>
 --------------------------------------------------------------------------------------------------------------------
+<a href="#" style="float: right;">[ Back to top ]</a>
 
-## FAQs <a href="#" style="float: right;">[ Back to top ]</a>
+## FAQs 
 
 **Q**: How do I transfer my data to another Computer? <br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder. <br>
