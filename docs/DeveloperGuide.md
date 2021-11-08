@@ -381,6 +381,8 @@ Step 4. The user now decides that adding the student was a mistake, and decides 
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial TeachBook state, then there are no previous TeachBook states to restore. The `undo` command uses `Model#canUndoTeachBook()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
