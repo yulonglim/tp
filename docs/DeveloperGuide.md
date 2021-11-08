@@ -386,8 +386,6 @@ than attempting to perform the undo.
 
 </div>
 
-<div style="page-break-after: always;"></div>
-
 The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
