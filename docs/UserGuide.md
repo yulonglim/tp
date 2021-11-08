@@ -22,11 +22,14 @@ of its features.
 ## How to use this guide?
 
 As this user guide is created for users with varying levels of experience using our app, it is divided in different 
-sections, so feel free to navigate to the portion of interest using our handy Table of Contents provided above. If you 
-are a new user who is using TeachBook for the first time, you can follow the [Quick Start](#quick-start) on how to get 
+sections, so feel free to navigate to the portion of interest using our handy Table of Contents provided above.
+
+If you are a new user who is using TeachBook for the first time, you can follow the [Quick Start](#quick-start) on how to get 
 TeachBook running on your system for the first time. If you are a user who faced some issues with TeachBook, you can go 
 to the [FAQs](#faqs) section to see if your issues have already been addressed. If not, feel free to reach out to us, 
-and we will respond promptly. If you are an experienced user who can't remember the extensive list of features that 
+and we will respond promptly. 
+
+If you are an experienced user who can't remember the extensive list of features that 
 TeachBook provide, you can jump to the [Command Summary](#command-summary) section or the [Features](#features) section 
 if you want to find out more.
 
