@@ -30,24 +30,23 @@ different classes.
 As this user guide is created for users with varying levels of experience using the app, it is divided in different 
 sections, so feel free to navigate to the portion of interest using our handy [Table of Contents](#) provided above.
 
-If you are a new user who is using TeachBook for the first time, you can follow the [Quick Start](#quick-start) on how to get 
-TeachBook running on your system for the first time. If you are a user who faced some issues with TeachBook, you can go 
-to the [FAQs](#faqs) section to see if your issues have already been addressed. If not, feel free to reach out to us, 
-and we will respond promptly.
+* If you are a **new user who is using TeachBook for the first time**, you can follow the [Quick Start](#quick-start) on how to get
+  TeachBook running on your system for the first time.
 
-If you are an experienced user who can't remember the extensive list of features that 
-TeachBook provide, you can jump to the [Command Summary](#command-summary) section or the [Features](#features) section 
-if you want to find out more.
+* If you are an **intermediate user who is facing some issues with TeachBook**, you can go to the [FAQs](#faqs) section to see if your issues
+  have already been addressed. If not, feel free to reach out to us, and we will respond promptly.
 
-There are 3 symbols that you need know in order to use this user guide effectively, and they are :information_source:, 
-:bulb: and :exclamation:
+* If you are an **experienced user who can't remember the extensive list of features that TeachBook provides**, you can jump to the [Command Summary](#command-summary) section or the [Features](#features) section
+  if you want to find out more.
 
-* If you see a :information_source: symbol, it means that it is additional information that we feel that you ought to know.
+There are 3 symbols that you need know in order to use this user guide effectively, and they are :information_source:,
+:bulb: and :exclamation:. Refer to the table below for more information.
 
-* If you see a :bulb: symbol, it means that it is a tip (e.g. shortcut or hidden features) which you can follow to enhance
-your experience. 
-
-* If you see a :exclamation: symbol, take extra caution and follow those instructions carefully.
+Symbol                 | Meaning
+-----------------------|---------
+:information_source:   | additional information that we feel that you ought to know
+:bulb:                 | a tip (e.g. shortcut or hidden features) which you can follow to enhance your experience using TeachBook
+:exclamation:          | an extra caution you have take to prevent any unwanted results
 
 --------------------------------------------------------------------------------------------------------------------
 <a href="#" style="float: right;">[ Back to top ]</a>
