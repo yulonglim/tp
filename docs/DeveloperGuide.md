@@ -1036,7 +1036,7 @@ MSS:
 
 Extensions:
 
-* 1a. Teachbook does not have any undo commands to redo.
+* 1a. TeachBook does not have any undo commands to redo.
     * 1a1. TeachBook shows an error message.
 
       Use case ends.
