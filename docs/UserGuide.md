@@ -189,6 +189,10 @@ organising the class by adding students to the added class.
 
 Format: `addClass CLASS_NAME`
 
+<div markdown="block" class="alert alert-info">:information_source: **Info**
+CLASS_NAME is case sensitive! 
+</div>
+
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 There is a limit of 20 characters for the class name! But I am sure your class name will not be longer that limit!
 </div>
@@ -210,6 +214,8 @@ Format: `deleteClass CLASS_NAME`
 * Deletes the class with the specified `CLASS_NAME`
 
 <div markdown="block" class="alert alert-info">:information_source: **Info**
+CLASS_NAME is case sensitive! 
+
 We are currently working on a new feature that allows you to select a class by its index!
 </div>
 
@@ -227,6 +233,8 @@ this command to edit the name of the currently selected class to CLASS_NAME spec
 Format: `editClass CLASS_NAME`
 
 <div markdown="block" class="alert alert-info">:information_source: **Info**
+CLASS_NAME is case sensitive! 
+
 We are currently working on a new feature that allows you to select a class by its index!
 </div>
 
@@ -248,6 +256,8 @@ Format: `select CLASS_NAME`
 * The currently selected class will be highlighted in blue and the list of student in the class will be displayed.
 
 <div markdown="block" class="alert alert-info">:information_source: **Info**
+CLASS_NAME is case sensitive! 
+
 We are currently working on a new feature that allows you to select a class by its index!
 </div>
 
@@ -273,7 +283,7 @@ Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 * You can add multiple tags by adding more `t/` flags.
 
 <div markdown="block" class="alert alert-info">:information_source: **Info**
-For now you won't be able to students with the exact same name (although highly unlikely). This feature will be available in future updates.
+If you have multiple students with the same name (although unlikely), you can use different capitalization to store the same name!
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
