@@ -26,7 +26,7 @@ run {
 
 test {
     useJUnitPlatform()
-    exclude 'seedu/teachbook/logic/LogicManagerTest.class' // wilfred
+//    exclude 'seedu/teachbook/logic/LogicManagerTest.class' // wilfred
 
     // TODO: rewrite corresponding tests belonging to your part and remove exclude statements
 
