@@ -3,12 +3,7 @@ package seedu.teachbook.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.teachbook.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static seedu.teachbook.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.teachbook.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.teachbook.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.teachbook.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.teachbook.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.teachbook.testutil.Assert.assertThrows;
-import static seedu.teachbook.testutil.TypicalStudents.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -17,7 +12,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.teachbook.logic.commands.AddCommand;
 import seedu.teachbook.logic.commands.CommandResult;
 import seedu.teachbook.logic.commands.ListCommand;
 import seedu.teachbook.logic.commands.exceptions.CommandException;
@@ -26,11 +20,9 @@ import seedu.teachbook.model.Model;
 import seedu.teachbook.model.ModelManager;
 import seedu.teachbook.model.ReadOnlyTeachBook;
 import seedu.teachbook.model.UserPrefs;
-import seedu.teachbook.model.student.Student;
 import seedu.teachbook.storage.JsonTeachBookStorage;
 import seedu.teachbook.storage.JsonUserPrefsStorage;
 import seedu.teachbook.storage.StorageManager;
-import seedu.teachbook.testutil.StudentBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -66,26 +58,6 @@ public class LogicManagerTest {
     public void execute_validCommand_success() throws Exception {
         String listCommand = ListCommand.COMMAND_WORD;
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
-    }
-
-    @Test
-    public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonTeachBookStorage addressBookStorage =
-                new JsonTeachBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
-        JsonUserPrefsStorage userPrefsStorage =
-                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
-        logic = new LogicManager(model, storage);
-
-        // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
-        Student expectedStudent = new StudentBuilder(AMY).withTags().build();
-        ModelManager expectedModel = new ModelManager();
-        expectedModel.addStudent(expectedStudent);
-        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
