@@ -17,6 +17,12 @@ about what TeachBook can do, you are at the right place!
 In this user guide, you will find step-by-step instructions on how you can install TeachBook and guide on how to use all 
 of its features.
 
+## What is TeachBook?
+
+TeachBook is a **desktop app for primary and secondary school teachers to manage student contacts, optimized for use via
+a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). It is targeted
+towards teachers who can type fast. It allows teachers to store and organise contacts related to their students into
+different classes. On top of that, teachers can tag the class role of the student.
 
 ## How to use this guide?
 
@@ -42,14 +48,6 @@ your experience.
 
 * If you see a :exclamation: symbol, take extra caution. If instruction listed are not followed properly,
 the program may not run the way you intended it to and return unwanted results.
-
-
-## What is TeachBook?
-
-TeachBook is a **desktop app for primary and secondary school teachers to manage student contacts, optimized for use via
-a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). It is targeted 
-towards teachers who can type fast. It allows teachers to store and organise contacts related to their students into 
-different classes. On top of that, teachers can tag the class role of the student.
 
 --------------------------------------------------------------------------------------------------------------------
 <a href="#" style="float: right;">[ Back to top ]</a>
