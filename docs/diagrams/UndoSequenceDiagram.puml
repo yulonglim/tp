@@ -30,7 +30,7 @@ deactivate TeachBookParser
 LogicManager -> UndoCommand : execute()
 activate UndoCommand
 
-UndoCommand -> Model : undoAddressBook()
+UndoCommand -> Model : undoTeachBook()
 activate Model
 
 Model -> VersionedTeachBook : undo()
