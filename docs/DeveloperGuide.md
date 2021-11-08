@@ -9,8 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* Undo/Redo function and logic adapted from [AB4](https://github.com/se-edu/addressbook-level4)
-* Print function uses 3rd party library [org.apache.poi](https://poi.apache.org/)
+* The logic of `undo` and `redo` features is adapted from [AB4](https://github.com/se-edu/addressbook-level4).
+* The `print` feature uses third-party library [Apache POI](https://poi.apache.org/).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -53,13 +53,13 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
-* defines its *API* in an `interface` with the same name as the Component.
+* defines its API in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
@@ -77,7 +77,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `ClassListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 The `ClassCard` will be displayed by the `ClassListPanel` and the `StudentCard` will be displayed by the `StudentListPanel`. 
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2122S1-CS2103T-W10-2/tp/blob/master/src/main/java/seedu/teachbook/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2122S1-CS2103T-W10-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFX UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2122S1-CS2103T-W10-2/tp/blob/master/src/main/java/seedu/teachbook/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2122S1-CS2103T-W10-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -123,7 +123,7 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the TeachBook data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
+* stores TeachBook data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
 * stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -142,8 +142,8 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both teach book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `TeachBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both TeachBook data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `TeachBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -239,20 +239,20 @@ a student's class cannot be modified.
 
 #### Implementation details
 
-The edit command is implemented using EditCommand and EditCommandParser, along with TeachBookParser
-and LogicManager which creates the required objects. Cases where the user enters an invalid input or
+The edit command is implemented using `EditCommand` and `EditCommandParser`, along with `TeachBookParser`
+and `LogicManager` which creates the required objects. Cases where the user enters an invalid input or
 does not modify the student at all is handled with exceptions along with corresponding error feedback
 to the user.
 
 The edit command has the following format:
 `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 
-Given below is the sequence diagram on how EditCommand behaves in TeachBook when the user tries to edit 
-the student's name at index 1 of the current class to john
+Given below is the sequence diagram on how `EditCommand` behaves in TeachBook when the user tries to edit 
+the student's name at index 1 of the current class to `john`:
 
 ![EditCommandSequenceDiagram](images/EditCommandSequenceDiagram.png)
 
-Given below is the activity diagram for the same scenario above
+Given below is the activity diagram for the same scenario above:
 
 ![EditCommandActivityDiagram](images/EditCommandActivityDiagram.png)
 
@@ -313,9 +313,9 @@ named `A`.
 The undo/redo mechanism is facilitated by `VersionedTeachBook`. It extends `TeachBook` with an undo/redo history, each state is stored internally as an `TeachbookDataState` which consist of a `TeachBook` and `TeachbookDisplayState`. `TeachbookDisplayState` stored the filter predicate for the student list if any is applied and also the index of the selected class to be displayed.
 The `TeachbookDataState` is stored in a `TeachbookStateList` with a `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedTeachBook#commit()` — Saves the current teach book state in its history.
-* `VersionedTeachBook#undo()` — Restores the previous teach book state from its history.
-* `VersionedTeachBook#redo()` — Restores a previously undone teach book state from its history.
+* `VersionedTeachBook#commit()` — Saves the current TeachBook state in its history.
+* `VersionedTeachBook#undo()` — Restores the previous TeachBook state from its history.
+* `VersionedTeachBook#redo()` — Restores a previously undone TeachBook state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitTeachBook()`, `Model#undoTeachBook()` and `Model#redoTeachBook()` respectively.
 
@@ -323,11 +323,11 @@ These operations are exposed in the `Model` interface as `Model#commitTeachBook(
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedTeachBook` will be initialized with the initial TeachbookDataState, and the `currentStatePointer` pointing to that single teach book state.
+Step 1. The user launches the application for the first time. The `VersionedTeachBook` will be initialized with the initial TeachbookDataState, and the `currentStatePointer` pointing to that single TeachBook state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th student in the Teachbook. The `delete` command calls `Model#commitTeachBook()`, causing the modified TeachbookDatastate after the `delete 5` command executes to be saved in the `teachBookStateList`, and the `currentStatePointer` is shifted to the newly inserted teach book state.
+Step 2. The user executes `delete 5` command to delete the 5th student in the Teachbook. The `delete` command calls `Model#commitTeachBook()`, causing the modified TeachbookDatastate after the `delete 5` command executes to be saved in the `teachBookStateList`, and the `currentStatePointer` is shifted to the newly inserted TeachBook state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
@@ -335,11 +335,11 @@ Step 3. The user executes `add n/David ...` to add a new student. The `add` comm
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitTeachBook()`, so the teach book state will not be saved into the `teachBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitTeachBook()`, so the TeachBook state will not be saved into the `teachBookStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoTeachBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous teach book state, and restores the Teachbook to that state.
+Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoTeachBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous TeachBook state, and restores the Teachbook to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -356,17 +356,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoTeachBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the teach book to that state.
+The `redo` command does the opposite — it calls `Model#redoTeachBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the TeachBook to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `teachBookStateList.size() - 1`, pointing to the latest teach book state, then there are no undone TeachBook states to restore. The `redo` command uses `Model#canRedoTeachBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `teachBookStateList.size() - 1`, pointing to the latest TeachBook state, then there are no undone TeachBook states to restore. The `redo` command uses `Model#canRedoTeachBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the teach book, such as `list`, will usually not call `Model#commitTeachBook()`, `Model#undoTeachBook()` or `Model#redoTeachBook()`. Thus, the `teachBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the TeachBook, such as `list`, will usually not call `Model#commitTeachBook()`, `Model#undoTeachBook()` or `Model#redoTeachBook()`. Thus, the `teachBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitTeachBook()`. Since the `currentStatePointer` is not pointing at the end of the `teachBookStateList`, all teach book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David ...` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitTeachBook()`. Since the `currentStatePointer` is not pointing at the end of the `teachBookStateList`, all TeachBook states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David ...` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -378,7 +378,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (choice):** Saves the entire teach book.
+* **Alternative 1 (choice):** Saves the entire TeachBook.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
@@ -386,7 +386,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
-  
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -406,18 +405,17 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Target user profile**:
 
-* a primary or secondary school teacher
-* has a need to manage multiple class worth of student's contacts which she is teaching
-* prefer desktop apps over other types
-* not proficient in IT but can type fast
+* is a primary or secondary school teacher
+* has a need to manage multiple class worth of student's contacts that she is teaching
+* prefers desktop apps over other types
+* is not proficient in IT but can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
-* wants to keep her work life and personal life separate
-* often face problem of mixing up students with the same name when she adds it into her phone contact list
-* have to also add emergency contact into her phone contact list which makes it flooded, which is hard to find or link it with the correct student
-* would prefer to have an app that can also store other emergency information (e.g. blood type and allergies) all in one place
+* wants to keep her personal contacts and students' contacts separate
+* wants to better take care of her students by storing some special notes (e.g. allergy condition) of her students somewhere
+* wants to have an app to help with administrative work in teaching (e.g. taking attendance, keying in grades of students)
 
-**Value proposition**: Manage contacts faster than a typical mouse/GUI driven app. Allows teachers to have a dedicated teach book to keep their work life separated from their personal life. Allows teacher to find students and their emergency information accurately and easily.
+**Value proposition**: manage contacts faster than a typical mouse/GUI driven app. Allows teachers to have a dedicated app to keep their work life separated from their personal life. Allows teacher to find students and their emergency information accurately and easily.
 
 
 ### User stories
@@ -426,7 +424,7 @@ Priorities: High (must have) - `* * *` , Medium (nice to have) - `* *` , Low (un
 
 | Priority | As a ...                                                  | I want to ...                                                                                   | So that I can ...                                                                        |
 | -------- | --------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `* * *` | new user | get instructions | refer to instructions when I forget how to use the Teachbook |
+| `* * *` | new user | get instructions | refer to instructions when I forget how to use the TeachBook |
 | `* * *` | teacher | add the students I teach |  |
 | `* * *` | teacher | remove students from my contacts | remove specific students who are no longer take my classes |
 | `* * *` | teacher | search for my students in my contacts by name | get a student's information easily  |
@@ -440,7 +438,7 @@ Priorities: High (must have) - `* * *` , Medium (nice to have) - `* *` , Low (un
 | `* *` | teacher | sort my students by grade | quickly find out groups of students which require more help |
 | `* *` | teacher | set a special grading system | customize my grading system just in case it changes in the future |
 | `* *` | teacher | delete a class with its data all at once | quickly remove the class I have stopped teaching |
-| `* *` | teacher | clear the Teachbook data all at once | get a fresh Teachbook at the start of the year  |
+| `* *` | teacher | clear the TeachBook data all at once | get a fresh TeachBook at the start of the year  |
 | `* *` | teacher | filter my students using keywords | quickly list out specific students |
 | `* *` | teacher | undo the most recent command | revert any mistakes I make quickly |
 | `* *` | teacher | redo the most recent undo | redo any accidental undos |
@@ -455,8 +453,8 @@ Priorities: High (must have) - `* * *` , Medium (nice to have) - `* *` , Low (un
 | `*` | teacher | print out a list of students with extra information related to the students | do not have to manually input all the information |
 | `*` | teacher | view the list of all students | have an overview of all my students |
 | `*` | teacher | add all students from a class at once | quickly add the information of the students in each class |
-| `*` | teacher | archive my Teachbook data | start over with a clean slate and can retrieve records I need in the future |
-| `*` | teacher | able to load a different Teachbook data to my Teachbook  | easily transfer any data from one device to another |
+| `*` | teacher | archive my TeachBook data | start over with a clean slate and can retrieve records I need in the future |
+| `*` | teacher | able to load a different TeachBook data to my TeachBook  | easily transfer any data from one device to another |
 
 
 ### Use cases
@@ -500,8 +498,13 @@ MSS:
 
 Extensions:
 
-* 2a. The specified class does not exist.
-    * 2a1. TeachBook shows an error message.
+* 1a. Class name is not provided.
+    * 1a1. TeachBook shows an error message.
+
+      Use case ends.
+
+* 1b. The specified class does not exist.
+    * 1b1. TeachBook shows an error message.
     
       Use case ends.
 
@@ -568,15 +571,25 @@ MSS:
 
 Extensions:
 
-* 2a. There is no currently selected class.
-  * 2a1. TeachBook shows an error message.
+* 1a. There is no currently selected class.
+  * 1a1. TeachBook shows an error message.
   
     Use case ends.
 
-* 2b. Student name is not provided.
-  * 2b1. TeachBook shows an error message.
+* 1b. Student name is not provided.
+  * 1b1. TeachBook shows an error message.
 
     Use case ends.
+
+* 1c. There is an existing student with the same name.
+    * 1c1. TeachBook shows an error message.
+
+      Use case ends.
+
+* 1d. Invalid input parameters.
+    * 1d1. TeachBook shows an error message.
+
+      Use case ends.
 
 **Use case: UC06 - Delete one or more students**
 
@@ -629,6 +642,16 @@ Extensions:
 * 1b. No fields are provided.
     * 1b1. TeachBook shows an error message.
       
+      Use case ends.
+
+* 1c. There is an existing student with the given new student name.
+    * 1c1. TeachBook shows an error message.
+
+      Use case ends.
+
+* 1d. Invalid input parameters.
+    * 1d1. TeachBook shows an error message.
+
       Use case ends.
 
 **Use case: UC09 - Give remark to a student**
@@ -909,13 +932,13 @@ MSS:
 
 Extensions:
 
-* 2a. Teacher does not have Excel on the device.
+* 1a. Teacher does not have Excel on the device.
     * 2a1. TeachBook shows an error message.
 
       Use case ends.
 
-* 2b. User does not have a downloads folder on the device.
-    * 2b1. TeachBook shows an error message.
+* 1b. User does not have a downloads folder on the device.
+    * 1b1. TeachBook shows an error message.
 
       Use case ends.
 
@@ -937,13 +960,13 @@ Extensions:
 
       Use case ends.
 
-* 2a. Teacher does not have Excel on the device.
-    * 2a1. TeachBook shows an error message.
+* 1b. Teacher does not have Excel on the device.
+    * 1b1. TeachBook shows an error message.
 
       Use case ends.
 
-* 2b. User does not have a downloads folder on the device.
-    * 2b1. TeachBook shows an error message.
+* 1c. User does not have a downloads folder on the device.
+    * 1c1. TeachBook shows an error message.
   
       Use case ends.
 
@@ -974,12 +997,19 @@ MSS:
 
 Extensions:
 
-* 1a. Teachbook does not have any undo commands to redo.
+* 1a. TeachBook does not have any undo commands to redo.
     * 1a1. TeachBook shows an error message.
 
       Use case ends.
 
 **Use case: UC30 - Clear**
+
+MSS:
+
+1. User requests to clear TeachBook.
+2. TeachBook shows a fresh new class and student list.
+
+   Use case ends.
 
 **Use case: UC31 - Help**
 
@@ -1031,23 +1061,6 @@ Given below are instructions to test the app manually.
 testers are expected to do more *exploratory* testing.
 
 </div>
-
-### Launch and shutdown
-
-1. Initial launch
-
-   1. Download the jar file and copy into an empty folder
-
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-2. Saving window preferences
-
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-3. _{ more test cases ... }_
 
 ### Adding a student
 1. Adding a student in a class.
@@ -1353,14 +1366,3 @@ Prerequisites: Students are listed using `list` command or `list all` command.
        Expected: Undo will revert the display back to before first list command is done, redo will then cause list to change to the list after command `list` is executed.
     6. Test case: `edit` first person name without changing anything, followed with `undo`, followed with `redo`<br>
        Expected: Error stating no states to redo.
-
-3. _{ more test cases ... }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases ... }_
-

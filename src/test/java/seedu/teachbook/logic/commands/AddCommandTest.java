@@ -303,7 +303,6 @@ public class AddCommandTest {
      * A Model stub that always accept the student being added.
      */
     private class ModelStubAcceptingStudentAdded extends ModelStub {
-//        final ArrayList<Student> studentsAdded = new ArrayList<>();
         final Class classObj = new Class(new ClassName("A"));
 
         @Override

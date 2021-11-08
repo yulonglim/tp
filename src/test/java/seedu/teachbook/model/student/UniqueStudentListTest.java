@@ -82,17 +82,6 @@ public class UniqueStudentListTest {
         assertEquals(expectedUniqueStudentList, uniqueStudentList);
     }
 
-//    @Test
-//    public void setPerson_editedPersonHasSameIdentity_success() {
-//        uniqueStudentList.add(ALICE);
-//        Student editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-//                .build();
-//        uniqueStudentList.setStudent(ALICE, editedAlice);
-//        UniqueStudentList expectedUniqueStudentList = new UniqueStudentList();
-//        expectedUniqueStudentList.add(editedAlice);
-//        assertEquals(expectedUniqueStudentList, uniqueStudentList);
-//    }
-
     @Test
     public void setPerson_editedPersonHasDifferentIdentity_success() {
         uniqueStudentList.add(ALICE);
