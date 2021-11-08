@@ -127,7 +127,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2122S1-CS2103T-W10-2/tp/blob/master/src/main/java/seedu/teachbook/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png"/>
 
 
 The `Model` component,
@@ -143,7 +143,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2122S1-CS2103T-W10-2/tp/blob/master/src/main/java/seedu/teachbook/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+![](images/StorageClassDiagram.png)
 
 The `Storage` component,
 * can save both TeachBook data and user preference data in json format, and read them back into corresponding objects.
