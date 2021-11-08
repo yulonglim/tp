@@ -500,8 +500,8 @@ MSS:
 
 Extensions:
 
-* 2a. The specified class does not exist.
-    * 2a1. TeachBook shows an error message.
+* 1a. The specified class does not exist.
+    * 1a1. TeachBook shows an error message.
     
       Use case ends.
 
@@ -568,13 +568,13 @@ MSS:
 
 Extensions:
 
-* 2a. There is no currently selected class.
-  * 2a1. TeachBook shows an error message.
+* 1a. There is no currently selected class.
+  * 1a1. TeachBook shows an error message.
   
     Use case ends.
 
-* 2b. Student name is not provided.
-  * 2b1. TeachBook shows an error message.
+* 1b. Student name is not provided.
+  * 1b1. TeachBook shows an error message.
 
     Use case ends.
 
@@ -621,13 +621,13 @@ MSS:
 
 Extensions:
 
-* 2a. Index provided is invalid.
-    * 2a1. TeachBook shows an error message.
+* 1a. Index provided is invalid.
+    * 1a1. TeachBook shows an error message.
       
       Use case ends.
 
-* 2b. No fields are provided.
-    * 2b1. TeachBook shows an error message.
+* 1b. No fields are provided.
+    * 1b1. TeachBook shows an error message.
       
       Use case ends.
 
