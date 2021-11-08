@@ -465,6 +465,30 @@ Priorities: High (must have) - `* * *` , Medium (nice to have) - `* *` , Low (un
 
 **Use case: UC01 - Add class**
 
+MSS:
+
+1. User requests to add a class.
+2. TeachBook adds the class.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. Class name is not provided.
+    * 1a1. TeachBook shows an error message.
+
+      Use case ends.
+
+* 1b. The given class name is invalid.
+    * 1b1. TeachBook shows an error message.
+
+      Use case ends.
+
+* 1c. There is an existing class with the given class name.
+    * 1c1. TeachBook shows an error message.
+
+      Use case ends.
+
 **Use case: UC02 - Delete class**
 
 MSS:
@@ -478,9 +502,39 @@ Extensions:
 
 * 2a. The specified class does not exist.
     * 2a1. TeachBook shows an error message.
+    
       Use case ends.
 
-**Use case: UC03 - Edit class**
+**Use case: UC03 - Edit class name**
+
+MSS:
+
+1. User requests to edit the name of the currently selected class.
+2. TeachBook edits the class name.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. There is no currently selected class.
+    * 1a1. TeachBook shows an error message.
+      
+      Use case ends.
+
+* 1b. No new class name is provided.
+    * 1b1. TeachBook shows an error message.
+      
+      Use case ends.
+
+* 1c. The given new class name is invalid.
+    * 1c1. TeachBook shows an error message.
+
+      Use case ends.
+
+* 1d. There is an existing class with the given new class name.
+    * 1d1. TeachBook shows an error message.
+
+      Use case ends.
 
 **Use case: UC04 - Select a class**
 
@@ -516,10 +570,11 @@ Extensions:
 
 * 2a. There is no currently selected class.
   * 2a1. TeachBook shows an error message.
-  Use case ends.
+  
+    Use case ends.
 
-* 2b. Name was not provided.
-  * 2b1. TeachBook shows an error message. 
+* 2b. Student name is not provided.
+  * 2b1. TeachBook shows an error message.
 
     Use case ends.
 
@@ -545,7 +600,6 @@ MSS:
 
 1. User requests to delete all the students in the filtered student list.
 2. TeachBook deletes the students.
-3. TeachBook shows a success message.
 
    Use case ends.
 
@@ -569,10 +623,12 @@ Extensions:
 
 * 2a. Index provided is invalid.
     * 2a1. TeachBook shows an error message.
+      
       Use case ends.
 
-* 2b. No fields were provided.
+* 2b. No fields are provided.
     * 2b1. TeachBook shows an error message.
+      
       Use case ends.
 
 **Use case: UC09 - Give remark to a student**
@@ -722,6 +778,7 @@ MSS:
 
 [comment]: <> (2. User enters a list of grades for the grading system)
 2. TeachBook sets the grading system.
+   
    Use case ends.
 
 Extensions:
