@@ -6,9 +6,9 @@ skinparam ClassBorderColor #000000
 title Initial state
 
 package States {
-    class State1 as "__tb0:TeachBook__"
-    class State2 as "__tb1:TeachBook__"
-    class State3 as "__tb2:TeachBook__"
+    class State1 as "__tb0:TeachBookDataState__"
+    class State2 as "__tb1:TeachBookDataState__"
+    class State3 as "__tb2:TeachBookDataState__"
 }
 State1 -[hidden]right-> State2
 State2 -[hidden]right-> State3
