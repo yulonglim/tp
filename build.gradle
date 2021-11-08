@@ -26,9 +26,7 @@ run {
 
 test {
     useJUnitPlatform()
-    exclude 'seedu/teachbook/logic/commands/EditCommandTest.class' // yunseong
     exclude 'seedu/teachbook/model/ModelManagerTest.class' // wilfred
-    exclude 'seedu/teachbook/logic/parser/AddCommandParserTest.class' // yunseong
     exclude 'seedu/teachbook/logic/LogicManagerTest.class' // wilfred
 
 //    exclude 'seedu/teachbook/ui/ClassCardTest.class' // wilfred
