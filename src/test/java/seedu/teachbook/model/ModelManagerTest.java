@@ -1,12 +1,7 @@
 package seedu.teachbook.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.teachbook.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.teachbook.testutil.Assert.assertThrows;
-import static seedu.teachbook.testutil.TypicalStudents.ALICE;
-import static seedu.teachbook.testutil.TypicalStudents.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -14,7 +9,6 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 
 import seedu.teachbook.commons.core.GuiSettings;
-import seedu.teachbook.testutil.TeachBookBuilder;
 
 public class ModelManagerTest {
 
