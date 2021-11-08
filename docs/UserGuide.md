@@ -161,7 +161,7 @@ This command allows you to revert the TeachBook to the previous state. You most 
 
 Format: `undo`
 
-<div markdown="span" class="alert alert-info">:information_source: **Info:**
+<div markdown="block" class="alert alert-info">:information_source: **Info:**
 * If a command executed results in an error message, nothing in the TeachBook will change, hence you do not have to undo.
 * Commands that do not cause any changes in data or display cannot be undone (e.g. `print`, `help`, etc.).
 </div>
@@ -324,7 +324,9 @@ This command allows you to edit students' information at any time if there are a
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
 * Edits the information of the student at the specified `INDEX`.
-* Existing values will be **overwritten** by input values.
+* At least one field to edit must be specified.
+* Existing values will be **overwritten** by input values. 
+
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can clear a field by omitting the value after the prefix.
@@ -352,7 +354,7 @@ You can use this command to search for students with the specified keywords in t
 Format: `find KEYWORD…`
 
 * The search is case-insensitive e.g. `john`, `JOHN` or `JoHn` will match `John`.
-* The order of the keywords does not matter e.g. `Doe John` will match J`ohn Doe`.
+* The order of the keywords does not matter e.g. `Doe John` will match `John Doe`.
 * Only the name is searched.
 * Only full words will be matched e.g. `John` will not match `Johnny`.
 * Students matching at least one keyword will be listed (i.e. OR search) e.g. `John Doe` will return `John Deer`, `Jane Doe`.
@@ -402,7 +404,7 @@ you need to first reset the grading system using the [reset](#resetting-grading-
 Example:
 * `setGrade A>B>C>D` sets the grading system where `A` is the highest grade and `D` is the lowest grade.
 
-![setGrade](images/setGrade.png)
+![setGrade](images/setGrade.png)<br>
 Fig 11: New grading system is set after `setGrade A>B>C>D` is executed
 
 <br>
@@ -509,7 +511,7 @@ Format: `print [c/class] [c/phone] [c/email] [c/address] [c/tags] [c/remark] [c/
 * Columns with special names as in the format will be populated with the respective information of the students.
 * You can add one or more empty columns with the specified `COLUMN_TITLE`s.
 
-<div markdown="block" class="alert alert-info">:information_source: **Info**
+<div markdown="block" class="alert alert-info">:information_source: **Info:**
 Putting an empty column title (i.e. `c/ `) will give you an empty column.
 </div>
 
@@ -527,7 +529,7 @@ Fig 15: Excel sheet generated from TeachBook after `print c/class c/email c/Sign
 
 #### Sorting students : `sort`
 
-Unorganised student lists are a pain to see. This command allows to sort the student list according to either their name or grade.
+Unorganized student lists are a pain to see. This command allows to sort the student list according to either their name or grade.
 
 Format: `sort name||grade`
 
@@ -536,7 +538,7 @@ Format: `sort name||grade`
 * Sorting by grade requires a grading system being used in the TeachBook.
 
 <div markdown="block" class="alert alert-info">:information_source: **Info:**
-* `sort` executed when there is a currently selected class will sort the entire student list of the class, not just the displayed student list.
+* When there is a currently selected class, `sort` will sort the entire student list of the class, not just the displayed student list.
 * `sort` followed by `list all` will not sort individual class's student list.
 </div>
 
@@ -633,7 +635,7 @@ Action                         | Format, Examples
 **Reset grading system**       | `resetGrade`
 **Mark student attendance**    | <code>mark INDEX…&#124;&#124;all</code> <br> e.g., `mark 1 2 3`
 **Unmark student attendance**  | <code>unmark INDEX…&#124;&#124;all</code> <br> e.g., `unmark 1 2 3`
-**Print data as Excel file**   | `print [c/class] [c/phone] [c/email] [c/address] [c/tags] [c/remark] [c/attendance] [c/grade] [c/COLUMN_TITLE]…` <br> e.g. , `print c/class c/email c/Signature`
+**Print data as Excel file**   | `print [c/class] [c/phone] [c/email] [c/address] [c/tags] [c/remark] [c/attendance] [c/grade] [c/COLUMN_TITLE]…` <br> e.g., `print c/class c/email c/Signature`
 **Sort students**              | <code>sort name&#124;&#124;grade</code>
 **List students**              | <code>list &#91;all&#124;&#124;absent&#93;</code>
 
