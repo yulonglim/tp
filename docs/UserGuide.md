@@ -39,7 +39,7 @@ have already been addressed. If not, feel free to reach out to us, and we will r
 if you want to find out more.
 
 There are 3 symbols that you need know in order to use this user guide effectively, and they are :information_source:, 
-:bulb: and :exclamation:
+:bulb: and :exclamation:. Refer to the table below for more information.
 
 Symbol                 | Meaning
 -----------------------|---------
