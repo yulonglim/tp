@@ -164,14 +164,14 @@ This section describes some noteworthy details on how certain features are imple
 
 To integrate the new class feature into the existing AB3 product, we decided that each student object should have a reference to its class, and there should only be one class object for the same class. We considered and compared a few designs of the rest of the model component:
 
-* **Alternative 1 (current choice):** `TeachBook` maintains a list of all classes. Each class maintains a list of all students in that class. A unique student list containing all students in all classes is generated every time when users execute the `list all` command.
+* **Alternative 1 (current choice):** `TeachBook` maintains a list of all the classes. Each class maintains a list of all the students in that class. A unique student list containing all the students in all the classes is generated every time when users execute the `list all` command.
   * Pros
     * When adding/deleting students, we only need to add/delete ONCE using a class's student list at most times.
     * The filtered student list inside `ModelManager` can take the student list of the currently selected class as its source directly.
   * Cons
     * When `list all`, we need to construct the unique student list by iterating through each class's student list, which can degrade the performance of the `list all` command.
 
-* **Alternative 2:** `TeachBook` maintains a list of all classes. Each class maintains a list of all students in that class. `TeachBook` also maintains a unique student list containing all students in all classes.
+* **Alternative 2:** `TeachBook` maintains a list of all the classes. Each class maintains a list of all the students in that class. `TeachBook` also maintains a unique student list containing all the students in all the classes.
   * Pros
     * The filtered student list inside `ModelManager` can still take the student list of the currently selected class as its source directly.
     * When `list all`, the filtered student list can also take the maintained unique student list as its source directly.
@@ -179,7 +179,7 @@ To integrate the new class feature into the existing AB3 product, we decided tha
     * When adding/deleting students, we always need to add/delete TWICE. This means we need to modify both a class's student list and the unique student list.
     * If we simply add/delete students of the unique student list without maintaining a specific order of all the students, the list can look messy when `list all`. We may still need to do a sorting by class when `list all`, which actually also degrades the performance of `list all`.
 
-* **Alternative 3:** `TeachBook` only maintains a unique student list containing all students in all classes.
+* **Alternative 3:** `TeachBook` only maintains a unique student list containing all the students in all the classes.
   * Pros
     * Easiest to implement and most components can be reused from AB3.
     * When adding/deleting students, we only need to add/delete ONCE using the unique student list.
@@ -216,7 +216,7 @@ Below is the sequence diagram of the execution of the `ListCommand` with the `al
 
 #### Implementation
 
-The delete class feature allows users to delete a class and all students in the class from the TeachBook. This feature is facilitated by `DeleteClassCommand` and `DeleteClassCommandParser`.
+The delete class feature allows users to delete a class and all the students in the class from the TeachBook. This feature is facilitated by `DeleteClassCommand` and `DeleteClassCommandParser`.
 
 Given below is an example usage scenario and how the delete class mechanism behaves.
 
@@ -263,9 +263,9 @@ filtering, users can access information with ease in the shortest time possible.
 
 With reference to the discussion on 
 [*Synchronization of Student List in Model and UI*](#synchronization-of-student-list-in-model-and-ui) earlier, 
-at any point of time, `filteredStudents` will contain either the list of all students from the currently 
-selected class or the list of all students from all classes. By making `filteredStudents` a `FilteredList<Student>`,
-filtering can be done easily to both the list of all students from a class and the list of all students from all classes
+at any point of time, `filteredStudents` will contain either the list of all the students from the currently 
+selected class or the list of all the students from all the classes. By making `filteredStudents` a `FilteredList<Student>`,
+filtering can be done easily to both the list of all the students from a class and the list of all the students from all the classes
 by just passing in the corresponding `Predicate<Student>`. For example, `FindCommand` and `ListCommand` with the 
 `absent` option filter the `filteredStudents` via `ModelManager#updateFilteredStudentList()` by passing in the 
 `NameContainsKeywordsPredicate` and `StudentIsAbsentPredicate` respectively. To "clear" the filter on the other hand, 
@@ -444,15 +444,15 @@ Priorities: High (must have) - `* * *` , Medium (nice to have) - `* *` , Low (un
 | `* *` | teacher | redo the most recent undo | redo any accidental undos |
 | `* *` | teacher | view the number of students in each class | prepare sufficient material for each class |
 | `* *` | teacher | mark attendance for my students | remember if they attended my classes |
-| `* *` | teacher | mark attendance for all my students | quickly mark attendance if all students are present |
+| `* *` | teacher | mark attendance for all my students | quickly mark attendance if all the students are present |
 | `* *` | teacher | mark students as absent | correct any attendance mistakes |
-| `* *` | teacher | mark all students as absent | start marking attendance at the start of the day |
+| `* *` | teacher | mark all the students as absent | start marking attendance at the start of the day |
 | `*` | teacher | modify class names | edit the class name in case of mistakes |
 | `*` | teacher | set special tags for my students | tag my students with extra information |
 | `*` | teacher | print out a list of students only containing names | do any administrative work that requires a hard copy document |
 | `*` | teacher | print out a list of students with extra information related to the students | do not have to manually input all the information |
-| `*` | teacher | view the list of all students | have an overview of all my students |
-| `*` | teacher | add all students from a class at once | quickly add the information of the students in each class |
+| `*` | teacher | view the list of all the students | have an overview of all my students |
+| `*` | teacher | add all the students from a class at once | quickly add the information of the students in each class |
 | `*` | teacher | archive my TeachBook data | start over with a clean slate and can retrieve records I need in the future |
 | `*` | teacher | able to load a different TeachBook data to my TeachBook  | easily transfer any data from one device to another |
 
@@ -550,15 +550,15 @@ MSS:
 
 Extensions:
 
-* 2a. The specified class does not exist.
-    * 2a1. TeachBook shows an error message.
+* 1a. The specified class does not exist.
+    * 1a1. TeachBook shows an error message.
 
-      Use case ends. 
+      Use case ends.
 
-* 2b. The specified class is already selected.
-    * 2b1. TeachBook shows an error message.
+* 1b. The specified class is already selected.
+    * 1b1. TeachBook shows an error message.
 
-      Use case ends. 
+      Use case ends.
 
 **Use case: UC05 - Add student**
 
@@ -572,21 +572,21 @@ MSS:
 Extensions:
 
 * 1a. There is no currently selected class.
-  * 1a1. TeachBook shows an error message.
+    * 1a1. TeachBook shows an error message.
   
-    Use case ends.
+      Use case ends.
 
 * 1b. Student name is not provided.
-  * 1b1. TeachBook shows an error message.
+    * 1b1. TeachBook shows an error message.
 
-    Use case ends.
+      Use case ends.
 
-* 1c. There is an existing student with the same name.
+* 1c. There is an existing student with the same name in the class.
     * 1c1. TeachBook shows an error message.
 
       Use case ends.
 
-* 1d. Invalid input parameters.
+* 1d. Any given student information is invalid.
     * 1d1. TeachBook shows an error message.
 
       Use case ends.
@@ -649,7 +649,7 @@ Extensions:
 
       Use case ends.
 
-* 1d. Invalid input parameters.
+* 1d. Any given student information is invalid.
     * 1d1. TeachBook shows an error message.
 
       Use case ends.
@@ -675,41 +675,41 @@ Extensions:
 
       Use case ends.
 
-**Use case: UC10 - Find students by one or more keywords**
+**Use case: UC10 - Find students by name keywords**
 
 MSS:
 
-1. User requests to find students by one or more keywords.
+1. User requests to find students by name keywords.
 2. TeachBook shows a list of students whose name contains at least one of the keywords.
 
    Use case ends.
 
-**Use case: UC11 - View all students from the currently selected class**
+**Use case: UC11 - View all the students from the currently selected class**
 
-Precondition: There exists a currently selected class
+Preconditions: There is a currently selected class.
 
 MSS:
 
-1. User requests to view all students from the currently selected class. 
-2. TeachBook shows a list of all students from the currently selected class. 
+1. User requests to view all the students from the currently selected class. 
+2. TeachBook shows a list of all the students from the currently selected class. 
 
    Use case ends.
 
-**Use case: UC12 - View all students from a class**
+**Use case: UC12 - View all the students from a class**
 
 MSS:
 
 1. User requests to <ins>select a class (UC04)<ins>.
-2. User requests to <ins>view all students from the currently selected class (UC11)<ins>.
+2. User requests to <ins>view all the students from the currently selected class (UC11)<ins>.
 
    Use case ends.
 
-**Use case: UC13 - View students from all classes**
+**Use case: UC13 - View students from all the classes**
 
 MSS:
 
-1. User requests to view students from all classes.
-2. TeachBook shows a list of students from all classes.
+1. User requests to view students from all the classes.
+2. TeachBook shows a list of students from all the classes.
 
    Use case ends.
 
@@ -723,24 +723,24 @@ MSS:
 
    Use case ends.
 
-**Use case: UC15 - View absent students from all classes**
+**Use case: UC15 - View absent students from all the classes**
 
 MSS:
 
-1. User requests to <ins>view students from all classes (UC13)<ins>.
-2. User requests to view absent students from all classes.
-3. TeachBook shows a list of absent students from all classes.
+1. User requests to <ins>view students from all the classes (UC13)<ins>.
+2. User requests to view absent students from all the classes.
+3. TeachBook shows a list of absent students from all the classes.
 
    Use case ends.
 
 **Use case: UC16 - Clear filter**
 
-Precondition: A filter is applied to the student list.
+Preconditions: A filter is applied to the student list.
 
 MSS:
 
 1. User requests to clear the filter applied to the student list.
-2. TeachBook shows the list of all students.
+2. TeachBook shows the list of all the students.
 
    Use case ends.
 
@@ -749,255 +749,215 @@ MSS:
 MSS:
 
 1. User requests to mark one or more students as present.
-2. TeachBook shows the student(s) with their attendance marked.
+2. TeachBook marks the students as present.
 
    Use case ends.
 
 Extensions:
 
-* 1a. At least one of the specified students does not exist.
+* 1a. One or more specified students do not exist.
     * 1a1. TeachBook shows an error message.
 
       Use case ends.
 
-**Use case: UC18 - Mark all students as present**
+**Use case: UC18 - Mark all the students in the filtered student list as present**
 
 MSS:
 
-1. User requests to mark all students as present.
-2. TeachBook shows all students with their attendance marked.
+1. User requests to mark all the students in the filtered student list as present.
+2. TeachBook marks the students as present.
 
    Use case ends.
+
+Extensions:
+
+* 1a. The filtered student list is empty.
+    * 1a1. TeachBook shows an error message.
+
+      Use case ends.
 
 **Use case: UC19 - Mark one or more students as absent**
 
 MSS:
 
 1. User requests to mark one or more students as absent.
-2. TeachBook shows the student(s) with their attendance unmarked.
+2. TeachBook marks the students as absent.
 
    Use case ends.
 
 Extensions:
 
-* 1a. At least one of the specified students does not exist.
+* 1a. One or more specified students do not exist.
     * 1a1. TeachBook shows an error message.
 
       Use case ends.
 
-**Use case: UC20 - Mark all students as absent**
+**Use case: UC20 - Mark all the students in the filtered student list as absent**
 
 MSS:
 
-1. User requests to mark all students as absent.
-2. TeachBook shows all students with their attendance unmarked.
+1. User requests to mark all the students in the filtered student list as absent.
+2. TeachBook marks the students as absent.
 
    Use case ends.
+
+Extensions:
+
+* 1a. The filtered student list is empty.
+    * 1a1. TeachBook shows an error message.
+
+      Use case ends.
 
 **Use case: UC21 - Set a grading system**
 
 MSS:
-1. User requests to set a grading system.
 
-[comment]: <> (2. User enters a list of grades for the grading system)
+1. User requests to set a grading system.
 2. TeachBook sets the grading system.
    
    Use case ends.
 
 Extensions:
 
-* 1a. Grading system is already present in TeachBook
-  * 1a1. TeachBook shows an error message.
+* 1a. A grading system is currently in use in TeachBook.
+    * 1a1. TeachBook shows an error message.
   
-    Use case ends.
-
-
-[comment]: <> (    2a1. TeachBook requests user to delete existing grading system before setting a new one.)
-
-[comment]: <> (    2a2. User resets grading system &#40;UC02&#41;)
-
-[comment]: <> (    Use case resumes from step 2.)
-
-[comment]: <> (* 1b. Command format is invalid.)
-
-[comment]: <> (  * 1b1. TeachBook shows an error message.)
-
-[comment]: <> (    Use case ends.)
-
-[comment]: <> (    2b1. TeachBook requests user to follow the correct format.)
-
-[comment]: <> (    Use case resumes from step 2.)
-
+      Use case ends.
 
 **Use case: UC22 - Reset grading system**
 
 MSS:
+
 1. User requests to reset the existing grading system.
 2. TeachBook resets the grading system.
 
 Extensions:
-* 1a. There is no grading system present in TeachBook.
-  * 1a1. TeachBook shows an error message.
 
-    Use case ends.
-
-[comment]: <> (* 2b. Command format is invalid.)
-
-[comment]: <> (  * 2b1. TeachBook shows an error message.)
-
-[comment]: <> (    Use case ends.)
-
-**Use case: UC23 - Grade a student**
-
-MSS:
-1. User requests to grade a specific student.
-2. TeachBook grades the specified student.
-
-Extensions:
-1a. There is no grading system is present in TeachBook.
-
-[comment]: <> (    2a1. TeachBook prompts user to set a grading system)
-
-[comment]: <> (    2a2. User sets a new grading system &#40;UC01&#41;)
-
-[comment]: <> (    Use case resumes from step 2.)
-* 1a1. TeachBook shows an error message.
-
-  Use case ends.
-
-1b. Specified grade is invalid.
-
-[comment]: <> (    2b1. TeachBook informs user that the grade is invalid and displays the current grading system.)
-
-[comment]: <> (    Use case resumes from step 2.)
-
-* 1b1. TeachBook shows an error message.
-
-  Use case ends.
-
-**Use case: UC24 - Sort students according to grade**
-
-MSS:
-1. User requests to sort the students according to their grade.
-2. TeachBook sorts the students according to their grade specified by the grading system.
-
-    Use case ends.
-
-Extension:
-
-1a. There is no grading system is present in TeachBook.
-
-[comment]: <> (    2a1. TeachBook prompts user to set a grading system)
-
-[comment]: <> (    2a2. User sets a new grading system &#40;UC01&#41;)
-
-[comment]: <> (    Use case resumes from step 2.)
-
-* 1a1. TeachBook shows an error message.
-
-  Use case ends.
-
-[comment]: <> (2b. TeachBook detects that the command format is invalid.)
-
-[comment]: <> ([comment]: <> &#40;    2b1. TeachBook requests user to follow the correct format.&#41;)
-
-[comment]: <> ([comment]: <> &#40;    Use case resumes from step 2.&#41;)
-
-[comment]: <> (* 2b1. TeachBook shows an error message.)
-
-[comment]: <> (  Use case ends.)
-
-**Use case: UC25 - Sort students according to name**
-
-MSS:
-1. User requests to sort the students according to their name.
-2. TeachBook sorts the students according to their name in alphabetical order.
-
-[comment]: <> (2a. TeachBook detects that the command format is invalid.)
-
-[comment]: <> (* 2a1. TeachBook shows an error message.)
-
-[comment]: <> (  Use case ends.)
-
-**Use case: UC26 - Print out list of student**
-
-Preconditions: There exists a currently selected class.
-
-MSS:
-
-1. User request to get an Excel sheet of students for currently selected class.
-2. TeachBook generate the Excel sheet.
-
-   Use case ends.
-
-Extensions:
-
-* 1a. Teacher does not have Excel on the device.
-    * 2a1. TeachBook shows an error message.
-
-      Use case ends.
-
-* 1b. User does not have a downloads folder on the device.
-    * 1b1. TeachBook shows an error message.
-
-      Use case ends.
-
-**Use case: UC27 - Print out list of student with additional columns**
-
-Preconditions: There exists a currently selected class.
-
-MSS:
-
-1. User request to get an Excel sheet of students for currently selected class with additional custom columns.
-2. TeachBook generate the Excel sheet with requested information.
-
-   Use case ends.
-
-Extensions:
-
-* 1a. Teacher inputs wrong format for columns.
+* 1a. There is no grading system in use in TeachBook.
     * 1a1. TeachBook shows an error message.
 
       Use case ends.
 
-* 1b. Teacher does not have Excel on the device.
+**Use case: UC23 - Give grade to one or more student**
+
+MSS:
+
+1. User requests to give a grade to one or more students.
+2. TeachBook gives the specified grade to the students.
+
+Extensions:
+
+* 1a. There is no grading system in use in TeachBook.
+    * 1a1. TeachBook shows an error message.
+
+      Use case ends.
+
+* 1b. The specified grade is invalid.
     * 1b1. TeachBook shows an error message.
 
       Use case ends.
 
-* 1c. User does not have a downloads folder on the device.
+**Use case: UC24 - Give grade to all the students in the filtered student list**
+
+MSS:
+
+1. User requests to give a grade to all the students in the filtered student list.
+2. TeachBook gives the specified grade to the students.
+
+Extensions:
+
+* 1a. There is no grading system in use in TeachBook.
+    * 1a1. TeachBook shows an error message.
+
+      Use case ends.
+
+* 1b. The specified grade is invalid.
+    * 1b1. TeachBook shows an error message.
+
+      Use case ends.
+
+* 1c. The filtered student list is empty.
     * 1c1. TeachBook shows an error message.
-  
+
+      Use case ends.
+
+**Use case: UC25 - Sort students according to grade**
+
+MSS:
+
+1. User requests to sort the students according to their grade.
+2. TeachBook sorts the students according to their grade.
+
+    Use case ends.
+
+Extensions:
+
+* 1a. There is no grading system in use in TeachBook.
+    * 1a1. TeachBook shows an error message.
+
+      Use case ends.
+
+**Use case: UC26 - Sort students according to name**
+
+MSS:
+
+1. User requests to sort the students according to their name.
+2. TeachBook sorts the students according to their name.
+
+**Use case: UC27 - Generate an Excel sheet containing information of students in the filtered student list**
+
+MSS:
+
+1. User requests to generate an Excel sheet containing information of students in the filtered student list.
+2. TeachBook generates the Excel sheet and stored the file in the `downloads` folder of user's device.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. User does not have Excel installed on the device.
+    * 1a1. TeachBook shows an error message.
+
+      Use case ends.
+
+* 1b. User does not have a `downloads` folder on the device.
+    * 1b1. TeachBook shows an error message.
+
+      Use case ends.
+
+* 1c. The app does not have permission to write to the `downloads` folder.
+    * 1c1. TeachBook shows an error message.
+
       Use case ends.
 
 **Use case: UC28 - Undo a command**
 
 MSS:
 
-1. User request to undo a command.
+1. User requests to undo a recent command.
 2. TeachBook shows the exact state before the command that is being undone was executed.
 
    Use case ends.
 
 Extensions:
 
-* 1a. User does not have any commands to undo.
+* 1a. There is no commands to undo.
     * 1a1. TeachBook shows an error message.
 
       Use case ends.
 
-**Use case: UC29 - Redo an undo command**
+**Use case: UC29 - Redo a command**
 
 MSS:
 
-1. User requests to redo a recent undo command.
+1. User requests to redo a recently undone command.
 2. TeachBook shows the exact state before the previous undo command was executed.
 
    Use case ends.
 
 Extensions:
 
-* 1a. TeachBook does not have any undo commands to redo.
+* 1a. There is no commands to redo.
     * 1a1. TeachBook shows an error message.
 
       Use case ends.
@@ -1006,8 +966,8 @@ Extensions:
 
 MSS:
 
-1. User requests to clear TeachBook.
-2. TeachBook shows a fresh new class and student list.
+1. User requests to clear all the data inside TeachBook.
+2. TeachBook clears all the data.
 
    Use case ends.
 
@@ -1019,7 +979,6 @@ MSS:
 2. TeachBook shows a link to the TeachBook User Guide.
 
    Use case ends.
-
 
 **Use case: UC32 - Exit**
 
@@ -1081,7 +1040,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Editing a student from list of students.
 
-    1. Prerequisites: List students in the currently selected class using `list` command or list all students in TeachBook using `list all` command.
+    1. Prerequisites: List students in the currently selected class using `list` command or list all the students in TeachBook using `list all` command.
     2. Test case: `edit 1 n/Jane p/1234`<br>
        Expected: First student in the list is being edited. Name of the student is changed to `Jane` and phone number of the student is changed to `1234`
     3. Test case: `edit 1`<br>
@@ -1091,9 +1050,9 @@ testers are expected to do more *exploratory* testing.
 
 ### Giving remark to a student
 
-1. Giving remark to a student while all students are being shown.
+1. Giving remark to a student while all the students are being shown.
 
-    1. Prerequisites: List all students using the `list` command. There are two and only two students in the student list.
+    1. Prerequisites: List all the students using the `list` command. There are two and only two students in the student list.
     2. Test case: `remark 1 r/Allergic to seafood.`<br>
        Expected: First student in the list has the remark `Allergic to seafood.`.
     3. Test case: `remark 1 r/`<br>
@@ -1105,9 +1064,9 @@ testers are expected to do more *exploratory* testing.
     
 ### Deleting students
 
-1. Deleting one or more students while all students are being shown.
+1. Deleting one or more students while all the students are being shown.
 
-    1. Prerequisites: List all students using the `list` command. There are three and only three students in the student list.
+    1. Prerequisites: List all the students using the `list` command. There are three and only three students in the student list.
     2. Test case: `delete 1`<br>
        Expected: First student is deleted from the list. Details of the deleted student shown in the status message.
     3. Test case: `delete 01`<br>
@@ -1345,7 +1304,7 @@ Prerequisites: Students are listed using `list` command or `list all` command.
     3. Test case: `addClass A` followed by `undo` <br>
        Expected: Class A is added get removed after undo is done.
     4. Test case: `list all` followed by `undo` <br>
-       Expected: All students will be displayed, then list will return to previous list after undo.
+       Expected: All the students will be displayed, then list will return to previous list after undo.
     5. Test case: Multiple `list` followed by `undo`<br>
        Expected: Undo will revert the display back to before first list command is done.
     6. Test case: `edit` first person name without changing anything, followed with `undo`<br>
@@ -1361,7 +1320,7 @@ Prerequisites: Students are listed using `list` command or `list all` command.
     3. Test case: `addClass A` followed by `undo` followed by `redo`<br>
        Expected: Class A is added get removed after undo is done, Class A will reappear after redo is done.
     4. Test case: `list all` followed by `undo` <br>
-       Expected: All students will be displayed, then list will return to previous list after undo, all students will be displayed again after redo is done.
+       Expected: All the students will be displayed, then list will return to previous list after undo, all the students will be displayed again after redo is done.
     5. Test case: Multiple `list` followed by `undo`<br>
        Expected: Undo will revert the display back to before first list command is done, redo will then cause list to change to the list after command `list` is executed.
     6. Test case: `edit` first person name without changing anything, followed with `undo`, followed with `redo`<br>
