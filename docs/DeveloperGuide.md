@@ -519,22 +519,22 @@ Extensions:
   Use case ends.
 
 * 2b. Name was not provided.
-  * 2b1. TeachBook shows an error message.
-  Use case ends.
+  * 2b1. TeachBook shows an error message. 
 
-**Use case: UC06 - Delete one or more student**
+    Use case ends.
+
+**Use case: UC06 - Delete one or more students**
 
 MSS:
 
 1. User requests to delete one or more specific students.
 2. TeachBook deletes the students.
-3. TeachBook shows a success message.
 
    Use case ends.
 
 Extensions:
 
-* 1a. One or more given indices are invalid.
+* 1a. One or more specified students do not exist.
     * 1a1. TeachBook shows an error message.
 
       Use case ends.
@@ -575,19 +575,18 @@ Extensions:
     * 2b1. TeachBook shows an error message.
       Use case ends.
 
-**Use case: UC09 - Give a remark to a student**
+**Use case: UC09 - Give remark to a student**
 
 MSS:
 
 1. User requests to give a remark to a specific student.
 2. TeachBook overwrites any existing remark of the student with the given remark.
-3. TeachBook shows a success message.
 
    Use case ends.
 
 Extensions:
 
-* 1a. The given index is invalid.
+* 1a. The specified student does not exist.
     * 1a1. TeachBook shows an error message.
 
       Use case ends.
@@ -595,7 +594,7 @@ Extensions:
 * 1b. The given remark is empty.
     * 1b1. TeachBook clears any existing remark of the student.
 
-      Use case resumes at step 3.
+      Use case ends.
 
 **Use case: UC10 - Find students by one or more keywords**
 
