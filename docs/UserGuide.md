@@ -50,9 +50,9 @@ Symbol                 | Meaning
 :exclamation:          | an extra caution you have take to prevent any unwanted results
 
 <div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 [ Back to top ](#)
-
 ## Quick Start
 
 1. Ensure you have Java `11` or above installed in your computer.
@@ -85,7 +85,6 @@ Symbol                 | Meaning
 
 --------------------------------------------------------------------------------------------------------------------
 [ Back to top ](#)
-
 ## Graphical User Interface
 
 In this section, we will be guiding you through the different sections of TeachBook's Graphical User Interface (GUI). 
@@ -102,7 +101,6 @@ There are a total of 5 different sections according to the image of out GUI belo
 
 --------------------------------------------------------------------------------------------------------------------
 [ Back to top ](#)
-
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -194,7 +192,6 @@ Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 [ Back to top ](#)
-
 ### Class related features
 #### Adding a class : `addClass`
 
@@ -276,7 +273,6 @@ Fig 5: Class `4E2` is highlighted in blue with its students list displayed after
 
 --------------------------------------------------------------------------------------------------------------------
 [ Back to top ](#)
-
 ### Student related features
 #### Adding a student : `add`
 
@@ -399,7 +395,6 @@ Fig 10: Student `Jane Doe` added in [add](#adding-a-student--add) is displayed w
 
 --------------------------------------------------------------------------------------------------------------------
 [ Back to top ](#)
-
 ### Grade related features
 #### Setting a grading system : `setGrade`
 
@@ -461,7 +456,6 @@ All students' grades will be cleared!
 
 --------------------------------------------------------------------------------------------------------------------
 [ Back to top ](#)
-
 ### Attendance related features
 #### Marking the attendance of a student : `mark`
 
@@ -517,7 +511,6 @@ Fig 14: Student `Jane Doe`, who was previously [marked as present](#marking-the-
 
 --------------------------------------------------------------------------------------------------------------------
 [ Back to top ](#)
-
 ### Utility features
 #### Printing to Excel : `print`
 
@@ -596,7 +589,6 @@ Fig 16: All students in the TeachBook are displayed after `list all` is executed
 
 --------------------------------------------------------------------------------------------------------------------
 [ Back to top ](#)
-
 ### Others
 #### Saving the data
 
@@ -635,7 +627,6 @@ If your changes to the data file makes its format invalid, TeachBook will discar
 
 --------------------------------------------------------------------------------------------------------------------
 [ Back to top ](#)
-
 ## Command Summary
 
 Action                         | Format, Examples
