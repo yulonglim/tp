@@ -51,7 +51,7 @@ Symbol                 | Meaning
 
 <div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
+
 [ Back to top ](#)
 ## Quick Start
 
@@ -83,7 +83,7 @@ Symbol                 | Meaning
 
 <div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
+
 [ Back to top ](#)
 ## Graphical User Interface
 
@@ -99,7 +99,7 @@ There are a total of 5 different sections according to the image of out GUI belo
 
 <div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
+
 [ Back to top ](#)
 ## Features
 
@@ -190,7 +190,7 @@ Format: `exit`
 
 <div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
+
 [ Back to top ](#)
 ### Class related features
 #### Adding a class : `addClass`
@@ -271,7 +271,7 @@ Fig 5: Class `4E2` is highlighted in blue with its students list displayed after
 
 <div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
+
 [ Back to top ](#)
 ### Student related features
 #### Adding a student : `add`
@@ -393,7 +393,7 @@ Fig 10: Student `Jane Doe` added in [add](#adding-a-student--add) is displayed w
 
 <div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
+
 [ Back to top ](#)
 ### Grade related features
 #### Setting a grading system : `setGrade`
@@ -454,7 +454,7 @@ All students' grades will be cleared!
 
 <div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
+
 [ Back to top ](#)
 ### Attendance related features
 #### Marking the attendance of a student : `mark`
@@ -509,7 +509,7 @@ Fig 14: Student `Jane Doe`, who was previously [marked as present](#marking-the-
 
 <div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
+
 [ Back to top ](#)
 ### Utility features
 #### Printing to Excel : `print`
@@ -586,7 +586,8 @@ list by listing out all the students from all the classes as no class is selecte
 Fig 16: All students in the TeachBook are displayed after `list all` is executed
 <div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------[ Back to top ](#)
+
+[ Back to top ](#)
 ### Others
 #### Saving the data
 
@@ -604,7 +605,7 @@ If your changes to the data file makes its format invalid, TeachBook will discar
 
 <div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
+
 [ Back to top ](#)
 
 ## FAQs
@@ -622,7 +623,7 @@ If your changes to the data file makes its format invalid, TeachBook will discar
 **A**: Currently, it is still not possible. We have heard your feedback and are currently working on it to add this feature in. Do keep a lookout for our next update! <br>
 
 <div style="page-break-after: always;"></div>
---------------------------------------------------------------------------------------------------------------------
+
 [ Back to top ](#)
 ## Command Summary
 
