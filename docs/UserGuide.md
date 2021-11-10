@@ -3,8 +3,6 @@ layout: page
 title: User Guide
 ---
 
-## Table of Contents
-
 * Table of Contents
 {:toc}
 
@@ -15,7 +13,7 @@ Welcome to this TeachBook User Guide!
 If you are a primary or secondary school teacher who is using TeachBook, or just someone who wants to find out more 
 about what TeachBook can do, you are at the right place.
 
-In this user guide, you will find step-by-step instructions on how you can install TeachBook and a guide on how to use all 
+In this user guide, you will find step-by-step instructions on how you can install TeachBook and guide on how to use all 
 of its features.
 
 ## What is TeachBook?
@@ -31,7 +29,7 @@ different classes.
 ## How to use this guide?
 
 As this user guide is created for users with varying levels of experience using the app, it is divided in different 
-sections, so feel free to navigate to the portion of interest using our handy [Table of Contents](#table-of-contents) provided above.
+sections, so feel free to navigate to the portion of interest using our handy [Table of Contents](#) provided above.
 
 * If you are a **new user who is using TeachBook for the first time**, you can follow the [Quick Start](#quick-start) on how to get
   TeachBook running on your system for the first time.
@@ -42,22 +40,22 @@ sections, so feel free to navigate to the portion of interest using our handy [T
 * If you are an **experienced user who can't remember the extensive list of features that TeachBook provides**, you can jump to the [Command Summary](#command-summary) section or the [Features](#features) section
   if you want to find out more.
 
-There are 3 symbols that you need to know in order to use this user guide effectively, and they are :information_source:,
+There are 3 symbols that you need know in order to use this user guide effectively, and they are :information_source:,
 :bulb: and :exclamation:. Refer to the table below for more information.
 
 Symbol                 | Meaning
 -----------------------|---------
 :information_source:   | additional information that we feel that you ought to know
 :bulb:                 | a tip (e.g. shortcut or hidden features) which you can follow to enhance your experience using TeachBook
-:exclamation:          | an extra caution you have to take to prevent any unwanted results
+:exclamation:          | an extra caution you have take to prevent any unwanted results
 
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-[\[ Back to top \]](#table-of-contents)
+[ Back to top ](#)
 ## Quick Start
 
-1. Ensure you have Java `11` or above installed on your computer.
+1. Ensure you have Java `11` or above installed in your computer.
 
 2. Download the latest `TeachBook-v1.4.0.jar` from [here](https://github.com/AY2122S1-CS2103T-W10-2/tp/releases/download/v1.4/TeachBook-v1.4.0.jar).
 
@@ -82,14 +80,15 @@ Symbol                 | Meaning
     * **`exit`** : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
+
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-[\[ Back to top \]](#table-of-contents)
+[ Back to top ](#)
 ## Graphical User Interface
 
 In this section, we will be guiding you through the different sections of TeachBook's Graphical User Interface (GUI). 
-There are a total of 5 different sections according to the image of our GUI below (highlighted in red) and they are the:
+There are a total of 5 different sections according to the image of out GUI below (highlighted in red) and they are the:
 * **Menu Bar**
 * **Command Box** (Place for you to type in the command)
 * **Result Display** (Place where the result of the command will be displayed)
@@ -97,11 +96,11 @@ There are a total of 5 different sections according to the image of our GUI belo
 * **Student List** (Place where you can see the list of students that you have added)
 
 ![GUI](images/GUI.png)
+
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-[\[ Back to top \]](#table-of-contents)
-
+[ Back to top ](#)
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -109,7 +108,7 @@ There are a total of 5 different sections according to the image of our GUI belo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter that can be used as `add n/Jane Doe`.
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Jane Doe`.
 
 * The parameter `INDEX` refers to the index number currently shown in the student list, and it must be a positive integer 1, 2, 3, …
 
@@ -125,7 +124,7 @@ There are a total of 5 different sections according to the image of our GUI belo
 * Items separated by `||` means only one of the partitioned items should be supplied.<br>
   e.g. `sort name||grade` can be used as either `sort name` or `sort grade`, but not `sort name grade`.
 
-* If a command accepts more than one parameter (i.e. word in `UPPER_CASE`), parameters can be in any order. However, this does not apply to the parameter `INDEX`, which should always be specified before others.<br>
+* If a command accepts more than one parameter (i.e. word in `UPPER_CASE`), parameters can be in any order. However, this does not apply to parameter `INDEX`, which should always be specified before others.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the **last** occurrence of the parameter will be taken.<br>
@@ -169,7 +168,7 @@ This command allows you to revert the TeachBook to the previous state. You most 
 Format: `undo`
 
 <div markdown="block" class="alert alert-info">:information_source: **Info:**
-* If a command executed results in an error message, nothing in the TeachBook will change, hence you do not have to undo it.
+* If a command executed results in an error message, nothing in the TeachBook will change, hence you do not have to undo.
 * Commands that do not cause any changes in data or display cannot be undone (e.g. `print`, `help`, etc.).
 </div>
 
@@ -188,11 +187,11 @@ Format: `redo`
 This command will exit TeachBook. There is no need to save any data manually.
 
 Format: `exit`
+
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-[\[ Back to top \]](#table-of-contents)
-
+[ Back to top ](#)
 ### Class related features
 #### Adding a class : `addClass`
 
@@ -261,7 +260,7 @@ The currently selected class is highlighted in blue in the class list.
 </div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
-We are currently working on a new feature that allows you to select a class by its index so that you will not need to type out the entire class name!
+We are currently working on a new feature that allows you to select a class by its index, so that you will not need to type out the entire class name!
 </div>
 
 Example:
@@ -269,11 +268,11 @@ Example:
 
 ![select_example](images/select_example.png)
 Fig 5: Class `4E2` is highlighted in blue with its students list displayed after `select 4E2` is executed
+
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-[\[ Back to top \]](#table-of-contents)
-
+[ Back to top ](#)
 ### Student related features
 #### Adding a student : `add`
 
@@ -282,7 +281,7 @@ Start organising your classes by adding students. This command allows you to add
 Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
 * A class should be selected before adding a student.
-* Everything is optional except for the name of the student.
+* Everything is optional except for name of the student.
 * The `NAME` is case and space sensitive and should not be already inside the class.
 * You can add multiple tags by adding more `t/` flags.
 
@@ -313,7 +312,7 @@ Format: `delete INDEX…||all`
 * `delete all` deletes all the students currently displayed in the student list.
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
-We are currently working on a new feature that allows you to move a student to another class so that you will not need to delete and add the student!
+We are currently working on a new feature that allows you move a student to another class, so that you will not need to delete and add the student!
 </div>
 
 Examples:
@@ -358,7 +357,7 @@ Fig 8: Student `Jane Doe` added in [add](#adding-a-student--add), has been renam
 #### Locating students by name : `find`
 
 Scrolling through the whole list of students to find a specific student is often time-consuming. 
-You can use this command to search for students with the specified keywords in their names.
+You can use this command to search for students with the specified keywords in their name.
 
 Format: `find KEYWORD…`
 
@@ -391,15 +390,15 @@ Example:
 
 ![remark](images/remark.png)
 Fig 10: Student `Jane Doe` added in [add](#adding-a-student--add) is displayed with remark `Contracted COVID-19` after `remark 3 r/Contracted COVID-19` is executed
+
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-[\[ Back to top \]](#table-of-contents)
-
+[ Back to top ](#)
 ### Grade related features
 #### Setting a grading system : `setGrade`
 
-TeachBook allows for the setting of a personalised grading system. You may implement your own grading system
+TeachBook allows for setting of a personalised grading system. You may implement your own grading system
 which may differ from semester to semester and subject to subject in order to grade your students accordingly.
 
 Format: `setGrade GRADE_1[>GRADE_2]…`
@@ -444,7 +443,7 @@ Fig 12: All students in Class `4E1` are given an `A` grade after `grade all g/A`
 #### Resetting grading system : `resetGrade`
 
 Teachbook can only incorporate at most 1 grading system at any time. Therefore, you have to wipe out an existing
-grading system before setting a new one. This command not only resets the grading system but also wipes out
+grading system before setting a new one. This command not only resets the grading system, but also wipes out
 all the grades previously given to the students.
 
 Format: `resetGrade`
@@ -452,11 +451,11 @@ Format: `resetGrade`
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 All students' grades will be cleared!
 </div>
+
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-[\[ Back to top \]](#table-of-contents)
-
+[ Back to top ](#)
 ### Attendance related features
 #### Marking the attendance of a student : `mark`
 
@@ -464,8 +463,8 @@ You can use this command to mark your students as present. The `present` checkbo
 
 Format: `mark INDEX…||all`
 
-* `mark INDEX…` marks the students at the specified `INDEX`s present.
-* `mark all` marks all the students currently displayed in the student list present.
+* `mark INDEX…` marks the students at the specified `INDEX`s as present.
+* `mark all` marks all the students currently displayed in the student list as present.
 
 <div markdown="block" class="alert alert-info">:information_source: **Info:**
 This command will result in all the students in the list being shown. For example, if you execute `list absent` to filter out all absent students
@@ -478,18 +477,18 @@ After marking, you can generate the attendance list with the `print c/attendance
 </div>
 
 Examples:
-* `mark 3` marks the 3rd student present.
+* `mark 3` marks the 3rd student as present.
 * `mark 2 3 4` marks the 2nd, 3rd, and 4th students as present.
-* `mark all` marks all the students currently displayed in the student list present.
+* `mark all` marks all the students currently displayed in the student list as present.
 
 ![mark](images/markAttendance.png) 
 Fig 13: Student `Jane Doe` added in [add](#adding-a-student--add) is displayed with a green checkbox with a tick after `mark 3` is executed
 
 <br>
 
-#### Un-marking the attendance of a student : `unmark`
+#### Unmarking the attendance of a student : `unmark`
 
-You can use this command to mark your students as absent. The `present` checkbox will turn red indicating successful un-marking of attendance.
+You can use this command to mark your students as absent. The `present` checkbox will turn red indicating successful unmarking of attendance.
 
 Format: `unmark INDEX…||all`
 
@@ -507,11 +506,11 @@ Examples:
 
 ![unmark](images/unmark.png)
 Fig 14: Student `Jane Doe`, who was previously [marked as present](#marking-the-attendance-of-a-student--mark), is now marked as absent and is displayed with a red checkbox after `unmark 3` is executed
+
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-[\[ Back to top \]](#table-of-contents)
-
+[ Back to top ](#)
 ### Utility features
 #### Printing to Excel : `print`
 
@@ -528,7 +527,7 @@ Putting an empty column title (i.e. `c/ `) will give you an empty column.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can use this command to obtain a physical copy of the student list so that you can submit it to the management if required.
+You can use this command to obtain a physical copy of student list so that you can submit it to the management if required.
 </div>
 
 Examples:
@@ -541,13 +540,13 @@ Fig 15: Excel sheet generated from TeachBook after `print c/class c/email c/Sign
 
 #### Sorting students : `sort`
 
-Unorganized student lists are a pain to see. This command allows sorting of the student list according to either their name or grade.
+Unorganized student lists are a pain to see. This command allows to sort the student list according to either their name or grade.
 
 Format: `sort name||grade`
 
 * `sort name` reorders students according to their name.
 * `sort grade` reorders students according to their grade in descending order.
-* Sorting by grade requires a grading system to be in place in the TeachBook.
+* Sorting by grade requires a grading system being used in the TeachBook.
 
 <div markdown="block" class="alert alert-info">:information_source: **Info:**
 * When there is a currently selected class, `sort` will sort the entire student list of the class, not just the displayed student list.
@@ -555,7 +554,7 @@ Format: `sort name||grade`
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-TeachBook currently does not store the order in which students are added to each class. 
+TeachBook currently does not specially store the order in which students are added into each class. 
 This means you may not be able to restore the list to the order in which students are originally added.
 </div>
 
@@ -588,8 +587,6 @@ Fig 16: All students in the TeachBook are displayed after `list all` is executed
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-[\[ Back to top \]](#table-of-contents)
-
 ### Others
 #### Saving the data
 
@@ -602,31 +599,31 @@ TeachBook data are saved in the hard disk automatically after any command that c
 TeachBook data are saved as a JSON file `[JAR file location]/data/teachbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file make its format invalid, TeachBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, TeachBook will discard all data and start with an empty data file at the next run.
 </div>
+
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-[\[ Back to top \]](#table-of-contents)
+[ Back to top ](#)
 
 ## FAQs
 
 **Q**: How do I transfer my data to another computer? <br>
-**A**: Install the app on the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TeachBook. <br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TeachBook. <br>
 
 **Q**: Where does the Excel file save to after using the `print` command? <br>
-**A**: It will be saved to your computer's download folder. A detailed file path is also given in the command result after the `print` command is executed. <br>
+**A**: It will be saved to your computer's download folder. Detailed file path is also given in the command result after the `print` command is executed. <br>
 
 **Q**: There seems to be a lag after some commands. What can I do? <br>
 **A**: Close any background programs or applications which are not in use on your computer. <br>
 
 **Q**: When performing tasks on classes (e.g. deleting or selecting a class), I find it cumbersome to type the class name all the time. Can I select it by the index? <br>
 **A**: Currently, it is still not possible. We have heard your feedback and are currently working on it to add this feature in. Do keep a lookout for our next update! <br>
+
 <div style="page-break-after: always;"></div>
-
 --------------------------------------------------------------------------------------------------------------------
-[\[ Back to top \]](#table-of-contents)
-
+[ Back to top ](#)
 ## Command Summary
 
 Action                         | Format, Examples
@@ -649,10 +646,10 @@ Action                         | Format, Examples
 **Give grade to student**      | <code>grade INDEX…&#124;&#124;all g/&#91;GRADE&#93;</code> <br> e.g., `grade 3 g/A`
 **Reset grading system**       | `resetGrade`
 **Mark student attendance**    | <code>mark INDEX…&#124;&#124;all</code> <br> e.g., `mark 1 2 3`
-**Un-mark student attendance**  | <code>unmark INDEX…&#124;&#124;all</code> <br> e.g., `unmark 1 2 3`
+**Unmark student attendance**  | <code>unmark INDEX…&#124;&#124;all</code> <br> e.g., `unmark 1 2 3`
 **Print data as Excel file**   | `print [c/class] [c/phone] [c/email] [c/address] [c/tags] [c/remark] [c/attendance] [c/grade] [c/COLUMN_TITLE]…` <br> e.g., `print c/class c/email c/Signature`
 **Sort students**              | <code>sort name&#124;&#124;grade</code>
 **List students**              | <code>list &#91;all&#124;&#124;absent&#93;</code>
 
-[\[ Back to top \]](#table-of-contents)
+[ Back to top ](#)
 
