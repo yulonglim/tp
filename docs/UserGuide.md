@@ -49,10 +49,10 @@ Symbol                 | Meaning
 :bulb:                 | a tip (e.g. shortcut or hidden features) which you can follow to enhance your experience using TeachBook
 :exclamation:          | an extra caution you have take to prevent any unwanted results
 
+[ Back to top ](#)
 <div style="page-break-after: always;"></div>
 
-
-[ Back to top ](#)
+--------------------------------------------------------------------------------------------------------------------
 ## Quick Start
 
 1. Ensure you have Java `11` or above installed in your computer.
@@ -80,11 +80,10 @@ Symbol                 | Meaning
     * **`exit`** : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
-
+[ Back to top ](#)
 <div style="page-break-after: always;"></div>
 
-
-[ Back to top ](#)
+--------------------------------------------------------------------------------------------------------------------
 ## Graphical User Interface
 
 In this section, we will be guiding you through the different sections of TeachBook's Graphical User Interface (GUI). 
@@ -96,11 +95,10 @@ There are a total of 5 different sections according to the image of out GUI belo
 * **Student List** (Place where you can see the list of students that you have added)
 
 ![GUI](images/GUI.png)
-
+[ Back to top ](#)
 <div style="page-break-after: always;"></div>
 
-
-[ Back to top ](#)
+--------------------------------------------------------------------------------------------------------------------
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -187,11 +185,10 @@ Format: `redo`
 This command will exit TeachBook. There is no need to save any data manually.
 
 Format: `exit`
-
+[ Back to top ](#)
 <div style="page-break-after: always;"></div>
 
-
-[ Back to top ](#)
+--------------------------------------------------------------------------------------------------------------------
 ### Class related features
 #### Adding a class : `addClass`
 
@@ -268,11 +265,10 @@ Example:
 
 ![select_example](images/select_example.png)
 Fig 5: Class `4E2` is highlighted in blue with its students list displayed after `select 4E2` is executed
-
+[ Back to top ](#)
 <div style="page-break-after: always;"></div>
 
-
-[ Back to top ](#)
+--------------------------------------------------------------------------------------------------------------------
 ### Student related features
 #### Adding a student : `add`
 
@@ -391,10 +387,10 @@ Example:
 ![remark](images/remark.png)
 Fig 10: Student `Jane Doe` added in [add](#adding-a-student--add) is displayed with remark `Contracted COVID-19` after `remark 3 r/Contracted COVID-19` is executed
 
+[ Back to top ](#)
 <div style="page-break-after: always;"></div>
 
-
-[ Back to top ](#)
+--------------------------------------------------------------------------------------------------------------------
 ### Grade related features
 #### Setting a grading system : `setGrade`
 
@@ -452,10 +448,10 @@ Format: `resetGrade`
 All students' grades will be cleared!
 </div>
 
+[ Back to top ](#)
 <div style="page-break-after: always;"></div>
 
-
-[ Back to top ](#)
+--------------------------------------------------------------------------------------------------------------------
 ### Attendance related features
 #### Marking the attendance of a student : `mark`
 
@@ -507,10 +503,10 @@ Examples:
 ![unmark](images/unmark.png)
 Fig 14: Student `Jane Doe`, who was previously [marked as present](#marking-the-attendance-of-a-student--mark), is now marked as absent and is displayed with a red checkbox after `unmark 3` is executed
 
+[ Back to top ](#)
 <div style="page-break-after: always;"></div>
 
-
-[ Back to top ](#)
+--------------------------------------------------------------------------------------------------------------------
 ### Utility features
 #### Printing to Excel : `print`
 
@@ -584,10 +580,11 @@ list by listing out all the students from all the classes as no class is selecte
 
 ![list all](images/listAll.png)
 Fig 16: All students in the TeachBook are displayed after `list all` is executed
-<div style="page-break-after: always;"></div>
-
 
 [ Back to top ](#)
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
 ### Others
 #### Saving the data
 
@@ -603,11 +600,10 @@ TeachBook data are saved as a JSON file `[JAR file location]/data/teachbook.json
 If your changes to the data file makes its format invalid, TeachBook will discard all data and start with an empty data file at the next run.
 </div>
 
+[ Back to top ](#)
 <div style="page-break-after: always;"></div>
 
-
-[ Back to top ](#)
-
+--------------------------------------------------------------------------------------------------------------------
 ## FAQs
 
 **Q**: How do I transfer my data to another computer? <br>
@@ -622,9 +618,10 @@ If your changes to the data file makes its format invalid, TeachBook will discar
 **Q**: When performing tasks on classes (e.g. deleting or selecting a class), I find it cumbersome to type the class name all the time. Can I select it by the index? <br>
 **A**: Currently, it is still not possible. We have heard your feedback and are currently working on it to add this feature in. Do keep a lookout for our next update! <br>
 
+[ Back to top ](#)
 <div style="page-break-after: always;"></div>
 
-[ Back to top ](#)
+---------------------------------------------------------------------------------------------------------------------
 ## Command Summary
 
 Action                         | Format, Examples
@@ -651,6 +648,6 @@ Action                         | Format, Examples
 **Print data as Excel file**   | `print [c/class] [c/phone] [c/email] [c/address] [c/tags] [c/remark] [c/attendance] [c/grade] [c/COLUMN_TITLE]…` <br> e.g., `print c/class c/email c/Signature`
 **Sort students**              | <code>sort name&#124;&#124;grade</code>
 **List students**              | <code>list &#91;all&#124;&#124;absent&#93;</code>
-
+--------------------------------------------------------------------------------------------------------------------
 [ Back to top ](#)
 
