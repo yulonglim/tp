@@ -3,6 +3,8 @@ layout: page
 title: User Guide
 ---
 
+## Table of Contents
+
 * Table of Contents
 {:toc}
 
@@ -27,8 +29,8 @@ different classes.
 
 ## How to use this guide?
 
-As this user guide is created for users with varying levels of experience using the app, it is divided into different 
-sections, so feel free to navigate to the portion of interest using our handy [Table of Contents](#) provided above.
+As this user guide is created for users with varying levels of experience using the app, it is divided in different 
+sections, so feel free to navigate to the portion of interest using our handy [Table of Contents](#table-of-contents) provided above.
 
 * If you are a **new user who is using TeachBook for the first time**, you can follow the [Quick Start](#quick-start) on how to get
   TeachBook running on your system for the first time.
@@ -49,7 +51,7 @@ Symbol                 | Meaning
 :exclamation:          | an extra caution you have to take to prevent any unwanted results
 
 --------------------------------------------------------------------------------------------------------------------
-[ Back to top ](#)
+[\[ Back to top \]](#table-of-contents)
 
 ## Quick Start
 
@@ -80,7 +82,7 @@ Symbol                 | Meaning
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-[ Back to top ](#)
+[\[ Back to top \]](#table-of-contents)
 
 ## Graphical User Interface
 
@@ -95,7 +97,7 @@ There are a total of 5 different sections according to the image of our GUI belo
 ![GUI](images/GUI.png)
 
 --------------------------------------------------------------------------------------------------------------------
-[ Back to top ](#)
+[\[ Back to top \]](#table-of-contents)
 
 ## Features
 
@@ -183,7 +185,7 @@ This command will exit TeachBook. There is no need to save any data manually.
 Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
-[ Back to top ](#)
+[\[ Back to top \]](#table-of-contents)
 
 ### Class related features
 #### Adding a class : `addClass`
@@ -263,7 +265,7 @@ Example:
 Fig 5: Class `4E2` is highlighted in blue with its students list displayed after `select 4E2` is executed
 
 --------------------------------------------------------------------------------------------------------------------
-[ Back to top ](#)
+[\[ Back to top \]](#table-of-contents)
 
 ### Student related features
 #### Adding a student : `add`
@@ -384,7 +386,7 @@ Example:
 Fig 10: Student `Jane Doe` added in [add](#adding-a-student--add) is displayed with remark `Contracted COVID-19` after `remark 3 r/Contracted COVID-19` is executed
 
 --------------------------------------------------------------------------------------------------------------------
-[ Back to top ](#)
+[\[ Back to top \]](#table-of-contents)
 
 ### Grade related features
 #### Setting a grading system : `setGrade`
@@ -444,7 +446,7 @@ All students' grades will be cleared!
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-[ Back to top ](#)
+[\[ Back to top \]](#table-of-contents)
 
 ### Attendance related features
 #### Marking the attendance of a student : `mark`
@@ -498,7 +500,7 @@ Examples:
 Fig 14: Student `Jane Doe`, who was previously [marked as present](#marking-the-attendance-of-a-student--mark), is now marked as absent and is displayed with a red checkbox after `unmark 3` is executed
 
 --------------------------------------------------------------------------------------------------------------------
-[ Back to top ](#)
+[\[ Back to top \]](#table-of-contents)
 
 ### Utility features
 #### Printing to Excel : `print`
@@ -575,7 +577,7 @@ list by listing out all the students from all the classes as no class is selecte
 Fig 16: All students in the TeachBook are displayed after `list all` is executed
 
 --------------------------------------------------------------------------------------------------------------------
-[ Back to top ](#)
+[\[ Back to top \]](#table-of-contents)
 
 ### Others
 #### Saving the data
@@ -593,7 +595,7 @@ If your changes to the data file make its format invalid, TeachBook will discard
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-[ Back to top ](#)
+[\[ Back to top \]](#table-of-contents)
 
 ## FAQs
 
@@ -610,7 +612,7 @@ If your changes to the data file make its format invalid, TeachBook will discard
 **A**: Currently, it is still not possible. We have heard your feedback and are currently working on it to add this feature in. Do keep a lookout for our next update! <br>
 
 --------------------------------------------------------------------------------------------------------------------
-[ Back to top ](#)
+[\[ Back to top \]](#table-of-contents)
 
 ## Command Summary
 
@@ -639,5 +641,5 @@ Action                         | Format, Examples
 **Sort students**              | <code>sort name&#124;&#124;grade</code>
 **List students**              | <code>list &#91;all&#124;&#124;absent&#93;</code>
 
-[ Back to top ](#)
+[\[ Back to top \]](#table-of-contents)
 
