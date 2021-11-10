@@ -10,12 +10,12 @@ title: User Guide
 
 ## Introduction
 
-Welcome to this TeachBook User Guide! 
+Welcome to this TeachBook User Guide!
 
-If you are a primary or secondary school teacher who is using TeachBook, or just someone who wants to find out more 
+If you are a primary or secondary school teacher who is using TeachBook, or just someone who wants to find out more
 about what TeachBook can do, you are at the right place.
 
-In this user guide, you will find step-by-step instructions on how you can install TeachBook and a guide on how to use all 
+In this user guide, you will find step-by-step instructions on how you can install TeachBook and a guide on how to use all
 of its features.
 
 ## What is TeachBook?
@@ -26,10 +26,11 @@ towards teachers who can type fast. It allows teachers to store and organise con
 different classes.
 
 [comment]: <> (for 2101, rephrase the last sentence above?)
+<div style="page-break-after: always;"></div>
 
 ## How to use this guide?
 
-As this user guide is created for users with varying levels of experience using the app, it is divided in different 
+As this user guide is created for users with varying levels of experience using the app, it is divided in different
 sections, so feel free to navigate to the portion of interest using our handy [Table of Contents](#table-of-contents) provided above.
 
 * If you are a **new user who is using TeachBook for the first time**, you can follow the [Quick Start](#quick-start) on how to get
@@ -50,9 +51,10 @@ Symbol                 | Meaning
 :bulb:                 | a tip (e.g. shortcut or hidden features) which you can follow to enhance your experience using TeachBook
 :exclamation:          | an extra caution you have to take to prevent any unwanted results
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 [\[ Back to top \]](#table-of-contents)
-
 ## Quick Start
 
 1. Ensure you have Java `11` or above installed on your computer.
@@ -66,7 +68,7 @@ Symbol                 | Meaning
    ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press `Enter` to execute it. For example, typing **`help`** and pressing `Enter` will open the help window.<br><br>
-   
+
    Some example commands you can try:
 
     * **`select`**`4E2` : Displays all the students from the class named `4E2`.
@@ -80,13 +82,13 @@ Symbol                 | Meaning
     * **`exit`** : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 [\[ Back to top \]](#table-of-contents)
-
 ## Graphical User Interface
 
-In this section, we will be guiding you through the different sections of TeachBook's Graphical User Interface (GUI). 
+In this section, we will be guiding you through the different sections of TeachBook's Graphical User Interface (GUI).
 There are a total of 5 different sections according to the image of our GUI below (highlighted in red) and they are the:
 * **Menu Bar**
 * **Command Box** (Place for you to type in the command)
@@ -95,6 +97,7 @@ There are a total of 5 different sections according to the image of our GUI belo
 * **Student List** (Place where you can see the list of students that you have added)
 
 ![GUI](images/GUI.png)
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 [\[ Back to top \]](#table-of-contents)
@@ -132,6 +135,8 @@ There are a total of 5 different sections according to the image of our GUI belo
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Basic features
 #### Viewing help : `help`
@@ -183,6 +188,7 @@ Format: `redo`
 This command will exit TeachBook. There is no need to save any data manually.
 
 Format: `exit`
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 [\[ Back to top \]](#table-of-contents)
@@ -207,7 +213,7 @@ Fig 2: Class `4E4` is added after `addClass 4E4` is executed
 
 #### Deleting a class : `deleteClass`
 
-This command allows you to delete a class currently in TeachBook. All the students in the class will also be deleted. 
+This command allows you to delete a class currently in TeachBook. All the students in the class will also be deleted.
 With this command, you can easily delete a whole class without the need to delete individual students.
 
 Format: `deleteClass CLASS_NAME`
@@ -263,6 +269,7 @@ Example:
 
 ![select_example](images/select_example.png)
 Fig 5: Class `4E2` is highlighted in blue with its students list displayed after `select 4E2` is executed
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 [\[ Back to top \]](#table-of-contents)
@@ -327,7 +334,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
 * Edits the information of the student at the specified `INDEX`.
 * At least one field to edit must be specified.
-* Existing values will be **overwritten** by input values. 
+* Existing values will be **overwritten** by input values.
 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -350,7 +357,7 @@ Fig 8: Student `Jane Doe` added in [add](#adding-a-student--add), has been renam
 
 #### Locating students by name : `find`
 
-Scrolling through the whole list of students to find a specific student is often time-consuming. 
+Scrolling through the whole list of students to find a specific student is often time-consuming.
 You can use this command to search for students with the specified keywords in their names.
 
 Format: `find KEYWORD…`
@@ -384,6 +391,7 @@ Example:
 
 ![remark](images/remark.png)
 Fig 10: Student `Jane Doe` added in [add](#adding-a-student--add) is displayed with remark `Contracted COVID-19` after `remark 3 r/Contracted COVID-19` is executed
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 [\[ Back to top \]](#table-of-contents)
@@ -444,6 +452,7 @@ Format: `resetGrade`
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 All students' grades will be cleared!
 </div>
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 [\[ Back to top \]](#table-of-contents)
@@ -473,7 +482,7 @@ Examples:
 * `mark 2 3 4` marks the 2nd, 3rd, and 4th students as present.
 * `mark all` marks all the students currently displayed in the student list present.
 
-![mark](images/markAttendance.png) 
+![mark](images/markAttendance.png)
 Fig 13: Student `Jane Doe` added in [add](#adding-a-student--add) is displayed with a green checkbox with a tick after `mark 3` is executed
 
 <br>
@@ -498,6 +507,7 @@ Examples:
 
 ![unmark](images/unmark.png)
 Fig 14: Student `Jane Doe`, who was previously [marked as present](#marking-the-attendance-of-a-student--mark), is now marked as absent and is displayed with a red checkbox after `unmark 3` is executed
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 [\[ Back to top \]](#table-of-contents)
@@ -575,6 +585,7 @@ list by listing out all the students from all the classes as no class is selecte
 
 ![list all](images/listAll.png)
 Fig 16: All students in the TeachBook are displayed after `list all` is executed
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 [\[ Back to top \]](#table-of-contents)
@@ -593,6 +604,7 @@ TeachBook data are saved as a JSON file `[JAR file location]/data/teachbook.json
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file make its format invalid, TeachBook will discard all data and start with an empty data file at the next run.
 </div>
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 [\[ Back to top \]](#table-of-contents)
@@ -610,6 +622,7 @@ If your changes to the data file make its format invalid, TeachBook will discard
 
 **Q**: When performing tasks on classes (e.g. deleting or selecting a class), I find it cumbersome to type the class name all the time. Can I select it by the index? <br>
 **A**: Currently, it is still not possible. We have heard your feedback and are currently working on it to add this feature in. Do keep a lookout for our next update! <br>
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 [\[ Back to top \]](#table-of-contents)
@@ -642,4 +655,3 @@ Action                         | Format, Examples
 **List students**              | <code>list &#91;all&#124;&#124;absent&#93;</code>
 
 [\[ Back to top \]](#table-of-contents)
-
