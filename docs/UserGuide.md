@@ -134,7 +134,6 @@ There are a total of 5 different sections according to the image of our GUI belo
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit`, and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 </div>
-<div style="page-break-after: always;"></div>
 
 ### Basic features
 #### Viewing help : `help`
