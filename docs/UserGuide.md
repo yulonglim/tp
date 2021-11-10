@@ -133,9 +133,7 @@ There are a total of 5 different sections according to the image of our GUI belo
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit`, and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
 </div>
-
 <div style="page-break-after: always;"></div>
 
 ### Basic features
@@ -147,7 +145,6 @@ Format: `help`
 
 ![help message](images/helpMessage.png)
 Fig 1: Help window popup when `help` command is executed
-
 <br>
 
 #### Clearing all entries : `clear`
@@ -159,7 +156,6 @@ Format: `clear`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Don't forget that TeachBook provides an undo feature just in case you accidentally clear all the data!
 </div>
-
 <br>
 
 #### Undoing a command : `undo`
@@ -209,7 +205,7 @@ Examples:
 ![addClass](images/addClass.png)
 Fig 2: Class `4E4` is added after `addClass 4E4` is executed
 
-<br>
+<div style="page-break-after: always;"></div>
 
 #### Deleting a class : `deleteClass`
 
@@ -227,7 +223,7 @@ Examples:
 ![deleteClass](images/deleteClass.png)
 Fig 3: Class `4E4` added in [addClass](#adding-a-class--addclass) is deleted after `deleteClass 4E4` is executed
 
-<br>
+<div style="page-break-after: always;"></div>
 
 #### Editing a class name : `editClass`
 
@@ -245,7 +241,7 @@ Examples:
 ![editClass](images/editClass.png)
 Fig 4: Class `4E4` added in [addClass](#adding-a-class--addclass) is now named `4E5` after `editClass 4E5` is executed
 
-<br>
+<div style="page-break-after: always;"></div>
 
 #### Selecting a class : `select`
 
@@ -416,8 +412,7 @@ Example:
 
 ![setGrade](images/setGrade.png)<br>
 Fig 11: New grading system is set after `setGrade A>B>C>D` is executed
-
-<br>
+<div style="page-break-after: always;"></div>
 
 #### Giving grade to a student : `grade`
 
@@ -438,8 +433,7 @@ Example:
 
 ![Grade](images/gradeAll.png)
 Fig 12: All students in Class `4E1` are given an `A` grade after `grade all g/A` is executed
-
-<br>
+<div style="page-break-after: always;"></div>
 
 #### Resetting grading system : `resetGrade`
 
