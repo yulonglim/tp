@@ -585,8 +585,8 @@ list by listing out all the students from all the classes as no class is selecte
 ![list all](images/listAll.png)
 Fig 16: All students in the TeachBook are displayed after `list all` is executed
 <div style="page-break-after: always;"></div>
---------------------------------------------------------------------------------------------------------------------
-[ Back to top ](#) 
+
+--------------------------------------------------------------------------------------------------------------------[ Back to top ](#)
 ### Others
 #### Saving the data
 
