@@ -8,7 +8,7 @@ title: User Guide
 ## Table of Contents
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 ## Introduction
 
