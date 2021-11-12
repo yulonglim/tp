@@ -547,7 +547,8 @@ This command helps you to obtain a physical copy of the student list for adminis
 </div>
 
 Examples:
-* `print c/class c/email c/Signature` creates an Excel file with four columns: student name column, class column, email column, and an empty column with title `Signature`. <br>
+* `print c/class c/email c/Signature` creates an Excel file with four columns: student name column, class column, email column, and an empty column with title `Signature`. 
+
 ![excel](images/excel.png)
 Fig 15: Excel sheet generated from TeachBook after `print c/class c/email c/Signature` is executed
 <br>
