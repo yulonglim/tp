@@ -211,7 +211,7 @@ Examples:
 ![addClass](images/addClass.png)
 Fig 2: Class `4E4` is added after `addClass 4E4` is executed
 
-<br>
+<div style="page-break-after: always;"></div>
 
 #### Deleting a class : `deleteClass`
 
@@ -254,7 +254,7 @@ Example:
 ![select_example](images/select_example.png)
 Fig 5: Class `4E2` is highlighted in blue with its students list displayed after `select 4E2` is executed
 
-<br>
+<div style="page-break-after: always;"></div>
 
 #### Editing a class name : `editClass`
 
@@ -421,7 +421,7 @@ Example:
 ![setGrade](images/setGrade.png)<br>
 Fig 11: New grading system is set after `setGrade A>B>C>D` is executed
 
-<br>
+<div style="page-break-after: always;"></div>
 
 #### Giving grade to a student : `grade`
 
@@ -443,7 +443,7 @@ Example:
 ![Grade](images/gradeAll.png)
 Fig 12: All students in Class `4E1` are given an `A` grade after `grade all g/A` is executed
 
-<br>
+<div style="page-break-after: always;"></div>
 
 #### Resetting grading system : `resetGrade`
 
