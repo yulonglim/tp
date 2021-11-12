@@ -526,17 +526,14 @@ Format: `print [c/class] [c/phone] [c/email] [c/address] [c/tags] [c/remark] [c/
 <div markdown="block" class="alert alert-info">:information_source: **Info:**
 Putting an empty column title (i.e. `c/ `) will give you an empty column.
 </div>
-
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can use this command to obtain a physical copy of the student list so that you can submit it to the management if required.
+This command helps you to obtain a physical copy of the student list for administrative tasks.
 </div>
 
 Examples:
 * `print c/class c/email c/Signature` creates an Excel file with four columns: student name column, class column, email column, and an empty column with title `Signature`.
-
 ![excel](images/img.png)
 Fig 15: Excel sheet generated from TeachBook after `print c/class c/email c/Signature` is executed
-
 <br>
 
 #### Sorting students : `sort`
