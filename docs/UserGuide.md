@@ -183,7 +183,7 @@ Format: `undo`
 * Commands that do not cause any changes in data or display cannot be undone (e.g. `print`, `help`, etc.).
 </div>
 
-<br>
+<div style="page-break-after: always;"></div>
 
 #### Redoing a command: `redo`
 
@@ -547,8 +547,8 @@ This command helps you to obtain a physical copy of the student list for adminis
 </div>
 
 Examples:
-* `print c/class c/email c/Signature` creates an Excel file with four columns: student name column, class column, email column, and an empty column with title `Signature`.
-![excel](images/img.png)
+* `print c/class c/email c/Signature` creates an Excel file with four columns: student name column, class column, email column, and an empty column with title `Signature`. <br>
+![excel](images/excel.png)
 Fig 15: Excel sheet generated from TeachBook after `print c/class c/email c/Signature` is executed
 <br>
 
@@ -661,7 +661,7 @@ Action                         | Format, Examples
 **Select class**               | `select CLASS_NAME` <br> e.g., `select 4E2`
 **Add student**                | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g., `add n/Jane Doe p/91234567 e/janedoe@example.com a/21 Lower Kent Ridge Road, Singapore 119077 t/class monitor`
 **Delete student**             | <code>delete INDEX…&#124;&#124;all</code> <br> e.g., `delete 1`
-**Edit student**               | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g.,`edit 2 n/Joseph Chan t/`
+**Edit student**               | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g., `edit 2 n/Joseph Chan t/`
 **Find student**               | `find KEYWORD…` <br> e.g., `find James Jake`
 **Add remark to student**      | `remark INDEX r/[REMARK]` <br> e.g., `remark 1 r/Contracted COVID-19`
 **Set grading system**         | `setGrade GRADE_1[>GRADE_2]…` <br> e.g., `setGrade A>B>C>D`
