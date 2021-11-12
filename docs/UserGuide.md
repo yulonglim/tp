@@ -170,7 +170,7 @@ Format: `clear`
 Don't forget that TeachBook provides an undo feature if you accidentally clear all the data!
 </div>
 
-<br>
+<div style="page-break-after: always;"></div>
 
 #### Undoing a command : `undo`
 
@@ -183,7 +183,7 @@ Format: `undo`
 * Commands that do not cause any changes in data or display cannot be undone (e.g. `print`, `help`, etc.).
 </div>
 
-<div style="page-break-after: always;"></div>
+<br>
 
 #### Redoing a command: `redo`
 
@@ -547,8 +547,7 @@ This command helps you to obtain a physical copy of the student list for adminis
 </div>
 
 Examples:
-* `print c/class c/email c/Signature` creates an Excel file with four columns: student name column, class column, email column, and an empty column with title `Signature`. 
-
+* `print c/class c/email c/Signature` creates an Excel file with four columns: student name column, class column, email column, and an empty column with title `Signature`.
 ![excel](images/excel.png)
 Fig 15: Excel sheet generated from TeachBook after `print c/class c/email c/Signature` is executed
 <br>
