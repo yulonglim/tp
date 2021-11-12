@@ -51,7 +51,9 @@ Symbol                 | Meaning
 :information_source:   | additional information that we feel that you ought to know
 :bulb:                 | a tip (e.g. shortcut or hidden features) which you can follow to enhance your experience using TeachBook
 :exclamation:          | a caution you have to take to prevent any unwanted results
+
 --------------------------------------------------------------------------------------------------------------------
+
 [\[ Back to top \]](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
@@ -83,8 +85,11 @@ Symbol                 | Meaning
     * **`exit`** : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
+
 --------------------------------------------------------------------------------------------------------------------
+
 [\[ Back to top \]](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 ## Graphical User Interface
@@ -100,7 +105,9 @@ There are a total of 5 different sections according to the image of our GUI belo
 ![GUI](images/GUI.png) 
 
 --------------------------------------------------------------------------------------------------------------------
+
 [\[ Back to top \]](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 ## Features
@@ -138,6 +145,7 @@ There are a total of 5 different sections according to the image of our GUI belo
 </div>
 
 [\[ Back to top \]](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 ### Basic features
@@ -192,7 +200,9 @@ You can use this command to exit TeachBook. There is no need to save any data ma
 Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
+
 [\[ Back to top \]](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 ### Class related features
@@ -272,7 +282,9 @@ Examples:
 Fig 4: Class `4E4` added in [addClass](#adding-a-class--addclass) is now named `4E5` after `editClass 4E5` is executed
 
 --------------------------------------------------------------------------------------------------------------------
+
 [\[ Back to top \]](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 ### Student related features
@@ -394,7 +406,9 @@ Example:
 Fig 10: Student `Jane Doe` added in [add](#adding-a-student--add) is displayed with remark `Contracted COVID-19` after `remark 3 r/Contracted COVID-19` is executed <br>
 
 --------------------------------------------------------------------------------------------------------------------
+
 [\[ Back to top \]](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 ### Grade related features
@@ -452,7 +466,9 @@ All students' grades will be cleared!
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+
 [\[ Back to top \]](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 ### Attendance related features
@@ -507,7 +523,9 @@ Examples:
 Fig 14: Student `Jane Doe`, who was previously [marked as present](#marking-the-attendance-of-a-student--mark), is now marked as absent and is displayed with a red checkbox after `unmark 3` is executed
 
 --------------------------------------------------------------------------------------------------------------------
+
 [\[ Back to top \]](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 ### Utility features
@@ -582,7 +600,9 @@ list by listing out all the students from all the classes as no class is selecte
 Fig 16: All students in the TeachBook are displayed after `list all` is executed
 
 --------------------------------------------------------------------------------------------------------------------
+
 [\[ Back to top \]](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 ### Others
@@ -601,7 +621,9 @@ If your changes to the data file make its format invalid, TeachBook will discard
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+
 [\[ Back to top \]](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 ## FAQs
@@ -619,7 +641,9 @@ If your changes to the data file make its format invalid, TeachBook will discard
 **A**: Currently, it is still not possible. We have heard your feedback and are currently working on it to add this feature in. Do keep a lookout for our next update! <br>
 
 --------------------------------------------------------------------------------------------------------------------
+
 [\[ Back to top \]](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 ## Command Summary
