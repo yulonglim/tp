@@ -576,7 +576,7 @@ Examples:
 * `select 4E2` followed by `sort name` sorts the students in class `4E2` according to their name.
 * `list all` followed by `sort grade` sorts all the students in the TeachBook according to their grade but will not reorder each class's student list.
 
-<br>
+<div style="page-break-after: always;"></div>
 
 #### Listing all students : `list`
 
